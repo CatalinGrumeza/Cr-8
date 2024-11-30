@@ -1,5 +1,7 @@
 package com.Cr_8.servicies;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,9 +22,18 @@ public class ReferenceService {
 		referenceRepo.save(user);
 		return user;
 	}
+	
 	public Reference findByEmail(String email) {
-		if(referenceRepo.findByEmail(email).isPresent())
-			return referenceRepo.findByEmail(email).get();
+		Optional<Reference> reference = referenceRepo.findByEmail(email);
+		if(reference.isPresent())
+			return reference.get();
+		return null;
+	}
+	
+	public Reference findById(Long id) {
+		Optional<Reference> reference = referenceRepo.findById(id);
+		if (reference.isPresent())
+			return reference.get();
 		return null;
 	}
 }
