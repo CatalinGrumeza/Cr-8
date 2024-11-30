@@ -1,9 +1,13 @@
 package com.Cr_8.entities;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -11,17 +15,20 @@ import jakarta.persistence.Table;
 public class Reference {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 
 	private String firstName;
 	private String lastName;
 	private String phoneNumber;
 	private String email;
 	
-	public Integer getId() {
+	@OneToMany(mappedBy = "reference", cascade = CascadeType.ALL)
+    private List<Info> infos;
+	
+	public Long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getFirstName() {
@@ -48,5 +55,12 @@ public class Reference {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public List<Info> getInfos() {
+        return infos;
+    }
+
+    public void setInfos(List<Info> infos) {
+        this.infos = infos;
+    }
 	
 }
