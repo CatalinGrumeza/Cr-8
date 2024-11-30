@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.Cr_8.entities.Reference;
 
-public interface ReferenceRepo extends JpaRepository<Reference,Integer> {
+public interface ReferenceRepo extends JpaRepository<Reference,Long> {
 
 	/**
      * Finds a reference by its id.
@@ -14,6 +14,7 @@ public interface ReferenceRepo extends JpaRepository<Reference,Integer> {
      * @param id the id of the reference to be found
      * @return an Optional containing the Reference object if found, or an empty Optional if not found
      */
-	Optional<Reference> findById(Integer id);
+	Optional<Reference> findById(Long id);
+	Optional<Reference> findByEmail(String email);
 	
 }
