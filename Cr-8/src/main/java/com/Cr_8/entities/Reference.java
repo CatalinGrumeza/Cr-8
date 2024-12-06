@@ -2,6 +2,8 @@ package com.Cr_8.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,6 +25,7 @@ public class Reference {
 	private String email;
 	
 	@OneToMany(mappedBy = "reference", cascade = CascadeType.ALL)
+	@JsonIgnore
     private List<Info> infos;
 	
 	public Long getId() {
