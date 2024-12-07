@@ -34,13 +34,13 @@ public class BookController {
 	
 	//creates book request,checks if user exists and creates it if it doesn't and then sends email to user and admin
 	@PostMapping("/api/createBookRequest")
-	public ResponseEntity<?> postBookRequest(@Valid @RequestBody BookRequest bookRequest, BindingResult result) {
+	public ResponseEntity<?> postBookRequest(@Valid @RequestBody BookFormRequest bookRequest, BindingResult result) {
 		if(result.hasErrors()) {
 			return new ResponseEntity<>(errore(result).toString(), HttpStatus.BAD_REQUEST);
 		} else {
-		    bookService.createBook(bookRequest.getDataFrom(),bookRequest.getDataTo(),bookRequest.getCreatedAt(),bookRequest.getAdditionalDetails(),bookRequest.getParticipantNumber(),bookRequest.getBookType(),bookRequest.getVistorType(),bookRequest.getReference());
-		    mailService.sendEmail(bookRequest.getEmail(), bookRequest.getText(), "Richiesta informazioni", bookRequest.getName(), bookRequest.getSurname(), "informazioni");
-		    mailService.sendEmailToAdmin(bookRequest.getEmail(), bookRequest.getText(), "Richiesta informazioni", bookRequest.getName(), bookRequest.getSurname());
+		    bookService.createBook(bookRequest.getDataFrom(),bookRequest.getDataTo(),bookRequest.getAdditionalDetails(),bookRequest.getParticipantNumber(),bookRequest.getBookType(),bookRequest.getVistorType(),bookRequest.getName(),bookRequest.getSurname(),bookRequest.getPhone(),bookRequest.getEmail());
+		    mailService.sendEmail(bookRequest.getEmail(), /*body*/ "", "Richiesta informazioni", bookRequest.getName(), bookRequest.getSurname(), "informazioni");
+		    mailService.sendEmailToAdmin(bookRequest.getEmail(), /*body*/ "", "Richiesta informazioni", bookRequest.getName(), bookRequest.getSurname());
 		    return ResponseEntity.ok("Book request created successfully!");
 		}
 	}
