@@ -3,7 +3,6 @@ import com.Cr_8.entities.*;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -16,13 +15,13 @@ public class BookService {
 
 	private final BookRepo bookrepo;
 	private final StatusRepo statusrepo;
-    @Autowired
+	
 	public BookService(BookRepo bookrepo, StatusRepo statusrepo) {
 		this.bookrepo = bookrepo;
 		this.statusrepo = statusrepo;
 
 	}
-	public void createbook(LocalDate datafrom
+	public void createBook(LocalDate datafrom
 			,LocalDate datato
 			,LocalDate CreatedAt
 			,String additional
