@@ -1,6 +1,7 @@
 package com.Cr_8.entities;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import jakarta.persistence.*;
 
@@ -26,7 +27,7 @@ public class BookRequest {
 	private Status status; // status of the book
 	@ManyToOne
 	@JoinColumn(name ="reference_id", nullable = false)
-	private Reference reference; //reference of the group
+	private Optional<Reference> reference; //reference of the group
 	public Long getId() {
 		return id;
 	}
@@ -84,8 +85,8 @@ public class BookRequest {
 	public Reference getReference() {
 		return reference;
 	}
-	public void setReference(Reference reference) {
-		this.reference = reference;
+	public void setReference(Optional<Reference> user) {
+		this.reference = user;
 	}
 	
 }
