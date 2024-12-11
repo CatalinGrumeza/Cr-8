@@ -39,8 +39,8 @@ public class BookController {
 			return new ResponseEntity<>(errore(result).toString(), HttpStatus.BAD_REQUEST);
 		} else {
 		    bookService.createBook(bookRequest.getDataFrom(),bookRequest.getDataTo(),bookRequest.getAdditionalDetails(),bookRequest.getParticipantNumber(),bookRequest.getBookType(),bookRequest.getVistorType(),bookRequest.getName(),bookRequest.getSurname(),bookRequest.getPhone(),bookRequest.getEmail());
-		    mailService.sendEmail(bookRequest.getEmail(), /*body*/ "", "Richiesta informazioni", bookRequest.getName(), bookRequest.getSurname(), "informazioni");
-		    mailService.sendEmailToAdmin(bookRequest.getEmail(), /*body*/ "", "Richiesta informazioni", bookRequest.getName(), bookRequest.getSurname());
+		    mailService.sendEmail(bookRequest.getEmail(), bookRequest.getAdditionalDetails(), "Richiesta di Prenotazione", bookRequest.getName(), bookRequest.getSurname(), "Prenotazione");
+		    mailService.sendEmailToAdmin(bookRequest.getEmail(), bookRequest.getAdditionalDetails(), "Richiesta di Prenotazione", bookRequest.getName(), bookRequest.getSurname(),"Prenotazione",bookRequest.getPhone());
 		    return ResponseEntity.ok("Book request created successfully!");
 		}
 	}

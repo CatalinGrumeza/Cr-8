@@ -26,14 +26,15 @@ public class MailService {
         javaMailSender.send(simpleMailMessage);
     }
 
-    public void sendEmailToAdmin(String user, String bodyMessage, String subject, String name, String surname) {
+    public void sendEmailToAdmin(String user, String bodyMessage, String subject, String name, String surname,String type,String phone) {
         String baseText = String.format(
-            "Richiesta di informazioni da parte di:\n" +
+            "Richiesta di %s da parte di:\n" +
             "Nome: %s %s\n" +
             "Email: %s\n\n" +
+            "Phone: %s\n\n" +
             "Messaggio ricevuto:\n" +
             "%s\n\n",
-            name, surname, user, bodyMessage
+            type,name, surname, user,phone, bodyMessage
         );
 
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();

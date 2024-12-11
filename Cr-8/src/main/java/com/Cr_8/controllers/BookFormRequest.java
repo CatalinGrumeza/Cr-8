@@ -19,12 +19,11 @@ public class BookFormRequest {
 	@NotBlank(message = "Email CAN'T BE EMPTY")
 	@Email(message = "NOT VALID EMAIL")
     private String email;
-	@NotBlank(message ="TEXT CAN'T BE EMPTY")
-	
+	//@NotBlank(message ="TEXT CAN'T BE EMPTY")
+	private String additionalDetails;  
 	private LocalDate dataFrom;
 	private LocalDate dataTo;
 	private LocalDate CreatedAt;
-	private String additionalDetails; 
 	@Min(1)
 	private int participantNumber;
 	@NotBlank(message = "BOOK TYPE CAN'T BE EMPTY")
