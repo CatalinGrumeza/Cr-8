@@ -2,13 +2,14 @@ package com.Cr_8.servicies;
 import com.Cr_8.entities.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 import com.Cr_8.repositories.BookRepo;
-
+import com.Cr_8.repositories.ReferenceRepo;
 import com.Cr_8.repositories.StatusRepo;
 
 import jakarta.transaction.Transactional;
@@ -20,7 +21,7 @@ public class BookService {
 	private final StatusRepo statusrepo;
 	
 	@Autowired
-	private ReferenceService referenceService;
+	private ReferenceRepo referenceRepo;
 	
 	public BookService(BookRepo bookrepo, StatusRepo statusrepo) {
 		this.bookrepo = bookrepo;
@@ -48,12 +49,12 @@ public class BookService {
 		book.setParticipantNumber(partiNumber);
 		book.setBookType(bookType);
 		book.setVistorType(visitorType);
-		
-		if(referenceService.findByEmail(email)!=null) {
-			Reference user=referenceService.findByEmail(email);
-			book.setReference(user);
+		Optional<Reference> ref =referenceRepo.findByEmail(email);
+		if(ref.isPresent()) {
+			
+			book.setReference(ref);
 		} else {
-			Reference user=referenceService.createReference(email, surname, name, phone);
+			Optional<Reference> user=referenceRepo.createReference(email, surname, name, phone);
 			book.setReference(user);
 		}
 		
