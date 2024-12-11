@@ -31,13 +31,13 @@ public class InfoController {
 	private MailService mailService;
 	
 	//shows all the infos
-	@GetMapping("/index")
+	@GetMapping("/all-info")
 	public ResponseEntity<List<Info>> getAll() {
 		List<Info> infoList=infoService.getAllInfo();
 		return ResponseEntity.ok(infoList);
 	}
 	//creates info,checks if user exists and creates it if it doesn't and then sends email to user and admin
-	@PostMapping("/createInfo")
+	@PostMapping("/create-info")
 	public ResponseEntity<?> postMethodName(@Valid @RequestBody InfoFormRequest infoRequest, BindingResult result) {
 		if(result.hasErrors()) {
 			return new ResponseEntity<>(errore(result).toString(), HttpStatus.BAD_REQUEST);

@@ -26,14 +26,14 @@ public class BookController {
 	private MailService mailService;
 	
 	//shows all the book requests
-	@GetMapping("/api/book-index")
+	@GetMapping("/api/all-bookings")
 	public ResponseEntity<List<BookRequest>> getAll() {
 		List<BookRequest> bookList = bookService.getAllbookRequest();
 		return ResponseEntity.ok(bookList);
 	}
 	
 	//creates book request,checks if user exists and creates it if it doesn't and then sends email to user and admin
-	@PostMapping("/api/createBookRequest")
+	@PostMapping("/api/create-booking")
 	public ResponseEntity<?> postBookRequest(@Valid @RequestBody BookFormRequest bookRequest, BindingResult result) {
 		if(result.hasErrors()) {
 			return new ResponseEntity<>(errore(result).toString(), HttpStatus.BAD_REQUEST);

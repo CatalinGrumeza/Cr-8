@@ -52,9 +52,13 @@ public class BookService {
 		Optional<Reference> ref =referenceRepo.findByEmail(email);
 		if(ref.isPresent()) {
 			
-			book.setReference(ref);
+			book.setReference(ref.get());
 		} else {
-			Optional<Reference> user=referenceRepo.createReference(email, surname, name, phone);
+			Reference user=new Reference();
+			user.setEmail(email);
+			user.setFirstName(name);
+			user.setLastName(surname);
+			user.setPhoneNumber(phone);
 			book.setReference(user);
 		}
 		

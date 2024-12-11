@@ -27,7 +27,7 @@ public class BookRequest {
 	private Status status; // status of the book
 	@ManyToOne
 	@JoinColumn(name ="reference_id", nullable = false)
-	private Optional<Reference> reference; //reference of the group
+	private Reference reference; //reference of the group
 	public Long getId() {
 		return id;
 	}
@@ -85,7 +85,7 @@ public class BookRequest {
 	public Reference getReference() {
 		return reference;
 	}
-	public void setReference(Optional<Reference> user) {
+	public void setReference(Reference user) {
 		this.reference = user;
 	}
 	
