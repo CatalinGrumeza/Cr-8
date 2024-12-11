@@ -1,7 +1,7 @@
 async function fetchData() {
         try {
             // Fetching JSON data from the API
-            const response = await fetch('http://localhost:8080/api/index');
+            const response = await fetch('http://localhost:8080/api/all-info');
             
             // Check if the response is ok (status code 200-299)
             if (!response.ok) {
