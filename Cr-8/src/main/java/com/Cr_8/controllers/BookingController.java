@@ -11,24 +11,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.Cr_8.entities.BookRequest;
+import com.Cr_8.entities.BookingRequest;
 import com.Cr_8.servicies.BookService;
+import com.Cr_8.servicies.BookingService;
 import com.Cr_8.servicies.MailService;
 
 import jakarta.validation.Valid;
 
 @RestController
-public class BookController {
+public class BookingController {
 	
 	@Autowired
-	private BookService bookService;
+	private BookingService bookService;
 	@Autowired
 	private MailService mailService;
 	
 	//shows all the book requests
 	@GetMapping("/api/all-bookings")
-	public ResponseEntity<List<BookRequest>> getAll() {
-		List<BookRequest> bookList = bookService.getAllbookRequest();
+	public ResponseEntity<List<BookingRequest>> getAll() {
+		List<BookingRequest> bookList = bookService.getAllbookRequest();
 		return ResponseEntity.ok(bookList);
 	}
 	
