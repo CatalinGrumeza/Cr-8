@@ -39,7 +39,7 @@ public class ReferenceService {
 	
 	public boolean deleteReference (Long id) {
 		if (referenceRepo.findById(id).isPresent()) {
-			referenceRepo.deleteById(id);
+			referenceRepo.delete(referenceRepo.findById(id).get());
 			return true;
 		}
 		return false;

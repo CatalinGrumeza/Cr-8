@@ -16,6 +16,5 @@ public interface ReferenceRepo extends JpaRepository<Reference,Long> {
      */
 	Optional<Reference> findById(Long id);
 	Optional<Reference> findByEmail(String email);
-	void deleteById(Long id);
 	
 }
