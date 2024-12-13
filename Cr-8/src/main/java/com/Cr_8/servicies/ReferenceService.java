@@ -1,5 +1,6 @@
 package com.Cr_8.servicies;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +36,9 @@ public class ReferenceService {
 		if (reference.isPresent())
 			return reference.get();
 		return null;
+	}
+	
+	public List<Reference> findAll() {
+		return referenceRepo.findAll();
 	}
 }
