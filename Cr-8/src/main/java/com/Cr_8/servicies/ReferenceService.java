@@ -1,5 +1,6 @@
 package com.Cr_8.servicies;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,10 @@ public class ReferenceService {
 		return null;
 	}
 	
+	public List<Reference> findAll() {
+		return referenceRepo.findAll();
+	}
+
 	public boolean deleteReference (Long id) {
 		if (referenceRepo.findById(id).isPresent()) {
 			referenceRepo.delete(referenceRepo.findById(id).get());
@@ -45,4 +50,5 @@ public class ReferenceService {
 		return false;
 	}
 	
+
 }

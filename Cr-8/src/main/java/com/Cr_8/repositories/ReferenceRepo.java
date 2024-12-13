@@ -1,5 +1,6 @@
 package com.Cr_8.repositories;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,6 +16,9 @@ public interface ReferenceRepo extends JpaRepository<Reference,Long> {
      * @return an Optional containing the Reference object if found, or an empty Optional if not found
      */
 	Optional<Reference> findById(Long id);
+	
 	Optional<Reference> findByEmail(String email);
+	
+	List<Reference> findAll();
 	
 }
