@@ -41,4 +41,14 @@ public class ReferenceService {
 	public List<Reference> findAll() {
 		return referenceRepo.findAll();
 	}
+
+	public boolean deleteReference (Long id) {
+		if (referenceRepo.findById(id).isPresent()) {
+			referenceRepo.delete(referenceRepo.findById(id).get());
+			return true;
+		}
+		return false;
+	}
+	
+
 }
