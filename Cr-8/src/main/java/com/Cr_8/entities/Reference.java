@@ -2,6 +2,7 @@ package com.Cr_8.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
@@ -9,6 +10,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -24,8 +27,11 @@ public class Reference {
 	private String phoneNumber;
 	private String email;
 	
+	
+	
+
 	@OneToMany(mappedBy = "reference", cascade = CascadeType.ALL)
-	@JsonIgnore
+	@JsonBackReference
     private List<Info> infos;
 	
 	public Long getId() {
@@ -65,5 +71,7 @@ public class Reference {
     public void setInfos(List<Info> infos) {
         this.infos = infos;
     }
+    
+   
 	
 }

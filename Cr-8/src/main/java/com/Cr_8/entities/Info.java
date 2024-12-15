@@ -2,6 +2,8 @@ package com.Cr_8.entities;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,6 +24,7 @@ public class Info {
 
     @ManyToOne
     @JoinColumn(name = "reference_id", nullable = false)
+    @JsonManagedReference
     private Reference reference;
 
     public LocalDateTime getCreatedAt() {

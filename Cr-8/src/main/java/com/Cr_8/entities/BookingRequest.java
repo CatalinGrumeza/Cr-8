@@ -10,7 +10,7 @@ import jakarta.persistence.*;
  */
 @Entity
 @Table(name = "booking")
-public class BookRequest {
+public class BookingRequest {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
