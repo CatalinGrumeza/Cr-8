@@ -8,40 +8,40 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import com.Cr_8.repositories.BookRepo;
+import com.Cr_8.repositories.BookingRepo;
 import com.Cr_8.repositories.ReferenceRepo;
 import com.Cr_8.repositories.StatusRepo;
 
 import jakarta.transaction.Transactional;
 
 @Service
-public class BookService {
+public class BookingService {
 
-	private final BookRepo bookrepo;
+	private final BookingRepo bookrepo;
 	private final StatusRepo statusrepo;
 	
 	@Autowired
 	private ReferenceRepo referenceRepo;
 	
-	public BookService(BookRepo bookrepo, StatusRepo statusrepo) {
+	public BookingService(BookingRepo bookrepo, StatusRepo statusrepo) {
 		this.bookrepo = bookrepo;
 		this.statusrepo = statusrepo;
 
 	}
 	
 	@Transactional//rollback in case of fail when saving
-	public void createBook(LocalDate dataFrom
+	public void createBooking(LocalDate dataFrom
 			,LocalDate dataTo
 			,String additional
 			,int partiNumber
-			,String bookType
+			,String bookType//the time of the day for the booking
 			,String visitorType
 			,String name
 			,String surname
 			,String phone
 			,String email) {
 		
-		BookRequest book = new BookRequest();
+		BookingRequest book = new BookingRequest();
 		book.setCreatedAt(LocalDate.now());
 		book.setDataFrom(dataFrom);
 		book.setDataTo(dataTo);
@@ -66,16 +66,16 @@ public class BookService {
 		bookrepo.save(book);
 	}
 	
-	public List<BookRequest> getAllbookRequest() {
+	public List<BookingRequest> getAllbookRequest() {
 		return bookrepo.findAll();
 	}
 	public void deleteById(int id) {
-		BookRequest bookid = bookrepo.findById(id)
+		BookingRequest bookid = bookrepo.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("book not found with id:"+id));
 		bookrepo.delete(bookid);
 	}
 	public void updateBookRequest(int bookId, int statusid) {
-		BookRequest booking = bookrepo.findById(bookId)
+		BookingRequest booking = bookrepo.findById(bookId)
 				.orElseThrow(() -> new IllegalArgumentException("book not found with id: "+bookId));
 		
 		booking.setStatus(status(statusid));

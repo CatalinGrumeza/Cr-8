@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
-public class BookFormRequest {
+public class BookingFormRequest {
 
 	@NotBlank(message = "NAME CAN'T BE EMPTY")
     private String name;
