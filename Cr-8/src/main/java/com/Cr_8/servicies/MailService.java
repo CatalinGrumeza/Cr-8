@@ -5,6 +5,8 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+
+
 @Service
 public class MailService {
     @Autowired
@@ -43,5 +45,20 @@ public class MailService {
         simpleMailMessage.setText(baseText);
         simpleMailMessage.setSubject(subject);
         javaMailSender.send(simpleMailMessage);
+    }
+    public void sendPasswordEmailRest(String email, String code ) {
+    
+    	String baseText = String.format(
+    			"Code verification for password is "
+    			+ "%s",code
+    			);
+    	SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+    	simpleMailMessage.setFrom(fromEmailId);
+    	simpleMailMessage.setTo(email);
+    	simpleMailMessage.setText(baseText);
+    	simpleMailMessage.setSubject("Code Verification");
+    	javaMailSender.send(simpleMailMessage);
+    	
+    	
     }
 }

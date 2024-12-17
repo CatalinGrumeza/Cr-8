@@ -1,6 +1,8 @@
 package com.Cr_8.entities;
 
 
+import java.util.Optional;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,7 +19,7 @@ public class Admin {
     @Column(unique = true)//unique email in the db
     private String email;
     private String password;
-    
+    private String code;
     
 	public Long getId() {
 		return id;
@@ -43,6 +45,16 @@ public class Admin {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode() {
+		this.code = null ;
+	}
+	public void setCode(String code) {
+		this.code = code ;
+	}
+	
     
     
 
