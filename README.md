@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a><img src="./docs/images/logo.png" alt="A sapere di caccia"></a>
+  <a><img src="./docs/images/logo.png" alt="A sapere di caccia" style="with:200px,height:150px"></a>
   <br>
   A Sapere di Caccia
   <br>
