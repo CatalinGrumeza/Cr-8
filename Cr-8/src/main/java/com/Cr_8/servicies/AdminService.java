@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.support.AbstractLobStreamingResultSetExtractor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,8 @@ public class AdminService {
 	private AdminRepo adminRepo;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	@Autowired
+	private MailService mailService;
 	public void register(Admin admin) { // Register new user with encrypted password
 
 	        String name = admin.getName();
@@ -41,4 +44,27 @@ public class AdminService {
         	return "Password cambiata con successo!";
         }
 	}
+	public String reset(String email) {
+		// TODO Auto-generated method stub
+	
+		Admin admin = adminRepo.findByEmail(email).orElseThrow(() -> new IllegalArgumentException("Email not found "));  
+			String code = UUID.randomUUID().toString().substring(0, 6).toUpperCase();
+			mailService.sendPasswordEmailRest(email,code);
+			admin.setCode(code);
+			adminRepo.save(admin);
+			return  "Code has been send";
+		
+	}
+	public String setnewPassword(String code, String pass) {
+		
+		Admin admin = adminRepo.findByCode(code).orElseThrow(() -> new IllegalArgumentException("Code is valid"));  
+			
+			admin.setPassword(passwordEncoder.encode(pass));
+			admin.setCode();
+			adminRepo.save(admin);
+			return "password saved";
+
+	}
+		
+	
 }

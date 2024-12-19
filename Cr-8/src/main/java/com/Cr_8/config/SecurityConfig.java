@@ -1,6 +1,9 @@
 package com.Cr_8.config;
 
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -73,5 +76,9 @@ public class SecurityConfig {
             response.getWriter().write("Login successful");
             response.sendRedirect("/"); // Redirect to the landing page
         };
+    }
+    @Bean
+    public ScheduledExecutorService scheduledExecutorService() {
+        return Executors.newScheduledThreadPool(5); // Pool con 5 thread
     }
 }
