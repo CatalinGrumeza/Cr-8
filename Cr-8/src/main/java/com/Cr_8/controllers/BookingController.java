@@ -1,5 +1,6 @@
 package com.Cr_8.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import com.Cr_8.servicies.BookedDatesService;
 import com.Cr_8.servicies.BookingService;
 import com.Cr_8.servicies.MailService;
 
+import dto.BookedDTO;
 import dto.BookedDateDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
@@ -74,8 +76,19 @@ public class BookingController {
 	        summary = "GET Api for displaying all the booked dates",
 	        description = "This endpoint provides a list of booked dates."
 	    )
-	public ResponseEntity<List<BookedDate>> getAllBookedDates(){
-		return ResponseEntity.ok(bookedDatesService.getAllBookedDates());
+	public ResponseEntity<List<BookedDTO>> getAllBookedDates(){
+		List<BookedDate> list=bookedDatesService.getAllBookedDates();
+		List<BookedDTO> returnList=new ArrayList<BookedDTO>();
+		for (BookedDate bookedDate : list) {
+			BookedDTO bookDto = new BookedDTO();
+			bookDto.setIdBookedDate(bookedDate.getId());
+			bookDto.setIdBookingRequest(bookedDate.getBookingRequest().getId());
+			bookDto.setEvening(bookedDate.getDayFractions().isEvening());
+			bookDto.setMorning(bookedDate.getDayFractions().isMorning());
+			bookDto.setIdReference(bookedDate.getBookingRequest().getReference().getId());
+			returnList.add(bookDto);
+			}
+		return ResponseEntity.ok(returnList);
 	}
 	@PostMapping("/book-date")
 	@Operation(

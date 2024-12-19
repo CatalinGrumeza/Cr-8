@@ -6,6 +6,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,10 +29,10 @@ public class BookedDate {
 
 	    private LocalDate date;
 	    
-	    @ManyToOne
-	    @JoinColumn(name="reference_id")
-	    @JsonIgnoreProperties({"infos"})
-	    private Reference reference;
+	    @OneToOne
+	    @JoinColumn(name="booking_request")
+	    @JsonIgnoreProperties("reference")
+	    private BookingRequest bookingRequest;
 	    
 	    @OneToOne
 	    @JoinColumn(name = "dayFraction_id")
@@ -61,13 +62,15 @@ public class BookedDate {
 			this.dayFractions = dayFractions;
 		}
 
-		public Reference getReference() {
-			return reference;
+		public BookingRequest getBookingRequest() {
+			return bookingRequest;
 		}
 
-		public void setReference(Reference reference) {
-			this.reference = reference;
+		public void setBookingRequest(BookingRequest bookingRequest) {
+			this.bookingRequest = bookingRequest;
 		}
+
+		
 		
 	    
 	    

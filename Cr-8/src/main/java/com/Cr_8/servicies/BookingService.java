@@ -16,17 +16,15 @@ import jakarta.transaction.Transactional;
 
 @Service
 public class BookingService {
-
-	private final BookingRepo bookrepo;
-	private final StatusRepo statusrepo;
-	
+	@Autowired
+	private BookingRepo bookrepo;
+	@Autowired
+	private StatusRepo statusrepo;
 	@Autowired
 	private ReferenceRepo referenceRepo;
 	
-	public BookingService(BookingRepo bookrepo, StatusRepo statusrepo) {
-		this.bookrepo = bookrepo;
-		this.statusrepo = statusrepo;
-
+	public BookingRequest getBookingRequestByid(Long id) {
+		return bookrepo.findById(id).get();
 	}
 	
 	@Transactional//rollback in case of fail when saving
@@ -59,6 +57,7 @@ public class BookingService {
 			user.setFirstName(name);
 			user.setLastName(surname);
 			user.setPhoneNumber(phone);
+			referenceRepo.save(user);
 			book.setReference(user);
 		}
 		
@@ -69,12 +68,12 @@ public class BookingService {
 	public List<BookingRequest> getAllbookRequest() {
 		return bookrepo.findAll();
 	}
-	public void deleteById(int id) {
+	public void deleteById(Long id) {
 		BookingRequest bookid = bookrepo.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("book not found with id:"+id));
 		bookrepo.delete(bookid);
 	}
-	public void updateBookRequest(int bookId, int statusid) {
+	public void updateBookRequest(Long bookId, int statusid) {
 		BookingRequest booking = bookrepo.findById(bookId)
 				.orElseThrow(() -> new IllegalArgumentException("book not found with id: "+bookId));
 		
