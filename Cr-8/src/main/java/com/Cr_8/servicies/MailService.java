@@ -1,9 +1,14 @@
 package com.Cr_8.servicies;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+
+import com.Cr_8.entities.Admin;
+import com.Cr_8.repositories.AdminRepo;
 
 
 
@@ -11,6 +16,8 @@ import org.springframework.stereotype.Service;
 public class MailService {
     @Autowired
     private JavaMailSender javaMailSender;
+    @Autowired
+    private AdminRepo adminRepo;
 
     private final String fromEmailId = "educacciademo@gmail.com";
 
@@ -41,10 +48,13 @@ public class MailService {
 
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(fromEmailId);
-        simpleMailMessage.setTo("educacciademo@gmail.com");
         simpleMailMessage.setText(baseText);
         simpleMailMessage.setSubject(subject);
-        javaMailSender.send(simpleMailMessage);
+        List<Admin> admins=adminRepo.findAll();
+        for (Admin admin : admins) {
+        	simpleMailMessage.setTo(admin.getEmail());
+        	javaMailSender.send(simpleMailMessage);
+		}
     }
     public void sendPasswordEmailRest(String email, String code ) {
     

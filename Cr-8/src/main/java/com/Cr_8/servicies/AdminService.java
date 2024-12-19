@@ -65,6 +65,9 @@ public class AdminService {
 			return "password saved";
 
 	}
+	public List<Admin> getAllAdmin(){
+		return adminRepo.findAll();
+	}
 		
 	
 }
