@@ -39,7 +39,7 @@ public class AuthController {
     		summary = "Get Api for Send Code verification",
 			description = "This endpoint provides a Get for creating Code verification."
         )
-    @GetMapping("/forget-password")
+    @PostMapping("/forget-password")
     public ResponseEntity<String> restPassword(@RequestParam String email){
     	
     	return new ResponseEntity<String>(adminService.reset(email),HttpStatus.OK);

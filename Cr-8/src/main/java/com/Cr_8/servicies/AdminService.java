@@ -57,7 +57,7 @@ public class AdminService {
 	}
 	public String setnewPassword(String code, String pass) {
 		
-		Admin admin = adminRepo.findByCode(code).orElseThrow(() -> new IllegalArgumentException("Code is valid"));  
+		Admin admin = adminRepo.findByCode(code).orElseThrow(() -> new IllegalArgumentException("Code is not valid"));  
 			
 			admin.setPassword(passwordEncoder.encode(pass));
 			admin.setCode();
