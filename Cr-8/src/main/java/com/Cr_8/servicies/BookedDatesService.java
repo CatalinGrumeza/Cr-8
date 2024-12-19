@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.Cr_8.entities.BookedDate;
+import com.Cr_8.entities.BookingRequest;
 import com.Cr_8.entities.DayFraction;
 import com.Cr_8.entities.Reference;
 import com.Cr_8.exceptions.ResourceNotFoundException;
@@ -22,7 +23,7 @@ public class BookedDatesService {
 	@Autowired
 	private DayFractionRepo dayFractionRepo;
 	@Autowired
-	private ReferenceService referenceService;
+	private BookingService bookingService;
 	
 	
 	public List<BookedDate> getAllBookedDates(){
@@ -34,11 +35,10 @@ public class BookedDatesService {
 		
 		BookedDate booked=new BookedDate();
 		BookedDate bookedDay=bookedDayDTO.getBookedDate();
-		Reference reference=referenceService.findByEmail(bookedDayDTO.getEmail());
-		if (reference == null) {
-	        throw new ResourceNotFoundException("Reference with email " + bookedDayDTO.getEmail() + " not found.");
+		BookingRequest bookingRequest= bookingService.getBookingRequestByid(bookedDayDTO.getIdBookingRequest());
+		if (bookingRequest == null) {
+	        throw new ResourceNotFoundException("Booking request with id " + bookedDayDTO.getIdBookingRequest() + " not found.");
 	    }
-		booked.setReference(reference);
 		booked.setDate(bookedDay.getDate());
 		DayFraction dayFraction=new DayFraction();
 		dayFraction.setEvening(bookedDay.getDayFractions().isEvening());

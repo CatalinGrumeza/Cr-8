@@ -3,6 +3,9 @@ package com.Cr_8.entities;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.*;
 
 /**
@@ -27,7 +30,12 @@ public class BookingRequest {
 	private Status status; // status of the book
 	@ManyToOne
 	@JoinColumn(name ="reference_id", nullable = false)
+	@JsonIgnoreProperties("infos")
 	private Reference reference; //reference of the group
+	@OneToOne
+	@JoinColumn(name = "booked_id")
+	@JsonIgnore
+	private BookedDate bookedDate;
 	public Long getId() {
 		return id;
 	}
