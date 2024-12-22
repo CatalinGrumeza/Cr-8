@@ -8,20 +8,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.Cr_8.entities.Reference;
-import com.Cr_8.servicies.ReferenceService;
+import com.Cr_8.entities.Admin;
+import com.Cr_8.servicies.AdminService;
 
 @RestController
 @RequestMapping("/api")
 public class AdminController {
 
 	@Autowired
-	private ReferenceService referenceService;
+	private AdminService adminService;
 	
-	@GetMapping("/getReferences")
-	public ResponseEntity<List<Reference>> getAll() {
-		List<Reference> referenceList = referenceService.findAll();
-		return ResponseEntity.ok(referenceList);
+	@GetMapping("/getAllAdmin")
+	public ResponseEntity<List<Admin>> getAll() {
+		List<Admin> adminList = adminService.getAllAdmin();
+		return ResponseEntity.ok(adminList);
 	}
 	
 }
