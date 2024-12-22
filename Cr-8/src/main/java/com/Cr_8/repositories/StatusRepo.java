@@ -16,5 +16,6 @@ public interface StatusRepo extends JpaRepository<Status,Integer> {
      * @return an Optional containing the Status object if found, or an empty Optional if not found
      */
 	Status findById(int id);
+	Status findByName(String name);
 	
 }

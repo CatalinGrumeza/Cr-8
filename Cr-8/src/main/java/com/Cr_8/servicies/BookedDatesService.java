@@ -27,24 +27,24 @@ public class BookedDatesService {
 	
 	
 	public List<BookedDate> getAllBookedDates(){
-		return bookedDatesRepo.findAll();
+		    return bookedDatesRepo.findByDateIsNotNull();
 	}
 	
 	public void createBookedDates(BookedDateDTO bookedDayDTO) {
 		
 		
-		BookedDate booked=new BookedDate();
-		BookedDate bookedDay=bookedDayDTO.getBookedDate();
 		BookingRequest bookingRequest= bookingService.getBookingRequestByid(bookedDayDTO.getIdBookingRequest());
 		if (bookingRequest == null) {
 	        throw new ResourceNotFoundException("Booking request with id " + bookedDayDTO.getIdBookingRequest() + " not found.");
 	    }
-		booked.setDate(bookedDay.getDate());
-		DayFraction dayFraction=new DayFraction();
-		dayFraction.setEvening(bookedDay.getDayFractions().isEvening());
-		dayFraction.setMorning(bookedDay.getDayFractions().isMorning());
-		booked.setDayFractions(dayFraction);
-		dayFractionRepo.save(dayFraction);
+		BookedDate booked=bookingRequest.getBookedDate();
+		booked.setDate(bookedDayDTO.getDate());
+		if(bookedDayDTO.isMorning())
+			booked.setDayFractions(dayFractionRepo.findById((long) 1).get());
+		if(bookedDayDTO.isEvening())
+			booked.setDayFractions(dayFractionRepo.findById((long) 2).get());
+		if(bookedDayDTO.isMorning()&& bookedDayDTO.isEvening())
+			booked.setDayFractions(dayFractionRepo.findById((long) 3).get());
 		bookedDatesRepo.save(booked);
 		
 	}

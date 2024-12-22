@@ -25,15 +25,14 @@ public class BookingRequest {
 	private int participantNumber;
 	private String bookType; //half-day,day,hour
 	private String vistorType;  // school-organization- ...etc
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "status_id")
 	private Status status; // status of the book
 	@ManyToOne
 	@JoinColumn(name ="reference_id", nullable = false)
 	@JsonIgnoreProperties("infos")
 	private Reference reference; //reference of the group
-	@OneToOne
-	@JoinColumn(name = "booked_id")
+	@OneToOne(mappedBy = "bookingRequest", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private BookedDate bookedDate;
 	public Long getId() {
@@ -96,5 +95,13 @@ public class BookingRequest {
 	public void setReference(Reference user) {
 		this.reference = user;
 	}
+	public BookedDate getBookedDate() {
+		return bookedDate;
+	}
+	public void setBookedDate(BookedDate bookedDate) {
+		this.bookedDate = bookedDate;
+	}
+	
+	
 	
 }

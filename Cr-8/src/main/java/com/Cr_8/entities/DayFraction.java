@@ -11,13 +11,8 @@ public class DayFraction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private boolean morning;
-    private boolean evening;
+	private String name;
     
-    public DayFraction() {
-        this.morning = false;
-        this.evening = false;
-    }
 
 	public Long getId() {
 		return id;
@@ -28,20 +23,17 @@ public class DayFraction {
 	}
 
 	public boolean isMorning() {
-		return morning;
-	}
-
-	public void setMorning(boolean morning) {
-		this.morning = morning;
+		if(this.id==1||this.id==3)
+			return true;
+		return false;
 	}
 
 	public boolean isEvening() {
-		return evening;
+		if(this.id==2||this.id==3)
+			return true;
+		return false;
 	}
 
-	public void setEvening(boolean evening) {
-		this.evening = evening;
-	}
 
     
     
