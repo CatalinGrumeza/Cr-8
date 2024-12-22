@@ -17,6 +17,7 @@ import com.Cr_8.servicies.InfoService;
 import com.Cr_8.servicies.MailService;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 
@@ -30,21 +31,23 @@ public class InfoController {
 	private MailService mailService;
 	
 	//shows all the infos
-	@GetMapping("/all-info")
 	@Operation(
 	        summary = "GET Api for displaying all the info requests",
 	        description = "This endpoint provides a list of booked dates."
 	    )
+	@Tag(name = "Dashboard Endpoint")
+	@GetMapping("/all-info")
 	public ResponseEntity<List<Info>> getAll() {
 		List<Info> infoList=infoService.getAllInfo();
 		return ResponseEntity.ok(infoList);
 	}
 	//creates info,checks if user exists and creates it if it doesn't and then sends email to user and admin
-	@PostMapping("/create-info")
 	@Operation(
 	        summary = "POST Api for creating an info request",
 	        description = "This endpoint provides a POST method for creating info requests"
 	    )
+	@Tag(name = "Public Endpoint")
+	@PostMapping("/create-info")
 	public ResponseEntity<?> postMethodName(@Valid @RequestBody InfoFormRequest infoRequest, BindingResult result) {
 		if(result.hasErrors()) {
 			return new ResponseEntity<>(errore(result).toString(), HttpStatus.BAD_REQUEST);

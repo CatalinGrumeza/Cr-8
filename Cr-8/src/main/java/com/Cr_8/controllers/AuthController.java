@@ -14,6 +14,7 @@ import com.Cr_8.entities.Admin;
 import com.Cr_8.servicies.AdminService;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 
 @RestController
@@ -26,6 +27,7 @@ public class AuthController {
             summary = "Registration api",
             description = "This endpoint the api for the registration,you need a name,an email and the password."
         )
+    @Tag(name = "Dashboard Endpoint")
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestParam String password,@RequestParam String email,@RequestParam String name) {
         Admin admin=new Admin();
@@ -39,6 +41,7 @@ public class AuthController {
     		summary = "Get Api for Send Code verification",
 			description = "This endpoint provides a Get for creating Code verification."
         )
+    @Tag(name = "Public Endpoint")
     @PostMapping("/forget-password")
     public ResponseEntity<String> restPassword(@RequestParam String email){
     	
@@ -48,6 +51,7 @@ public class AuthController {
     		summary = "Put Api for set new password  with Code verification",
 			description = "This endpoint provides a Put for setting new password "
         )
+    @Tag(name = "Public Endpoint")
     @PostMapping("/newpassword")
     public ResponseEntity<String> setNewPassword(@RequestParam String code , @RequestParam String password){
     	String Code = code.toUpperCase();

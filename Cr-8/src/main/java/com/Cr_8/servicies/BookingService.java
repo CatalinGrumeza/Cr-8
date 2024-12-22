@@ -7,7 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import com.Cr_8.repositories.BookedDatesRepo;
 import com.Cr_8.repositories.BookingRepo;
 import com.Cr_8.repositories.ReferenceRepo;
 import com.Cr_8.repositories.StatusRepo;
@@ -22,47 +22,54 @@ public class BookingService {
 	private StatusRepo statusrepo;
 	@Autowired
 	private ReferenceRepo referenceRepo;
+	@Autowired
+	private BookedDatesRepo bookedDatesRepo;
+	@Autowired
+	private MailService mailService;
 	
 	public BookingRequest getBookingRequestByid(Long id) {
 		return bookrepo.findById(id).get();
 	}
-	
-	@Transactional//rollback in case of fail when saving
-	public void createBooking(LocalDate dataFrom
-			,LocalDate dataTo
-			,String additional
-			,int partiNumber
-			,String bookType//the time of the day for the booking
-			,String visitorType
-			,String name
-			,String surname
-			,String phone
-			,String email) {
-		
-		BookingRequest book = new BookingRequest();
-		book.setCreatedAt(LocalDate.now());
-		book.setDataFrom(dataFrom);
-		book.setDataTo(dataTo);
-		book.setAdditionalDetails(additional);
-		book.setParticipantNumber(partiNumber);
-		book.setBookType(bookType);
-		book.setVistorType(visitorType);
-		Optional<Reference> ref =referenceRepo.findByEmail(email);
-		if(ref.isPresent()) {
-			
-			book.setReference(ref.get());
-		} else {
-			Reference user=new Reference();
-			user.setEmail(email);
-			user.setFirstName(name);
-			user.setLastName(surname);
-			user.setPhoneNumber(phone);
-			referenceRepo.save(user);
-			book.setReference(user);
-		}
-		
-		book.setStatus(status(1));
-		bookrepo.save(book);
+	@Transactional
+	public void createBooking(LocalDate dataFrom,
+	                         LocalDate dataTo,
+	                         String additional,
+	                         int partiNumber,
+	                         String bookType,
+	                         String visitorType,
+	                         String name,
+	                         String surname,
+	                         String phone,
+	                         String email) {
+
+	    BookingRequest book = new BookingRequest();
+	    book.setCreatedAt(LocalDate.now());
+	    book.setDataFrom(dataFrom);
+	    book.setDataTo(dataTo);
+	    book.setAdditionalDetails(additional);
+	    book.setParticipantNumber(partiNumber);
+	    book.setBookType(bookType);
+	    book.setVistorType(visitorType);
+	    book.setStatus(statusrepo.findById(1));
+
+	    Optional<Reference> ref = referenceRepo.findByEmail(email);
+	    Reference user;
+	    if(ref.isPresent()) {
+	        user = ref.get();
+	    } else {
+	        user = new Reference();
+	        user.setEmail(email);
+	        user.setFirstName(name);
+	        user.setLastName(surname);
+	        user.setPhoneNumber(phone);
+	        user = referenceRepo.save(user);
+	    }
+	    book.setReference(user);
+
+	    BookedDate bookedDate = new BookedDate();
+	    bookedDate.setBookingRequest(book);
+	    book.setBookedDate(bookedDate);
+	    bookrepo.save(book);
 	}
 	
 	public List<BookingRequest> getAllbookRequest() {
@@ -73,11 +80,15 @@ public class BookingService {
 				.orElseThrow(() -> new IllegalArgumentException("book not found with id:"+id));
 		bookrepo.delete(bookid);
 	}
-	public void updateBookRequest(Long bookId, int statusid) {
+	public void updateBookRequest(Long bookId, String statusName) {
 		BookingRequest booking = bookrepo.findById(bookId)
 				.orElseThrow(() -> new IllegalArgumentException("book not found with id: "+bookId));
-		
-		booking.setStatus(status(statusid));
+		if(statusName.equalsIgnoreCase("cancelled")) {
+			booking.getBookedDate().setDate(null);
+			booking.getBookedDate().setDayFractions(null);
+			mailService.sendEmailCancelledBooked(booking);
+		}
+		booking.setStatus(statusrepo.findByName(statusName));
 		bookrepo.save(booking);
 	}
 	public Status status(int statusId) {

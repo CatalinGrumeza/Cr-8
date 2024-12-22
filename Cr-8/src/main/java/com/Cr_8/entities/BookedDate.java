@@ -31,10 +31,10 @@ public class BookedDate {
 	    
 	    @OneToOne
 	    @JoinColumn(name="booking_request")
-	    @JsonIgnoreProperties("reference")
+	    @JsonIgnoreProperties({"reference","bookedDate"})
 	    private BookingRequest bookingRequest;
 	    
-	    @OneToOne
+	    @ManyToOne
 	    @JoinColumn(name = "dayFraction_id")
 	    private DayFraction dayFractions;
 

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.Cr_8.entities.Admin;
 import com.Cr_8.servicies.AdminService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/api")
 public class AdminController {
@@ -19,6 +21,7 @@ public class AdminController {
 	private AdminService adminService;
 	
 	@GetMapping("/getAllAdmin")
+	@Tag(name = "Dashboard Endpoint")
 	public ResponseEntity<List<Admin>> getAll() {
 		List<Admin> adminList = adminService.getAllAdmin();
 		return ResponseEntity.ok(adminList);

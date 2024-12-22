@@ -23,6 +23,7 @@ import com.Cr_8.servicies.MailService;
 import dto.BookedDTO;
 import dto.BookedDateDTO;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 @RequestMapping("/api")
 @RestController
@@ -36,23 +37,25 @@ public class BookingController {
 	private BookedDatesService bookedDatesService;
 	
 	//shows all the book requests
-	@GetMapping("/all-bookings")
 	 @Operation(
 		        summary = "GET Api for booking requests",
 		        description = "This endpoint provides a list of booked requests."
 		    )
+	 @Tag(name = "Dashboard Endpoint")
+	 @GetMapping("/all-bookings")
 	public ResponseEntity<List<BookingRequest>> getAll() {
 		List<BookingRequest> bookList = bookService.getAllbookRequest();
 		return ResponseEntity.ok(bookList);
 	}
 	
 	//creates book request,checks if user exists and creates it if it doesn't and then sends email to user and admin
-	@PostMapping("/create-booking")
 	 @Operation(
 		        summary = "POST Api for creating a booking request",
 		        description = "This endpoint provides a POST for creating bookings."
 		        		+ "  \"bookType\": \"mattina-pomeriggio\""
 		    )
+	 @Tag(name = "Public Endpoint")
+	 @PostMapping("/create-booking")
 	public ResponseEntity<?> postBookRequest(@Valid @RequestBody BookingFormRequest bookRequest, BindingResult result) {
 		if(result.hasErrors()) {
 			return new ResponseEntity<>(errore(result).toString(), HttpStatus.BAD_REQUEST);
@@ -71,11 +74,12 @@ public class BookingController {
         );
 		return errors;
 	}
-	@GetMapping("/all-booked-dates")
 	@Operation(
 	        summary = "GET Api for displaying all the booked dates",
 	        description = "This endpoint provides a list of booked dates."
 	    )
+	@Tag(name = "Dashboard Endpoint")
+	@GetMapping("/all-booked-dates")
 	public ResponseEntity<List<BookedDTO>> getAllBookedDates(){
 		List<BookedDate> list=bookedDatesService.getAllBookedDates();
 		List<BookedDTO> returnList=new ArrayList<BookedDTO>();
@@ -90,14 +94,28 @@ public class BookingController {
 			}
 		return ResponseEntity.ok(returnList);
 	}
-	@PostMapping("/book-date")
 	@Operation(
 			summary = "POST Api for creating a booked dates",
 			description = "This endpoint provides a POST for creating booked dates."
 			)
+	@Tag(name = "Dashboard Endpoint")
+	@PostMapping("/book-date")
 	public ResponseEntity<?> bookDate(@RequestBody BookedDateDTO bookedDate) {
 		bookedDatesService.createBookedDates(bookedDate);
+		bookService.updateBookRequest(bookedDate.getIdBookingRequest(), "completed");
+		mailService.sendEmailConfirmBooked(bookService.getBookingRequestByid(bookedDate.getIdBookingRequest()), bookedDate.getDate());
 		return ResponseEntity.ok("Book date created successfully!");
+	}
+	@Operation(
+	        summary = "POST Api for updating a booking status request",
+	        description = "The possible options are Pending    In Progress    Completed     Cancelled"
+	    )
+	@Tag(name = "Dashboard Endpoint")
+	@PostMapping("/update-booking-status")
+	public ResponseEntity<?> statusChange(@RequestParam Long bookingId,String status){
+		BookingRequest booking= bookService.getBookingRequestByid(bookingId);
+		bookService.updateBookRequest(bookingId, status);
+		return ResponseEntity.ok("Status changed successfully!");
 	}
 	
 	

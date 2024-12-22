@@ -1,5 +1,6 @@
 package com.Cr_8.servicies;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import com.Cr_8.entities.Admin;
+import com.Cr_8.entities.BookingRequest;
 import com.Cr_8.repositories.AdminRepo;
 
 
@@ -32,6 +34,32 @@ public class MailService {
             )
         );
         simpleMailMessage.setSubject(subject);
+        javaMailSender.send(simpleMailMessage);
+    }
+    public void sendEmailConfirmBooked(BookingRequest bookingRequest,LocalDate data) {
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setFrom(fromEmailId);
+        simpleMailMessage.setTo(bookingRequest.getReference().getEmail());
+        simpleMailMessage.setText(
+            String.format(
+                "Gentile %s %s ,la sua richiesta di prenotazione è stata confermata con successo in data \n\n%s\n\nCordiali saluti,\nLo staff di Educaccia",
+                bookingRequest.getReference().getLastName(),bookingRequest.getReference().getFirstName(),data
+            )
+        );
+        simpleMailMessage.setSubject("Prenotazione Confermata");
+        javaMailSender.send(simpleMailMessage);
+    }
+    public void sendEmailCancelledBooked(BookingRequest bookingRequest) {
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setFrom(fromEmailId);
+        simpleMailMessage.setTo(bookingRequest.getReference().getEmail());
+        simpleMailMessage.setText(
+            String.format(
+                "Gentile %s %s ,la sua richiesta di prenotazione è stata annullata \n\n\n\nCordiali saluti,\nLo staff di Educaccia",
+                bookingRequest.getReference().getLastName(),bookingRequest.getReference().getFirstName()
+            )
+        );
+        simpleMailMessage.setSubject("Prenotazione Confermata");
         javaMailSender.send(simpleMailMessage);
     }
 
