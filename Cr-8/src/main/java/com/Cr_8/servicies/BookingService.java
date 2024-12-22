@@ -23,8 +23,8 @@ public class BookingService {
 	@Autowired
 	private ReferenceRepo referenceRepo;
 	
-	public BookingRequest getBookingRequestByid(Long id) {
-		return bookrepo.findById(id).get();
+	public Optional<BookingRequest> getBookingRequestByid(Long id) {
+		return bookrepo.findById(id);
 	}
 	
 	@Transactional//rollback in case of fail when saving

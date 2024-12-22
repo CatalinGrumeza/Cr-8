@@ -32,8 +32,9 @@ public class BookingRequest {
 	@JoinColumn(name ="reference_id", nullable = false)
 	@JsonIgnoreProperties("infos")
 	private Reference reference; //reference of the group
-	@OneToOne
-	@JoinColumn(name = "booked_id")
+
+//	@JoinColumn(name = "booked_id")
+	@OneToOne(mappedBy = "bookingRequest")
 	@JsonIgnore
 	private BookedDate bookedDate;
 	public Long getId() {

@@ -30,7 +30,7 @@ public class BookedDate {
 	    private LocalDate date;
 	    
 	    @OneToOne
-	    @JoinColumn(name="booking_request")
+	    @JoinColumn(name = "bookingRequest_id", referencedColumnName = "id")
 	    @JsonIgnoreProperties("reference")
 	    private BookingRequest bookingRequest;
 	    

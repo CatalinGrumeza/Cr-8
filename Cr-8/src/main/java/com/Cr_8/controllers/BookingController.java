@@ -90,7 +90,7 @@ public class BookingController {
 			}
 		return ResponseEntity.ok(returnList);
 	}
-	@PostMapping("/book-date")
+	@PostMapping(value = "/book-date")
 	@Operation(
 			summary = "POST Api for creating a booked dates",
 			description = "This endpoint provides a POST for creating booked dates."
