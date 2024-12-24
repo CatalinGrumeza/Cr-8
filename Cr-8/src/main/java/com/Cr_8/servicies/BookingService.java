@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.Cr_8.repositories.BookedDatesRepo;
 import com.Cr_8.repositories.BookingRepo;
+import com.Cr_8.repositories.LabsRepo;
 import com.Cr_8.repositories.ReferenceRepo;
 import com.Cr_8.repositories.StatusRepo;
 
@@ -26,6 +27,8 @@ public class BookingService {
 	private BookedDatesRepo bookedDatesRepo;
 	@Autowired
 	private MailService mailService;
+	@Autowired
+	private LabsRepo labRepo;
 	
 	public BookingRequest getBookingRequestByid(Long id) {
 		return bookrepo.findById(id).get();
@@ -40,6 +43,7 @@ public class BookingService {
 	                         String name,
 	                         String surname,
 	                         String phone,
+	                         List<String> labsName,
 	                         String email) {
 
 	    BookingRequest book = new BookingRequest();
@@ -69,6 +73,12 @@ public class BookingService {
 	    BookedDate bookedDate = new BookedDate();
 	    bookedDate.setBookingRequest(book);
 	    book.setBookedDate(bookedDate);
+	   
+	    for (String string : labsName) {
+			Labs existlabs =labRepo.findByName(string).get();
+			book.setLabsSet(existlabs);
+			
+		}
 	    bookrepo.save(book);
 	}
 	

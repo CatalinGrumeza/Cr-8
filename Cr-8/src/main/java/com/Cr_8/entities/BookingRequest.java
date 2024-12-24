@@ -1,7 +1,10 @@
 package com.Cr_8.entities;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -35,6 +38,20 @@ public class BookingRequest {
 	@OneToOne(mappedBy = "bookingRequest", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private BookedDate bookedDate;
+	@ManyToMany
+	@JoinTable(
+			name = "labsRequest",
+			joinColumns =@JoinColumn(name= "booking_id"),
+			inverseJoinColumns = @JoinColumn(name = "labs_id")
+			)
+	private List<Labs> labsSet =new ArrayList();
+	
+	public List<Labs> getLabsSet() {
+		return labsSet;
+	}
+	public void setLabsSet(Labs existlabs) {
+		this.labsSet.add(existlabs);
+	}
 	public Long getId() {
 		return id;
 	}
