@@ -4,70 +4,121 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
-    <meta name="author" content="" />
-    <!-- Open Graph (per la condivisione sui social) -->
-    <meta property="og:title" content="" />
-    <meta property="og:type" content="website" />
-    <meta
-      property="og:url"
-      content="https://www.sitepoint.com/a-basic-html5-template/"
-    />
-    <meta property="og:description" content="" />
-    <meta property="og:image" content="image.png" />
+    <meta name="author" content="CR-8" />
 
-    <!-- Favicon -->
+    <!-- open graph -->
+    <meta property="og:title" content="A Caccia di Sapere" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.esempio.com" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="" />
+
+    <!-- favicon -->
     <link rel="icon" href="/favicon.ico" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <title>Cascina Caccia</title>
+    <title>A Caccia di Sapere</title>
 
-    <!-- Twitter Card (per la condivisione su Twitter) -->
+    <!-- twitter card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Titolo della pagina" />
-    <meta name="twitter:description" content="Descrizione per Twitter." />
-    <meta
-      name="twitter:image"
-      content="https://www.tuosito.com/immagine-twitter.png"
-    />
+    <meta name="twitter:title" content="A Caccia di Sapere" />
+    <meta name="twitter:description" content="" />
+    <meta name="twitter:image" content="" />
 
-    <!-- Collegamento al CSS esterno -->
+    <!-- styles -->
     <link rel="stylesheet" href="./styles/normalize.css" />
-    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="stylesheet" href="./styles/homepage.css" />
   </head>
   <body>
     <header>
       <h1>A Caccia di Sapere</h1>
+      <figure>
+        <img
+          class="main-images"
+          src="./assets/img/a-caccia-di-sapere.webp"
+          alt="bambini riuniti presso Cascina Caccia che ascoltano nozioni"
+        />
+      </figure>
+
+      <p>
+        Benvenuti a Cascina Caccia, un luogo dove memoria, educazione e cultura
+        si incontrano per creare un futuro migliore. Scopri i nostri percorsi
+        educativi e gli eventi culturali immersi nella bellezza di un bene
+        confiscato alla criminalità organizzata.
+      </p>
     </header>
 
-    <main>
-      <section class="intro">
-        <p>
-          Benvenuti a Cascina Caccia, un luogo dove memoria, educazione e
-          cultura si incontrano per creare un futuro migliore. Scopri i nostri
-          percorsi educativi e gli eventi culturali immersi nella bellezza di un
-          bene confiscato alla criminalità organizzata.
-        </p>
-      </section>
-
+    <div class="main-container">
       <section class="cta-container">
         <button class="cta-buttons">Scopri i nostri percorsi educativi</button>
         <button class="cta-buttons">Pianifica una visita</button>
       </section>
 
-      <section class="">
+      <section class="main-section">
         <h2>I nostri valori</h2>
         <p>
-          <em>Educazione</em>, <em>responsabilità</em> e
-          <em>condivisione</em> guidano ogni nostra attività, per costruire
-          insieme una società più giusta e consapevole.
+          <strong>Educazione</strong>, <strong>responsabilità</strong> e
+          <strong>condivisione</strong> guidano ogni nostra attività, per
+          costruire insieme una società più giusta e consapevole.
         </p>
-      </section>
-    </main>
 
-    <!-- Footer -->
+        <!-- EDUCAZIONE -->
+        <article class="section-article">
+          <h3>Educazione</h3>
+          <figure>
+            <img
+              class="main-images"
+              src="./assets/img/educazione.webp"
+              alt="lettere appese al muro con nomi di bambini sopra"
+            />
+          </figure>
+          <p>
+            Promuoviamo percorsi <strong>educativi</strong> innovativi,
+            progettati per sensibilizzare giovani e adulti sui temi della
+            legalità, della memoria storica e della
+            <strong>responsabilità</strong> civica
+          </p>
+        </article>
+
+        <!-- RESPONSABILITÀ -->
+        <article class="section-article">
+          <h3>Responsabilità</h3>
+          <figure>
+            <img
+              class="main-images"
+              src="./assets/img/responsabilita.webp"
+              alt="ragazzi in un supermercato sventolano delle locandine relative a curiosità sugli alimenti"
+            />
+          </figure>
+          <p>
+            Ci impegniamo a trasformare un bene confiscato in un simbolo di
+            giustizia e riscatto, coinvolgendo attivamente il territorio nella
+            lotta contro le mafie.
+          </p>
+        </article>
+
+        <!-- CONDIVISIONE -->
+        <article class="section-article">
+          <h3>Condivisione</h3>
+          <figure>
+            <img
+              class="main-images"
+              src="./assets/img/condivisione.webp"
+              alt="ragazzi condividono del cibo"
+            />
+          </figure>
+          <p>
+            Crediamo nella forza della comunità: ogni progetto nasce e cresce
+            grazie alla collaborazione tra istituzioni, scuole e cittadini.
+          </p>
+        </article>
+      </section>
+    </div>
+
     <footer>
-      <p></p>
+      <!-- footer content -->
     </footer>
 
     <script src="./script/script.js" defer></script>
