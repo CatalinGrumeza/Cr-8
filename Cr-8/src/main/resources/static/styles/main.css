@@ -1,0 +1,87 @@
+/**
+* style.css
+*
+* Main Style Sheet used to style every page of the website
+*/
+
+/* Universal Box Sizing with Inheritance */
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/* custom properties */
+:root {
+  --main-font-family: Montserrat, sans-serif;
+
+  --orange: #fc931c;
+  --purple: #ed008c;
+  --yellow: #ffff22;
+
+  --rounded-corners: 24px;
+
+  --main-font-size: 1em;
+  --main-title-font-size: 2em;
+  --section-title-font-size: 1.4em;
+}
+
+/* 
+Note sulle custom properties:
+- main-font-size:       aumentare fino a max 1.5em su desktop
+- main-title-font-size: aumentare fino a max 4em su desktop
+  per <h2>,<h3>,<h4> trovare un compromesso
+  (h4 grande quanto il main-font-size ma con stile differente)
+
+*/
+
+body {
+  font-family: var(--main-font-family);
+  background-color: #ffffff;
+  font-size: var(--main-font-size);
+}
+
+h2 {
+  text-align: center;
+  font-size: 28px;
+}
+
+p {
+  line-height: 1.6;
+  margin: 10px;
+}
+
+.cta-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cta-buttons {
+  font-weight: bold;
+  border: 5px solid transparent;
+  background: linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(to left, #ed008c, #fc931c, #fef200) border-box;
+  border-radius: 24px;
+  margin: 10px;
+  padding: 10px;
+  width: 350px;
+  box-shadow: 10px 8px 15px #aaaaaa;
+}
+
+.cta-buttons:hover {
+  background: linear-gradient(#eeeeee, #eeeeee) padding-box,
+    linear-gradient(to left, #ed008c, #fc931c, #fef200) border-box;
+  color: #000000;
+  box-shadow: 10px 8px 15px #aaaaaa;
+}
+
+.main-images {
+  margin: 0 auto;
+  border-radius: var(--rounded-corners);
+  width: calc(100vw - 50px);
+}
