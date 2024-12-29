@@ -1,0 +1,5 @@
+h1 {
+  font-size: var(--main-title-font-size);
+  text-align: center;
+  color: var(--orange);
+}
