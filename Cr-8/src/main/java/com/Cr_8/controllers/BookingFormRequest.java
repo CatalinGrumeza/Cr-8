@@ -1,6 +1,7 @@
 package com.Cr_8.controllers;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
@@ -30,6 +31,7 @@ public class BookingFormRequest {
 	private String bookType; 
 	@NotBlank(message = "VISTOR  TYPE CAN'T BE EMPTY")
 	private String vistorType;
+	private List<String> labs;
 	public String getName() {
 		return name;
 	}
@@ -95,6 +97,12 @@ public class BookingFormRequest {
 	}
 	public void setVistorType(String vistorType) {
 		this.vistorType = vistorType;
+	}
+	public List<String> getLabs() {
+		return labs;
+	}
+	public void setLabs(List<String> labs) {
+		this.labs = labs;
 	}
 	 
 	

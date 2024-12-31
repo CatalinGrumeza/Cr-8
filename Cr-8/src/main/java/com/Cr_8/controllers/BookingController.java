@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.Cr_8.entities.BookedDate;
 import com.Cr_8.entities.BookingRequest;
+import com.Cr_8.entities.Labs;
 import com.Cr_8.servicies.BookedDatesService;
 import com.Cr_8.servicies.BookingService;
+import com.Cr_8.servicies.LabsService;
 import com.Cr_8.servicies.MailService;
 
 import dto.BookedDTO;
@@ -28,7 +30,8 @@ import jakarta.validation.Valid;
 @RequestMapping("/api")
 @RestController
 public class BookingController {
-	
+	@Autowired
+	private LabsService labsService ;
 	@Autowired
 	private BookingService bookService;
 	@Autowired
@@ -60,7 +63,7 @@ public class BookingController {
 		if(result.hasErrors()) {
 			return new ResponseEntity<>(errore(result).toString(), HttpStatus.BAD_REQUEST);
 		} else {
-		    bookService.createBooking(bookRequest.getDataFrom(),bookRequest.getDataTo(),bookRequest.getAdditionalDetails(),bookRequest.getParticipantNumber(),bookRequest.getBookType(),bookRequest.getVistorType(),bookRequest.getName(),bookRequest.getSurname(),bookRequest.getPhone(),bookRequest.getEmail());
+		    bookService.createBooking(bookRequest.getDataFrom(),bookRequest.getDataTo(),bookRequest.getAdditionalDetails(),bookRequest.getParticipantNumber(),bookRequest.getBookType(),bookRequest.getVistorType(),bookRequest.getName(),bookRequest.getSurname(),bookRequest.getPhone(),bookRequest.getLabs(),bookRequest.getEmail());
 		    mailService.sendEmail(bookRequest.getEmail(), bookRequest.getAdditionalDetails(), "Richiesta di Prenotazione", bookRequest.getName(), bookRequest.getSurname(), "Prenotazione");
 		    mailService.sendEmailToAdmin(bookRequest.getEmail(), bookRequest.getAdditionalDetails(), "Richiesta di Prenotazione", bookRequest.getName(), bookRequest.getSurname(),"Prenotazione",bookRequest.getPhone());
 		    return ResponseEntity.ok("Book request created successfully!");
@@ -117,6 +120,17 @@ public class BookingController {
 		bookService.updateBookRequest(bookingId, status);
 		return ResponseEntity.ok("Status changed successfully!");
 	}
-	
+	@Tag(name = "Public Endpoint")
+	@GetMapping("/labs")
+	public ResponseEntity<?> getAllLabs(){
+		List<Labs> allLabs = labsService.getAllLabs();
+		return new ResponseEntity<>(allLabs, HttpStatus.OK);
+	}
+	@Tag(name = "Dashboard Endpoint")
+	@PostMapping("/add-new-labs")
+	public ResponseEntity<?> addNewLabs(@RequestBody LabsDTO labsDTO){
+		String newlabs =labsService.addNewLabs(labsDTO.getName(), labsDTO.getDescrizione());
+		return new ResponseEntity<>(newlabs, HttpStatus.OK);
+	}
 	
 }
