@@ -19,6 +19,11 @@ CREATE TABLE IF NOT EXISTS labs (
 	name VARCHAR(100) NOT NULL,
 	descrizione VARCHAR(255)  
 );
+CREATE TABLE IF NOT EXISTS role (
+	id INT PRIMARY KEY,
+	name VARCHAR(255) NOT NULL
+);
+
 INSERT IGNORE INTO admin (id,name, email, password, code)
 VALUES (1,'admin', 'educacciademo@gmail.com', '1234', NULL);
 
@@ -32,3 +37,6 @@ INSERT IGNORE INTO status (id, name) VALUES (2, 'In Progress');
 INSERT IGNORE INTO status (id, name) VALUES (3, 'Completed');
 INSERT IGNORE INTO status (id, name) VALUES (4, 'Cancelled');
 INSERT IGNORE INTO labs ( name, descrizione) VALUES("lab_1",null);
+INSERT IGNORE INTO role (id, name) VALUES (1, 'Super admin');
+INSERT IGNORE INTO role (id, name) VALUES (2, 'Admin');
+

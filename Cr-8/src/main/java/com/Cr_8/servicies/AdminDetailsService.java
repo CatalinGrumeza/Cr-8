@@ -21,7 +21,7 @@ public class AdminDetailsService implements UserDetailsService{
 	return User.builder()
             .username(admin.getEmail())
             .password(admin.getPassword())
-            //.roles("ADMIN")
+            .roles(admin.getRole().getName())
             .build();
 
 	}
