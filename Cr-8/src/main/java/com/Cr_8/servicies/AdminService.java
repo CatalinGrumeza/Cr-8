@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.Cr_8.entities.Admin;
+import com.Cr_8.entities.Role;
 import com.Cr_8.repositories.AdminRepo;
 
 @Service
@@ -24,16 +25,18 @@ public class AdminService {
 	@Autowired
 	private MailService mailService;
 	public void register(Admin admin) { // Register new user with encrypted password
+		
+		String name = admin.getName();
+	    String email = admin.getEmail();
+	    String password = passwordEncoder.encode(admin.getPassword());
+	    Role role = admin.getRole();
 
-	        String name = admin.getName();
-	        String email = admin.getEmail();
-	        String password = passwordEncoder.encode(admin.getPassword());
-
-	        admin.setName(name);
-	        admin.setPassword(password);
-	        admin.setEmail(email);
-	        adminRepo.save(admin);
-	    }
+	    admin.setName(name);
+	    admin.setPassword(password);
+	    admin.setEmail(email);
+	    admin.setRole(role);
+	    adminRepo.save(admin);
+	}
 	public String passwordChange(Admin admin,String pass,String oldPass,@AuthenticationPrincipal Principal principal) {
 		String emailLogged=principal.getName();
 		String passLogged=adminRepo.findByEmail(emailLogged).get().getPassword();
