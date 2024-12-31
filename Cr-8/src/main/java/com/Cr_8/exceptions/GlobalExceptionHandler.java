@@ -1,11 +1,9 @@
-package com.Cr_8.controllers;
+package com.Cr_8.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import com.Cr_8.exceptions.ResourceNotFoundException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {

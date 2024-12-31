@@ -30,7 +30,7 @@ public class AuthController {
     
     @Operation(
             summary = "Registration api",
-            description = "This endpoint the api for the registration,you need a name,an email and the password."
+            description = "This endpoint the api for the registration,you need a name,an email, the password and the role (Admin/Super admin)."
         )
     @Tag(name = "Dashboard Endpoint")
     @PostMapping("/register")
