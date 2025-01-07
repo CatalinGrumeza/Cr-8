@@ -2,9 +2,14 @@ package com.Cr_8.controllers;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 public class RegisterRequestDTO {
 	
+	 @Pattern(
+		        regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$",
+		        message = "Password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a number, and a special character"
+		    )
 	private String password;
 	
 	@NotBlank(message = "Email cannot be blank")

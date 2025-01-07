@@ -57,9 +57,10 @@ public class BookingService {
 	    book.setStatus(statusrepo.findById(1));
 
 	    Optional<Reference> ref = referenceRepo.findByEmail(email);
+	    Optional<Reference> refPhone = referenceRepo.findByPhoneNumber(phone);
 	    Reference user;
-	    if(ref.isPresent()) {
-	        user = ref.get();
+	    if(ref.isPresent()&&refPhone.isPresent()&&ref.get().equals(refPhone.get())) {
+	    		user = ref.get();
 	    } else {
 	        user = new Reference();
 	        user.setEmail(email);

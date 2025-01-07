@@ -71,7 +71,21 @@ public class Reference {
     public void setInfos(List<Info> infos) {
         this.infos = infos;
     }
-    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true; // Same reference
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false; // Obj null or different class
+        }
+        Reference other = (Reference) obj;
+
+        // check by mail and phone
+        return (this.email != null && this.email.equals(other.email)) &&
+               (this.phoneNumber != null && this.phoneNumber.equals(other.phoneNumber));
+    }
+
    
 	
 }
