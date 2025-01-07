@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.Cr_8.dto.BookedDTO;
+import com.Cr_8.dto.BookedDateDTO;
+import com.Cr_8.dto.BookingFormRequest;
+import com.Cr_8.dto.LabsDTO;
 import com.Cr_8.entities.BookedDate;
 import com.Cr_8.entities.BookingRequest;
 import com.Cr_8.entities.Labs;
@@ -22,8 +26,6 @@ import com.Cr_8.servicies.BookingService;
 import com.Cr_8.servicies.LabsService;
 import com.Cr_8.servicies.MailService;
 
-import dto.BookedDTO;
-import dto.BookedDateDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
