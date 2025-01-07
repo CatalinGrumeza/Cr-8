@@ -3,9 +3,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +18,8 @@ import com.Cr_8.servicies.RoleService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
 
 
 @RestController
@@ -34,12 +38,15 @@ public class AuthController {
         )
     @Tag(name = "Dashboard Endpoint")
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestParam String password,@RequestParam String email,@RequestParam String name,@RequestParam String role) {
-        Admin admin=new Admin();
-        admin.setEmail(email);
-        admin.setName(name);
-        admin.setPassword(password);
-        admin.setRole(roleService.getByName(role));
+    public ResponseEntity<String> register(@Valid @RequestBody RegisterRequestDTO request,BindingResult result) {
+    	if(result.hasErrors()) {
+			return new ResponseEntity<>(result.getFieldErrors().toString(), HttpStatus.BAD_REQUEST);
+		}
+    	Admin admin=new Admin();
+    	admin.setEmail(request.getEmail());
+        admin.setName(request.getName());
+        admin.setPassword(request.getPassword());
+        admin.setRole(roleService.getByName(request.getRole()));
         adminService.register(admin);
         return ResponseEntity.ok("Login successful");
     }

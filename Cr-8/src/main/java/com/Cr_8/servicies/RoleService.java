@@ -1,5 +1,7 @@
 package com.Cr_8.servicies;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,11 +15,11 @@ public class RoleService {
 	private RoleRepo roleRepo;
 	
 	public Role getByName(String name) {
-		Role role = roleRepo.findByName(name).get();
-		if (role == null) {
+		Optional<Role> role = roleRepo.findByName(name);
+		if (role.isEmpty()) {
 			throw new IllegalArgumentException("Invalid role name");
 		}
-		return role;
+		return role.get();
 	}
 	
 }

@@ -1,13 +1,10 @@
 package com.Cr_8.servicies;
 
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.support.AbstractLobStreamingResultSetExtractor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -30,7 +27,7 @@ public class AdminService {
 	    String email = admin.getEmail();
 	    String password = passwordEncoder.encode(admin.getPassword());
 	    Role role = admin.getRole();
-
+	    
 	    admin.setName(name);
 	    admin.setPassword(password);
 	    admin.setEmail(email);
