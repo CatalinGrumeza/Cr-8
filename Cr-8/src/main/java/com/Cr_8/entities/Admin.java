@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
 @Entity
 @Table(name="admin")
 public class Admin {
@@ -19,6 +20,7 @@ public class Admin {
     private Long id;  
     private String name;
     @Column(unique = true)//unique email in the db
+    @Email(message = "NOT VALID EMAIL")
     private String email;
     private String password;
     private String code;
