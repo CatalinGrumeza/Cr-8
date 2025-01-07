@@ -1,4 +1,4 @@
-package com.Cr_8.controllers;
+package com.Cr_8.dto;
 
 public class LabsDTO {
 

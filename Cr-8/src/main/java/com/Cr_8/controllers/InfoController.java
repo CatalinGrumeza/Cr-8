@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.Cr_8.dto.InfoFormRequest;
 import com.Cr_8.entities.Info;
 import com.Cr_8.servicies.InfoService;
 import com.Cr_8.servicies.MailService;

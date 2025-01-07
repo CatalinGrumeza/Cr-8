@@ -1,4 +1,4 @@
-package com.Cr_8.controllers;
+package com.Cr_8.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

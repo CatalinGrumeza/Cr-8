@@ -1,4 +1,4 @@
-package dto;
+package com.Cr_8.dto;
 
 public class BookedDTO {
 	private Long idBookingRequest;
