@@ -30,8 +30,8 @@ public class BookingService {
 	@Autowired
 	private LabsRepo labRepo;
 	
-	public BookingRequest getBookingRequestByid(Long id) {
-		return bookrepo.findById(id).get();
+	public Optional <BookingRequest> getBookingRequestByid(Long id) {
+		return bookrepo.findById(id);
 	}
 	@Transactional
 	public void createBooking(LocalDate dataFrom,

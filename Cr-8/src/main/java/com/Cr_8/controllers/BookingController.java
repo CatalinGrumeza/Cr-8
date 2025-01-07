@@ -25,6 +25,7 @@ import com.Cr_8.servicies.BookedDatesService;
 import com.Cr_8.servicies.BookingService;
 import com.Cr_8.servicies.LabsService;
 import com.Cr_8.servicies.MailService;
+import com.Cr_8.servicies.StatusService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -40,6 +41,9 @@ public class BookingController {
 	private MailService mailService;
 	@Autowired
 	private BookedDatesService bookedDatesService;
+	
+	@Autowired
+	private StatusService statusService;
 	
 	//shows all the book requests
 	 @Operation(
@@ -108,7 +112,7 @@ public class BookingController {
 	public ResponseEntity<?> bookDate(@RequestBody BookedDateDTO bookedDate) {
 		bookedDatesService.createBookedDates(bookedDate);
 		bookService.updateBookRequest(bookedDate.getIdBookingRequest(), "completed");
-		mailService.sendEmailConfirmBooked(bookService.getBookingRequestByid(bookedDate.getIdBookingRequest()), bookedDate.getDate());
+		mailService.sendEmailConfirmBooked(bookService.getBookingRequestByid(bookedDate.getIdBookingRequest()).get(), bookedDate.getDate());
 		return ResponseEntity.ok("Book date created successfully!");
 	}
 	@Operation(
@@ -117,10 +121,15 @@ public class BookingController {
 	    )
 	@Tag(name = "Dashboard Endpoint")
 	@PostMapping("/update-booking-status")
-	public ResponseEntity<?> statusChange(@RequestParam Long bookingId,String status){
-		BookingRequest booking= bookService.getBookingRequestByid(bookingId);
-		bookService.updateBookRequest(bookingId, status);
-		return ResponseEntity.ok("Status changed successfully!");
+	public ResponseEntity<String> statusChange(@RequestParam Long bookingId,String status){
+		if (bookService.getBookingRequestByid(bookingId).isPresent()) {
+			if (statusService.findById(status) != null) {
+				bookService.updateBookRequest(bookingId, status);
+				return ResponseEntity.ok("Status changed successfully!");
+			}
+			return new ResponseEntity<>("Invalid status", HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<>("Invalid bookingId", HttpStatus.BAD_REQUEST);
 	}
 	@Tag(name = "Public Endpoint")
 	@GetMapping("/labs")
