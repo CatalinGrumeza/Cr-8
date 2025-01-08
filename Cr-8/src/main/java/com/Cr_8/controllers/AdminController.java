@@ -29,7 +29,7 @@ public class AdminController {
 		return ResponseEntity.ok(adminList);
 	}
 	
-	@DeleteMapping("/delete-admin")
+	@DeleteMapping("/super/delete-admin")
 	@Tag(name = "Dashboard Endpoint")
 	public ResponseEntity<String> deleteAdmin(@RequestParam Long id) {
 		try {

@@ -37,7 +37,7 @@ public class AuthController {
             description = "This endpoint is the api for the registration,you need a name,an email, the password and the role (Admin/Super admin).Password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a number, and a special character.REGEX:  ^(?=.*[a-z])(?=.*[A-Z])(?=.*\\\\d)(?=.*[@$!%*?&])[A-Za-z\\\\d@$!%*?&]{8,}$"
         )
     @Tag(name = "Dashboard Endpoint")
-    @PostMapping("/register")
+    @PostMapping("/super/register")
     public ResponseEntity<String> register(@Valid @RequestBody RegisterRequestDTO request,BindingResult result) {
     	if(result.hasErrors()) {
 			return new ResponseEntity<>(result.getFieldErrors().toString(), HttpStatus.BAD_REQUEST);

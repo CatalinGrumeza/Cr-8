@@ -26,8 +26,8 @@ CREATE TABLE IF NOT EXISTS labs (
 	descrizione VARCHAR(255)  
 );
 
-INSERT IGNORE INTO role (id, name) VALUES (1, 'Super admin');
-INSERT IGNORE INTO role (id, name) VALUES (2, 'Admin');
+INSERT IGNORE INTO role (id, name) VALUES (1, 'SUPER_ADMIN');
+INSERT IGNORE INTO role (id, name) VALUES (2, 'ADMIN');
 INSERT IGNORE INTO admin (id,role_id,name, email, password, code)
 VALUES (1,1,'admin', 'educacciademo@gmail.com', '$2a$10$eoxYXfPwEMb1F/FnX.amJ.MvUCpiorfoGj4jvL3nCST9s9.fMhV/K', NULL);
 INSERT IGNORE INTO labs ( name, descrizione) VALUES("lab_1",null);
