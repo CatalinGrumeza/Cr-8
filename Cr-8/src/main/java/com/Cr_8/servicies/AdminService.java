@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.Cr_8.entities.Admin;
 import com.Cr_8.entities.Role;
+import com.Cr_8.exceptions.DuplicateResourceException;
 import com.Cr_8.repositories.AdminRepo;
 
 @Service
@@ -26,6 +27,8 @@ public class AdminService {
 	private MailService mailService;
 	public void register(Admin admin) { // Register new user with encrypted password
 		
+		Optional<Admin> adm = adminRepo.findByEmail(admin.getEmail());
+		if(adm.isEmpty()) {
 		String name = admin.getName();
 	    String email = admin.getEmail();
 	    String password = passwordEncoder.encode(admin.getPassword());
@@ -36,6 +39,9 @@ public class AdminService {
 	    admin.setEmail(email);
 	    admin.setRole(role);
 	    adminRepo.save(admin);
+	    }else {
+	    	throw new DuplicateResourceException("Exist admin with this email");
+	    }
 	}
 	public String passwordChange(Admin admin,String pass,String oldPass,@AuthenticationPrincipal Principal principal) {
 		String emailLogged=principal.getName();
