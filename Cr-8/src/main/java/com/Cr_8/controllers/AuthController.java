@@ -55,7 +55,7 @@ public class AuthController {
 			description = "This endpoint provides a Get for creating Code verification."
         )
     @Tag(name = "Public Endpoint")
-    @PostMapping("/forget-password")
+    @PostMapping("/pub/forget-password")
     public ResponseEntity<String> restPassword(@RequestParam String email){
     	
     	return new ResponseEntity<String>(adminService.reset(email),HttpStatus.OK);
@@ -65,7 +65,7 @@ public class AuthController {
 			description = "This endpoint provides a Put for setting new password "
         )
     @Tag(name = "Public Endpoint")
-    @PostMapping("/newpassword")
+    @PostMapping("/pub/newpassword")
     public ResponseEntity<String> setNewPassword(@RequestParam String code , @RequestParam String password){
     	String Code = code.toUpperCase();
     	return new ResponseEntity<String>(adminService.setnewPassword(Code, password), HttpStatus.OK);

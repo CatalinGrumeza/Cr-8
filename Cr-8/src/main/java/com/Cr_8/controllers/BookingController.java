@@ -60,7 +60,7 @@ public class BookingController {
 		        		+ "  \"bookType\": \"mattina-pomeriggio\""
 		    )
 	 @Tag(name = "Public Endpoint")
-	 @PostMapping("/create-booking")
+	 @PostMapping("/pub/create-booking")
 	public ResponseEntity<?> postBookRequest(@Valid @RequestBody BookingFormRequest bookRequest, BindingResult result) {
 		if(result.hasErrors()) {
 			return new ResponseEntity<>(errore(result).toString(), HttpStatus.BAD_REQUEST);
@@ -123,7 +123,7 @@ public class BookingController {
 		return ResponseEntity.ok("Status changed successfully!");
 	}
 	@Tag(name = "Public Endpoint")
-	@GetMapping("/labs")
+	@GetMapping("/pub/labs")
 	public ResponseEntity<?> getAllLabs(){
 		List<Labs> allLabs = labsService.getAllLabs();
 		return new ResponseEntity<>(allLabs, HttpStatus.OK);

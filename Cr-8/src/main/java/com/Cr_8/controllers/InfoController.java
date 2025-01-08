@@ -48,7 +48,7 @@ public class InfoController {
 	        description = "This endpoint provides a POST method for creating info requests"
 	    )
 	@Tag(name = "Public Endpoint")
-	@PostMapping("/create-info")
+	@PostMapping("/pub/create-info")
 	public ResponseEntity<?> postMethodName(@Valid @RequestBody InfoFormRequest infoRequest, BindingResult result) {
 		if(result.hasErrors()) {
 			return new ResponseEntity<>(errore(result).toString(), HttpStatus.BAD_REQUEST);

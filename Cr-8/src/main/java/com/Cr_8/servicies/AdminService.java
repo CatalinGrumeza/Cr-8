@@ -2,6 +2,7 @@ package com.Cr_8.servicies;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.Cr_8.entities.Admin;
 import com.Cr_8.entities.Role;
 import com.Cr_8.exceptions.DuplicateResourceException;
+import com.Cr_8.exceptions.ResourceNotFoundException;
 import com.Cr_8.repositories.AdminRepo;
 
 @Service
@@ -73,6 +75,16 @@ public class AdminService {
 	}
 	public List<Admin> getAllAdmin(){
 		return adminRepo.findAll();
+	}
+	public Admin getAdminById(Long id){
+		if(adminRepo.findById(id).isPresent())
+			return adminRepo.findById(id).get();
+		else
+			throw new ResourceNotFoundException("Admin non trovato");
+	}
+	
+	public void deleteAdmin(Admin admin) {
+		adminRepo.delete(admin);
 	}
 		
 	
