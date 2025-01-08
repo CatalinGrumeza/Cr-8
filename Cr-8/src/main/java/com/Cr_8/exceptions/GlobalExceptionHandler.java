@@ -1,6 +1,7 @@
 package com.Cr_8.exceptions;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -18,6 +19,12 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorMessage> handleIllegalResourceNotFoundException(ResourceNotFoundException ex) {
         ErrorMessage error = new ErrorMessage("Invalid Input,", ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+    @ExceptionHandler(DuplicateResourceException.class)
+    public ResponseEntity<ErrorMessage> handleIllegalDuplicateResourceException(DuplicateResourceException ex){
+		ErrorMessage err = new ErrorMessage("Duplicate Entity", ex.getMessage());
+    	return ResponseEntity.status(HttpStatus.CONFLICT).body(err);
+    	
     }
     
 
