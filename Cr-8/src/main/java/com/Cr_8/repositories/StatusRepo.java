@@ -2,6 +2,8 @@ package com.Cr_8.repositories;
 
 
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.Cr_8.entities.Status;
@@ -16,6 +18,6 @@ public interface StatusRepo extends JpaRepository<Status,Integer> {
      * @return an Optional containing the Status object if found, or an empty Optional if not found
      */
 	Status findById(int id);
-	Status findByName(String name);
+	Optional<Status> findByName(String name);
 	
 }

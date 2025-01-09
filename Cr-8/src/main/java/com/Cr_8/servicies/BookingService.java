@@ -30,8 +30,8 @@ public class BookingService {
 	@Autowired
 	private LabsRepo labRepo;
 	
-	public BookingRequest getBookingRequestByid(Long id) {
-		return bookrepo.findById(id).get();
+	public Optional <BookingRequest> getBookingRequestByid(Long id) {
+		return bookrepo.findById(id);
 	}
 	@Transactional
 	public void createBooking(LocalDate dataFrom,
@@ -99,7 +99,7 @@ public class BookingService {
 			booking.getBookedDate().setDayFractions(null);
 			mailService.sendEmailCancelledBooked(booking);
 		}
-		booking.setStatus(statusrepo.findByName(statusName));
+		booking.setStatus(statusrepo.findByName(statusName).get());
 		bookrepo.save(booking);
 	}
 	public Status status(int statusId) {

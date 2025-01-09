@@ -20,4 +20,11 @@ public class StatusService {
 		return null;
 	}
 	
+	public Status findByName(String name) {
+		Optional<Status> status = statusRepo.findByName(name);
+		if(status.isPresent())
+			return status.get();
+		return null;
+	}
+	
 }
