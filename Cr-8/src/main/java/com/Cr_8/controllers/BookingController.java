@@ -123,7 +123,7 @@ public class BookingController {
 	@PostMapping("/update-booking-status")
 	public ResponseEntity<String> statusChange(@RequestParam Long bookingId,String status){
 		if (bookService.getBookingRequestByid(bookingId).isPresent()) {
-			if (statusService.findById(status) != null) {
+			if (statusService.findByName(status) != null) {
 				bookService.updateBookRequest(bookingId, status);
 				return ResponseEntity.ok("Status changed successfully!");
 			}

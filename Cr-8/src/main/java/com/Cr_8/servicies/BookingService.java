@@ -98,7 +98,7 @@ public class BookingService {
 			booking.getBookedDate().setDayFractions(null);
 			mailService.sendEmailCancelledBooked(booking);
 		}
-		booking.setStatus(statusrepo.findByName(statusName));
+		booking.setStatus(statusrepo.findByName(statusName).get());
 		bookrepo.save(booking);
 	}
 	public Status status(int statusId) {
