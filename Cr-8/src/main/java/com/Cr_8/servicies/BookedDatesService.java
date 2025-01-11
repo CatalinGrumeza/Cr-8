@@ -1,6 +1,7 @@
 package com.Cr_8.servicies;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,11 +33,11 @@ public class BookedDatesService {
 	public void createBookedDates(BookedDateDTO bookedDayDTO) {
 		
 		
-		BookingRequest bookingRequest= bookingService.getBookingRequestByid(bookedDayDTO.getIdBookingRequest());
+		Optional<BookingRequest> bookingRequest= bookingService.getBookingRequestByid(bookedDayDTO.getIdBookingRequest());
 		if (bookingRequest == null) {
 	        throw new ResourceNotFoundException("Booking request with id " + bookedDayDTO.getIdBookingRequest() + " not found.");
 	    }
-		BookedDate booked=bookingRequest.getBookedDate();
+		BookedDate booked=bookingRequest.get().getBookedDate();
 		booked.setDate(bookedDayDTO.getDate());
 		if(bookedDayDTO.isMorning())
 			booked.setDayFractions(dayFractionRepo.findById((long) 1).get());
