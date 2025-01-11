@@ -32,31 +32,47 @@
     <link rel="stylesheet" href="./styles/homepage.css" />
   </head>
   <body>
+    <!-- HEADER -->
     <header>
-      <h1>A Caccia di Sapere</h1>
-      <figure>
-        <img
-          class="main-images"
-          src="./assets/img/a-caccia-di-sapere.webp"
-          alt="bambini riuniti presso Cascina Caccia che ascoltano nozioni"
-        />
-      </figure>
-
+      <div class="hero">
+        <div class="main-title">
+          <h1>A Caccia di Sapere</h1>
+          <figure>
+            <img
+              class="logo"
+              src="./assets/img/logo-cascina-caccia.png"
+              alt="logo di Cascina Caccia"
+            />
+          </figure>
+        </div>
+        <figure>
+          <img
+            class="main-images"
+            src="./assets/img/a-caccia-di-sapere.webp"
+            alt="bambini riuniti presso Cascina Caccia che ascoltano nozioni"
+          />
+        </figure>
+      </div>
       <p>
-        Benvenuti a Cascina Caccia, un luogo dove memoria, educazione e cultura
-        si incontrano per creare un futuro migliore. Scopri i nostri percorsi
-        educativi e gli eventi culturali immersi nella bellezza di un bene
-        confiscato alla criminalità organizzata.
+        Benvenuti a Cascina Caccia, un luogo dove memoria,
+        <strong>educazione</strong> e cultura si incontrano per creare un futuro
+        migliore. Scopri i nostri percorsi <strong>educativi</strong> e gli
+        eventi culturali immersi nella bellezza di un bene confiscato alla
+        criminalità organizzata.
       </p>
     </header>
 
+    <!-- CALL TO ACTION -->
     <div class="main-container">
       <section class="cta-container">
-        <button class="cta-buttons">Scopri i nostri percorsi educativi</button>
+        <button class="cta-buttons">Scopri i Percorsi Educativi</button>
         <button class="cta-buttons">Pianifica una visita</button>
       </section>
 
-      <section class="main-section">
+      <hr />
+
+      <!-- I NOSTRI VALORI -->
+      <section class="main-section" id="valori">
         <h2>I nostri valori</h2>
         <p>
           <strong>Educazione</strong>, <strong>responsabilità</strong> e
@@ -64,9 +80,17 @@
           costruire insieme una società più giusta e consapevole.
         </p>
 
-        <!-- EDUCAZIONE -->
+        <!-- 1. EDUCAZIONE -->
         <article class="section-article">
-          <h3>Educazione</h3>
+          <div class="section-text">
+            <h3>Educazione</h3>
+            <p>
+              Promuoviamo percorsi <strong>educativi</strong> innovativi,
+              progettati per sensibilizzare giovani e adulti sui temi della
+              legalità, della memoria storica e della
+              <strong>responsabilità</strong> civica
+            </p>
+          </div>
           <figure>
             <img
               class="main-images"
@@ -74,17 +98,18 @@
               alt="lettere appese al muro con nomi di bambini sopra"
             />
           </figure>
-          <p>
-            Promuoviamo percorsi <strong>educativi</strong> innovativi,
-            progettati per sensibilizzare giovani e adulti sui temi della
-            legalità, della memoria storica e della
-            <strong>responsabilità</strong> civica
-          </p>
         </article>
 
-        <!-- RESPONSABILITÀ -->
+        <!-- 2. RESPONSABILITÀ -->
         <article class="section-article">
-          <h3>Responsabilità</h3>
+          <div class="section-text">
+            <h3>Responsabilità</h3>
+            <p>
+              Ci impegniamo a trasformare un bene confiscato in un simbolo di
+              giustizia e riscatto, coinvolgendo attivamente il territorio nella
+              lotta contro le mafie.
+            </p>
+          </div>
           <figure>
             <img
               class="main-images"
@@ -92,16 +117,17 @@
               alt="ragazzi in un supermercato sventolano delle locandine relative a curiosità sugli alimenti"
             />
           </figure>
-          <p>
-            Ci impegniamo a trasformare un bene confiscato in un simbolo di
-            giustizia e riscatto, coinvolgendo attivamente il territorio nella
-            lotta contro le mafie.
-          </p>
         </article>
 
-        <!-- CONDIVISIONE -->
+        <!-- 3. CONDIVISIONE -->
         <article class="section-article">
-          <h3>Condivisione</h3>
+          <div class="section-text">
+            <h3>Condivisione</h3>
+            <p>
+              Crediamo nella forza della comunità: ogni progetto nasce e cresce
+              grazie alla collaborazione tra istituzioni, scuole e cittadini.
+            </p>
+          </div>
           <figure>
             <img
               class="main-images"
@@ -109,18 +135,231 @@
               alt="ragazzi condividono del cibo"
             />
           </figure>
-          <p>
-            Crediamo nella forza della comunità: ogni progetto nasce e cresce
-            grazie alla collaborazione tra istituzioni, scuole e cittadini.
-          </p>
         </article>
       </section>
+
+      <hr />
+
+      <!-- L'ESPERIENZA IN CASCINA CACCIA -->
+      <section class="main-section" id="esperienza">
+        <h2>L'esperienza in Cascina Caccia</h2>
+        <p>
+          Esplora un luogo unico, ricco di storia e significato.
+          <strong>Cascina Caccia</strong>
+          è una finestra sul passato e una porta verso un futuro più
+          consapevole, con attività per tutte le età. Dalle visite guidate ai
+          <strong>laboratori</strong> didattici, ogni momento è un'opportunità
+          per imparare e crescere insieme.
+        </p>
+
+        <!-- CAROUSEL -->
+        <section class="carousel" aria-label="Gallery">
+          <ol class="carousel__viewport">
+            <li id="carousel__slide1" tabindex="0" class="carousel__slide">
+              <div class="carousel__snapper">
+                <a href="#carousel__slide3" class="carousel__prev"
+                  >Go to last slide</a
+                >
+                <a href="#carousel__slide2" class="carousel__next"
+                  >Go to next slide</a
+                >
+              </div>
+            </li>
+            <li id="carousel__slide2" tabindex="0" class="carousel__slide">
+              <div class="carousel__snapper">
+                <a href="#carousel__slide1" class="carousel__prev"
+                  >Go to previous slide</a
+                >
+                <a href="#carousel__slide3" class="carousel__next"
+                  >Go to next slide</a
+                >
+              </div>
+            </li>
+            <li id="carousel__slide3" tabindex="0" class="carousel__slide">
+              <div class="carousel__snapper">
+                <a href="#carousel__slide2" class="carousel__prev"
+                  >Go to previous slide</a
+                >
+                <a href="#carousel__slide1" class="carousel__next"
+                  >Go to first slide</a
+                >
+              </div>
+            </li>
+          </ol>
+          <aside class="carousel__navigation">
+            <ol class="carousel__navigation-list">
+              <li class="carousel__navigation-item">
+                <a href="#carousel__slide1" class="carousel__navigation-button"
+                  >Go to slide 1</a
+                >
+              </li>
+              <li class="carousel__navigation-item">
+                <a href="#carousel__slide2" class="carousel__navigation-button"
+                  >Go to slide 2</a
+                >
+              </li>
+              <li class="carousel__navigation-item">
+                <a href="#carousel__slide3" class="carousel__navigation-button"
+                  >Go to slide 3</a
+                >
+              </li>
+            </ol>
+          </aside>
+        </section>
+      </section>
+
+      <hr />
+
+      <!-- TESTIMONIANZE -->
+      <h2>Testimonianze</h2>
+      <p>
+        Scopri cosa pensano di noi i gruppi che hanno vissuto l’esperienza di
+        <strong>Cascina Caccia</strong>.
+      </p>
+
+      <div id="reviews">
+        <div class="review purple">
+          <p class="review-caption">
+            "Un luogo che insegna più di mille lezioni"
+          </p>
+          <p class="review-author">
+            Prof.ssa Elena P. Istituto Comprensivo Giovanni Pascoli, Asti
+          </p>
+        </div>
+        <div class="review orange">
+          <p class="review-caption">
+            "Un’esperienza concreta di educazione civica"
+          </p>
+          <p class="review-author">
+            Giulia M. Liceo Classico Vittorio Alfieri, Cuneo
+          </p>
+        </div>
+        <div class="review purple">
+          <p class="review-caption">
+            "Cascina Caccia è un laboratorio di speranza"
+          </p>
+          <p class="review-author">
+            Prof.ssa Francesca V. Scuola Media Statale Giuseppe Verdi, Vercelli
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DELETE THIS -->
+    <div id="prova">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi maiores
+      fuga totam blanditiis amet eligendi commodi, labore praesentium ea? Aut
+      nam perferendis tempore, nobis cupiditate ea sed, alias suscipit similique
+      modi at ratione doloribus saepe magnam officiis? Voluptate deserunt
+      facilis, laboriosam atque iure iste error. Tempora corporis provident
+      commodi magnam, iusto perspiciatis neque ut saepe blanditiis facere
+      distinctio excepturi nam suscipit dolor, quibusdam libero corrupti rerum
+      soluta quam atque amet aspernatur ea dignissimos? Temporibus, eligendi
+      saepe, natus vel quis ducimus asperiores deserunt pariatur neque
+      repellendus, fugiat numquam ex consequuntur ab. Recusandae, eius
+      similique. Quisquam, quo in? Cumque ex commodi rerum ducimus explicabo
+      nesciunt aut unde totam ut! Eius corrupti facilis quisquam tempora fugit
+      architecto quidem nam doloribus ducimus itaque nostrum modi quaerat ea
+      quae quia provident alias nulla sunt laboriosam, saepe sapiente autem.
+      Optio cum, tenetur rerum ut quod debitis earum obcaecati commodi non
+      blanditiis vero ratione cumque, neque quos praesentium. Ex laborum alias
+      aperiam ullam consequatur temporibus minus, a praesentium ipsa omnis.
+      Nihil nostrum, veniam commodi, totam qui cumque excepturi, possimus nobis
+      quisquam eum minima natus beatae odit rerum! Illo dolorem, iusto dolore
+      voluptatibus laboriosam magni dicta excepturi id odio consectetur vel?
+      Consectetur, repudiandae maxime eveniet reprehenderit repellendus neque
+      minima autem ipsam corporis nisi dolorum, vero nesciunt doloremque earum,
+      voluptates cum explicabo natus! Neque aperiam commodi rem expedita hic
+      earum nam vero culpa totam nostrum in optio recusandae eaque iusto eos
+      quaerat minus nemo, molestiae ratione iure reiciendis necessitatibus
+      blanditiis! Voluptas vitae exercitationem eveniet quam rem eaque quis
+      pariatur aspernatur quisquam, sint officia voluptates enim magnam cumque
+      quasi. Eum culpa obcaecati hic a quia nam maxime quos placeat, illo
+      nesciunt incidunt quisquam voluptates repudiandae est aperiam libero saepe
+      ea nisi perferendis rerum itaque quae ad laboriosam? Provident, voluptate.
+      Voluptatibus repudiandae error fugiat voluptate earum optio cupiditate
+      temporibus, vel id velit sequi modi veritatis, corporis corrupti vero
+      inventore qui accusamus eius quam, nemo unde quod repellat. Perspiciatis
+      temporibus a vel iure voluptatibus fuga officia ipsa obcaecati cum. Quo
+      ipsam atque non quaerat, harum adipisci laborum voluptatibus vel
+      consequuntur! Inventore quisquam aut commodi ipsam, assumenda error
+      ratione nemo vero temporibus dolorum accusantium velit facilis est autem
+      molestiae tenetur, minima repellat fugit repudiandae earum laboriosam
+      eveniet magni. Est facere quidem mollitia accusamus deleniti, doloribus et
+      facilis blanditiis in expedita iusto accusantium. Voluptates vitae
+      pariatur sunt labore corrupti veritatis sapiente amet eum, aperiam in quae
+      tempore, tenetur praesentium ut libero aspernatur delectus? Dolore quidem
+      reprehenderit sit nobis eum repudiandae asperiores laborum odit maxime?
+      Ipsum, iste voluptatibus mollitia labore fuga, veniam aperiam
+      exercitationem provident quae ullam quasi minus. Cum, corporis?
+      Doloremque, mollitia. Incidunt aliquam ullam sit alias cumque unde, aut
+      ipsum odio, adipisci quidem temporibus sint nostrum reprehenderit, magni
+      totam consequuntur distinctio quod. Nobis exercitationem blanditiis neque
+      libero provident cumque commodi, nostrum totam odit ab laudantium tempora
+      quisquam ipsa. Unde, expedita ea perferendis in ad tempora, voluptas
+      recusandae laborum architecto rem magnam soluta voluptates laboriosam
+      impedit possimus, molestiae ipsa. Recusandae hic corrupti voluptatem illo
+      eveniet atque. Perferendis reiciendis quis quod esse suscipit voluptate,
+      molestias, officiis accusamus autem voluptatem pariatur nobis, corrupti
+      iusto nam sunt mollitia distinctio tempora dicta? Soluta fugit quam
+      repellat deleniti, debitis eum et odit qui velit doloremque explicabo
+      deserunt pariatur maxime unde cum perferendis eaque sint omnis ad maiores
+      minima sunt alias sequi. Aut consequatur consequuntur illum totam
+      asperiores, incidunt ad reiciendis vero sapiente harum nesciunt laborum
+      suscipit corrupti eveniet dignissimos accusamus sed maiores. Optio
+      repellat illum repellendus debitis veritatis perferendis deserunt neque
+      mollitia id adipisci assumenda pariatur reiciendis, numquam quia soluta
+      eligendi incidunt corrupti, maiores nostrum aperiam hic, culpa earum in!
+      Perferendis neque debitis, ut nemo, quasi vitae ratione, voluptas iste
+      nesciunt eos tempore consectetur itaque quos dolorum possimus? Laudantium
+      ex natus tempore optio doloribus dolor excepturi, dolore vel ea eius
+      mollitia saepe repudiandae suscipit, illum laborum nostrum necessitatibus
+      quidem, quaerat cumque sapiente deleniti debitis odit cum ad. Aliquam
+      molestias amet facere minima deleniti vel. Maiores ipsum consectetur
+      dolores, sit voluptas temporibus, doloribus asperiores eius deserunt
+      voluptate assumenda nemo illo in, officia incidunt quas ipsa quia eum quod
+      aliquam at fuga porro veniam? Optio minus libero porro ullam accusamus
+      harum vel velit labore laborum commodi dolor exercitationem est molestiae
+      unde ab cumque, nihil adipisci quaerat nulla? Dolore officia earum sed
+      numquam labore nisi voluptatem commodi veniam ratione nesciunt, similique
+      nobis, quam molestiae perspiciatis! Nisi perferendis non doloribus
+      aspernatur praesentium, architecto vitae, ipsum blanditiis alias harum,
+      delectus perspiciatis? Nam beatae culpa eius at explicabo corrupti
+      tempore, perferendis quae laboriosam voluptate? Aperiam fugit placeat,
+      corporis atque repellat veritatis laudantium ab sequi eveniet aliquam quo
+      suscipit dignissimos! Quia quibusdam reiciendis quod aut nulla eligendi
+      ex, magni autem itaque voluptatem odit, fugiat placeat modi enim. A saepe
+      minima eaque assumenda suscipit voluptatem sint incidunt corrupti. Eum
+      molestias placeat sit omnis in necessitatibus nulla animi, facilis eveniet
+      sapiente natus esse! Amet ut expedita reprehenderit temporibus labore
+      provident non ipsam cum explicabo, qui dicta, blanditiis iste itaque
+      doloribus? Delectus aspernatur nobis facilis reprehenderit voluptates
+      iusto accusamus at molestias quam ipsum, placeat minima quisquam! Sapiente
+      laborum quaerat perferendis ab architecto ipsum voluptatibus aliquam
+      minima! Aliquid praesentium alias repudiandae ullam earum quo? Aut
+      nesciunt et ut, nam tempore quam hic eius vero exercitationem minima,
+      deleniti eum assumenda voluptatum quae nisi eaque quod laboriosam iure
+      ipsam! Velit, autem ea. Similique, minus magni! Eaque libero explicabo
+      quod architecto tempore cumque nisi sint odit. Mollitia cupiditate ratione
+      dolore quisquam eum eligendi tempora enim vero? Sit sint laborum
+      reprehenderit, exercitationem aliquid quam laudantium labore ratione quae
+      voluptate cupiditate voluptatum consequuntur! Dolore repellendus quod
+      natus quis incidunt exercitationem maxime ipsum est praesentium, dolorum
+      ullam ratione ipsa eaque. Maxime voluptas tenetur quae molestias minima
+      recusandae voluptate totam, explicabo, sequi incidunt alias. Assumenda
+      amet voluptates exercitationem laborum cupiditate. Unde quia debitis
+      molestias! Minima numquam ex quis! Quod dolor error porro? Mollitia
+      suscipit neque, voluptas iste quod fuga nulla laborum animi consequatur
+      omnis impedit molestias nam aliquid accusantium vero dolor fugit
+      architecto quam magnam doloremque aliquam vitae unde. Nam doloribus
+      asperiores, incidunt eaque, soluta harum molestiae magnam culpa
+      voluptatibus tempora amet rerum ducimus accusamus aliquid maiores.
     </div>
 
     <footer>
       <!-- footer content -->
     </footer>
 
-    <script src="./script/script.js" defer></script>
+    <script src="./script/main.js" defer></script>
   </body>
 </html>
