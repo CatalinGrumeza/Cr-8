@@ -76,11 +76,6 @@ hr {
   border-color: var(--orange);
 }
 
-/* DELETE THIS */
-#prova {
-  margin-top: 300px;
-}
-
 /* carousel */
 @keyframes tonext {
   75% {
