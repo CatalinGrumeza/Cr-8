@@ -61,7 +61,7 @@ public class BookingController {
 	 @Operation(
 		        summary = "POST Api for creating a booking request",
 		        description = "This endpoint provides a POST for creating bookings."
-		        		+ "  \"bookType\": \"mattina-pomeriggio\""
+		        		+ "  \"bookType\": \"morning,evening or full day\""
 		    )
 	 @Tag(name = "Public Endpoint")
 	 @PostMapping("/pub/create-booking")

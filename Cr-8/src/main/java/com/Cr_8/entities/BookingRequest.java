@@ -125,9 +125,6 @@ public class BookingRequest {
 	public void setNumberOfDays(int numberOfDays) {
 		this.numberOfDays = numberOfDays;
 	}
-	public void setLabsSet(List<Labs> labsSet) {
-		this.labsSet = labsSet;
-	}
 	
 	
 	
