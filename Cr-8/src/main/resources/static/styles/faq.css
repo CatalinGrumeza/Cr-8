@@ -25,7 +25,9 @@ input {
   z-index: -1;
 }
 .accordion {
-  margin: 10px;
+  margin: 10px auto;
+  width: 70%;
+  max-width: 800px;
   overflow: hidden;
   box-shadow: 6px 5px 10px #aaaaaa;
   border: 5px solid transparent;
@@ -35,18 +37,20 @@ input {
 }
 .accordion-label {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   padding: 1em;
   font-weight: bold;
   color: #000000;
 }
 .accordion-content {
+  text-align: center;
   max-height: 0;
   padding: 0 1em;
   background: white;
   transition: all 0.35s;
 }
-input:checked ~ .accordion-content {
+input[type="radio"]:checked ~ .accordion-content {
   max-height: 100vh;
   padding: 1em;
 }
