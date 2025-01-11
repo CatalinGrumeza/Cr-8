@@ -4,6 +4,9 @@
 * Main Style Sheet used to style every page of the website
 */
 
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 /* Universal Box Sizing with Inheritance */
 html {
   box-sizing: border-box;
@@ -15,44 +18,58 @@ html {
   box-sizing: inherit;
 }
 
-/* custom properties */
-:root {
-  --main-font-family: Montserrat, sans-serif;
-
-  --orange: #fc931c;
-  --purple: #ed008c;
-  --yellow: #ffff22;
-
-  --rounded-corners: 24px;
-
-  --main-font-size: 1em;
-  --main-title-font-size: 2em;
-  --section-title-font-size: 1.4em;
-}
-
 /* 
 Note sulle custom properties:
 - main-font-size:       aumentare fino a max 1.5em su desktop
 - main-title-font-size: aumentare fino a max 4em su desktop
   per <h2>,<h3>,<h4> trovare un compromesso
   (h4 grande quanto il main-font-size ma con stile differente)
-
 */
 
+/* custom properties */
+:root {
+  --main-font-family: "Montserrat", serif;
+
+  --orange: #fc931c;
+  --purple: #ed008a;
+  --yellow: #ffff22;
+
+  --purple-transparent: #ed008a1a;
+  --orange-transparent: #fc931c1a;
+
+  --rounded-corners: 24px;
+
+  --main-font-size: 1em;
+  --main-title-font-size: 2em;
+  --h2-font-size: 1.6em;
+  --h3-font-size: 1.3em;
+  --h4-font-size: 1em;
+  --section-title-font-size: 1.4em;
+  --mobile-page-margin: 20px;
+}
+
 body {
+  margin: var(--mobile-page-margin);
   font-family: var(--main-font-family);
   background-color: #ffffff;
   font-size: var(--main-font-size);
 }
 
 h2 {
+  color: var(--orange);
   text-align: center;
-  font-size: 28px;
+  font-size: var(--h2-font-size);
+}
+
+h3 {
+  color: var(--purple);
+  font-size: var(--h3-font-size);
+  margin: 0.5em 0;
 }
 
 p {
   line-height: 1.6;
-  margin: 10px;
+  margin: 0;
 }
 
 .cta-container {
