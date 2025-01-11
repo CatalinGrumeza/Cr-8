@@ -28,6 +28,7 @@ public class BookedDate {
 	    private Long id;
 
 	    private LocalDate date;
+	    private LocalDate toDate;
 	    
 	    @OneToOne
 	    @JoinColumn(name="booking_request")
@@ -69,6 +70,15 @@ public class BookedDate {
 		public void setBookingRequest(BookingRequest bookingRequest) {
 			this.bookingRequest = bookingRequest;
 		}
+
+		public LocalDate getToDate() {
+			return toDate;
+		}
+
+		public void setToDate(LocalDate toDate) {
+			this.toDate = toDate;
+		}
+		
 
 		
 		

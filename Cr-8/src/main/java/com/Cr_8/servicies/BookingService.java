@@ -78,8 +78,8 @@ public class BookingService {
 	    bookedDate.setBookingRequest(book);
 	    book.setBookedDate(bookedDate);
 	   
-	    for (String string : labsName) {
-			Labs existlabs =labRepo.findByName(string).get();
+	    for (String lab : labsName) {
+			Labs existlabs =labRepo.findByName(lab).get();
 			book.setLabsSet(existlabs);
 			
 		}

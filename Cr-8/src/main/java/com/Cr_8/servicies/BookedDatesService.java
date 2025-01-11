@@ -39,6 +39,7 @@ public class BookedDatesService {
 	    }
 		BookedDate booked=bookingRequest.get().getBookedDate();
 		booked.setDate(bookedDayDTO.getDate());
+		booked.setToDate(bookedDayDTO.getToDate());
 		if(bookedDayDTO.isMorning())
 			booked.setDayFractions(dayFractionRepo.findById((long) 1).get());
 		if(bookedDayDTO.isEvening())

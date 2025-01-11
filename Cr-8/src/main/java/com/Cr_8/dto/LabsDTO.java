@@ -1,20 +1,40 @@
 package com.Cr_8.dto;
 
+import java.util.List;
+
+import com.Cr_8.entities.Target;
+
 public class LabsDTO {
 
 	private String name;
-	private String descrizione;
+	private String description;
+	private String scope;
+	private List<String> targetDescription;
+	
+	
+	public List<String> getTargetDescription() {
+		return targetDescription;
+	}
+	public void setTargetDescription(List<String> targetDescription) {
+		this.targetDescription = targetDescription;
+	}
+	public String getScope() {
+		return scope;
+	}
+	public void setScope(String scope) {
+		this.scope = scope;
+	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getDescrizione() {
-		return descrizione;
+	public String getDescription() {
+		return description;
 	}
-	public void setDescrizione(String descrizione) {
-		this.descrizione = descrizione;
+	public void setDescription(String descrizione) {
+		this.description = descrizione;
 	}
 	
 }

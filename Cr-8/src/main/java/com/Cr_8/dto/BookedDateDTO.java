@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 public class BookedDateDTO {
 	private LocalDate date;
+	private LocalDate toDate;
 	private boolean morning;
 	private boolean evening;
 	private Long idBookingRequest;
@@ -34,6 +35,12 @@ public class BookedDateDTO {
 	}
 	public void setEvening(boolean evening) {
 		this.evening = evening;
+	}
+	public LocalDate getToDate() {
+		return toDate;
+	}
+	public void setToDate(LocalDate toDate) {
+		this.toDate = toDate;
 	}
 	
 	

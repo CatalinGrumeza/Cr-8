@@ -140,7 +140,7 @@ public class BookingController {
 	@Tag(name = "Dashboard Endpoint")
 	@PostMapping("/add-new-labs")
 	public ResponseEntity<?> addNewLabs(@RequestBody LabsDTO labsDTO){
-		String newlabs =labsService.addNewLabs(labsDTO.getName(), labsDTO.getDescrizione());
+		String newlabs =labsService.addNewLabs(labsDTO.getName(), labsDTO.getDescription(),labsDTO.getScope(),labsDTO.getTargetDescription());
 		return new ResponseEntity<>(newlabs, HttpStatus.OK);
 	}
 	

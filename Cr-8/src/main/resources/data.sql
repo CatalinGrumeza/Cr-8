@@ -20,18 +20,11 @@ CREATE TABLE IF NOT EXISTS admin (
     role_id INT,
     CONSTRAINT role_id FOREIGN KEY (role_id) REFERENCES role(id) ON DELETE SET NULL
 );
-CREATE TABLE IF NOT EXISTS labs (
-	id INT PRIMARY KEY auto_increment,
-	name VARCHAR(100) NOT NULL,
-	descrizione VARCHAR(255)  
-);
 
 INSERT IGNORE INTO role (id, name) VALUES (1, 'SUPER_ADMIN');
 INSERT IGNORE INTO role (id, name) VALUES (2, 'ADMIN');
 INSERT IGNORE INTO admin (id,role_id,name, email, password, code)
 VALUES (1,1,'admin', 'educacciademo@gmail.com', '$2a$10$eoxYXfPwEMb1F/FnX.amJ.MvUCpiorfoGj4jvL3nCST9s9.fMhV/K', NULL);
-INSERT IGNORE INTO labs (id,name, descrizione) VALUES(1,"lab_1",null);
-
 
 INSERT IGNORE INTO day_fraction (id, name) VALUES (1, 'morning');
 INSERT IGNORE INTO day_fraction (id, name) VALUES (2, 'evening');
