@@ -8,7 +8,7 @@ public class WebConfig implements WebMvcConfigurer{
 	@Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addRedirectViewController("/swagger", "/swagger-ui.html");
-        registry.addViewController("/index").setViewName("forward:/index.html");
+        registry.addViewController("/").setViewName("forward:/index.html");
         registry.addViewController("/login").setViewName("forward:/login.html");
 //        registry.addRedirectViewController("/login", "/login.html");
     }

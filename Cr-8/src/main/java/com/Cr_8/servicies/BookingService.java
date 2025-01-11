@@ -44,7 +44,9 @@ public class BookingService {
 	                         String surname,
 	                         String phone,
 	                         List<String> labsName,
-	                         String email) {
+	                         String email,
+	                         int numberOfDays) {
+		
 
 	    BookingRequest book = new BookingRequest();
 	    book.setCreatedAt(LocalDate.now());
@@ -55,6 +57,7 @@ public class BookingService {
 	    book.setBookType(bookType);
 	    book.setVistorType(visitorType);
 	    book.setStatus(statusrepo.findById(1));
+	    book.setNumberOfDays(numberOfDays);
 
 	    Optional<Reference> ref = referenceRepo.findByEmail(email);
 	    Optional<Reference> refPhone = referenceRepo.findByPhoneNumber(phone);

@@ -20,6 +20,7 @@ public class BookingFormRequest {
 	@NotBlank(message = "Email CAN'T BE EMPTY")
 	@Email(message = "NOT VALID EMAIL")
     private String email;
+	private int numberOfDays;
 	//@NotBlank(message ="TEXT CAN'T BE EMPTY")
 	private String additionalDetails;  
 	private LocalDate dataFrom;
@@ -104,6 +105,13 @@ public class BookingFormRequest {
 	public void setLabs(List<String> labs) {
 		this.labs = labs;
 	}
+	public int getNumberOfDays() {
+		return numberOfDays;
+	}
+	public void setNumberOfDays(int numberOfDays) {
+		this.numberOfDays = numberOfDays;
+	}
+	
 	 
 	
 }

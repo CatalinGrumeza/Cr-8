@@ -27,6 +27,7 @@ public class BookingRequest {
 	private String additionalDetails; 
 	private int participantNumber;
 	private String bookType; //half-day,day,hour
+	private int numberOfDays;
 	private String vistorType;  // school-organization- ...etc
 	@ManyToOne
 	@JoinColumn(name = "status_id")
@@ -118,6 +119,16 @@ public class BookingRequest {
 	public void setBookedDate(BookedDate bookedDate) {
 		this.bookedDate = bookedDate;
 	}
+	public int getNumberOfDays() {
+		return numberOfDays;
+	}
+	public void setNumberOfDays(int numberOfDays) {
+		this.numberOfDays = numberOfDays;
+	}
+	public void setLabsSet(List<Labs> labsSet) {
+		this.labsSet = labsSet;
+	}
+	
 	
 	
 	
