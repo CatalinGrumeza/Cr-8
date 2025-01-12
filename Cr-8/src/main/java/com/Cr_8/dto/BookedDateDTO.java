@@ -10,7 +10,7 @@ public class BookedDateDTO {
 	private LocalDate date;
 	private LocalDate toDate;
 	private boolean morning;
-	private boolean evening;
+	private boolean fullDay;
 	private Long idBookingRequest;
 	public Long getIdBookingRequest() {
 		return idBookingRequest;
@@ -30,18 +30,19 @@ public class BookedDateDTO {
 	public void setMorning(boolean morning) {
 		this.morning = morning;
 	}
-	public boolean isEvening() {
-		return evening;
-	}
-	public void setEvening(boolean evening) {
-		this.evening = evening;
-	}
 	public LocalDate getToDate() {
 		return toDate;
 	}
 	public void setToDate(LocalDate toDate) {
 		this.toDate = toDate;
 	}
+	public boolean isFullDay() {
+		return fullDay;
+	}
+	public void setFullDay(boolean fullDay) {
+		this.fullDay = fullDay;
+	}
+	
 	
 	
 	
