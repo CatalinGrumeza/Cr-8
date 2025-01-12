@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.Cr_8.entities.Labs;
 import com.Cr_8.entities.Target;
+import com.Cr_8.exceptions.ResourceNotFoundException;
 import com.Cr_8.repositories.LabsRepo;
 @Service
 public class LabsService  {
@@ -53,7 +54,7 @@ public class LabsService  {
 		
 		 Optional<Labs> existlab = labsRepo.findByName(name);
 		 if(existlab.isEmpty()) {
-			 return "labs not found with name: "+name;
+			 throw new ResourceNotFoundException("not found labs with name : "+name);
 		 }
 		 return "labs deleted";
 	}
