@@ -27,8 +27,7 @@ INSERT IGNORE INTO admin (id,role_id,name, email, password, code)
 VALUES (1,1,'admin', 'educacciademo@gmail.com', '$2a$10$eoxYXfPwEMb1F/FnX.amJ.MvUCpiorfoGj4jvL3nCST9s9.fMhV/K', NULL);
 
 INSERT IGNORE INTO day_fraction (id, name) VALUES (1, 'morning');
-INSERT IGNORE INTO day_fraction (id, name) VALUES (2, 'evening');
-INSERT IGNORE INTO day_fraction (id, name) VALUES (3, 'full day');
+INSERT IGNORE INTO day_fraction (id, name) VALUES (2, 'full day');
 
 INSERT IGNORE INTO status (id, name) VALUES (1, 'Pending');
 INSERT IGNORE INTO status (id, name) VALUES (2, 'In Progress');

@@ -42,10 +42,8 @@ public class BookedDatesService {
 		booked.setToDate(bookedDayDTO.getToDate());
 		if(bookedDayDTO.isMorning())
 			booked.setDayFractions(dayFractionRepo.findById((long) 1).get());
-		if(bookedDayDTO.isEvening())
+		if(bookedDayDTO.isFullDay())
 			booked.setDayFractions(dayFractionRepo.findById((long) 2).get());
-		if(bookedDayDTO.isMorning()&& bookedDayDTO.isEvening())
-			booked.setDayFractions(dayFractionRepo.findById((long) 3).get());
 		bookedDatesRepo.save(booked);
 		
 	}
