@@ -1,10 +1,15 @@
 /**
- * @file: book-form.js
+ * @file: main.js
  * @author: CR-8
  * This code ...
  *
  * This code has ...
  */
+
+// navbar menu toggle
+function menu() {
+  document.querySelector(".navbar").classList.toggle("show");
+}
 
 const form = document.getElementById("bookingForm");
 

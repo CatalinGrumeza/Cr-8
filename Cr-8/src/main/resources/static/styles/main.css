@@ -4,8 +4,8 @@
 * Main Style Sheet used to style every page of the website
 */
 
-/* Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+/* Montserrat (Google Font) */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 /* Universal Box Sizing with Inheritance */
 html {
@@ -17,14 +17,6 @@ html {
 *:after {
   box-sizing: inherit;
 }
-
-/* 
-Note sulle custom properties:
-- main-font-size:       aumentare fino a max 1.5em su desktop
-- main-title-font-size: aumentare fino a max 4em su desktop
-  per <h2>,<h3>,<h4> trovare un compromesso
-  (h4 grande quanto il main-font-size ma con stile differente)
-*/
 
 /* custom properties */
 :root {
@@ -55,6 +47,124 @@ body {
   font-size: var(--main-font-size);
 }
 
+/* navbar */
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: #ffffff;
+  margin: 0;
+  padding: 60px 10px 10px 10px;
+}
+
+/* navbar */
+.navbar-container {
+  margin: 0;
+  padding: 0 10px;
+  width: 100%;
+  height: 60px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  box-shadow: 0px 1px 20px #aaaaaa;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-content {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo {
+  height: 45px;
+  margin-right: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.navbar {
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li {
+  margin: 0 15px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #000000;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.navbar a:hover {
+  color: #fc931c;
+}
+
+.hamburger {
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: none; /* Nascondere l'hamburger di default */
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block; /* Mostrare l'hamburger solo su mobile */
+  }
+
+  .navbar {
+    display: none;
+    flex-direction: column;
+    background-color: #ffffff;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .navbar.show {
+    display: flex;
+  }
+
+  .navbar li {
+    padding: 10px 0;
+  }
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+}
+
+/* Large desktop */
+@media (min-width: 1200px) {
+}
+
 h2 {
   color: var(--orange);
   text-align: center;
@@ -79,6 +189,7 @@ p {
 }
 
 .cta-buttons {
+  text-align: center;
   font-weight: bold;
   border: 5px solid transparent;
   background: linear-gradient(#ffffff, #ffffff) padding-box,
@@ -101,4 +212,85 @@ p {
   margin: 0 auto;
   border-radius: var(--rounded-corners);
   width: calc(100vw - 50px);
+}
+
+/* form */
+form {
+  padding: 1em;
+  border: 1px solid #ccc;
+  border-radius: var(--rounded-corners);
+}
+
+form fieldset {
+  border: 0px;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+form label {
+  margin: 0.5em;
+  display: block;
+  text-align: left;
+}
+
+form input,
+select,
+textarea {
+  width: 95%;
+  border-color: #b8b8b8;
+  border-radius: 7px;
+  padding: 1em;
+  /* margin-bottom: 2em; */
+}
+
+.error {
+  margin: 1em 0 2em;
+  margin-bottom: 2em;
+}
+
+form input:focus {
+  border-color: var(--orange);
+}
+
+fieldset legend {
+  margin-bottom: 0.5em;
+  text-align: center;
+  font-size: var(--h3-font-size);
+}
+
+.error {
+  color: red;
+  font-size: 0.9em;
+}
+.separator {
+  border-top: 2px solid #ccc;
+  margin: 20px 0;
+}
+
+textarea {
+  resize: none;
+}
+
+button#submitBookForm {
+  margin: 0 auto;
+  text-align: center;
+  padding: 10px 20px;
+  border-radius: var(--rounded-corners);
+  border: 2px solid var(--orange);
+  color: var(--orange);
+  background-color: var(--orange-transparent);
+}
+
+.container {
+  text-align: center;
+  margin-top: 1em;
+}
+
+#mandatoryFields {
+  color: #b8b8b8;
+}
+
+.error {
+  display: block;
 }

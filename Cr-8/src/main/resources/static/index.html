@@ -14,7 +14,7 @@
     <meta property="og:image" content="" />
 
     <!-- favicon -->
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="./favicon.ico" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
@@ -32,6 +32,23 @@
     <link rel="stylesheet" href="./styles/homepage.css" />
   </head>
   <body>
+    <nav class="navbar-container">
+      <div class="navbar-content">
+        <a href="/">
+          <img
+            class="navbar-logo"
+            src="./assets/img/logo-a-caccia-di-sapere.svg"
+            alt="Logo del sito"
+        /></a>
+        <ul class="navbar">
+          <li><a href="/" title="Home del sito">HOME</a></li>
+          <li><a href="/laboratori" title="Laboratori">LABORATORI</a></li>
+          <li><a href="/faq" title="FAQ">FAQ</a></li>
+        </ul>
+      </div>
+      <button class="hamburger" onclick="menu()">☰</button>
+    </nav>
+
     <!-- HEADER -->
     <header>
       <div class="hero">
@@ -65,8 +82,8 @@
     <!-- CALL TO ACTION -->
     <div class="main-container">
       <section class="cta-container">
-        <button class="cta-buttons">Scopri i Percorsi Educativi</button>
-        <button class="cta-buttons">Pianifica una visita</button>
+        <a href="" class="cta-buttons">Scopri i Percorsi Educativi</a>
+        <a href="#prenotazione" class="cta-buttons">Prenota una visita</a>
       </section>
 
       <hr />
@@ -211,44 +228,158 @@
       <hr />
 
       <!-- TESTIMONIANZE -->
-      <h2>Testimonianze</h2>
-      <p>
-        Scopri cosa pensano di noi i gruppi che hanno vissuto l’esperienza di
-        <strong>Cascina Caccia</strong>.
-      </p>
+      <section class="main-section" id="testimonianze">
+        <h2>Testimonianze</h2>
+        <p>
+          Scopri cosa pensano di noi i gruppi che hanno vissuto l’esperienza di
+          <strong>Cascina Caccia</strong>.
+        </p>
 
-      <div id="reviews">
-        <div class="review purple">
-          <p class="review-caption">
-            "Un luogo che insegna più di mille lezioni"
-          </p>
-          <p class="review-author">
-            Prof.ssa Elena P. Istituto Comprensivo Giovanni Pascoli, Asti
-          </p>
+        <div id="reviews">
+          <div class="review purple">
+            <p class="review-caption">
+              "Un luogo che insegna più di mille lezioni"
+            </p>
+            <p class="review-author">
+              Prof.ssa Elena P. Istituto Comprensivo Giovanni Pascoli, Asti
+            </p>
+          </div>
+          <div class="review orange">
+            <p class="review-caption">
+              "Un’esperienza concreta di educazione civica"
+            </p>
+            <p class="review-author">
+              Giulia M. Liceo Classico Vittorio Alfieri, Cuneo
+            </p>
+          </div>
+          <div class="review purple">
+            <p class="review-caption">
+              "Cascina Caccia è un laboratorio di speranza"
+            </p>
+            <p class="review-author">
+              Prof.ssa Francesca V. Scuola Media Statale Giuseppe Verdi,
+              Vercelli
+            </p>
+          </div>
         </div>
-        <div class="review orange">
-          <p class="review-caption">
-            "Un’esperienza concreta di educazione civica"
-          </p>
-          <p class="review-author">
-            Giulia M. Liceo Classico Vittorio Alfieri, Cuneo
-          </p>
-        </div>
-        <div class="review purple">
-          <p class="review-caption">
-            "Cascina Caccia è un laboratorio di speranza"
-          </p>
-          <p class="review-author">
-            Prof.ssa Francesca V. Scuola Media Statale Giuseppe Verdi, Vercelli
-          </p>
-        </div>
-      </div>
+      </section>
+
+      <hr id="prenotazione" />
+
+      <section class="main-section">
+        <form id="bookingForm">
+          <h2>Prenota una visita</h2>
+
+          <fieldset id="personalInfo">
+            <legend>I tuoi dati</legend>
+
+            <label for="nome">Nome*</label>
+            <input
+              type="text"
+              id="nome"
+              name="nome"
+              placeholder="Mario"
+              minlength="2"
+            />
+            <span id="nomeError" class="error"></span>
+
+            <label for="cognome">Cognome*</label>
+            <input
+              type="text"
+              id="cognome"
+              name="cognome"
+              placeholder="Rossi"
+            />
+            <span id="cognomeError" class="error"></span>
+
+            <label for="cellulare">Cellulare*</label>
+            <input
+              type="tel"
+              id="cellulare"
+              name="cellulare"
+              placeholder="012 345 6789"
+            />
+            <span id="cellulareError" class="error"></span>
+
+            <label for="email">Email*</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="example@mail.com"
+            />
+            <span id="emailError" class="error"></span>
+          </fieldset>
+
+          <div class="separator"></div>
+
+          <fieldset id="bookData">
+            <legend>Dati prenotazione</legend>
+
+            <label for="disponibilitaDa">Disponibilità: da*</label>
+            <input type="date" id="disponibilitaDa" name="disponibilitaDa" />
+            <span id="disponibilitaDaError" class="error"></span>
+
+            <label for="disponibilitaA">a*</label>
+            <input type="date" id="disponibilitaA" name="disponibilitaA" />
+            <span id="disponibilitaAError" class="error"></span>
+
+            <label for="numeroGiorni">Numero di giorni*</label>
+            <input
+              type="number"
+              id="numeroGiorni"
+              name="numeroGiorni"
+              min="1"
+              placeholder="2"
+            />
+            <span id="numeroGiorniError" class="error"></span>
+            <label for="numeroPartecipanti">Numero di partecipanti*</label>
+            <input
+              type="number"
+              id="numeroPartecipanti"
+              name="numeroPartecipanti"
+              placeholder="30"
+              min="1"
+            />
+            <span id="numeroPartecipantiError" class="error"></span>
+            <label for="visitatore">Visitatore*</label>
+            <select id="visitatore" name="visitatore">
+              <option value="">Seleziona</option>
+              <option value="scuola elementare">Scuola elementare</option>
+              <option value="scuola media">Scuola media</option>
+              <option value="scuola superiore">Scuola superiore</option>
+            </select>
+            <span id="visitatoreError" class="error"></span>
+            <label for="periodoGiornata">Periodo della giornata</label>
+            <select id="periodoGiornata" name="periodoGiornata" disabled>
+              <option value="">Seleziona</option>
+              <option value="mattino">Mattino</option>
+              <option value="tutto il giorno">Tutto il giorno</option>
+            </select>
+            <span id="periodoGiornataError" class="error"></span>
+            <label for="richiesteParticolari">Richieste particolari</label>
+            <textarea
+              id="richiesteParticolari"
+              name="richiesteParticolari"
+              rows="4"
+            ></textarea>
+          </fieldset>
+
+          <div class="container" id="mandatoryFields">* campi obbligatori</div>
+
+          <span id="formError" class="error"></span>
+
+          <div class="container">
+            <button type="submit" id="submitBookForm">Invia</button>
+          </div>
+        </form>
+      </section>
     </div>
 
     <footer>
       <!-- footer content -->
     </footer>
 
-    <script src="./script/main.js" defer></script>
+    <script src="./scripts/main.js" defer></script>
   </body>
 </html>
