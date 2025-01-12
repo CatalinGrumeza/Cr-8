@@ -1,0 +1,62 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  min-width: 300px;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: #ffffff;
+}
+
+h1 {
+  text-align: center;
+  font-size: 35px;
+}
+
+input {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+.accordion {
+  position: relative; /* Per allineamenti accurati */
+  width: 70%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0;
+  border-radius: var(--rounded-corners);
+  background: linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(to left, #ed008c, #fc931c, #fef200) border-box;
+  border: 5px solid transparent;
+  box-shadow: 6px 5px 10px #aaaaaa;
+  overflow: hidden;
+}
+.accordion-label {
+  font-family: var(--main-font-family);
+  color: #000000;
+  font-weight: bold;
+  padding: 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  background-color: #ffffff;
+}
+.accordion-content {
+  max-height: 0;
+  padding: 0 3em;
+  background: #ffffff;
+  transition: max-height 0.35s ease-in-out, padding 0.35s ease-in-out;
+  overflow: hidden;
+}
+input[type="radio"]:checked ~ .accordion-content {
+  max-height: 100vh;
+  padding: 1em;
+  overflow: visible;
+}
