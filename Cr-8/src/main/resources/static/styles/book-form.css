@@ -1,0 +1,79 @@
+form {
+  padding: 1em;
+  border: 1px solid #ccc;
+  border-radius: var(--rounded-corners);
+}
+
+form fieldset {
+  border: 0px;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+form label {
+  margin: 0.5em;
+  display: block;
+  text-align: left;
+}
+
+form input,
+select,
+textarea {
+  width: 95%;
+  border-color: #b8b8b8;
+  border-radius: 7px;
+  padding: 1em;
+  /* margin-bottom: 2em; */
+}
+
+.error {
+  margin: 1em 0 2em;
+  margin-bottom: 2em;
+}
+
+form input:focus {
+  border-color: var(--orange);
+}
+
+fieldset legend {
+  margin-bottom: 0.5em;
+  text-align: center;
+  font-size: var(--h3-font-size);
+}
+
+.error {
+  color: red;
+  font-size: 0.9em;
+}
+.separator {
+  border-top: 2px solid #ccc;
+  margin: 20px 0;
+}
+
+textarea {
+  resize: none;
+}
+
+button#submitBookForm {
+  margin: 0 auto;
+  text-align: center;
+  padding: 10px 20px;
+  border-radius: var(--rounded-corners);
+  border: 2px solid var(--orange);
+  color: var(--orange);
+  background-color: var(--orange-transparent);
+}
+
+.container {
+  text-align: center;
+  margin-top: 1em;
+}
+
+#mandatoryFields {
+  color: #b8b8b8;
+}
+
+.error {
+  display: block;
+}
