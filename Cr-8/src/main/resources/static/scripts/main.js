@@ -1,9 +1,7 @@
 /**
  * @file: main.js
  * @author: CR-8
- * This code ...
- *
- * This code has ...
+ * This code includes the logic to validate the book form and the info form input fields
  */
 
 // navbar menu toggle
@@ -59,6 +57,24 @@ const fields = {
     regex: /^(\d{2,}|[1-9]\d{1,})$/,
     error: "Inserisci un numero di partecipanti minimo di 10.",
   },
+  visitatore: {
+    customValidation: (value) => value !== "", // Assicura che non sia la stringa vuota
+    error: "Seleziona un visitatore.",
+  },
+  periodoGiornata: {
+    customValidation: () => {
+      const numeroGiorni = parseInt(
+        document.getElementById("numeroGiorni").value,
+        10
+      );
+      const periodoGiornataValue =
+        document.getElementById("periodoGiornata").value;
+      // Validazione solo se numeroGiorni è 1
+      return numeroGiorni === 1 ? periodoGiornataValue !== "" : true;
+    },
+    error:
+      "Seleziona un periodo della giornata se il numero di giorni è uguale a 1.",
+  },
 };
 
 // fields validation
@@ -110,7 +126,8 @@ numeroGiorniField.addEventListener("input", () => {
 });
 
 // validation after form submit
-form.addEventListener("submit", (event) => {
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
   let formIsValid = true;
 
   Object.keys(fields).forEach((fieldId) => {
@@ -124,8 +141,78 @@ form.addEventListener("submit", (event) => {
   const formErrorSpan = document.getElementById("formError");
 
   if (!formIsValid) {
-    event.preventDefault();
-    formErrorSpan.textContent =
-      "Per favore, correggi gli errori evidenziati prima di inviare il modulo.";
+    alert("attenzione");
+    /* formErrorSpan.textContent =
+      "Per favore, correggi gli errori evidenziati prima di inviare il modulo."; */
+    // return;
   }
+
+  formErrorSpan.textContent = "";
+
+  const formattedDate = new Date().toISOString().split("T")[0];
+
+  const data = {
+    name: document.getElementById("nome").value,
+    surname: document.getElementById("cognome").value,
+    phone: document.getElementById("cellulare").value,
+    email: document.getElementById("email").value,
+    numberOfDays: document.getElementById("numeroGiorni").value,
+    additionalDetails: document.getElementById("richiesteParticolari").value,
+    dataFrom: document.getElementById("disponibilitaDa").value,
+    dataTo: document.getElementById("disponibilitaA").value,
+    participantNumber: document.getElementById("numeroPartecipanti").value,
+    bookType: document.getElementById("periodoGiornata").value,
+    visitorType: document.getElementById("visitatore").value,
+    labs: ["lab1", "lab2", "lab3"],
+    createdAt: formattedDate,
+  };
+
+  try {
+    console.log(data);
+
+    // Effettua la richiesta POST
+    const response = await fetch(
+      "http://localhost:8080/api/pub/create-booking",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        // body: JSON.stringify(data),
+        body: data,
+      }
+    );
+
+    if (response.ok) {
+      // success alert
+      alert("Prenotazione inviata con successo!");
+      // form fields reset
+      form.reset();
+    } else {
+      // handle response errors
+      const errorData = await response.json();
+      formErrorSpan.textContent =
+        "Errore durante l'invio della prenotazione: " +
+        (errorData.message || "riprovare più tardi.");
+    }
+  } catch (error) {
+    formErrorSpan.textContent =
+      "Si è verificato un errore. Per favore, riprova più tardi.";
+    console.error("Errore:", error);
+  }
+});
+
+// Animates anchor link
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
+    const targetId = this.getAttribute("href");
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  });
 });
