@@ -163,7 +163,7 @@ form.addEventListener("submit", async (event) => {
     participantNumber: document.getElementById("numeroPartecipanti").value,
     bookType: document.getElementById("periodoGiornata").value,
     visitorType: document.getElementById("visitatore").value,
-    labs: ["lab1", "lab2", "lab3"],
+    labs: ["pela patate"],
     createdAt: formattedDate,
   };
 
@@ -178,8 +178,7 @@ form.addEventListener("submit", async (event) => {
         headers: {
           "Content-Type": "application/json",
         },
-        // body: JSON.stringify(data),
-        body: data,
+        body: JSON.stringify(data),
       }
     );
 
