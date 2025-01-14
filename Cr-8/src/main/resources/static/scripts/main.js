@@ -178,8 +178,8 @@ form.addEventListener("submit", async (event) => {
         headers: {
           "Content-Type": "application/json",
         },
-        // body: JSON.stringify(data),
-        body: data,
+        body: JSON.stringify(data),
+        //body: data,
       }
     );
 
