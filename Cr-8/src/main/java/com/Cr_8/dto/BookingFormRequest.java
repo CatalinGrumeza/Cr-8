@@ -14,7 +14,7 @@ public class BookingFormRequest {
     private String name;
 	@NotBlank(message = "LASTNAME CAN'T BE EMPTY")
     private String surname;
-	@Pattern(regexp = "^(\\+39)?\\s?3[1-9]\\d{7,9}$", message = "NOT VALID NUMBER")
+	//@Pattern(regexp = "^(\\+39)?\\s?3[1-9]\\d{7,9}$", message = "NOT VALID NUMBER")
 	@NotBlank(message = "PHONE NUMBER CAN'T BE EMPTY")
     private String phone;
 	@NotBlank(message = "Email CAN'T BE EMPTY")
@@ -31,7 +31,7 @@ public class BookingFormRequest {
 	//@NotBlank(message = "BOOK TYPE CAN'T BE EMPTY")
 	private String bookType; 
 	@NotBlank(message = "VISTOR  TYPE CAN'T BE EMPTY")
-	private String vistorType;
+	private String visitorType;
 	private List<String> labs;
 	public String getName() {
 		return name;
@@ -93,12 +93,6 @@ public class BookingFormRequest {
 	public void setBookType(String bookType) {
 		this.bookType = bookType;
 	}
-	public String getVistorType() {
-		return vistorType;
-	}
-	public void setVistorType(String vistorType) {
-		this.vistorType = vistorType;
-	}
 	public List<String> getLabs() {
 		return labs;
 	}
@@ -111,6 +105,14 @@ public class BookingFormRequest {
 	public void setNumberOfDays(int numberOfDays) {
 		this.numberOfDays = numberOfDays;
 	}
+	public String getVisitorType() {
+		return visitorType;
+	}
+	public void setVisitorType(String visitorType) {
+		this.visitorType = visitorType;
+	}
+	
+	
 	
 	 
 	
