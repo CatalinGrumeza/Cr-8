@@ -28,7 +28,7 @@ public class BookingFormRequest {
 	private LocalDate CreatedAt;
 	@Min(1)
 	private int participantNumber;
-	@NotBlank(message = "BOOK TYPE CAN'T BE EMPTY")
+	//@NotBlank(message = "BOOK TYPE CAN'T BE EMPTY")
 	private String bookType; 
 	@NotBlank(message = "VISTOR  TYPE CAN'T BE EMPTY")
 	private String vistorType;

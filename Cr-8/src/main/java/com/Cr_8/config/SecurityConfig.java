@@ -39,7 +39,7 @@ public class SecurityConfig {
 //                	  auth.requestMatchers("/api/**").hasAnyRole("ADMIN","SUPER_ADMIN");
 //                	  auth.requestMatchers("/api/super/**").hasRole("SUPER_ADMIN");
 //                    auth.anyRequest().authenticated();
-                	auth.anyRequest().permitAll();
+                auth.anyRequest().permitAll();
                 })
                 .formLogin(form -> form
                     .loginPage("/login")
