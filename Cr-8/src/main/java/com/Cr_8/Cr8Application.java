@@ -10,7 +10,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 public class Cr8Application {
 
 	public static void main(String[] args) {
-		 String externalConfigPath = "./user-config/application.properties";
+		 String externalConfigPath = "./user-config/external-config.properties";
 
 	        // Controlla se il file esiste
 	        File externalConfigFile = new File(externalConfigPath);

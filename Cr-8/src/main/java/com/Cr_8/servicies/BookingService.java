@@ -60,10 +60,10 @@ public class BookingService {
 	    book.setNumberOfDays(numberOfDays);
 
 	    Optional<Reference> ref = referenceRepo.findByEmail(email);
-	    Optional<Reference> refPhone = referenceRepo.findByPhoneNumber(phone);
 	    Reference user;
-	    if(ref.isPresent()&&refPhone.isPresent()&&ref.get().equals(refPhone.get())) {
+	    if(ref.isPresent()) {
 	    		user = ref.get();
+	    		user.setPhoneNumber(phone);
 	    } else {
 	        user = new Reference();
 	        user.setEmail(email);

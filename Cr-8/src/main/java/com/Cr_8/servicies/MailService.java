@@ -8,6 +8,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import com.Cr_8.dto.BookingFormRequest;
 import com.Cr_8.entities.Admin;
 import com.Cr_8.entities.BookingRequest;
 import com.Cr_8.repositories.AdminRepo;
@@ -29,11 +30,25 @@ public class MailService {
         simpleMailMessage.setTo(recipient);
         simpleMailMessage.setText(
             String.format(
-                "Gentile %s %s ,la sua richiesta di %s è stata inviata con successo:\n\n%s\n\nCordiali saluti,\nLo staff di Educaccia",
+                "Gentile %s %s, la sua richiesta di %s è stata inviata con successo:\n\n%s\n\nCordiali saluti,\nLo staff di Educaccia",
                 surname,name,type,body
             )
         );
         simpleMailMessage.setSubject(subject);
+        javaMailSender.send(simpleMailMessage);
+    }
+    
+    public void sendEmailBooking(BookingFormRequest bookRequest,String type) {
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setFrom(fromEmailId);
+        simpleMailMessage.setTo(bookRequest.getEmail());
+        simpleMailMessage.setText(
+            String.format(
+                "Gentile %s %s, abbiamo ricevuto la sua richiesta di %s.\n\n Di seguito i dettagli da lei inviati:\n- Visitatore:%s\n- Numero Partecipanti:%s\n- Durata soggiorno richiesta:%s \n\nCordiali saluti,\nLo staff di Educaccia",
+                bookRequest.getName(), bookRequest.getSurname(),type,bookRequest.getVisitorType(),bookRequest.getParticipantNumber(),bookRequest.getNumberOfDays()
+            )
+        );
+        simpleMailMessage.setSubject("Richiesta prenotazione");
         javaMailSender.send(simpleMailMessage);
     }
     public void sendEmailConfirmBooked(BookingRequest bookingRequest,LocalDate data) {
