@@ -41,12 +41,6 @@ div.hero {
   flex-direction: column-reverse;
 }
 
-hr {
-  border: 2px solid var(--orange);
-  border-radius: 5px;
-  margin: 2em 0;
-}
-
 .section-article {
   display: flex;
   flex-direction: column-reverse;

@@ -106,7 +106,55 @@
       </div>
     </div>
 
+    <hr />
+
+    <form id="infoForm">
+      <h2>Richiedi informazioni</h2>
+
+      <label for="nome">Nome</label>
+      <input
+        type="text"
+        id="nome"
+        name="nome"
+        placeholder="Mario"
+        minlength="2"
+      />
+      <span id="nomeError" class="error"></span>
+
+      <label for="cognome">Cognome</label>
+      <input type="text" id="cognome" name="cognome" placeholder="Rossi" />
+      <span id="cognomeError" class="error"></span>
+
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="example@mail.com"
+      />
+      <span id="emailError" class="error"></span>
+
+      <label for="cellulare">Cellulare</label>
+      <input
+        type="tel"
+        id="cellulare"
+        name="cellulare"
+        placeholder="012 345 6789"
+      />
+      <span id="cellulareError" class="error"></span>
+
+      <label for="messaggio">Come possiamo aiutarti?</label>
+      <textarea id="messaggio" name="messaggio" rows="10" placeholder="Chiedici qualcosa..."></textarea>
+
+      <span id="formError" class="error"></span>
+
+      <div class="container">
+        <button id="submitBookForm">Invia</button>
+      </div>
+    </form>
+
     <!-- end of the body -->
     <script src="./scripts/main.js" defer></script>
+    <script src="./scripts/faq.js" defer></script>
   </body>
 </html>

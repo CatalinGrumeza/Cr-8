@@ -1,5 +1,5 @@
 /**
-* style.css
+* main.css
 *
 * Main Style Sheet used to style every page of the website
 */
@@ -31,6 +31,9 @@ html {
 
   --rounded-corners: 24px;
 
+  --light-theme-background: #ffffff;
+  --light-theme-text-color: black;
+
   --main-font-size: 1em;
   --main-title-font-size: 2em;
   --h2-font-size: 1.6em;
@@ -41,27 +44,11 @@ html {
 }
 
 body {
+  background-color: var(--light-theme-background);
+  font-size: var(--main-font-size);
   margin: var(--mobile-page-margin);
   font-family: var(--main-font-family);
-  background-color: #ffffff;
-  font-size: var(--main-font-size);
-}
-
-/* navbar */
-html {
-  box-sizing: border-box;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-
-body {
-  font-family: "Montserrat", sans-serif;
-  background-color: #ffffff;
-  margin: 0;
+  color: var(--light-theme-text-color);
   padding: 60px 10px 10px 10px;
 }
 
@@ -182,6 +169,7 @@ p {
   margin: 0;
 }
 
+/* cta buttons */
 .cta-container {
   display: flex;
   flex-direction: column;
@@ -208,6 +196,7 @@ p {
   box-shadow: 10px 8px 15px #aaaaaa;
 }
 
+/* main section images */
 .main-images {
   margin: 0 auto;
   border-radius: var(--rounded-corners);
@@ -293,4 +282,10 @@ button#submitBookForm {
 
 .error {
   display: block;
+}
+
+hr {
+  border: 2px solid var(--orange);
+  border-radius: 5px;
+  margin: 2em 0;
 }

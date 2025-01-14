@@ -2,7 +2,8 @@ h1 {
   text-align: center;
 }
 
-input {
+nav input,
+.accordion input {
   position: absolute;
   opacity: 0;
   z-index: -1;
