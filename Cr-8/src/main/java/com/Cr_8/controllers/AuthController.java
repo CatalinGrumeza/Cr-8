@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,7 +39,7 @@ public class AuthController {
         )
     @Tag(name = "Dashboard Endpoint")
     @PostMapping("/super/register")
-    public ResponseEntity<String> register(@Valid @RequestBody RegisterRequestDTO request,BindingResult result) {
+    public ResponseEntity<String> register(@Valid @ModelAttribute RegisterRequestDTO request,BindingResult result) {
     	if(result.hasErrors()) {
 			return new ResponseEntity<>(result.getFieldErrors().toString(), HttpStatus.BAD_REQUEST);
 		}
@@ -48,7 +49,7 @@ public class AuthController {
         admin.setPassword(request.getPassword());
         admin.setRole(roleService.getByName(request.getRole()));
         adminService.register(admin);
-        return ResponseEntity.ok("Login successful");
+        return ResponseEntity.ok("Registered successfully");
     }
     @Operation(
     		summary = "Get Api for Send Code verification",

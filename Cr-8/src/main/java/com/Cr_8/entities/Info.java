@@ -26,6 +26,9 @@ public class Info {
     @JoinColumn(name = "reference_id", nullable = false)
     @JsonManagedReference
     private Reference reference;
+    @ManyToOne
+	@JoinColumn(name = "status_id")
+	private Status status; // status of the book
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
@@ -58,4 +61,13 @@ public class Info {
     public void setReference(Reference reference) {
         this.reference = reference;
     }
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+    
 }

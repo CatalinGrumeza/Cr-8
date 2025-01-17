@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.Cr_8.entities.Info;
 import com.Cr_8.entities.Reference;
+import com.Cr_8.entities.Status;
+import com.Cr_8.exceptions.ResourceNotFoundException;
 import com.Cr_8.repositories.InfoRepo;
 import com.Cr_8.repositories.ReferenceRepo;
 
@@ -19,6 +21,8 @@ public class InfoService {
 	private InfoRepo infoRepo;
 	@Autowired
 	private ReferenceService referenceService;
+	@Autowired
+	private StatusService statusService;
 	
 	public List<Info> getAllInfo(){
 		return infoRepo.findAll();
@@ -29,6 +33,7 @@ public class InfoService {
 		Info info=new Info();
 		info.setText(Text);
 		info.setCreatedAt(LocalDateTime.now());
+		info.setStatus(statusService.findByName("Pending"));
 		if(referenceService.findByEmail(email)!=null) {
 			Reference user=referenceService.findByEmail(email);
 			info.setReference(user);
@@ -38,6 +43,16 @@ public class InfoService {
 		}
 		infoRepo.save(info);
 		
+	}
+	public void updateInfoStatus(String status,Long infoId) {
+		if(infoRepo.findById(infoId).isPresent()) {
+			Info info=infoRepo.findById(infoId).get();
+			if((status.equals("Completed")||status.equals("Pending"))&&status!=null)
+				info.setStatus(statusService.findByName(status));
+			infoRepo.save(info);
+		}else {
+			throw new ResourceNotFoundException("Info non trovata!");
+		}
 	}
 	
 

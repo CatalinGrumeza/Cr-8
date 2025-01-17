@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Cr_8.dto.InfoFormRequest;
@@ -67,6 +68,21 @@ public class InfoController {
         );
 		return errors;
 		
+	}
+	
+	@Operation(
+	        summary = "POST Api for updating a info status request",
+	        description = "The possible options are Pending  Completed"
+	    )
+	@Tag(name = "Dashboard Endpoint")
+	@PostMapping("/update-info-status")
+	public ResponseEntity<String> statusInfoChange(@RequestParam Long infoId,@RequestParam String status){
+		try {
+			infoService.updateInfoStatus(status,infoId);
+			return ResponseEntity.ok("Status changed successfully!");
+		}catch (Exception e) {
+			return new ResponseEntity<>("Invalid invalid Status or id", HttpStatus.BAD_REQUEST);
+		}
 	}
 
 	

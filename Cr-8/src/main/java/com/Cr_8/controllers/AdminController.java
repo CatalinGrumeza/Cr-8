@@ -22,7 +22,7 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 	
-	@GetMapping("/get-all-admin")
+	@GetMapping("/super/get-all-admin")
 	@Tag(name = "Dashboard Endpoint")
 	public ResponseEntity<List<Admin>> getAll() {
 		List<Admin> adminList = adminService.getAllAdmin();
