@@ -37,7 +37,6 @@ body {
 }
 
 .btn-complete {
-    background-color: #28a745;
     color: white;
     border: none;
     padding: 10px 18px;
@@ -48,8 +47,20 @@ body {
     margin-top: 15px;
 }
 
-.btn-complete:hover {
+.btn-green {
+    background-color: #28a745; /* Green for "Segna come completato" */
+}
+
+.btn-green:hover {
     background-color: #218838;
+}
+
+.btn-red {
+    background-color: #dc3545; /* Red for "Segna come non completo" */
+}
+
+.btn-red:hover {
+    background-color: #c82333;
 }
 
 .row.card-row {
@@ -80,4 +91,9 @@ p {
     .btn-complete {
         width: 100%;
     }
+}
+
+/* Styles for filter controls */
+.form-select, .form-control {
+    margin-bottom: 15px;
 }

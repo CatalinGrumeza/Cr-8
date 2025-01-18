@@ -1,11 +1,16 @@
 package com.Cr_8.dto;
 
+import java.time.LocalDate;
+
 public class BookedDTO {
 	private Long idBookingRequest;
 	private Long idBookedDate;
 	private Long idReference;
+	private LocalDate date;
+    private LocalDate toDate;
 	private boolean morning;
-    private boolean evening;
+    private boolean allDay;
+    private String referenceName;
     
     public BookedDTO() {}
 
@@ -41,13 +46,39 @@ public class BookedDTO {
 		this.morning = morning;
 	}
 
-	public boolean isEvening() {
-		return evening;
+	public boolean isAllDay() {
+		return allDay;
 	}
 
-	public void setEvening(boolean evening) {
-		this.evening = evening;
+	public void setAllDay(boolean evening) {
+		this.allDay = evening;
+	}
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+	public LocalDate getToDate() {
+		return toDate;
+	}
+
+	public void setToDate(LocalDate toDate) {
+		this.toDate = toDate;
+	}
+
+	public String getReferenceName() {
+		return referenceName;
+	}
+
+	public void setReferenceName(String referenceName) {
+		this.referenceName = referenceName;
 	};
+	
+	
     
 
 }

@@ -95,9 +95,12 @@ public class BookingController {
 			BookedDTO bookDto = new BookedDTO();
 			bookDto.setIdBookedDate(bookedDate.getId());
 			bookDto.setIdBookingRequest(bookedDate.getBookingRequest().getId());
-			bookDto.setEvening(bookedDate.getDayFractions().isEvening());
+			bookDto.setAllDay(bookedDate.getDayFractions().isEvening());
 			bookDto.setMorning(bookedDate.getDayFractions().isMorning());
 			bookDto.setIdReference(bookedDate.getBookingRequest().getReference().getId());
+			bookDto.setDate(bookedDate.getDate());
+			bookDto.setToDate(bookedDate.getToDate());
+			bookDto.setReferenceName(bookedDate.getBookingRequest().getReference().getFirstName()+bookedDate.getBookingRequest().getReference().getLastName());
 			returnList.add(bookDto);
 			}
 		return ResponseEntity.ok(returnList);
