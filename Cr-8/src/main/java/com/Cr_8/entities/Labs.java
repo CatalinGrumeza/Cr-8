@@ -24,6 +24,7 @@ public class Labs {
 	private String name;
 	private String description;
 	private String scope;//reciepient,aimed for
+	private String duration;
 	@ManyToMany(mappedBy = "labsSet")
 	@JsonIgnore
 	private List<BookingRequest> bookingRequest ;
@@ -68,6 +69,15 @@ public class Labs {
 	public void setScope(String scope) {
 		this.scope = scope;
 	}
+
+	public String getDuration() {
+		return duration;
+	}
+
+	public void setDuration(String duration) {
+		this.duration = duration;
+	}
+	
 	
 	
 	

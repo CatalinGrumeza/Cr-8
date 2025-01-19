@@ -9,6 +9,7 @@ public class LabsDTO {
 	private String name;
 	private String description;
 	private String scope;
+	private String duration;
 	private List<String> targetDescription;
 	
 	
@@ -36,5 +37,12 @@ public class LabsDTO {
 	public void setDescription(String descrizione) {
 		this.description = descrizione;
 	}
+	public String getDuration() {
+		return duration;
+	}
+	public void setDuration(String duration) {
+		this.duration = duration;
+	}
+	
 	
 }
