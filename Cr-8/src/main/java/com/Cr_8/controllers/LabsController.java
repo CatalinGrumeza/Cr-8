@@ -42,7 +42,7 @@ public class LabsController {
 	@Tag(name = "Dashboard Endpoint")
 	@PostMapping("/add-new-labs")
 	public ResponseEntity<?> addNewLab(@RequestBody LabsDTO labsDTO){
-		String newlabs =labsService.addNewLabs(labsDTO.getName(), labsDTO.getDescription(),labsDTO.getScope(),labsDTO.getTargetDescription());
+		String newlabs =labsService.addNewLabs(labsDTO.getName(), labsDTO.getDescription(),labsDTO.getScope(),labsDTO.getTargetDescription(),labsDTO.getDuration());
 		return new ResponseEntity<>(newlabs, HttpStatus.OK);
 	}
 	@Operation(
