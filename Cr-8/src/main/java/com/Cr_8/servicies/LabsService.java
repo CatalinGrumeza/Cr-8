@@ -57,6 +57,7 @@ public class LabsService  {
 		 if(existlab.isEmpty()) {
 			 throw new ResourceNotFoundException("not found labs with name : "+name);
 		 }
+		 labsRepo.delete(existlab.get());
 		 return "labs deleted";
 	}
 
