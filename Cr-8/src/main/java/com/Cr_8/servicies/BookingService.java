@@ -70,8 +70,8 @@ public class BookingService {
 	        user.setFirstName(name);
 	        user.setLastName(surname);
 	        user.setPhoneNumber(phone);
-	        user = referenceRepo.save(user);
 	    }
+	    user = referenceRepo.save(user);
 	    book.setReference(user);
 
 	    BookedDate bookedDate = new BookedDate();
@@ -79,8 +79,11 @@ public class BookingService {
 	    book.setBookedDate(bookedDate);
 	   
 	    for (String lab : labsName) {
-			Labs existlabs =labRepo.findByName(lab).get();
-			book.setLabsSet(existlabs);
+	    	if(labRepo.findByName(lab).isPresent()) {
+	    		Labs lab1=labRepo.findByName(lab).get();
+	    		book.addLab(lab1);
+	    	}
+	    	
 			
 		}
 	    bookrepo.save(book);
@@ -100,6 +103,7 @@ public class BookingService {
 		if(statusName.equalsIgnoreCase("cancelled")) {
 			booking.getBookedDate().setDate(null);
 			booking.getBookedDate().setDayFractions(null);
+			booking.getBookedDate().setToDate(null);
 			mailService.sendEmailCancelledBooked(booking);
 		}
 		booking.setStatus(statusrepo.findByName(statusName).get());
