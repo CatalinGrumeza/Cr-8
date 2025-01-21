@@ -26,7 +26,7 @@ public class LabsService  {
 		return labsRepo.findAll(); 
 	}
 	
-	public String addNewLabs(String name , String description,String scope,List<String> target,String duration) {
+	public String addNewLabs(String name , String description,String scope,List<String> target,String duration, String img) {
 		Optional<Labs> existlab = labsRepo.findByName(name);
 		 if(existlab.isPresent()) {
 			 return "labs  found with name: "+name;
@@ -38,6 +38,7 @@ public class LabsService  {
 		newLabs.setDescription(description);
 		newLabs.setScope(scope);
 		newLabs.setDuration(duration);
+		newLabs.setDuration(img);
 		List<Target> targetList=new ArrayList<Target>();
 		for (String target2 : target) {
 			if(targetService.findTargetByDescription(target2).isEmpty()) {

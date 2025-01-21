@@ -11,6 +11,7 @@ public class LabsDTO {
 	private String scope;
 	private String duration;
 	private List<String> targetDescription;
+	private String img;
 	
 	
 	public List<String> getTargetDescription() {
@@ -44,5 +45,12 @@ public class LabsDTO {
 		this.duration = duration;
 	}
 	
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
 	
 }
