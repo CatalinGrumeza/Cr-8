@@ -95,7 +95,7 @@ public class BookingController {
 			BookedDTO bookDto = new BookedDTO();
 			bookDto.setIdBookedDate(bookedDate.getId());
 			bookDto.setIdBookingRequest(bookedDate.getBookingRequest().getId());
-			bookDto.setAllDay(bookedDate.getDayFractions().isEvening());
+			bookDto.setAllDay(bookedDate.getDayFractions().isFullDay());
 			bookDto.setMorning(bookedDate.getDayFractions().isMorning());
 			bookDto.setIdReference(bookedDate.getBookingRequest().getReference().getId());
 			bookDto.setDate(bookedDate.getDate());
@@ -114,7 +114,7 @@ public class BookingController {
 	public ResponseEntity<?> bookDate(@RequestBody BookedDateDTO bookedDate) {
 		bookedDatesService.createBookedDates(bookedDate);
 		bookService.updateBookRequest(bookedDate.getIdBookingRequest(), "completed");
-		mailService.sendEmailConfirmBooked(bookService.getBookingRequestByid(bookedDate.getIdBookingRequest()).get(), bookedDate.getDate());
+		mailService.sendEmailConfirmBooked(bookService.getBookingRequestByid(bookedDate.getIdBookingRequest()).get());
 		return ResponseEntity.ok("Book date created successfully!");
 	}
 	@Operation(
