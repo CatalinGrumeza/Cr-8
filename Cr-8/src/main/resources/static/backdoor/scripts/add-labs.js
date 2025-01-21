@@ -5,6 +5,12 @@ document.getElementById('additionForm').addEventListener('submit', async functio
     const data = Object.fromEntries(formData.entries());
 	data.targetDescription = data.targetDescription.split(",").map(item => item.trim()); //converts a string separated by commas into an array
 	
+	Object.keys(data).forEach(key => {
+		if (data[key] == "") {
+			data[key] = null;
+		}
+	});
+	
     try {
         const response = await fetch('http://localhost:8080/api/add-new-labs', {
             method: 'POST',
