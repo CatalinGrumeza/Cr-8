@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete laboratory</title>
+    <link rel="stylesheet" href="../backdoor/styles/delete-labs.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2 class="card-title">Delete laboratory</h2>
+            <form id="deleteForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter laboratory name" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Custom Popup -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span id="popupMessage"></span>
+            <button id="closePopup">Close</button>
+        </div>
+    </div>
+
+    <!-- Link to the external JavaScript file -->
+    <script src="../backdoor/scripts/delete-labs.js"></script>
+</body>
+</html>

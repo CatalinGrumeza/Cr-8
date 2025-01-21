@@ -1,20 +1,16 @@
-document.getElementById('additionForm').addEventListener('submit', async function (event) {
+document.getElementById('deleteForm').addEventListener('submit', async function (event) {
     event.preventDefault(); // Prevent the default form submission
 
     const formData = new FormData(this); // Get form data
-    const targetDescription = formData.get('targetDescription');
-    formData.set('targetDescription', JSON.stringify(targetDescription.split(",").map(item => item.trim())));
-	
-	console.log(formData)
-	
+
     try {
-        const response = await fetch('http://localhost:8080/api/add-new-labs', {
-            method: 'POST',
+        const response = await fetch('http://localhost:8080/api/delete-labs', {
+            method: 'DELETE',
             body: formData
-       });
+        });
 
         const result = await response.text(); // Get the response message
-		
+
         // Display the message in the popup
         const popupMessage = document.getElementById('popupMessage');
         popupMessage.textContent = result;
@@ -26,7 +22,7 @@ document.getElementById('additionForm').addEventListener('submit', async functio
         if (response.ok) {
             // Redirect to the dashboard after a short delay
             setTimeout(() => {
-                window.location.href = '/dashboard/add-labs';
+                window.location.href = '/dashboard/delete-labs';
             }, 2000); // 2 seconds delay
         }
     } catch (error) {

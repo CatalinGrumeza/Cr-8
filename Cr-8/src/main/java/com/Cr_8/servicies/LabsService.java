@@ -38,7 +38,7 @@ public class LabsService  {
 		newLabs.setDescription(description);
 		newLabs.setScope(scope);
 		newLabs.setDuration(duration);
-		newLabs.setDuration(img);
+		newLabs.setImg(img);
 		List<Target> targetList=new ArrayList<Target>();
 		for (String target2 : target) {
 			if(targetService.findTargetByDescription(target2).isEmpty()) {

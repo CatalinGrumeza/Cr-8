@@ -2,7 +2,11 @@ package com.Cr_8.dto;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.Cr_8.entities.Target;
+
+import jakarta.mail.Multipart;
 
 public class LabsDTO {
 
@@ -11,7 +15,7 @@ public class LabsDTO {
 	private String scope;
 	private String duration;
 	private List<String> targetDescription;
-	private String img;
+	private MultipartFile img;
 	
 	
 	public List<String> getTargetDescription() {
@@ -45,11 +49,11 @@ public class LabsDTO {
 		this.duration = duration;
 	}
 	
-	public String getImg() {
+	public MultipartFile getImg() {
 		return img;
 	}
 
-	public void setImg(String img) {
+	public void setImg(MultipartFile img) {
 		this.img = img;
 	}
 	
