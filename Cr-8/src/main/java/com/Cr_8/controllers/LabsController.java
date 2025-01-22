@@ -57,7 +57,7 @@ public class LabsController {
 			String fileName = null;
 	        if (labsDTO.getImg() != null && !labsDTO.getImg().isEmpty()) {
 	            MultipartFile img = labsDTO.getImg();
-	            fileName = ".\\src\\main\\resources\\static\\assets\\img\\" + labsDTO.getName() + ".jpg";
+	            fileName = "./src/main/resources/static/assets/img/" + labsDTO.getName() + ".jpg";
 	            
 	            File file = new File(fileName);
 	            try (FileOutputStream fos = new FileOutputStream(file)) {
@@ -66,13 +66,14 @@ public class LabsController {
 	        }
             
 			String newlabs = labsService.addNewLabs(
-	                labsDTO.getName(),
-	                labsDTO.getDescription(),
-	                labsDTO.getScope(),
-	                labsDTO.getTargetDescription(),
-	                labsDTO.getDuration(),
-	                fileName
-					);
+	            labsDTO.getName(),
+	            labsDTO.getDescription(),
+	            labsDTO.getScope(),
+	            labsDTO.getTargetDescription(),
+	            labsDTO.getDuration(),
+	            fileName
+			);
+			
 	        return new ResponseEntity<>(newlabs, HttpStatus.OK);
 	    } catch (Exception e) {
 	        return new ResponseEntity<>("Failed to upload the lab: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);

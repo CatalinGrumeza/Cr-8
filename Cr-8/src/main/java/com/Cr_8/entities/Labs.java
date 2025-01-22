@@ -26,7 +26,6 @@ public class Labs {
 	private String description;
 	private String scope;//reciepient,aimed for
 	private String duration;
-	@Column(nullable = true)
 	private String img;
 	@ManyToMany(mappedBy = "labsSet")
 	@JsonIgnore
