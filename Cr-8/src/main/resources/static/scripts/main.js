@@ -4,11 +4,6 @@
  * This code includes the logic to validate the book form and the info form input fields
  */
 
-// navbar menu toggle
-function menu() {
-  document.querySelector(".navbar").classList.toggle("show");
-}
-
 const form = document.getElementById("bookingForm");
 
 // form fields
@@ -141,7 +136,6 @@ form.addEventListener("submit", async (event) => {
   const formErrorSpan = document.getElementById("formError");
 
   if (!formIsValid) {
-    alert("attenzione");
     /* formErrorSpan.textContent =
       "Per favore, correggi gli errori evidenziati prima di inviare il modulo."; */
     // return;
@@ -150,6 +144,10 @@ form.addEventListener("submit", async (event) => {
   formErrorSpan.textContent = "";
 
   const formattedDate = new Date().toISOString().split("T")[0];
+
+  const visitorTypeValue = document.getElementById("visitatore").value;
+
+  if (visitorTypeValue == "") visitorTypeValue = "full day";
 
   const data = {
     name: document.getElementById("nome").value,
@@ -162,8 +160,8 @@ form.addEventListener("submit", async (event) => {
     dataTo: document.getElementById("disponibilitaA").value,
     participantNumber: document.getElementById("numeroPartecipanti").value,
     bookType: document.getElementById("periodoGiornata").value,
-    visitorType: document.getElementById("visitatore").value,
-    labs: ["pela patate"],
+    visitorType: visitorTypeValue,
+    labs: ["Storia della Cascina Carla e Bruno Caccia"],
     createdAt: formattedDate,
   };
 
@@ -172,7 +170,7 @@ form.addEventListener("submit", async (event) => {
 
     // Effettua la richiesta POST
     const response = await fetch(
-      "http://localhost:8080/api/pub/create-booking",
+      "/api/pub/create-booking",
       {
         method: "POST",
         headers: {
@@ -215,74 +213,4 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       });
     }
   });
-});
-
-// carousel-laboratori
-const trackLaboratori = document.querySelector(".carousel-track-laboratori");
-const prevButtonLaboratori = document.querySelector(
-  ".carousel-prev-laboratori"
-);
-const nextButtonLaboratori = document.querySelector(
-  ".carousel-next-laboratori"
-);
-const cardsLaboratori = Array.from(trackLaboratori.children);
-const cardWidthLaboratori = cardsLaboratori[0].getBoundingClientRect().width;
-
-let currentLaboratoriIndex = 0;
-
-function updateLaboratoriTrackPosition() {
-  const amountToMove = -(cardWidthLaboratori + 20) * currentLaboratoriIndex;
-  trackLaboratori.style.transition = "transform 0.5s ease-in-out";
-  trackLaboratori.style.transform = `translateX(${amountToMove}px)`;
-}
-
-nextButtonLaboratori.addEventListener("click", () => {
-  if (currentLaboratoriIndex < cardsLaboratori.length - 1) {
-    currentLaboratoriIndex++;
-  } else {
-    currentLaboratoriIndex = 0;
-  }
-  updateLaboratoriTrackPosition();
-});
-
-prevButtonLaboratori.addEventListener("click", () => {
-  if (currentLaboratoriIndex > 0) {
-    currentLaboratoriIndex--;
-  } else {
-    currentLaboratoriIndex = cardsLaboratori.length - 1;
-  }
-  updateLaboratoriTrackPosition();
-});
-
-// carousel-image
-const trackImage = document.querySelector(".carousel-track-image");
-const prevButtonImage = document.querySelector(".carousel-prev-image");
-const nextButtonImage = document.querySelector(".carousel-next-image");
-const cardsImage = Array.from(trackImage.children);
-const cardWidthImage = cardsImage[0].getBoundingClientRect().width;
-
-let currentImageIndex = 0;
-
-function updateImageTrackPosition() {
-  const amountToMove = -(cardWidthImage + 20) * currentImageIndex;
-  trackImage.style.transition = "transform 0.5s ease-in-out";
-  trackImage.style.transform = `translateX(${amountToMove}px)`;
-}
-
-nextButtonImage.addEventListener("click", () => {
-  if (currentImageIndex < cardsImage.length - 1) {
-    currentImageIndex++;
-  } else {
-    currentImageIndex = 0;
-  }
-  updateImageTrackPosition();
-});
-
-prevButtonImage.addEventListener("click", () => {
-  if (currentImageIndex > 0) {
-    currentImageIndex--;
-  } else {
-    currentImageIndex = cardsImage.length - 1;
-  }
-  updateImageTrackPosition();
 });

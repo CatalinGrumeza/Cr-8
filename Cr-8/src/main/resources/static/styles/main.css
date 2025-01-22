@@ -1,5 +1,5 @@
 /**
-* main.css
+* main.css (Aurora)
 *
 * Main Style Sheet used to style the landing page
 */
@@ -42,6 +42,7 @@ html {
   --h4-font-size: 1em;
   --section-title-font-size: 1.4em;
   --mobile-page-margin: 20px;
+  --desktop-page-margin: 100px;
 }
 
 body {
@@ -102,6 +103,7 @@ a {
   color: #000000;
   font-size: 16px;
   font-weight: bold;
+  transition: font-size 0.5s;
 }
 
 .navbar a[href="#laboratori-anchor"] {
@@ -113,7 +115,7 @@ a {
 }
 
 .navbar a:hover {
-  color: var(--orange);
+  font-size: larger;
 }
 
 .hamburger {
@@ -121,7 +123,7 @@ a {
   background: none;
   border: none;
   cursor: pointer;
-  display: none; /* Nascondere l'hamburger di default */
+  display: none;
 }
 
 figure#heroImg {
@@ -537,7 +539,7 @@ nav input,
 }
 
 .accordion-content {
-  text-align: center;
+  line-height: 2;
   max-height: 0;
   padding: 0 1em;
   background: white;
@@ -649,6 +651,10 @@ input[type="radio"]:checked ~ .accordion-content {
 
 /* Large desktop */
 @media (min-width: 1200px) {
+  body {
+    padding: var(--desktop-page-margin);
+  }
+
   .valori-section {
     display: flex;
     flex-direction: row;
@@ -678,4 +684,11 @@ input[type="radio"]:checked ~ .accordion-content {
     align-items: stretch;
     justify-content: center;
   }
+}
+
+div[id$="-anchor"] {
+  height: 0;
+  visibility: hidden;
+  position: relative;
+  top: -70px;
 }

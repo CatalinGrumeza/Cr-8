@@ -9,14 +9,14 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
-    let allData = []; // Store all fetched data
+    let allData = [];
 
     // Fetch data from the API
-    fetch('http://localhost:8080/api/all-info')
+    fetch('/api/all-info')
         .then(response => response.json())
         .then(data => {
-            allData = data; // Save the data
-            renderCards(data); // Render cards initially
+            allData = data;
+            renderCards(data);
         })
         .catch(error => console.error('Error fetching data:', error));
 
@@ -50,17 +50,19 @@ document.addEventListener('DOMContentLoaded', function () {
             // Create card content
             card.innerHTML = `
                 <div>
-                    <h5 class="card-title">Info ID: ${info.id}</h5>
-                    <p><strong>Status:</strong> <span class="info-status">${statusName}</span></p>
-                    <p><strong>Date:</strong> ${date}</p>
-                    <p><strong>Reference:</strong> ${firstName} ${lastName}, 
-                    Email: ${email}, Phone: ${phoneNumber}</p>
-                    <br>
-                    <p><strong>Messaggio</strong>: ${text}</p>
-                    <button class="btn-complete ${statusName === 'Completed' ? 'btn-red' : 'btn-green'}" 
-                            data-id="${info.id}" data-status="${statusName}">
-                        ${statusName === 'Completed' ? 'Segna come non completato' : 'Segna come completato'}
+                    <h2 class="card-title">${lastName} ${firstName}</h5>
+                    <p><span class="bold">Email</span>: ${email}</p>
+                    <p><span class="bold">Cellulare</span>: ${phoneNumber}</p>
+                    <p><span class="bold">Richiesta</span>: ${text}</p>
+                    <span class="info-status">${statusName}</span>
+                    <div class="btn-container">
+                    <button class="btn-complete ${statusName === 'Completed' ? 'btn-green' : 'btn-red'}" 
+                    data-id="${info.id}" data-status="${statusName}">
+                    ${statusName === 'Completed' ? 'Completato' : 'Da Revisionare'}
                     </button>
+                   </div>
+                    <div class="separator"></div>
+                    <p class="center"><span class="bold">Ricevuta</span> ${date}</p>
                 </div>
             `;
 
@@ -75,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const newStatus = currentStatus === 'Completed' ? 'Pending' : 'Completed';
 
                 // Send request to update the status
-                fetch(`http://localhost:8080/api/update-info-status?infoId=${infoId}&status=${newStatus}`, {
+                fetch(`/api/update-info-status?infoId=${infoId}&status=${newStatus}`, {
                     method: 'POST'
                 })
                     .then(response => {
@@ -86,17 +88,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
                             // Update button label and data-status attribute
                             toggleButton.textContent = newStatus === 'Completed' 
-                                ? 'Segna come non completato' 
-                                : 'Segna come completato';
+                                ? 'Completato' 
+                                : 'Da Revisionare';
                             toggleButton.setAttribute('data-status', newStatus);
 
                             // Update button color
                             if (newStatus === 'Completed') {
-                                toggleButton.classList.remove('btn-green');
-                                toggleButton.classList.add('btn-red');
-                            } else {
                                 toggleButton.classList.remove('btn-red');
                                 toggleButton.classList.add('btn-green');
+                            } else {
+                                toggleButton.classList.remove('btn-green');
+                                toggleButton.classList.add('btn-red');
                             }
 
                             // Update the data in allData
