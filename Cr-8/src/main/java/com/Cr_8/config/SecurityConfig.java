@@ -6,6 +6,7 @@ import java.util.concurrent.ScheduledExecutorService;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,10 +17,18 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
+import com.Cr_8.servicies.AdminService;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
+	
+	private final AdminService adminService;
+	
+	public SecurityConfig(@Lazy AdminService adminService) { // Lazy used to bypass circular reference between adminservice and securityconfig
+        this.adminService = adminService;
+    }
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(); // Encrypts passwords securely
@@ -76,6 +85,8 @@ public class SecurityConfig {
         	
             response.setStatus(200); // OK status
             response.getWriter().write("Login successful");
+            response.getWriter().write(adminService.getAdminByEmail(authentication.getName()).getName());
+            response.getWriter().write(adminService.getAdminByEmail(authentication.getName()).getRole().getName());
             response.sendRedirect("/dashboard/all-info"); // Redirect to the landing page
         };
     }
