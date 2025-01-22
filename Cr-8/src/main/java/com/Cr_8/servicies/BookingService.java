@@ -89,10 +89,10 @@ public class BookingService {
 		BookingRequest booking = bookrepo.findById(bookId)
 				.orElseThrow(() -> new IllegalArgumentException("book not found with id: "+bookId));
 		if(statusName.equalsIgnoreCase("cancelled")) {
+			mailService.sendEmailCancelledBooked(booking);
 			booking.getBookedDate().setDate(null);
 			booking.getBookedDate().setDayFractions(null);
 			booking.getBookedDate().setToDate(null);
-			mailService.sendEmailCancelledBooked(booking);
 		}
 		booking.setStatus(statusrepo.findByName(statusName).get());
 		bookrepo.save(booking);
