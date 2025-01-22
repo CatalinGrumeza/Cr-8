@@ -36,39 +36,44 @@ document.addEventListener("DOMContentLoaded", function () {
                   <p><span class="bold">Email</span>: ${email}</p>
                   <p><span class="bold">Codice</span>: ${code}</p>
                   <p><span class="bold">Ruolo</span>: ${role.name}</p>
-                  <div class="btn-container">
-                      <button class="btn-complete btn-red" data-id="${id}">
-                          Elimina
-                      </button>
-                  </div>
+                  <div class="btn-container"></div>
               </div>
           `;
 
       // Append card to container
       container.appendChild(card);
 
-      // Add event listener to the delete button
-      const deleteButton = card.querySelector(".btn-complete");
-      deleteButton.addEventListener("click", function () {
-        const adminId = this.getAttribute("data-id");
+      // Add delete button only if the role is not SUPER_ADMIN
+      if (role.name !== "SUPER_ADMIN") {
+        const deleteButton = document.createElement("button");
+        deleteButton.classList.add("btn-complete", "btn-red");
+        deleteButton.textContent = "Elimina";
+        deleteButton.setAttribute("data-id", id);
 
-        if (confirm(`Sei sicuro di voler eliminare questo ADMIN?`)) {
-          // Send request to delete the admin
-          fetch(`/api/super/delete-admin?id=${adminId}`, {
-            method: "DELETE",
-          })
-            .then((response) => {
-              if (response.ok) {
-                alert("Admin eliminato con successo.");
-                allAdmins = allAdmins.filter((admin) => admin.id != adminId);
-                renderCards(allAdmins);
-              } else {
-                alert("Errore durante l'eliminazione dell'admin.");
-              }
+        card.querySelector(".btn-container").appendChild(deleteButton);
+
+        // Add event listener to the delete button
+        deleteButton.addEventListener("click", function () {
+          const adminId = this.getAttribute("data-id");
+
+          if (confirm(`Sei sicuro di voler eliminare questo ADMIN?`)) {
+            // Send request to delete the admin
+            fetch(`/api/super/delete-admin?id=${adminId}`, {
+              method: "DELETE",
             })
-            .catch((error) => console.error("Error:", error));
-        }
-      });
+              .then((response) => {
+                if (response.ok) {
+                  alert("Admin eliminato con successo.");
+                  allAdmins = allAdmins.filter((admin) => admin.id != adminId);
+                  renderCards(allAdmins);
+                } else {
+                  alert("Errore durante l'eliminazione dell'admin.");
+                }
+              })
+              .catch((error) => console.error("Error:", error));
+          }
+        });
+      }
     });
   }
 

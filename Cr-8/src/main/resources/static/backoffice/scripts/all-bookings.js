@@ -38,96 +38,115 @@ document.addEventListener("DOMContentLoaded", function () {
         vistorType,
         status,
         reference,
+        bookedDate,
+        numberOfDays,
+        labsSet,
+        createdAt,
       } = booking;
 
       // Create card content
       card.innerHTML = `
-              <div>
-                  <h2 class="card-title">${reference.lastName} ${
-        reference.firstName
-      }</h2>
-                  <p><span class="bold">Email</span>: ${reference.email}</p>
-                  <p><span class="bold">Telefono</span>: ${
-                    reference.phoneNumber
-                  }</p>
-                  <p><span class="bold">Tipo di Visitatore</span>: ${vistorType}</p>
-                  <p><span class="bold">Numero di Partecipanti</span>: ${participantNumber}</p>
-                  <p><span class="bold">Tipo di Prenotazione</span>: ${bookType}</p>
-                  <p><span class="bold">Periodo</span>: dal ${formatDate(
-                    dataFrom
-                  )} al ${formatDate(dataTo)}</p>
-                  <p><span class="bold">Dettagli Aggiuntivi</span>: ${additionalDetails}</p>
-                  <span class="info-status">${status.name}</span>
-                  <div class="btn-container">
-                      <button class="btn-complete ${
-                        status.name === "Completed" ? "btn-green" : "btn-red"
-                      }" 
-                      data-id="${id}" data-status="${status.name}">
-                      ${
-                        status.name === "Completed"
-                          ? "Completata"
-                          : "Da Revisionare"
-                      }
-                      </button>
-                  </div>
-                  <div class="separator"></div>
-                  <p class="center"><span class="bold">Creata il</span> ${formatDate(
-                    booking.createdAt
-                  )}</p>
-              </div>
-          `;
+        <div>
+          <h2 class="card-title">${reference.lastName} ${reference.firstName}</h2>
+          <p><span class="bold">Email</span>: ${reference.email}</p>
+          <p><span class="bold">Telefono</span>: ${reference.phoneNumber}</p>
+          <p><span class="bold">Tipo di Visitatore</span>: ${vistorType}</p>
+          <p><span class="bold">Numero di Partecipanti</span>: ${participantNumber}</p>
+          <p><span class="bold">Tipo di Prenotazione</span>: ${bookType}</p>
+          <p><span class="bold">Periodo</span>: dal ${formatDate(dataFrom)} al ${formatDate(dataTo)}</p>
+          <p><span class="bold">Dettagli Aggiuntivi</span>: ${additionalDetails}</p>
+          <p><span class="bold">Numero di Giorni</span>: ${numberOfDays}</p>
+          <p><span class="bold">Stato</span>: ${status.name}</p>
+          <p><span class="bold">Creata il</span> ${formatDate(createdAt)}</p>
+           <div class="labs-set">
+              <h3>Laboratori</h3>
+              ${labsSet.map(lab => `
+                <div class="lab">
+                  <h4>${lab.name}</h4>
+                </div>
+              `).join('')}
+            </div>
+          
+          ${status.name === "Completed" ? `
+            <button class="btn-cancel" data-id="${id}" data-status="${status.name}">Annulla Prenotazione</button>
+            <p><span class="bold">Data di prenotazione</span>: ${formatDate(bookedDate.date)} al ${formatDate(bookedDate.toDate)}</p>
+          ` : ''}
+
+          ${status.name === "Pending" || status.name === "Cancelled" ? `
+            <form class="book-date-form" data-id="${id}">
+              <label for="start-date">Data di inizio</label>
+              <input type="date" id="start-date" name="start-date" required>
+              <label for="end-date">Data di fine</label>
+              <input type="date" id="end-date" name="end-date" required>
+              <label><input type="checkbox" name="morning" id="morning" />Mattina</label>
+        	  <label><input type="checkbox" name="fullDay" id="fullDay" />Giorno completo</label>
+              <button type="submit">Aggiorna Prenotazione</button>
+            </form>
+          ` : ''}
+        </div>
+      `;
 
       // Append card to container
       container.appendChild(card);
 
-      // Add event listener to the button
-      const toggleButton = card.querySelector(".btn-complete");
-      toggleButton.addEventListener("click", function () {
-        const bookingId = this.getAttribute("data-id");
-        const currentStatus = this.getAttribute("data-status");
-        const newStatus =
-          currentStatus === "Completed" ? "Pending" : "Completed";
+      // Add event listener to the cancel button
+      const cancelButton = card.querySelector(".btn-cancel");
+      if (cancelButton) {
+        cancelButton.addEventListener("click", function () {
+          const bookingId = this.getAttribute("data-id");
 
-        // Send request to update the status
-        fetch(
-          `/api/update-booking-status?id=${bookingId}&status=${newStatus}`,
-          {
+          // Send request to update the status to "Cancelled"
+          fetch(`/api/update-booking-status?bookingId=${bookingId}&status=Cancelled`, {
             method: "POST",
-          }
-        )
+          })
           .then((response) => {
             if (response.ok) {
-              // Update the UI in real-time
-              const statusElement = card.querySelector(".info-status");
-              statusElement.textContent = newStatus;
-
-              // Update button label and data-status attribute
-              toggleButton.textContent =
-                newStatus === "Completed" ? "Completata" : "Da Revisionare";
-              toggleButton.setAttribute("data-status", newStatus);
-
-              // Update button color
-              if (newStatus === "Completed") {
-                toggleButton.classList.remove("btn-red");
-                toggleButton.classList.add("btn-green");
-              } else {
-                toggleButton.classList.remove("btn-green");
-                toggleButton.classList.add("btn-red");
-              }
-
-              // Update the data in allBookings
-              const updatedBooking = allBookings.find(
-                (item) => item.id == bookingId
-              );
-              if (updatedBooking) {
-                updatedBooking.status.name = newStatus;
-              }
+              // Refresh the page to reflect changes
+              window.location.reload();
             } else {
-              alert("Errore durante l'aggiornamento dello stato.");
+              alert("Errore durante l'annullamento della prenotazione.");
             }
           })
           .catch((error) => console.error("Error:", error));
-      });
+        });
+      }
+
+      // Add event listener to the booking date form
+      const form = card.querySelector(".book-date-form");
+      if (form) {
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const startDate = form.querySelector("#start-date").value;
+          const endDate = form.querySelector("#end-date").value;
+
+          const bookingId = form.getAttribute("data-id");
+		  
+          // Send request to update the booking date
+          fetch("/api/book-date", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              date: startDate,
+              toDate: endDate,
+			  morning:Boolean(morning),
+  			  fullDay:Boolean(fullDay),
+              idBookingRequest: bookingId,
+            }),
+          })
+          .then((response) => {
+            if (response.ok) {
+              // Refresh the page to reflect changes
+              window.location.reload();
+            } else {
+              alert("Errore durante l'aggiornamento della prenotazione.");
+            }
+          })
+          .catch((error) => console.error("Error:", error));
+        });
+      }
     });
   }
 

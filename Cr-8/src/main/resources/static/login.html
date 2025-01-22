@@ -25,7 +25,7 @@
     <!-- NAVBAR -->
     <nav class="navbar-container">
       <div class="navbar-content">
-        <a href="./index.html">
+        <a href="/">
           <img
             class="navbar-logo"
             src="./assets/img/logo-a-caccia-di-sapere1.png"
@@ -33,7 +33,7 @@
         /></a>
         <ul class="navbar">
           <li>
-            <a href="./index.html" title="Torna alla Home" onclick="menu()"
+            <a href="/" title="Torna alla Home" onclick="menu()"
               >Torna alla Home</a
             >
           </li>
@@ -52,9 +52,28 @@
     <div id="formLogin">
       <h2>Login</h2>
       <h3>accedi all'area riservata</h3>
-      <form id="loginForm">
-        <input type="text" id="nome" name="nome" placeholder="Email" />
-        <input type="text" id="cognome" name="cognome" placeholder="Password" />
+      <!-- Form Normal -->
+      <form id="loginForm" action="/login" method="POST">
+        <div class="form-group">
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email"
+            required
+            class="form-control"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+            required
+            class="form-control"
+          />
+        </div>
         <div class="btn-container">
           <button type="submit" class="submitBtn">Conferma</button>
 
@@ -68,6 +87,5 @@
 
     <!-- end of the body -->
     <script src="./scripts/navbar.js" defer></script>
-    <script src="./scripts/login.js" defer></script>
   </body>
 </html>

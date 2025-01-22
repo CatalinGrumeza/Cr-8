@@ -1,12 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- metadata -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Register</title>
-    <link rel="stylesheet" href="../backdoor/styles/register.css">
+    <meta name="description" content="Backoffice register" />
+    <meta name="author" content="CR-8" />
+
+    <!-- favicon -->
+    <link rel="icon" href="./favicon.ico" />
+
+    <!-- styles -->
+    <link rel="stylesheet" href="../styles/normalize.css" />
+    <link rel="stylesheet" href="../styles/main.css" />
+    <link rel="stylesheet" href="../styles/backoffice.css" />
+    <link rel="stylesheet" href="../backoffice/styles/register.css">
 </head>
 <body>
+    <!-- page content -->
+
+    <!-- NAVBAR -->
+    <!-- NAVBAR -->
+    <nav class="navbar-container">
+        <div class="navbar-content">
+          <a href="/">
+            <img
+              class="navbar-logo"
+              src="../assets/img/logo-a-caccia-di-sapere1.png"
+              alt="Logo del sito"
+          /></a>
+          <ul class="navbar">
+            <li>
+              <a href="/dashboard" title="Dashboard" onclick="menu()"
+                >Dashboard</a
+              >
+            </li>
+            <li>
+              <a
+                href="/dashboard/all-info"
+                title="Rihieste Informazioni"
+                onclick="menu()"
+                >Richieste Informazioni</a
+              >
+            </li>
+            <li>
+              <a href="/dashboard/all-bookings" title="Prenotazioni" onclick="menu()"
+                >Prenotazioni</a
+              >
+            </li>
+            <li>
+              <a href="/super/all-admins" title="Gestione Admin" onclick="menu()"
+                >Gestione Admin</a
+              >
+            </li>
+            <li>
+              <a href="/logout" title="Logout" onclick="menu()">Logout</a>
+            </li>
+          </ul>
+        </div>
+        <button class="hamburger" onclick="menu()">☰</button>
+      </nav>
+  
     <div class="container">
         <div class="card">
             <h2 class="card-title">Register</h2>
@@ -36,6 +92,7 @@
     </div>
 
     <!-- Link to the external JavaScript file -->
-    <script src="../backdoor/scripts/register.js"></script>
+    <script src="../scripts/navbar.js" defer></script>
+    <script src="../backoffice/scripts/register.js"></script>
 </body>
 </html>
