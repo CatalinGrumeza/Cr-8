@@ -10,6 +10,9 @@ document.getElementById('additionForm').addEventListener('submit', async functio
     try {
         const response = await fetch('http://localhost:8080/api/add-new-labs', {
             method: 'POST',
+            headers: {
+				'Content-Type': 'multipart/formdata' 
+			},
             body: formData
        });
 

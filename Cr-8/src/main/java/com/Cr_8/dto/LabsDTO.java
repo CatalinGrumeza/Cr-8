@@ -4,10 +4,6 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.Cr_8.entities.Target;
-
-import jakarta.mail.Multipart;
-
 public class LabsDTO {
 
 	private String name;
@@ -52,7 +48,7 @@ public class LabsDTO {
 	public MultipartFile getImg() {
 		return img;
 	}
-
+	
 	public void setImg(MultipartFile img) {
 		this.img = img;
 	}

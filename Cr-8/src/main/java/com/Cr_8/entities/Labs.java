@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,6 +26,7 @@ public class Labs {
 	private String description;
 	private String scope;//reciepient,aimed for
 	private String duration;
+	@Column(nullable = true)
 	private String img;
 	@ManyToMany(mappedBy = "labsSet")
 	@JsonIgnore

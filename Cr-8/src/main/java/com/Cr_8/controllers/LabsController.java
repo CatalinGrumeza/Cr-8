@@ -57,7 +57,7 @@ public class LabsController {
 			String fileName = null;
 	        if (labsDTO.getImg() != null && !labsDTO.getImg().isEmpty()) {
 	            MultipartFile img = labsDTO.getImg();
-	            fileName = labsDTO.getName() + ".jpg";
+	            fileName = ".\\src\\main\\resources\\static\\assets\\img\\" + labsDTO.getName() + ".jpg";
 	            
 	            File file = new File(fileName);
 	            try (FileOutputStream fos = new FileOutputStream(file)) {
