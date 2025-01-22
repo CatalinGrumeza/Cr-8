@@ -118,15 +118,30 @@ public class MailService {
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(fromEmailId);
         simpleMailMessage.setTo(bookingRequest.getReference().getEmail());
-        simpleMailMessage.setText(
-            String.format(
-                "Gentile %s %s ,la sua richiesta di prenotazione è stata annullata \n\n\n\nCordiali saluti,\nLo staff di Educaccia",
-                bookingRequest.getReference().getLastName(),bookingRequest.getReference().getFirstName()
-            )
+
+        String emailBody = String.format(
+            "Gentile %s %s,\n\n" +
+            "La informiamo che la sua richiesta di prenotazione è stata annullata. Di seguito i dettagli della prenotazione annullata:\n\n" +
+            "- Data di Inizio: %s\n" +
+            "- Data di Fine: %s\n\n" +
+            "Se desidera ulteriori informazioni o assistenza, non esiti a contattarci.\n\n" +
+            "Cordiali saluti,\n" +
+            "Lo Staff di Cascina Caccia\n\n" +
+            "Via Serra Alta, 6, 10020 San Sebastiano da Po TO\n" +
+            "+39 348 642 5023\n" +
+            "cascina.caccia@acmos.net\n" +
+            "https://cascinacaccia.net/",
+            bookingRequest.getReference().getFirstName(),
+            bookingRequest.getReference().getLastName(),
+            bookingRequest.getBookedDate().getDate() != null ? bookingRequest.getBookedDate().getDate().toString() : "Non specificata",
+            bookingRequest.getBookedDate().getToDate() != null ? bookingRequest.getBookedDate().getToDate().toString() : "Non specificata"
         );
-        simpleMailMessage.setSubject("Prenotazione Confermata");
+
+        simpleMailMessage.setText(emailBody);
+        simpleMailMessage.setSubject("Prenotazione Annullata");
         javaMailSender.send(simpleMailMessage);
     }
+
 
     public void sendEmailToAdmin(String user, String bodyMessage, String subject, String name, String surname,String type,String phone) {
         String baseText = String.format(
@@ -149,19 +164,27 @@ public class MailService {
         	javaMailSender.send(simpleMailMessage);
 		}
     }
-    public void sendPasswordEmailRest(String email, String code ) {
-    
-    	String baseText = String.format(
-    			"Code verification for password is "
-    			+ "%s",code
-    			);
-    	SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-    	simpleMailMessage.setFrom(fromEmailId);
-    	simpleMailMessage.setTo(email);
-    	simpleMailMessage.setText(baseText);
-    	simpleMailMessage.setSubject("Code Verification");
-    	javaMailSender.send(simpleMailMessage);
-    	
-    	
+    public void sendPasswordEmailRest(String email, String code) {
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setFrom(fromEmailId);
+        simpleMailMessage.setTo(email);
+
+        String emailBody = String.format(
+            "Gentile Utente,\n\n" +
+            "Abbiamo ricevuto una richiesta per reimpostare la password del suo account. Di seguito il codice di verifica necessario per completare l'operazione:\n\n" +
+            "- Codice di Verifica: %s\n\n" +
+            "Se non ha richiesto questa operazione, ignori questa email.\n\n" +
+            "Cordiali saluti,\n" +
+            "Lo Staff di Cascina Caccia\n\n" +
+            "Via Serra Alta, 6, 10020 San Sebastiano da Po TO\n" +
+            "+39 348 642 5023\n" +
+            "cascina.caccia@acmos.net\n" +
+            "https://cascinacaccia.net/",
+            code
+        );
+
+        simpleMailMessage.setText(emailBody);
+        simpleMailMessage.setSubject("Codice di Verifica per Reimpostare la Password");
+        javaMailSender.send(simpleMailMessage);
     }
 }
