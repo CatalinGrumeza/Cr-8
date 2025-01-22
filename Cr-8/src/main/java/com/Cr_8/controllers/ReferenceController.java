@@ -16,14 +16,21 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RequestMapping("/api")
 @RestController
 public class ReferenceController {
-	
-	@Autowired
-	private ReferenceService referenceService;
-	@Tag(name = "Dashboard Endpoint")
-	@GetMapping("/all-references")
-	public ResponseEntity<List<Reference>> getAll() {
-		List<Reference> referenceList = referenceService.findAll();
-		return ResponseEntity.ok(referenceList);
-	}
-	
+    
+    // Injecting the ReferenceService dependency to access reference data
+    @Autowired
+    private ReferenceService referenceService;
+
+    /**
+     * Retrieves all references from the database.
+     * @return ResponseEntity containing a list of all Reference objects
+     */
+    @Tag(name = "Dashboard Endpoint")
+    @GetMapping("/all-references")
+    public ResponseEntity<List<Reference>> getAll() {
+        // Fetching the list of all references using the service layer
+        List<Reference> referenceList = referenceService.findAll();
+        // Returning the list of references wrapped in a ResponseEntity with status code 200 OK
+        return ResponseEntity.ok(referenceList);
+    }
 }

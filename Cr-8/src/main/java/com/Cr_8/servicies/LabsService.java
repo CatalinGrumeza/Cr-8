@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.Cr_8.dto.LabsDTO;
 import com.Cr_8.entities.Labs;
 import com.Cr_8.entities.Target;
 import com.Cr_8.exceptions.ResourceNotFoundException;
@@ -26,20 +27,20 @@ public class LabsService  {
 		return labsRepo.findAll(); 
 	}
 	
-	public String addNewLabs(String name , String description,String scope,List<String> target,String duration) {
-		Optional<Labs> existlab = labsRepo.findByName(name);
+	public String addNewLabs(LabsDTO labsDTO) {
+		Optional<Labs> existlab = labsRepo.findByName(labsDTO.getName());
 		 if(existlab.isPresent()) {
-			 return "labs  found with name: "+name;
+			 return "labs  found with name: "+labsDTO.getName();
 		 }
 		
 		Labs newLabs =  new Labs();
 		
-		newLabs.setName(name);
-		newLabs.setDescription(description);
-		newLabs.setScope(scope);
-		newLabs.setDuration(duration);
+		newLabs.setName(labsDTO.getName());
+		newLabs.setDescription(labsDTO.getDescription());
+		newLabs.setScope(labsDTO.getScope());
+		newLabs.setDuration(labsDTO.getDuration());
 		List<Target> targetList=new ArrayList<Target>();
-		for (String target2 : target) {
+		for (String target2 : labsDTO.getTargetDescription()) {
 			if(targetService.findTargetByDescription(target2).isEmpty()) {
 				Target newTarget=targetService.createTarget(target2);
 				targetList.add(newTarget);
