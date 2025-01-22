@@ -38,7 +38,7 @@
         <a href="#topPage-anchor">
           <img
             class="navbar-logo"
-            src="./assets/img/logo-a-caccia-di-sapere2.svg"
+            src="./assets/img/logo-a-caccia-di-sapere.png"
             alt="Logo del sito"
         /></a>
         <ul class="navbar">
@@ -57,6 +57,9 @@
           </li>
           <li>
             <a href="#faq-anchor" title="Scopri di più" onclick="menu()">FAQ</a>
+          </li>
+          <li>
+            <a href="./backoffice/login.html">Log In</a>
           </li>
         </ul>
       </div>
@@ -78,11 +81,13 @@
         </div>
         <div>
           <figure>
-            <img
-              class="logo"
-              src="./assets/img/logo-cascina-caccia.png"
-              alt="logo di Cascina Caccia"
-            />
+            <a href="https://cascinacaccia.net/" target="_blank">
+              <img
+                class="logo"
+                src="./assets/img/logo-cascina-caccia.png"
+                alt="logo di Cascina Caccia"
+              />
+            </a>
           </figure>
         </div>
       </div>
@@ -101,10 +106,12 @@
       </section>
     </header>
 
+    <hr />
+
     <!-- MAIN CONTENT -->
     <div class="main-container">
       <!-- I NOSTRI VALORI -->
-      <section class="main-section">
+      <section class="main-section" id="valori">
         <h2>I valori di Cascina Caccia</h2>
 
         <div class="valori-section">
@@ -168,6 +175,8 @@
         </div>
       </section>
 
+      <hr />
+
       <div id="laboratori-anchor"></div>
       <!-- LABORATORI -->
       <section class="main-section" id="laboratori">
@@ -195,7 +204,7 @@
               <div class="carousel-card">
                 <h4>Laboratorio 1 - Storia di Cascina Carla e Bruno Caccia</h4>
                 <img
-                  src="../static/assets/img/carousel-laboratori/bruno-carla.jpg"
+                  src="./assets/img/laboratori/bruno-carla.jpg"
                   alt="Foto di Bruno e Carla Caccia mentre ballano"
                 />
                 <p>
@@ -208,7 +217,7 @@
               <div class="carousel-card">
                 <h4>Laboratorio 2 - Bruno Caccia</h4>
                 <img
-                  src="../static/assets/img/carousel-laboratori/Bruno_caccia.gif"
+                  src="./assets/img/laboratori/Bruno_caccia.gif"
                   alt="Foto di Bruno Caccia"
                 />
                 <p>
@@ -221,7 +230,7 @@
               <div class="carousel-card">
                 <h4>Laboratorio 3 - Introduzione al tema mafia</h4>
                 <img
-                  src="../static/assets/img/carousel-laboratori/libera-associazioni.jpg"
+                  src="./assets/img/laboratori/libera-associazioni.jpg"
                   alt="Foto di una bandiera di Libera Associazioni, nomi e numeri contro le mafie"
                 />
                 <p>
@@ -233,7 +242,7 @@
               <div class="carousel-card">
                 <h4>Laboratorio 4 - I beni confiscati</h4>
                 <img
-                  src="../static/assets/img/carousel-laboratori/cascina.jpg"
+                  src="./assets/img/laboratori/cascina.jpg"
                   alt="Foto di Cascina Caccia con dietro un arcobaleno"
                 />
                 <p>
@@ -245,7 +254,7 @@
               <div class="carousel-card">
                 <h4>Laboratorio 5 - Le mafie in Piemonte</h4>
                 <img
-                  src="../static/assets/img/carousel-laboratori/belfiore.jpg"
+                  src="./assets/img/laboratori/belfiore.jpg"
                   alt="Foto di una porta in legno con sopra la scritta 'Famiglia Belfiore non si entra'"
                 />
                 <p>
@@ -257,8 +266,8 @@
               <div class="carousel-card">
                 <h4>Laboratorio 6 - Sostenibilità ambientale</h4>
                 <img
-                  src="../static/assets/img/carousel-laboratori/piante.jpg"
-                  alt="Foto di attività educativa"
+                  src="./assets/img/laboratori/piante.jpg"
+                  alt="Foto di piante"
                 />
                 <p>
                   A partire da una sensibilità sempre più diffusa, si
@@ -270,8 +279,8 @@
               <div class="carousel-card">
                 <h4>Laboratorio 7 - La mafia attraverso il cinema</h4>
                 <img
-                  src="../static/assets/img/carousel-laboratori/relax-in-cascina.jpg"
-                  alt="Foto di attività educativa"
+                  src="./assets/img/laboratori/relax-in-cascina.jpg"
+                  alt="Foto di ragazzi riuniti a parlare seduti su un prato"
                 />
                 <p>
                   L'attività si propone di ragionare sul modello di mafia che
@@ -284,8 +293,8 @@
               <div class="carousel-card">
                 <h4>Laboratorio 8 - Il gioco non è un azzardo</h4>
                 <img
-                  src="../static/assets/img/carousel-laboratori/incontro-in-cascina.jpg"
-                  alt="Foto di attività educativa"
+                  src="./assets/img/laboratori/incontro-in-cascina.jpg"
+                  alt="Foto di ragazzi seduti che parlano"
                 />
                 <p>
                   Il gioco è una componente molto importante nello sviluppo e
@@ -299,8 +308,8 @@
               <div class="carousel-card">
                 <h4>Laboratorio 9 - Chi non gioca vince</h4>
                 <img
-                  src="../static/assets/img/carousel-laboratori/riunione-in-cascina.jpg"
-                  alt="Foto di attività educativa"
+                  src="./assets/img/laboratori/riunione-in-cascina.jpg"
+                  alt="Foto di ragazzi che scrivono e discutono insieme"
                 />
                 <p>
                   In questo incontro verranno affrontati i rischi del gioco
@@ -316,8 +325,10 @@
         </div>
       </section>
 
+      <hr />
+
       <!-- L'ESPERIENZA IN CASCINA CACCIA -->
-      <section class="main-section">
+      <section class="main-section" id="esperienza">
         <h2>L'esperienza in Cascina Caccia</h2>
         <p>
           Ricca di storia e di significato la nostra <strong>Cascina</strong> è
@@ -335,21 +346,21 @@
               <!-- Slide 1 -->
               <div class="carousel-card-image">
                 <img
-                  src="../static/assets/img/carousel/scritta-maglietta.jpg"
+                  src="./assets/img/carousel/scritta-maglietta.jpg"
                   alt="Collaborazioni"
                 />
               </div>
               <!-- Slide 2 -->
               <div class="carousel-card-image">
                 <img
-                  src="../static/assets/img/carousel/attivita-in-cascina.jpg"
+                  src="./assets/img/carousel/attivita-in-cascina.jpg"
                   alt="Storia"
                 />
               </div>
               <!-- Slide 3 -->
               <div class="carousel-card-image">
                 <img
-                  src="../static/assets/img/carousel/collaborazioni.webp"
+                  src="./assets/img/carousel/collaborazioni.webp"
                   alt="Party Bene"
                 />
               </div>
@@ -359,8 +370,10 @@
         </div>
       </section>
 
+      <hr />
+
       <!-- TESTIMONIANZE -->
-      <section class="main-section">
+      <section class="main-section" id="testimonianze">
         <h2>Testimonianze</h2>
         <p>
           Scopri cosa pensano di noi i gruppi che hanno vissuto l’esperienza di
@@ -399,7 +412,7 @@
       <hr />
       <div id="prenotazione-anchor"></div>
       <!-- PRENOTA UNA VISITA -->
-      <section class="main-section">
+      <section class="main-section" id="prenotazione">
         <div class="form-container">
           <form id="bookingForm">
             <h2>Prenota una visita</h2>
@@ -515,9 +528,11 @@
         </div>
       </section>
 
+      <hr />
+
       <div id="faq-anchor"></div>
       <!-- FAQ -->
-      <section class="main-section">
+      <section class="main-section" id="faq">
         <div class="faq-container">
           <div class="faq-section">
             <h2>FAQ</h2>
@@ -675,6 +690,8 @@
       <!-- footer content -->
     </footer>
 
+    <script src="./scripts/navbar.js" defer></script>
+    <script src="./scripts/carousel.js" defer></script>
     <script src="./scripts/main.js" defer></script>
   </body>
 </html>

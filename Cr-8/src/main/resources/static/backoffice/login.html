@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <!-- metadata -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Login</title>
+    <meta name="description" content="Login access to the backoffice" />
+    <meta name="author" content="CR-8" />
+
+    <!-- favicon -->
+    <link rel="icon" href="./favicon.ico" />
+
+    <!-- styles -->
+    <link rel="stylesheet" href="../styles/normalize.css" />
+    <link rel="stylesheet" href="../styles/main.css" />
+    <link rel="stylesheet" href="./styles/login.css" />
+  </head>
+
+  <body>
+    <!-- page content -->
+
+    <!-- NAVBAR -->
+    <nav class="navbar-container">
+      <div class="navbar-content">
+        <a href="../index.html">
+          <img
+            class="navbar-logo"
+            src="../assets/img/logo-a-caccia-di-sapere1.png"
+            alt="Logo del sito"
+        /></a>
+        <ul class="navbar">
+          <li>
+            <a href="../index.html" title="Torna alla Home" onclick="menu()"
+              >Torna alla Home</a
+            >
+          </li>
+        </ul>
+      </div>
+      <button class="hamburger" onclick="menu()">☰</button>
+    </nav>
+
+    <div class="warning">
+      <p>Attenzione: quest'area è riservata ai gestori del sito</p>
+      <p>
+        <a class="back-to-home" href="../index.html">Torna alla Home</a>
+      </p>
+    </div>
+
+    <div id="formLogin">
+      <h2>Login</h2>
+      <h3>accedi all'area riservata</h3>
+      <form id="bookingForm">
+        <input type="text" id="nome" name="nome" placeholder="Email" />
+        <input type="text" id="cognome" name="cognome" placeholder="Password" />
+        <div class="btn-container">
+          <button type="submit" class="submitBtn">Conferma</button>
+
+          <!-- DELETE THIS -->
+          <br /><br /><a href="./dashboard.html"
+            >(DA RIMUOVERE) vai alla dashboard</a
+          >
+        </div>
+      </form>
+    </div>
+
+    <!-- end of the body -->
+    <script src="../scripts/navbar.js" defer></script>
+  </body>
+</html>

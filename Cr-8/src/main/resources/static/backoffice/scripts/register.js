@@ -1,24 +1,13 @@
-document.getElementById('additionForm').addEventListener('submit', async function (event) {
+document.getElementById('registerForm').addEventListener('submit', async function (event) {
     event.preventDefault(); // Prevent the default form submission
 
     const formData = new FormData(this); // Get form data
-    const data = Object.fromEntries(formData.entries());
-	data.targetDescription = data.targetDescription.split(",").map(item => item.trim()); //converts a string separated by commas into an array
-	
-	Object.keys(data).forEach(key => {
-		if (data[key] == "") {
-			data[key] = null;
-		}
-	});
-	
+
     try {
-        const response = await fetch('http://localhost:8080/api/add-new-labs', {
+        const response = await fetch('/api/super/register', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-       });
+            body: formData
+        });
 
         const result = await response.text(); // Get the response message
 
@@ -33,7 +22,7 @@ document.getElementById('additionForm').addEventListener('submit', async functio
         if (response.ok) {
             // Redirect to the dashboard after a short delay
             setTimeout(() => {
-                window.location.href = '/dashboard/add-labs';
+                window.location.href = '/dashboard/register';
             }, 2000); // 2 seconds delay
         }
     } catch (error) {
