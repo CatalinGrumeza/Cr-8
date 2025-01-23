@@ -1,6 +1,8 @@
 package com.Cr_8.config;
 
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
@@ -17,7 +19,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
+import com.Cr_8.entities.Admin;
 import com.Cr_8.servicies.AdminService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import jakarta.servlet.http.HttpServletResponse;
 
 @Configuration
 @EnableWebSecurity
@@ -83,10 +89,16 @@ public class SecurityConfig {
         return (request, response, authentication) -> {
         	System.out.println("il nome è:"+authentication.getName());
         	
-            response.setStatus(200); // OK status
-            response.getWriter().write("Login successful");
-            response.getWriter().write(adminService.getAdminByEmail(authentication.getName()).getName());
-            response.getWriter().write(adminService.getAdminByEmail(authentication.getName()).getRole().getName());
+        	Admin admin = adminService.getAdminByEmail(authentication.getName());
+            Map<String, String> responseBody = new HashMap<>();
+            responseBody.put("name", admin.getName());
+            responseBody.put("role", admin.getRole().getName());
+
+            response.setContentType("application/json");
+            response.setStatus(HttpServletResponse.SC_OK);
+            ObjectMapper objectMapper = new ObjectMapper();
+            response.getWriter().write(objectMapper.writeValueAsString(responseBody));
+            response.getWriter().flush();
             response.sendRedirect("/dashboard/all-info"); // Redirect to the landing page
         };
     }
