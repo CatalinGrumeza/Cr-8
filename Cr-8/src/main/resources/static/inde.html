@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="CR-8" />
+
+    <!-- open graph -->
+    <meta property="og:title" content="A Caccia di Sapere" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.esempio.com" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="" />
+
+    <!-- favicon -->
+    <link rel="icon" href="./favicon.ico" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <title>A Caccia di Sapere</title>
+
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="A Caccia di Sapere" />
+    <meta name="twitter:description" content="" />
+    <meta name="twitter:image" content="" />
+
+    <link rel="stylesheet" href="../backdoor/styles/newpassowrd.css" />
+  </head>
+ 
+  <body>
+    
+    <div class="container">
+      <div class="logo">
+        <img src="../assets/img/logo-a-caccia-di-sapere1.svg" alt="Logo" />
+        <span>A Caccia di Sapere</span>
+      </div>
+      <h1>Forget Password</h1>
+      <p>
+        Please write your email to receive a confirmation code to set a new
+        password
+      </p>
+      <div class="input-group">
+        <input type="email" placeholder="Email" id="email-input" />
+      </div>
+      <button class="btn" id="send-button">Send</button>
+    </div>
+
+    <script>
+      // Seleziona il bottone e il campo di input
+      const sendButton = document.getElementById("send-button");
+      const emailInput = document.getElementById("email-input");
+
+      // Aggiungi un gestore di eventi al click sul bottone
+      sendButton.addEventListener("click", () => {
+        const email = emailInput.value; // Ottieni il valore dell'email
+        if (email) {
+          console.log("Email inserita:", email);
+        } else {
+          console.log("Nessuna email inserita");
+        }
+
+        const url = `http://localhost:8080/api/pub/forget-password?email=${email}`;
+        console.log(url);
+        try {
+          const res = fetch(url, {
+            method: "POST",
+            header: {
+              "Content-type": "application/json",
+            },
+          });
+
+          localStorage.setItem("userEmail", email);
+          setTimeout(() => {
+         
+      
+              
+                  window.location.href = "/CodeVerification";
+      
+     
+          }, 10000);
+        } catch {}
+      });
+    </script>
+  </body>
+</html>

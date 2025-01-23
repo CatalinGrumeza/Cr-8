@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="CR-8" />
+
+    <!-- open graph -->
+    <meta property="og:title" content="A Caccia di Sapere" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.esempio.com" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="" />
+
+    <!-- favicon -->
+    <link rel="icon" href="./favicon.ico" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <title>A Caccia di Sapere</title>
+
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="A Caccia di Sapere" />
+    <meta name="twitter:description" content="" />
+    <meta name="twitter:image" content="" />
+
+    <!-- styles -->
+    <link rel="stylesheet" href="./styles/normalize.css" />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <style>
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #ffc107;
+      border-radius: 5px;
+      font-size: 1rem;
+      outline: none;
+      box-sizing: border-box;
+    }
+
+    .btn {
+      display: inline-block;
+      width: 100%;
+      padding: 12px;
+      background: #ffc107;
+      color: #fff;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .code-inputs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .code-inputs input {
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      font-size: 1.5rem;
+      border: 2px solid #ffc107;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    .code-inputs input:focus {
+      border-color: #f50057;
+    }
+
+    .btn {
+      display: inline-block;
+      width: 100%;
+      padding: 15px;
+      background: #ffc107;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+      text-transform: uppercase;
+    }
+
+    .btn:hover {
+      background: #e0a800;
+    }
+
+    .resend {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .resend a {
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .resend a:hover {
+      text-decoration: underline;
+    }
+    .btn:hover {
+      background: #e0a800;
+    }
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+      }
+
+      .input-group input {
+        padding: 10px;
+      }
+
+      .btn {
+        font-size: 0.9rem;
+        padding: 10px;
+      }
+    }
+  </style>
+  <body>
+    <div id="topPage-anchor"></div>
+
+    <nav class="navbar-container">
+      <div class="navbar-content">
+        <a href="#topPage-anchor">
+          <img
+            class="navbar-logo"
+            src="./assets/img/logo-a-caccia-di-sapere2.svg"
+            alt="Logo del sito"
+        /></a>
+        <ul class="navbar">
+          <li>
+            <a href="#laboratori-anchor" title="I Laboratori" onclick="menu()"
+              >Laboratori</a
+            >
+          </li>
+          <li>
+            <a
+              href="#prenotazione-anchor"
+              title="Vieni a Trovarci!"
+              onclick="menu()"
+              >Vieni a trovarci!</a
+            >
+          </li>
+          <li>
+            <a href="#faq-anchor" title="Scopri di più" onclick="menu()">FAQ</a>
+          </li>
+        </ul>
+      </div>
+      <button class="hamburger" onclick="menu()">☰</button>
+    </nav>
+    <div class="container">
+      <div class="logo">
+        <img src="https://via.placeholder.com/40" alt="Logo" />
+        <span>A Caccia di Sapere</span>
+      </div>
+      <h1>Verification Code</h1>
+      <p>
+        Please enter the 4 digit code sent to <strong>demo@democr8.com</strong>
+      </p>
+      <div class="code-inputs">
+        <input type="text" maxlength="1" />
+        <input type="text" maxlength="1" />
+        <input type="text" maxlength="1" />
+        <input type="text" maxlength="1" />
+      </div>
+      <button class="btn">Verify</button>
+      <div class="resend">
+        <a href="#">Resend Code</a>
+      </div>
+    </div>
+    <script>
+      async function (){
+         const url = 'http:://localhost:8080/pub/Code?code';
+        try{
+        const res = await fetch(url,{
+          method: 'GET',
+          header:{
+             'Content-Type':'application/json'
+          }
+        })
+        }catch{
+          console.log("Errore duranti invio")
+        }
+        if(res.ok){
+
+        }
+
+      }
+    </script>
+  </body>
+</html>
