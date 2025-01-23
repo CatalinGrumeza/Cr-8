@@ -36,6 +36,7 @@ h1, h2 {
       border-box;
   border-radius: var(--rounded-corners);
   box-shadow: 10px 8px 15px #aaaaaa;
+  margin-bottom: 20px; /* Add some space between cards */
 }
 
 .chart-container {
@@ -81,4 +82,28 @@ h1, h2 {
 
 #calendar .fc-event {
   border-radius: var(--rounded-corners);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  #dashboard-cards, #calendar-container {
+    width: 100%;
+    padding: 0;
+  }
+
+  .card {
+    margin-bottom: 15px;
+  }
+
+  .chart-container {
+    height: 200px; /* Adjust height for smaller screens */
+  }
+
+  #calendar {
+    height: 300px; /* Adjust calendar height for smaller screens */
+  }
 }
