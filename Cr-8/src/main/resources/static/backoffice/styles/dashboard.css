@@ -1,0 +1,84 @@
+/* Dashboard Styles (Aurora Theme) */
+:root {
+  --orange: #fc931c;
+  --purple: #ed008a;
+  --yellow: #ffff22;
+
+  --orange-transparent: #fc931c1a;
+  --purple-transparent: #ed008a1a;
+  --yellow-transparent: #fef20033;
+
+  --rounded-corners: 24px;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: #ffffff;
+  color: black;
+  padding-top: 60px;
+}
+
+h1, h2 {
+  color: var(--orange);
+  text-align: center;
+  text-shadow: 5px 6px 7px #bbbbbb;
+}
+
+.navbar-container {
+  background-color: #ffffff;
+  box-shadow: 0px 1px 20px #aaaaaa;
+}
+
+.card {
+  border: 5px solid transparent;
+  background: linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(to left, var(--purple), var(--orange), var(--yellow))
+      border-box;
+  border-radius: var(--rounded-corners);
+  box-shadow: 10px 8px 15px #aaaaaa;
+}
+
+.chart-container {
+  position: relative;
+  width: 100%;
+  height: 250px;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: black;
+}
+
+/* Status colors with gradual transparency */
+.text-green {
+  color: var(--orange) !important;
+}
+
+.text-red {
+  color: var(--purple) !important;
+}
+
+.text-orange {
+  color: var(--yellow) !important;
+}
+
+/* Calendar Styling */
+#calendar .fc-button {
+  background: linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(to left, var(--purple), var(--orange), var(--yellow))
+      border-box;
+  color: black !important;
+  border-radius: var(--rounded-corners);
+  border: 2px solid transparent;
+}
+
+#calendar .fc-button-active {
+  background: linear-gradient(#eeeeee, #eeeeee) padding-box,
+    linear-gradient(to left, var(--purple), var(--orange), var(--yellow))
+      border-box !important;
+}
+
+#calendar .fc-event {
+  border-radius: var(--rounded-corners);
+}
