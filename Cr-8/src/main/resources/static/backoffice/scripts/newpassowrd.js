@@ -12,7 +12,7 @@ function validatePassword() {
     message.textContent = "Passwords do not match!";
   } else {
     try {
-      const url = `http://localhost:8080/api/pub/newpassword?code=${code}&password=${password}`;
+      const url = `/api/pub/newpassword?code=${code}&password=${password}`;
       const res = fetch(url, {
         method:'POST',
         headers:{
@@ -30,6 +30,7 @@ function validatePassword() {
     setTimeout(() => {
       alert("Password saved successfully!");
       message.textContent = "";
+      window.location.href = "/login";
     }, 1000);
   }
 }

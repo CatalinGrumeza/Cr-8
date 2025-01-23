@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
     <meta name="author" content="CR-8" />
-    <link rel="stylesheet" type="" href="../backdoor/styles/code.css" />
+    <link rel="stylesheet" type="" href="../backoffice/styles/code.css" />
     <!-- open graph -->
     <meta property="og:title" content="A Caccia di Sapere" />
     <meta property="og:type" content="website" />
@@ -32,7 +32,7 @@
   <body>
     <div class="container">
       <div class="logo">
-        <img src="../assets/img/logo-a-caccia-di-sapere1.svg" alt="Logo" />
+        <img src="../assets/img/logo-a-caccia-di-sapere.png" alt="Logo" />
         <span>A Caccia di Sapere</span>
       </div>
       <h1>Verification Code</h1>
@@ -48,37 +48,43 @@
       </div>
     </div>
     <script>
-      // Seleziona il bottone e il campo di input
-      const email = localStorage.getItem("userEmail");
-      const text = `Please enter the 4 digit code sent to ${email}`;
-      document.getElementById("email-display").textContent = text;
-      const sendButton = document.getElementById("btn");
-      const emailInput = document.getElementById("email-input");
-      const inputs = document.querySelectorAll(".code-inputs input");
+  // Select the button and input field
+  const email = localStorage.getItem("userEmail");
+  const text = `Please enter the 4 digit code sent to ${email}`;
+  document.getElementById("email-display").textContent = text;
+  const sendButton = document.getElementById("btn");
 
-      // Aggiungi un gestore di eventi al click sul bottone
-      sendButton.addEventListener("click", () => {
-        const inputs = document.querySelectorAll(".code-inputs input");
-        const code = Array.from(inputs)
-          .map((input) => input.value)
-          .join("");
-        const Upper = code.toUpperCase();
-        console.log(Upper);
+  // Add an event listener for the click on the button
+  sendButton.addEventListener("click", async () => {
+    const inputs = document.querySelectorAll(".code-inputs input");
+    const code = Array.from(inputs)
+      .map((input) => input.value)
+      .join("");
+    const Upper = code.toUpperCase();
+    console.log(Upper);
 
-        const url = `http://localhost:8080/api/pub/code?code=${Upper}`;
-        try {
-          const res = fetch(url, {
-            method: "GET",
-            header: {
-              "Content-type": "application/json",
-            },
-          });
-          if (!res.ok) {
-          }
-          localStorage.setItem("code", Upper);
-          window.location.href = "/newpassword";
-        } catch {}
+    const url = `/api/pub/code?code=${Upper}`;
+    try {
+      const res = await fetch(url, {
+        method: "GET",
+        headers: {  // Fixed spelling from 'header' to 'headers'
+          "Content-Type": "application/json", // Make sure the header case is correct
+        },
       });
-    </script>
+      
+      const message = await res.text(); // Get message from response
+
+      if (!res.ok) {
+        alert(message); // Display the error response
+      } else {
+        localStorage.setItem("code", Upper);
+        window.location.href = "/newpassword"; // Redirect on success
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert("An error occurred while trying to verify the code."); // Display a generic error message
+    }
+  });
+</script>
   </body>
 </html>
