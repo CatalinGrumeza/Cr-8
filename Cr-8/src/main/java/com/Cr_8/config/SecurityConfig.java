@@ -17,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
+import com.Cr_8.entities.Admin;
 import com.Cr_8.servicies.AdminService;
 
 @Configuration
@@ -85,9 +86,10 @@ public class SecurityConfig {
         	
             response.setStatus(200); // OK status
             response.getWriter().write("Login successful");
-            response.getWriter().write(adminService.getAdminByEmail(authentication.getName()).getName());
-            response.getWriter().write(adminService.getAdminByEmail(authentication.getName()).getRole().getName());
-            response.sendRedirect("/dashboard/all-info"); // Redirect to the landing page
+            Admin admin = adminService.getAdminByEmail(authentication.getName());
+            request.getSession().setAttribute("userName", admin.getName());
+            request.getSession().setAttribute("userRole", admin.getRole().getName());
+            response.sendRedirect("/dashboard"); // Redirect to the landing page
         };
     }
     @Bean
