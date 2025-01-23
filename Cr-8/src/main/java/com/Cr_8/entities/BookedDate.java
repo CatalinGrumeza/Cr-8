@@ -32,7 +32,7 @@ public class BookedDate {
 	    
 	    @OneToOne
 	    @JoinColumn(name="booking_request")
-	    @JsonIgnoreProperties({"reference","bookedDate"})
+	    @JsonIgnore
 	    private BookingRequest bookingRequest;
 	    
 	    @ManyToOne

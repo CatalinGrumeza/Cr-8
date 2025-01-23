@@ -1,4 +1,5 @@
 package com.Cr_8.servicies;
+import com.Cr_8.dto.BookingFormRequest;
 import com.Cr_8.entities.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -24,8 +25,6 @@ public class BookingService {
 	@Autowired
 	private ReferenceRepo referenceRepo;
 	@Autowired
-	private BookedDatesRepo bookedDatesRepo;
-	@Autowired
 	private MailService mailService;
 	@Autowired
 	private LabsRepo labRepo;
@@ -34,53 +33,45 @@ public class BookingService {
 		return bookrepo.findById(id);
 	}
 	@Transactional
-	public void createBooking(LocalDate dataFrom,
-	                         LocalDate dataTo,
-	                         String additional,
-	                         int partiNumber,
-	                         String bookType,
-	                         String visitorType,
-	                         String name,
-	                         String surname,
-	                         String phone,
-	                         List<String> labsName,
-	                         String email,
-	                         int numberOfDays) {
+	public void createBooking(BookingFormRequest booking) {
 		
 
 	    BookingRequest book = new BookingRequest();
 	    book.setCreatedAt(LocalDate.now());
-	    book.setDataFrom(dataFrom);
-	    book.setDataTo(dataTo);
-	    book.setAdditionalDetails(additional);
-	    book.setParticipantNumber(partiNumber);
-	    book.setBookType(bookType);
-	    book.setVistorType(visitorType);
+	    book.setDataFrom(booking.getDataFrom());
+	    book.setDataTo(booking.getDataTo());
+	    book.setAdditionalDetails(booking.getAdditionalDetails());
+	    book.setParticipantNumber(booking.getParticipantNumber());
+	    book.setBookType(booking.getBookType());
+	    book.setVistorType(book.getVistorType());
 	    book.setStatus(statusrepo.findById(1));
-	    book.setNumberOfDays(numberOfDays);
+	    book.setNumberOfDays(booking.getNumberOfDays());
 
-	    Optional<Reference> ref = referenceRepo.findByEmail(email);
+	    Optional<Reference> ref = referenceRepo.findByEmail(booking.getEmail().toLowerCase());
 	    Reference user;
 	    if(ref.isPresent()) {
 	    		user = ref.get();
-	    		user.setPhoneNumber(phone);
+	    		user.setPhoneNumber(booking.getPhone());
 	    } else {
 	        user = new Reference();
-	        user.setEmail(email);
-	        user.setFirstName(name);
-	        user.setLastName(surname);
-	        user.setPhoneNumber(phone);
-	        user = referenceRepo.save(user);
+	        user.setEmail(booking.getEmail().toLowerCase());
+	        user.setFirstName(booking.getName());
+	        user.setLastName(booking.getSurname());
+	        user.setPhoneNumber(booking.getPhone());
 	    }
+	    user = referenceRepo.save(user);
 	    book.setReference(user);
 
 	    BookedDate bookedDate = new BookedDate();
 	    bookedDate.setBookingRequest(book);
 	    book.setBookedDate(bookedDate);
 	   
-	    for (String lab : labsName) {
-			Labs existlabs =labRepo.findByName(lab).get();
-			book.setLabsSet(existlabs);
+	    for (String lab : booking.getLabs()) {
+	    	if(labRepo.findByName(lab).isPresent()) {
+	    		Labs lab1=labRepo.findByName(lab).get();
+	    		book.addLab(lab1);
+	    	}
+	    	
 			
 		}
 	    bookrepo.save(book);
@@ -98,9 +89,10 @@ public class BookingService {
 		BookingRequest booking = bookrepo.findById(bookId)
 				.orElseThrow(() -> new IllegalArgumentException("book not found with id: "+bookId));
 		if(statusName.equalsIgnoreCase("cancelled")) {
+			mailService.sendEmailCancelledBooked(booking);
 			booking.getBookedDate().setDate(null);
 			booking.getBookedDate().setDayFractions(null);
-			mailService.sendEmailCancelledBooked(booking);
+			booking.getBookedDate().setToDate(null);
 		}
 		booking.setStatus(statusrepo.findByName(statusName).get());
 		bookrepo.save(booking);

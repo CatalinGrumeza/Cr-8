@@ -38,7 +38,7 @@
         <a href="#topPage-anchor">
           <img
             class="navbar-logo"
-            src="./assets/img/logo-a-caccia-di-sapere2.svg"
+            src="./assets/img/logo-a-caccia-di-sapere.png"
             alt="Logo del sito"
         /></a>
         <ul class="navbar">
@@ -58,6 +58,9 @@
           <li>
             <a href="#faq-anchor" title="Scopri di più" onclick="menu()">FAQ</a>
           </li>
+          <li>
+            <a href="/login">Log In</a>
+          </li>
         </ul>
       </div>
       <button class="hamburger" onclick="menu()">☰</button>
@@ -68,21 +71,25 @@
       <div class="hero">
         <div class="main-title">
           <h1>A Caccia di Sapere</h1>
-          <figure>
+          <figure id="heroImg">
             <img
-              class="logo"
-              src="./assets/img/logo-cascina-caccia.png"
-              alt="logo di Cascina Caccia"
+              class="main-images"
+              src="./assets/img/a-caccia-di-sapere.jpg"
+              alt="immagine dalla cascina scattata dall'esterno"
             />
           </figure>
         </div>
-        <figure id="heroImg">
-          <img
-            class="main-images"
-            src="./assets/img/a-caccia-di-sapere.jpg"
-            alt="immagine dalla cascina scattata dall'esterno"
-          />
-        </figure>
+        <div>
+          <figure>
+            <a href="https://cascinacaccia.net/" target="_blank">
+              <img
+                class="logo"
+                src="./assets/img/logo-cascina-caccia.png"
+                alt="logo di Cascina Caccia"
+              />
+            </a>
+          </figure>
+        </div>
       </div>
       <p>
         Benvenuti a Cascina Caccia, un luogo dove memoria,
@@ -96,79 +103,76 @@
       <section class="cta-container">
         <a href="#prenotazione-anchor" class="cta-buttons">Vieni a trovarci!</a>
         <a href="#laboratori-anchor" class="cta-buttons">Scopri i Laboratori</a>
-        <a href="#faq-anchor" class="cta-buttons">Richiedi Informazioni</a>
       </section>
     </header>
 
+    <hr />
+
     <!-- MAIN CONTENT -->
     <div class="main-container">
-      <hr />
-
       <!-- I NOSTRI VALORI -->
-      <section class="main-section">
-        <h2>I nostri valori</h2>
-        <p>
-          <strong>Educazione</strong>, <strong>responsabilità</strong> e
-          <strong>condivisione</strong> guidano ogni nostra attività, per
-          costruire insieme una società più giusta e consapevole.
-        </p>
+      <section class="main-section" id="valori">
+        <h2>I valori di Cascina Caccia</h2>
 
-        <!-- 1. EDUCAZIONE -->
-        <article class="section-article">
-          <div class="section-text">
-            <h3>Educazione</h3>
-            <p>
-              Promuoviamo percorsi <strong>educativi</strong> innovativi,
-              progettati per sensibilizzare giovani e adulti sui temi della
-              legalità, della memoria storica e della
-              <strong>responsabilità</strong> civica
-            </p>
-          </div>
-          <figure>
-            <img
-              class="main-images"
-              src="./assets/img/educazione.webp"
-              alt="lettere appese al muro con nomi di bambini sopra"
-            />
-          </figure>
-        </article>
+        <div class="valori-section">
+          <!-- 1. EDUCAZIONE -->
+          <article class="section-article card1">
+            <div class="section-text">
+              <h3>Educazione</h3>
+              <figure>
+                <img
+                  class="valori-images"
+                  src="./assets/img/educazione.webp"
+                  alt="lettere appese al muro con nomi di bambini sopra"
+                />
+              </figure>
+              <p>
+                Promuoviamo percorsi <strong>educativi</strong> innovativi,
+                progettati per sensibilizzare giovani e adulti sui temi della
+                legalità, della memoria storica e della
+                <strong>responsabilità</strong> civica
+              </p>
+            </div>
+          </article>
 
-        <!-- 2. RESPONSABILITÀ -->
-        <article class="section-article">
-          <div class="section-text">
-            <h3>Responsabilità</h3>
-            <p>
-              Ci impegniamo a trasformare un bene confiscato in un simbolo di
-              giustizia e riscatto, coinvolgendo attivamente il territorio nella
-              lotta contro le mafie.
-            </p>
-          </div>
-          <figure>
-            <img
-              class="main-images"
-              src="./assets/img/responsabilita.webp"
-              alt="ragazzi in un supermercato sventolano delle locandine relative a curiosità sugli alimenti"
-            />
-          </figure>
-        </article>
+          <!-- 2. RESPONSABILITÀ -->
+          <article class="section-article card2">
+            <div class="section-text">
+              <h3>Responsabilità</h3>
+              <figure>
+                <img
+                  class="valori-images"
+                  src="./assets/img/responsabilita.webp"
+                  alt="ragazzi in un supermercato sventolano delle locandine relative a curiosità sugli alimenti"
+                />
+              </figure>
+              <p>
+                Ci impegniamo a trasformare un bene confiscato in un simbolo di
+                giustizia e riscatto, coinvolgendo attivamente il territorio
+                nella lotta contro le mafie.
+              </p>
+            </div>
+          </article>
 
-        <!-- 3. CONDIVISIONE -->
-        <article class="section-article">
-          <div class="section-text">
-            <h3>Condivisione</h3>
-            <p>
-              Crediamo nella forza della comunità: ogni progetto nasce e cresce
-              grazie alla collaborazione tra istituzioni, scuole e cittadini.
-            </p>
-          </div>
-          <figure>
-            <img
-              class="main-images"
-              src="./assets/img/condivisione.webp"
-              alt="ragazzi condividono del cibo"
-            />
-          </figure>
-        </article>
+          <!-- 3. CONDIVISIONE -->
+          <article class="section-article card3">
+            <div class="section-text">
+              <h3>Condivisione</h3>
+              <figure>
+                <img
+                  class="valori-images"
+                  src="./assets/img/condivisione.webp"
+                  alt="ragazzi condividono del cibo"
+                />
+              </figure>
+              <p>
+                Crediamo nella forza della comunità: ogni progetto nasce e
+                cresce grazie alla collaborazione tra istituzioni, scuole e
+                cittadini.
+              </p>
+            </div>
+          </article>
+        </div>
       </section>
 
       <hr />
@@ -178,316 +182,198 @@
       <section class="main-section" id="laboratori">
         <h2>Laboratori</h2>
 
-        <!-- Laboratorio 1: storia della cascina Carla e Bruno Caccia -->
-        <div class="accordion">
-          <input type="radio" id="laboratorio1" name="radio-group" />
-          <label class="accordion-label" for="laboratorio1">
-            Storia della Cascina Carla e Bruno Caccia
-          </label>
-          <div class="accordion-content">
-            <p><b>Durata:</b> Mezza giornata</p>
-            <br />
-            <p>
-              <b>Attività:</b> Visita guidata della cascina, con spiegazioni
-              dettagliate sulla storia del bene confiscato.
-            </p>
-            <br />
-            <p>
-              <b>Obiettivo:</b> Sensibilizzare i partecipanti sulla lotta alla
-              mafia e mostrare l'importanza del riutilizzo dei beni confiscati
-              per il bene comune.
-            </p>
-            <br />
-          </div>
-        </div>
+        <p>
+          I laboratori di Cascina Caccia sono preparati dagli animatori
+          socioculturali di Acmos, specializzati nell'educazione alla
+          cittadinanza attiva e alla legalità.
+        </p>
+        <p>
+          I laboratori sono destinati, adeguando lo svolgimento delle attività a
+          seconda delle età, a studenti della scuola primaria, secondaria di
+          primo e secondo grado, eccetto il laboratorio numero 8 che è destinato
+          esclusivamente alla scuole primaria e secondaria di primo grado.
+        </p>
 
-        <!-- Laboratorio 2: Bruno Caccia – Magistrato e Uomo -->
-        <div class="accordion">
-          <input type="radio" id="laboratorio2" name="radio-group" />
-          <label class="accordion-label" for="laboratorio2">
-            Bruno Caccia - Magistrato e Uomo
-          </label>
-          <div class="accordion-content">
-            <p><b>Durata:</b> Mezza giornata</p>
-            <br />
-            <p>
-              <b>Attività:</b> Proiezione di un documentario di circa 50 minuti
-              e discussione sulle sfide della magistratura contro la criminalità
-              organizzata.
-            </p>
-            <br />
-            <p>
-              <b>Obiettivo:</b> Far conoscere la figura di Bruno Caccia come
-              esempio di coraggio e dedizione nella lotta alla mafia,
-              approfondendo i suoi ideali e il significato del suo sacrificio.
-            </p>
-            <br />
+        <div class="carousel-laboratori">
+          <button class="carousel-prev-laboratori" aria-label="Precedente">
+            ◀
+          </button>
+          <div class="carousel-track-container">
+            <div class="carousel-track-laboratori">
+              <!-- Laboratorio 1 - Storia di Cascina Carla e Bruno Caccia -->
+              <div class="carousel-card">
+                <h4>Laboratorio 1 - Storia di Cascina Carla e Bruno Caccia</h4>
+                <img
+                  src="./assets/img/laboratori/bruno-carla.jpg"
+                  alt="Foto di Bruno e Carla Caccia mentre ballano"
+                />
+                <p>
+                  Attività che affronta la storia della Cascina, dall'acquisto
+                  da parte della famiglia Belfiore alla confisca definitiva e al
+                  riutilizzo sociale.
+                </p>
+              </div>
+              <!-- Laboratorio 2 - Bruno Caccia -->
+              <div class="carousel-card">
+                <h4>Laboratorio 2 - Bruno Caccia</h4>
+                <img
+                  src="./assets/img/laboratori/Bruno_caccia.gif"
+                  alt="Foto di Bruno Caccia"
+                />
+                <p>
+                  Laboratorio sulla figura di Bruno Caccia sotto il profilo
+                  istituzionale e umano, attraverso l'approfondimento delle
+                  vicende che portarono al suo omicidio.
+                </p>
+              </div>
+              <!-- Laboratorio 3 - Introduzione al tema mafia -->
+              <div class="carousel-card">
+                <h4>Laboratorio 3 - Introduzione al tema mafia</h4>
+                <img
+                  src="./assets/img/laboratori/libera-associazioni.jpg"
+                  alt="Foto di una bandiera di Libera Associazioni, nomi e numeri contro le mafie"
+                />
+                <p>
+                  Attività introduttiva volta a definire, conoscere e far
+                  conoscere il fenomeno mafioso.
+                </p>
+              </div>
+              <!-- Laboratorio 4 - I beni confiscati -->
+              <div class="carousel-card">
+                <h4>Laboratorio 4 - I beni confiscati</h4>
+                <img
+                  src="./assets/img/laboratori/cascina.jpg"
+                  alt="Foto di Cascina Caccia con dietro un arcobaleno"
+                />
+                <p>
+                  Attività di approfondimento sui beni confiscati, delle leggi
+                  sulla confisca dei beni e delle novità legislative.
+                </p>
+              </div>
+              <!-- Laboratorio 5 - Le mafie in Piemonte -->
+              <div class="carousel-card">
+                <h4>Laboratorio 5 - Le mafie in Piemonte</h4>
+                <img
+                  src="./assets/img/laboratori/belfiore.jpg"
+                  alt="Foto di una porta in legno con sopra la scritta 'Famiglia Belfiore non si entra'"
+                />
+                <p>
+                  Attività di approfondimento sulla presenza delle mafie sul
+                  territorio Piemontese.
+                </p>
+              </div>
+              <!-- Laboratorio 6 - Sostenibilità ambientale -->
+              <div class="carousel-card">
+                <h4>Laboratorio 6 - Sostenibilità ambientale</h4>
+                <img
+                  src="./assets/img/laboratori/piante.jpg"
+                  alt="Foto di piante"
+                />
+                <p>
+                  A partire da una sensibilità sempre più diffusa, si
+                  approfondirà il tema ambientale con i giovani tenendolo
+                  strettamente legato al tema delle disuguaglianze.
+                </p>
+              </div>
+              <!-- Laboratorio 7 - La mafia attraverso il cinema -->
+              <div class="carousel-card">
+                <h4>Laboratorio 7 - La mafia attraverso il cinema</h4>
+                <img
+                  src="./assets/img/laboratori/relax-in-cascina.jpg"
+                  alt="Foto di ragazzi riuniti a parlare seduti su un prato"
+                />
+                <p>
+                  L'attività si propone di ragionare sul modello di mafia che
+                  viene proposto allo spettatore nel cinema e quanto esso sia
+                  rappresentativo o meno della realtà oggettiva e del sentire
+                  comune.
+                </p>
+              </div>
+              <!-- Laboratorio 8 - Il gioco non è un azzardo -->
+              <div class="carousel-card">
+                <h4>Laboratorio 8 - Il gioco non è un azzardo</h4>
+                <img
+                  src="./assets/img/laboratori/incontro-in-cascina.jpg"
+                  alt="Foto di ragazzi seduti che parlano"
+                />
+                <p>
+                  Il gioco è una componente molto importante nello sviluppo e
+                  nella crescita dei bambini, ma siamo sicuri che qualsiasi
+                  gioco vada bene?<br />
+                  L'attività si propone di esplorare e riflettere sul mondo del
+                  gioco.
+                </p>
+              </div>
+              <!-- Laboratorio 9 - Chi non gioca vince -->
+              <div class="carousel-card">
+                <h4>Laboratorio 9 - Chi non gioca vince</h4>
+                <img
+                  src="./assets/img/laboratori/riunione-in-cascina.jpg"
+                  alt="Foto di ragazzi che scrivono e discutono insieme"
+                />
+                <p>
+                  In questo incontro verranno affrontati i rischi del gioco
+                  d'azzardo, per capire che giocare è un divertimento e non può
+                  diventare una dipendenza.
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
-
-        <!-- Laboratorio 3: Regole e Legalità per i più Piccoli -->
-        <div class="accordion">
-          <input type="radio" id="laboratorio3" name="radio-group" />
-          <label class="accordion-label" for="laboratorio3">
-            Regole e Legalità per i più Piccoli
-          </label>
-          <div class="accordion-content">
-            <p>
-              <b>Durata:</b> Mezza giornata, ma può essere adattata alle
-              esigenze della classe.
-            </p>
-            <br />
-            <p>
-              <b>Attività:</b> Giochi educativi per riflettere sul significato
-              delle regole e dialoghi guidati per esplorare il valore della
-              legalità nella vita quotidiana.
-            </p>
-            <br />
-            <p>
-              <b>Obiettivo:</b> Educare i più piccoli al rispetto delle regole,
-              alla responsabilità personale e al vivere in comunità.
-            </p>
-            <br />
-          </div>
-        </div>
-
-        <!-- Laboratorio 4: I Beni Confiscati -->
-        <div class="accordion">
-          <input type="radio" id="laboratorio4" name="radio-group" />
-          <label class="accordion-label" for="laboratorio4">
-            I Beni Confiscati
-          </label>
-          <div class="accordion-content">
-            <p><b>Durata:</b> Mezza giornata</p>
-            <br />
-            <p>
-              <b>Attività:</b> Introduzione teorica su cosa sono i beni
-              confiscati e come vengono assegnati
-            </p>
-            <br />
-            <p>
-              <b>Obiettivo:</b> Mostrare il valore del riutilizzo sociale dei
-              beni confiscati come strumento per costruire giustizia e
-              inclusione.
-            </p>
-            <br />
-          </div>
-        </div>
-
-        <!-- Laboratorio 5: LE MAFIE & IL CIBO -->
-        <div class="accordion">
-          <input type="radio" id="laboratorio5" name="radio-group" />
-          <label class="accordion-label" for="laboratorio5">
-            Le mafie & il cibo
-          </label>
-          <div class="accordion-content">
-            <p><b>Durata:</b> Mezza giornata</p>
-            <br />
-            <p>
-              <b>Attività:</b> Riflessione sul concetto di filiera: come il cibo
-              passa dal campo alle nostre tavole? Quali trasformazioni subisce?
-              Chi sono gli attori coinvolti?
-            </p>
-            <br />
-            <p>
-              <b>Obiettivo:</b> Riflettere sul ruolo di ciascuno di noi come
-              consumatore e sulla responsabilità delle nostre scelte dacquisto
-              nel contrasto a questi fenomeni.
-            </p>
-            <br />
-          </div>
-        </div>
-
-        <!-- Laboratorio 6: Miele & Api -->
-        <div class="accordion">
-          <input type="radio" id="laboratorio6" name="radio-group" />
-          <label class="accordion-label" for="laboratorio6">
-            Miele & Api
-          </label>
-          <div class="accordion-content">
-            <p><b>Durata:</b> Mezza giornata</p>
-            <br />
-            <p>
-              <b>Attività:</b> Laboratorio di apicoltura base (la società delle
-              api, l'attività dell'apicoltore, i prodotti dell'alveare), di
-              conoscenza dei tipi di miele, piccola degustazione dei mieli della
-              cascina.
-            </p>
-            <br />
-            <p>
-              <b>Obiettivo:</b> Conoscenza della società delle api, confronto
-              con la nostra società. Cosa è simile? Cosa c'è di diverso? Cosa
-              possiamo apprendere? (Per i soggiorni si può ipotizzare una visita
-              all'apiario, dopo averlo concordato con l'apicoltore)
-            </p>
-            <br />
-          </div>
-        </div>
-
-        <!-- Laboratorio 7: RICICLIAMO attività artistiche e manuali -->
-        <div class="accordion">
-          <input type="radio" id="laboratorio7" name="radio-group" />
-          <label class="accordion-label" for="laboratorio7">
-            RICICLIAMO attività artistiche e manuali
-          </label>
-          <div class="accordion-content">
-            <p><b>Durata:</b> Mezza giornata</p>
-            <br />
-            <p>
-              <b>Attività:</b> manutenzione e pulizia ordinaria degli spazi e
-              delle strutture, raccolta nocciole o frutta, laboratorio di
-              panificazione, sgusciatura delle nocciole,decorazione e pittura
-              arnie vecchie, candele con cera d'api, dalla bottiglia al
-              bicchiere
-            </p>
-            <br />
-            <p>
-              <b>Obiettivo:</b> Riflessione sulla riduzione dei consumi e il
-              riuso.
-            </p>
-            <br />
-          </div>
-        </div>
-
-        <!-- Laboratorio 8: La mafia attraverso il cinema percezioni culturali-->
-        <div class="accordion">
-          <input type="radio" id="laboratorio8" name="radio-group" />
-          <label class="accordion-label" for="laboratorio8">
-            La mafia attraverso il cinema percezioni culturali
-          </label>
-          <div class="accordion-content">
-            <p><b>Durata:</b> Mezza giornata</p>
-            <br />
-            <p>
-              <b>Attività:</b> Analisi della tematica della mafia e della sua
-              trattazione cinematografica, cercando di ragionare sul modello di
-              mafia che viene proposto allo spettatore e quanto esso sia
-              rappresentativo della realtà oggettiva e del sentire comune.
-            </p>
-            <br />
-            <p>
-              <b>Obiettivo:</b> Analizzare e verificare il rapporto tra
-              rappresentazione della criminalità mafiosa attraverso il cinema e
-              realtà effettiva.
-            </p>
-            <br />
-          </div>
-        </div>
-
-        <!-- Laboratorio 9: Il gioco non è un'azzardo -->
-        <div class="accordion">
-          <input type="radio" id="laboratorio9" name="radio-group" />
-          <label class="accordion-label" for="laboratorio9">
-            Il gioco non è un'azzardo
-          </label>
-          <div class="accordion-content">
-            <p><b>Durata:</b> Mezza giornata</p>
-            <br />
-            <p>
-              <b>Attività:</b> Distinzione tra giochi d'azzardo e giochi di
-              abilità.
-            </p>
-            <br />
-            <p><b>Obiettivo:</b> Esplorare e riflettere sul mondo del gioco.</p>
-            <br />
-          </div>
-        </div>
-
-        <!-- Laboratorio 10: Chi non gioca vince -->
-        <div class="accordion">
-          <input type="radio" id="laboratorio10" name="radio-group" />
-          <label class="accordion-label" for="laboratorio10">
-            Chi non gioca vince
-          </label>
-          <div class="accordion-content">
-            <p><b>Durata:</b> Mezza giornata</p>
-            <br />
-            <p><b>Attività:</b> Affrontare i rischi del gioco d'azzardo.</p>
-            <br />
-            <p>
-              <b>Obiettivo:</b> Individuazione e conoscenza dei rischi dovuti da
-              un abuso ed una dipendenza da gioco d'azzardo e collegamenti con
-              la mafia e il gioco d'azzardo illegale.
-            </p>
-            <br />
-          </div>
+          <button class="carousel-next-laboratori" aria-label="Successivo">
+            ▶
+          </button>
         </div>
       </section>
 
       <hr />
 
       <!-- L'ESPERIENZA IN CASCINA CACCIA -->
-      <section class="main-section">
+      <section class="main-section" id="esperienza">
         <h2>L'esperienza in Cascina Caccia</h2>
         <p>
-          Esplora un luogo unico, ricco di storia e significato.
-          <strong>Cascina Caccia</strong>
-          è una finestra sul passato e una porta verso un futuro più
-          consapevole, con attività per tutte le età. Dalle visite guidate ai
+          Ricca di storia e di significato la nostra <strong>Cascina</strong> è
+          una finestra sul passato e una porta verso un futuro più consapevole,
+          con attività per tutte le età. Dalle visite guidate ai
           <strong>laboratori</strong> didattici, ogni momento è un'opportunità
           per imparare e crescere insieme.
         </p>
 
-        <!-- CAROUSEL -->
-        <section class="carousel" aria-label="Gallery">
-          <ol class="carousel__viewport">
-            <li id="carousel__slide1" tabindex="0" class="carousel__slide">
-              <div class="carousel__snapper">
-                <a href="#carousel__slide3" class="carousel__prev"
-                  ></a
-                >
-                <a href="#carousel__slide2" class="carousel__next"
-                  ></a
-                >
+        <!-- CAROUSEL IMMAGINI-->
+        <div class="carousel-image">
+          <button class="carousel-prev-image" aria-label="Precedente">◀</button>
+          <div class="carousel-track-container">
+            <div class="carousel-track-image">
+              <!-- Slide 1 -->
+              <div class="carousel-card-image">
+                <img
+                  src="./assets/img/carousel/scritta-maglietta.jpg"
+                  alt="Collaborazioni"
+                />
               </div>
-            </li>
-            <li id="carousel__slide2" tabindex="0" class="carousel__slide">
-              <div class="carousel__snapper">
-                <a href="#carousel__slide1" class="carousel__prev"
-                  ></a
-                >
-                <a href="#carousel__slide3" class="carousel__next"
-                  ></a
-                >
+              <!-- Slide 2 -->
+              <div class="carousel-card-image">
+                <img
+                  src="./assets/img/carousel/attivita-in-cascina.jpg"
+                  alt="Storia"
+                />
               </div>
-            </li>
-            <li id="carousel__slide3" tabindex="0" class="carousel__slide">
-              <div class="carousel__snapper">
-                <a href="#carousel__slide2" class="carousel__prev"
-                  ></a
-                >
-                <a href="#carousel__slide1" class="carousel__next"
-                  ></a
-                >
+              <!-- Slide 3 -->
+              <div class="carousel-card-image">
+                <img
+                  src="./assets/img/carousel/collaborazioni.webp"
+                  alt="Party Bene"
+                />
               </div>
-            </li>
-          </ol>
-          <aside class="carousel__navigation">
-            <ol class="carousel__navigation-list">
-              <li class="carousel__navigation-item">
-                <a href="#carousel__slide1" class="carousel__navigation-button"
-                  >Go to slide 1</a
-                >
-              </li>
-              <li class="carousel__navigation-item">
-                <a href="#carousel__slide2" class="carousel__navigation-button"
-                  >Go to slide 2</a
-                >
-              </li>
-              <li class="carousel__navigation-item">
-                <a href="#carousel__slide3" class="carousel__navigation-button"
-                  >Go to slide 3</a
-                >
-              </li>
-            </ol>
-          </aside>
-        </section>
+            </div>
+          </div>
+          <button class="carousel-next-image" aria-label="Successivo">▶</button>
+        </div>
       </section>
 
       <hr />
 
       <!-- TESTIMONIANZE -->
-      <section class="main-section">
+      <section class="main-section" id="testimonianze">
         <h2>Testimonianze</h2>
         <p>
           Scopri cosa pensano di noi i gruppi che hanno vissuto l’esperienza di
@@ -495,7 +381,7 @@
         </p>
 
         <div id="reviews">
-          <div class="review purple">
+          <div class="review card1">
             <p class="review-caption">
               "Un luogo che insegna più di mille lezioni"
             </p>
@@ -503,15 +389,15 @@
               Prof.ssa Elena P. Istituto Comprensivo Giovanni Pascoli, Asti
             </p>
           </div>
-          <div class="review orange">
+          <div class="review card2">
             <p class="review-caption">
-              "Un’esperienza concreta di educazione civica"
+              "Un'esperienza concreta di educazione civica"
             </p>
             <p class="review-author">
               Giulia M. Liceo Classico Vittorio Alfieri, Cuneo
             </p>
           </div>
-          <div class="review purple">
+          <div class="review card3">
             <p class="review-caption">
               "Cascina Caccia è un laboratorio di speranza"
             </p>
@@ -526,14 +412,225 @@
       <hr />
       <div id="prenotazione-anchor"></div>
       <!-- PRENOTA UNA VISITA -->
-      <section class="main-section">
-        <form id="bookingForm">
-          <h2>Prenota una visita</h2>
+      <section class="main-section" id="prenotazione">
+        <div class="form-container">
+          <form id="bookingForm">
+            <h2>Prenota una visita</h2>
 
-          <fieldset id="personalInfo">
-            <legend>I tuoi dati</legend>
+            <fieldset id="personalInfo">
+              <legend>I tuoi dati</legend>
 
-            <label for="nome">Nome*</label>
+              <label for="nome">Nome*</label>
+              <input
+                type="text"
+                id="nome"
+                name="nome"
+                placeholder="Mario"
+                minlength="2"
+              />
+              <span id="nomeError" class="error"></span>
+
+              <label for="cognome">Cognome*</label>
+              <input
+                type="text"
+                id="cognome"
+                name="cognome"
+                placeholder="Rossi"
+              />
+              <span id="cognomeError" class="error"></span>
+
+              <label for="cellulare">Cellulare*</label>
+              <input
+                type="tel"
+                id="cellulare"
+                name="cellulare"
+                placeholder="012 345 6789"
+              />
+              <span id="cellulareError" class="error"></span>
+
+              <label for="email">Email*</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="example@mail.com"
+              />
+              <span id="emailError" class="error"></span>
+            </fieldset>
+
+            <div class="separator"></div>
+
+            <fieldset id="bookData">
+              <legend>Dati prenotazione</legend>
+
+              <label for="disponibilitaDa">Disponibilità: da*</label>
+              <input type="date" id="disponibilitaDa" name="disponibilitaDa" />
+              <span id="disponibilitaDaError" class="error"></span>
+
+              <label for="disponibilitaA">a*</label>
+              <input type="date" id="disponibilitaA" name="disponibilitaA" />
+              <span id="disponibilitaAError" class="error"></span>
+
+              <label for="numeroGiorni">Numero di giorni*</label>
+              <input
+                type="number"
+                id="numeroGiorni"
+                name="numeroGiorni"
+                min="1"
+                placeholder="2"
+              />
+              <span id="numeroGiorniError" class="error"></span>
+              <label for="numeroPartecipanti">Numero di partecipanti*</label>
+              <input
+                type="number"
+                id="numeroPartecipanti"
+                name="numeroPartecipanti"
+                placeholder="30"
+                min="1"
+              />
+              <span id="numeroPartecipantiError" class="error"></span>
+
+              <label for="visitatore">Visitatore*</label>
+              <select id="visitatore" name="visitatore">
+                <option value="">Seleziona</option>
+                <option value="scuola elementare">Scuola elementare</option>
+                <option value="scuola media">Scuola media</option>
+                <option value="scuola superiore">Scuola superiore</option>
+              </select>
+              <span id="visitatoreError" class="error"></span>
+
+              <label for="periodoGiornata">Periodo della giornata</label>
+              <select id="periodoGiornata" name="periodoGiornata" disabled>
+                <option value="">Seleziona</option>
+                <option value="mattino">Mattino</option>
+                <option value="tutto il giorno">Tutto il giorno</option>
+              </select>
+              <span id="periodoGiornataError" class="error"></span>
+
+              <label for="richiesteParticolari">Richieste particolari</label>
+              <textarea
+                id="richiesteParticolari"
+                name="richiesteParticolari"
+                rows="4"
+              ></textarea>
+            </fieldset>
+
+            <div class="container" id="mandatoryFields">
+              * campi obbligatori
+            </div>
+
+            <span id="formError" class="error"></span>
+
+            <div class="container">
+              <button type="submit" id="submitBookForm">Invia</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <hr />
+
+      <div id="faq-anchor"></div>
+      <!-- FAQ -->
+      <section class="main-section" id="faq">
+        <div class="faq-container">
+          <div class="faq-section">
+            <h2>FAQ</h2>
+
+            <div class="accordion">
+              <input type="radio" id="faq1" name="radio-group" />
+              <label class="accordion-label" for="faq1">
+                Quali modalità di visita offre Cascina Caccia?
+              </label>
+              <div class="accordion-content">
+                Cascina Caccia offre quattro modalità di visita:<br />
+                - L'uscita didattica al mattino(dalle 9,00 alle 13,00)<br />
+                - L'uscita didattica con attività anche al pomeriggio(dalle 9,00
+                alle 16,00)<br />
+                - Qualche giorno in Cascina Caccia<br />
+                - La proposta “Territorio e Legalità”(prevede lo svolgimento di
+                attività dalle 9 alle 16; la mattina presso l'Azienda Agricola
+                Peracca,situata a Casalborgone e il pomeriggio presso Cascina
+                Caccia)<br />
+                Contattateci per dettagli specifici sulla costo di ogni
+                attività.
+              </div>
+            </div>
+
+            <div class="accordion">
+              <input type="radio" id="faq2" name="radio-group" />
+              <label class="accordion-label" for="faq2">
+                Quanti studenti può ospitare Cascina Caccia?
+              </label>
+              <div class="accordion-content">
+                Cascina Caccia può ospitare un numero di studenti diverso in
+                base al tipo di visita o attività scelta. <br />
+                Per l'uscita didattica al mattino (dalle 9:00 alle 13:00) e per
+                l'uscita didattica con attività anche al pomeriggio (dalle 9:00
+                alle 16:00), così come per l'attività "Territorio e Legalità"
+                Cascina Caccia può accogliere un massimo di 2 classi per volta,
+                per un totale di circa 50 persone massimo per uscita. <br />
+                Per chi sceglie di soggiornare per più giorni, la Cascina può
+                ospitare un massimo di 24 persone, distribuite in più camerate.
+                <br />
+              </div>
+            </div>
+
+            <div class="accordion">
+              <input type="radio" id="faq3" name="radio-group" />
+              <label class="accordion-label" for="faq3">
+                Quali sono i costi per organizzare una visita o un soggiorno?
+              </label>
+              <div class="accordion-content">
+                I costi variano in base alla durata della visita, alle attività
+                scelte e al numero di partecipanti. Vi invitiamo a contattarci
+                per ricevere un preventivo personalizzato.
+              </div>
+            </div>
+
+            <div class="accordion">
+              <input type="radio" id="faq4" name="radio-group" />
+              <label class="accordion-label" for="faq4">
+                La Cascina è accessibile a studenti con disabilità?
+              </label>
+              <div class="accordion-content">
+                Sì, la struttura è dotata di spazi accessibili per studenti con
+                disabilità motorie. Per esigenze particolari, vi invitiamo a
+                comunicarci in anticipo le necessità del gruppo.
+              </div>
+            </div>
+
+            <div class="accordion">
+              <input type="radio" id="faq5" name="radio-group" />
+              <label class="accordion-label" for="faq5">
+                Come possiamo prenotare una visita o un soggiorno?
+              </label>
+              <div class="accordion-content">
+                Per prenotare una visita o un soggiorno, usate il form apposito
+                contenuto nella pagina.
+              </div>
+            </div>
+
+            <div class="accordion">
+              <input type="radio" id="faq6" name="radio-group" />
+              <label class="accordion-label" for="faq6">
+                Quali sono le modalità di pagamento?
+              </label>
+              <div class="accordion-content">
+                Il pagamento può essere effettuato tramite bonifico bancari
+                entro 30 giorni dallo svolgimento delle attività o pagamento in
+                loco. Saranno fornite istruzioni dettagliate al momento della
+                conferma della prenotazione.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-container">
+          <form id="infoForm">
+            <h2>Richiedi informazioni</h2>
+
+            <label for="nome">Nome</label>
             <input
               type="text"
               id="nome"
@@ -543,7 +640,7 @@
             />
             <span id="nomeError" class="error"></span>
 
-            <label for="cognome">Cognome*</label>
+            <label for="cognome">Cognome</label>
             <input
               type="text"
               id="cognome"
@@ -552,7 +649,16 @@
             />
             <span id="cognomeError" class="error"></span>
 
-            <label for="cellulare">Cellulare*</label>
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="example@mail.com"
+            />
+            <span id="emailError" class="error"></span>
+
+            <label for="cellulare">Cellulare</label>
             <input
               type="tel"
               id="cellulare"
@@ -561,212 +667,21 @@
             />
             <span id="cellulareError" class="error"></span>
 
-            <label for="email">Email*</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="example@mail.com"
-            />
-            <span id="emailError" class="error"></span>
-          </fieldset>
-
-          <div class="separator"></div>
-
-          <fieldset id="bookData">
-            <legend>Dati prenotazione</legend>
-
-            <label for="disponibilitaDa">Disponibilità: da*</label>
-            <input type="date" id="disponibilitaDa" name="disponibilitaDa" />
-            <span id="disponibilitaDaError" class="error"></span>
-
-            <label for="disponibilitaA">a*</label>
-            <input type="date" id="disponibilitaA" name="disponibilitaA" />
-            <span id="disponibilitaAError" class="error"></span>
-
-            <label for="numeroGiorni">Numero di giorni*</label>
-            <input
-              type="number"
-              id="numeroGiorni"
-              name="numeroGiorni"
-              min="1"
-              placeholder="2"
-            />
-            <span id="numeroGiorniError" class="error"></span>
-            <label for="numeroPartecipanti">Numero di partecipanti*</label>
-            <input
-              type="number"
-              id="numeroPartecipanti"
-              name="numeroPartecipanti"
-              placeholder="30"
-              min="1"
-            />
-            <span id="numeroPartecipantiError" class="error"></span>
-
-            <label for="visitatore">Visitatore*</label>
-            <select id="visitatore" name="visitatore">
-              <option value="">Seleziona</option>
-              <option value="scuola elementare">Scuola elementare</option>
-              <option value="scuola media">Scuola media</option>
-              <option value="scuola superiore">Scuola superiore</option>
-            </select>
-            <span id="visitatoreError" class="error"></span>
-
-            <label for="periodoGiornata">Periodo della giornata</label>
-            <select id="periodoGiornata" name="periodoGiornata" disabled>
-              <option value="">Seleziona</option>
-              <option value="mattino">Mattino</option>
-              <option value="tutto il giorno">Tutto il giorno</option>
-            </select>
-            <span id="periodoGiornataError" class="error"></span>
-
-            <label for="richiesteParticolari">Richieste particolari</label>
+            <label for="messaggio">Come possiamo aiutarti?</label>
             <textarea
-              id="richiesteParticolari"
-              name="richiesteParticolari"
-              rows="4"
+              id="messaggio"
+              name="messaggio"
+              rows="10"
+              placeholder="Chiedici qualcosa..."
             ></textarea>
-          </fieldset>
 
-          <div class="container" id="mandatoryFields">* campi obbligatori</div>
+            <span id="formError" class="error"></span>
 
-          <span id="formError" class="error"></span>
-
-          <div class="container">
-            <button type="submit" id="submitBookForm">Invia</button>
-          </div>
-        </form>
-      </section>
-
-      <hr />
-
-      <div id="faq-anchor"></div>
-      <!-- FAQ -->
-      <section class="main-section">
-        <h2>FAQ</h2>
-
-        <div class="accordion">
-          <input type="radio" id="faq1" name="radio-group" />
-          <label class="accordion-label" for="faq1">
-            E' possibile organizzare gite di più giorni a cascina Caccia?
-          </label>
-          <div class="accordion-content">
-            Si, Cascina Caccia offre la possibilità di organizzare soggiorni di
-            più giorni. Sono disponibili spazi per il pernottamento e strutture
-            adatte a ospitare gruppi scolastici.
-          </div>
+            <div class="container">
+              <button id="submitBookForm">Invia</button>
+            </div>
+          </form>
         </div>
-
-        <div class="accordion">
-          <input type="radio" id="faq2" name="radio-group" />
-          <label class="accordion-label" for="faq2">
-            Quanti studenti può ospitare Cascina Caccia?
-          </label>
-          <div class="accordion-content">
-            La struttura dispone di spazi per gruppi di diverse dimensioni.
-            Contattateci per dettagli specifici sulla capienza massima per
-            pernottamenti e attività.
-          </div>
-        </div>
-
-        <div class="accordion">
-          <input type="radio" id="faq3" name="radio-group" />
-          <label class="accordion-label" for="faq3">
-            Quali sono i costi per organizzare una visita o un soggiorno?
-          </label>
-          <div class="accordion-content">
-            I costi variano in base alla durata della visita, alle attività
-            scelte e al numero di partecipanti. Vi invitiamo a contattarci per
-            ricevere un preventivo personalizzato.
-          </div>
-        </div>
-
-        <div class="accordion">
-          <input type="radio" id="faq4" name="radio-group" />
-          <label class="accordion-label" for="faq4">
-            La Cascina è accessibile a studenti con disabilità?
-          </label>
-          <div class="accordion-content">
-            Sì, la struttura è dotata di spazi accessibili per studenti con
-            disabilità motorie. Per esigenze particolari, vi invitiamo a
-            comunicarci in anticipo le necessità del gruppo.
-          </div>
-        </div>
-
-        <div class="accordion">
-          <input type="radio" id="faq5" name="radio-group" />
-          <label class="accordion-label" for="faq5">
-            Come possiamo prenotare una visita o un soggiorno?
-          </label>
-          <div class="accordion-content">
-            Per prenotare una visita o un soggiorno, contattateci tramite il
-            modulo sul nostro sito o scrivete a [inserire email]
-          </div>
-        </div>
-
-        <div class="accordion">
-          <input type="radio" id="faq6" name="radio-group" />
-          <label class="accordion-label" for="faq6">
-            Quali sono le modalità di pagamento?
-          </label>
-          <div class="accordion-content">
-            Il pagamento può essere effettuato tramite bonifico bancario.
-            Saranno fornite istruzioni dettagliate al momento della conferma
-            della prenotazione.
-          </div>
-        </div>
-
-        <hr />
-
-        <form id="infoForm">
-          <h2>Richiedi informazioni</h2>
-
-          <label for="nome">Nome</label>
-          <input
-            type="text"
-            id="nome"
-            name="nome"
-            placeholder="Mario"
-            minlength="2"
-          />
-          <span id="nomeError" class="error"></span>
-
-          <label for="cognome">Cognome</label>
-          <input type="text" id="cognome" name="cognome" placeholder="Rossi" />
-          <span id="cognomeError" class="error"></span>
-
-          <label for="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="example@mail.com"
-          />
-          <span id="emailError" class="error"></span>
-
-          <label for="cellulare">Cellulare</label>
-          <input
-            type="tel"
-            id="cellulare"
-            name="cellulare"
-            placeholder="012 345 6789"
-          />
-          <span id="cellulareError" class="error"></span>
-
-          <label for="messaggio">Come possiamo aiutarti?</label>
-          <textarea
-            id="messaggio"
-            name="messaggio"
-            rows="10"
-            placeholder="Chiedici qualcosa..."
-          ></textarea>
-
-          <span id="formError" class="error"></span>
-
-          <div class="container">
-            <button id="submitBookForm">Invia</button>
-          </div>
-        </form>
       </section>
     </div>
 
@@ -775,6 +690,8 @@
       <!-- footer content -->
     </footer>
 
+    <script src="./scripts/navbar.js" defer></script>
+    <script src="./scripts/carousel.js" defer></script>
     <script src="./scripts/main.js" defer></script>
   </body>
 </html>

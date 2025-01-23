@@ -24,6 +24,9 @@ public class AdminService {
 	private PasswordEncoder passwordEncoder;
 	@Autowired
 	private MailService mailService;
+	public Admin getAdminByEmail(String email) {
+		return adminRepo.findByEmail(email).get();
+	}
 	public void register(Admin admin) { // Register new user with encrypted password
 		
 		Optional<Admin> adm = adminRepo.findByEmail(admin.getEmail());

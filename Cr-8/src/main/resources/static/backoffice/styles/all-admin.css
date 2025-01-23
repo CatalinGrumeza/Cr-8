@@ -52,15 +52,3 @@ p {
 .btn-delete:hover {
     background-color: #c82333;
 }
-
-@media (max-width: 768px) {
-    .card {
-        margin: 10px 0;
-    }
-    .card-title {
-        font-size: 18px;
-    }
-    .btn-delete {
-        width: 100%;
-    }
-}
