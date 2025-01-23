@@ -60,9 +60,9 @@ public class AdminService {
 	
 		Admin admin = adminRepo.findByEmail(email).orElseThrow(() -> new IllegalArgumentException("Email not found "));  
 			String code = UUID.randomUUID().toString().substring(0, 6).toUpperCase();
-			mailService.sendPasswordEmailRest(email,code);
 			admin.setCode(code);
 			adminRepo.save(admin);
+			mailService.sendPasswordEmailRest(email,code);
 			return  "Code has been send";
 		
 	}
@@ -90,8 +90,11 @@ public class AdminService {
 		adminRepo.delete(admin);
 	}
 	public String exitsByCode(String code) {
-		Optional<Admin> admin = adminRepo.findByCode(code);
-		return admin.get().getCode();
+		if(adminRepo.findByCode(code).isPresent()) {
+			Optional<Admin> admin = adminRepo.findByCode(code);
+			return admin.get().getCode();	
+		}else
+			return "Codice errato!";
 	}
 		
 	

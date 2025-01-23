@@ -100,6 +100,7 @@ public class SecurityConfig {
             response.getWriter().write(objectMapper.writeValueAsString(responseBody));
             response.getWriter().flush();
             response.sendRedirect("/dashboard/all-info"); // Redirect to the landing page
+
         };
     }
     @Bean

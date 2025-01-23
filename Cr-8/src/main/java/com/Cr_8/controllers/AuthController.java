@@ -3,6 +3,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -115,6 +116,10 @@ public class AuthController {
     }
     @GetMapping("/pub/code")
     public ResponseEntity<String> checkCode(@RequestParam String code){
+    	String res=adminService.exitsByCode(code);
+    	if(res.equals("Codice errato!")) {
+    		return new ResponseEntity<String>(adminService.exitsByCode(code), HttpStatus.BAD_REQUEST);
+    	}
     	return new ResponseEntity<String>(adminService.exitsByCode(code), HttpStatus.OK);
     }
 }
