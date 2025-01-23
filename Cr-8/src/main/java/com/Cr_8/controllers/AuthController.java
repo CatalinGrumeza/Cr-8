@@ -72,4 +72,8 @@ public class AuthController {
     	return new ResponseEntity<String>(adminService.setnewPassword(Code, password), HttpStatus.OK);
     	
     }
+    @GetMapping("/pub/code")
+    public ResponseEntity<String> checkCode(@RequestParam String code){
+    	return new ResponseEntity<String>(adminService.exitsByCode(code), HttpStatus.OK);
+    }
 }

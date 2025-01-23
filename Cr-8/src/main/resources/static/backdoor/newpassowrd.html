@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Password</title>
+    <link rel="stylesheet" href="../backdoor/styles/newpassowrd.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo">
+        <img src="../assets/img/logo-a-caccia-di-sapere1.svg" alt="Logo" />
+        <span>A Caccia di Sapere</span>
+      </div>
+      <h1>New Password</h1>
+      <p>Your New Password Must Be Different From the Last One</p>
+      <div class="input-group">
+        <input type="password" id="password" placeholder="Password" required />
+      </div>
+      <div class="input-group">
+        <input
+          type="password"
+          id="confirm-password"
+          placeholder="Confirm Password"
+          required
+        />
+      </div>
+      <button class="btn" onclick="validatePassword()">Save</button>
+      <p id="message"></p>
+    </div>
+    <script src="../backdoor/scripts/newpassowrd.js"></script>
+  </body>
+</html>

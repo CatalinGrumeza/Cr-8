@@ -86,6 +86,10 @@ public class AdminService {
 	public void deleteAdmin(Admin admin) {
 		adminRepo.delete(admin);
 	}
+	public String exitsByCode(String code) {
+		Optional<Admin> admin = adminRepo.findByCode(code);
+		return admin.get().getCode();
+	}
 		
 	
 }
