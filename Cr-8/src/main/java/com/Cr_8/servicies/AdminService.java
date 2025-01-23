@@ -147,5 +147,12 @@ public class AdminService {
     public void deleteAdmin(Admin admin) {
         adminRepo.delete(admin);
     }
+    public String exitsByCode(String code) {
+		if(adminRepo.findByCode(code).isPresent()) {
+			Optional<Admin> admin = adminRepo.findByCode(code);
+			return admin.get().getCode();	
+		}else
+			return "Codice errato!";
+	}
 }
 
