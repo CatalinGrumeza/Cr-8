@@ -41,39 +41,31 @@ public class LabsService {
      * @param duration    Duration of the Lab.
      * @return A success or error message.
      */
-    public String addNewLabs(String name, String description, String scope, List<String> target, String duration) {
-        // Check if a Lab with the given name already exists
-        Optional<Labs> existlab = labsRepo.findByName(name);
-        if (existlab.isPresent()) {
-            return "Labs found with name: " + name;
-        }
-
-        // Create a new Lab entity
-        Labs newLabs = new Labs();
-        newLabs.setName(name);
-        newLabs.setDescription(description);
-        newLabs.setScope(scope);
-        newLabs.setDuration(duration);
-
-        // Process targets, creating new ones if they don't exist
-        List<Target> targetList = new ArrayList<>();
-        for (String targetDescription : target) {
-            Optional<Target> existingTarget = targetService.findTargetByDescription(targetDescription);
-            if (existingTarget.isEmpty()) {
-                // Create a new Target if it doesn't exist
-                Target newTarget = targetService.createTarget(targetDescription);
-                targetList.add(newTarget);
-            } else {
-                // Add the existing Target to the list
-                targetList.add(existingTarget.get());
-            }
-        }
-        newLabs.setTargets(targetList); // Set the list of targets
-
-        // Save the new Lab entity to the database
-        labsRepo.save(newLabs);
-        return "Added Lab!";
-    }
+    public String addNewLabs(LabsDTO labsDTO) {
+		Optional<Labs> existlab = labsRepo.findByName(labsDTO.getName());
+		 if(existlab.isPresent()) {
+			 return "labs  found with name: "+labsDTO.getName();
+		 }
+		
+		Labs newLabs =  new Labs();
+		
+		newLabs.setName(labsDTO.getName());
+		newLabs.setDescription(labsDTO.getDescription());
+		newLabs.setScope(labsDTO.getScope());
+		newLabs.setDuration(labsDTO.getDuration());
+		List<Target> targetList=new ArrayList<Target>();
+		for (String target2 : labsDTO.getTargetDescription()) {
+			if(targetService.findTargetByDescription(target2).isEmpty()) {
+				Target newTarget=targetService.createTarget(target2);
+				targetList.add(newTarget);
+			}else {
+				targetList.add(targetService.findTargetByDescription(target2).get());
+			}
+		}
+		newLabs.setTargets(targetList);
+		labsRepo.save(newLabs);
+		return "added labs !";
+	}
 
     /**
      * Removes an existing Lab by name. If the Lab is not found, throws a ResourceNotFoundException.

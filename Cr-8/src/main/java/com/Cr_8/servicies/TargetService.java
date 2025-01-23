@@ -46,7 +46,6 @@ public class TargetService {
 	public Optional<Target> findTargetByDescription(String description) {
 		return targetRepo.findTargetByDescription(description);
 	}
-
 	/**
 	 * Creates a new Target entity.
 	 * 

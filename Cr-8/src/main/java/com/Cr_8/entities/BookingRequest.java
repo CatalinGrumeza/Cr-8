@@ -125,6 +125,10 @@ public class BookingRequest {
 	public void setNumberOfDays(int numberOfDays) {
 		this.numberOfDays = numberOfDays;
 	}
+	public void setLabsSet(Labs existlabs) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 	

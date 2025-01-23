@@ -27,6 +27,9 @@ public class AdminService {
     @Autowired
     private MailService mailService; // Injects a mail service for sending emails
 
+    public Admin getAdminByEmail(String email) {
+		return adminRepo.findByEmail(email).get();
+	}
     /**
      * Registers a new admin with an encrypted password.
      * 

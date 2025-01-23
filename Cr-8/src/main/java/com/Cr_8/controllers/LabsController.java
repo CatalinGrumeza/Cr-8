@@ -53,7 +53,7 @@ public class LabsController {
     @PostMapping("/add-new-labs")
     public ResponseEntity<?> addNewLab(@RequestBody LabsDTO labsDTO) {
         // Add the new lab to the services layer
-        String newLabs = labsService.addNewLabs(labsDTO);
+    	String newLabs = labsService.addNewLabs(labsDTO);
         return new ResponseEntity<>(newLabs, HttpStatus.OK); // Return the success message
     }
 
