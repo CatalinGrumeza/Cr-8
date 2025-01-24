@@ -8,25 +8,40 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.Cr_8.dto.LabsDTO;
 import com.Cr_8.entities.Labs;
 import com.Cr_8.entities.Target;
 import com.Cr_8.exceptions.ResourceNotFoundException;
 import com.Cr_8.repositories.LabsRepo;
 @Service
-public class LabsService  {
+public class LabsService {
+    @Autowired
+    private LabsRepo labsRepo; // Repository for managing Labs entities
 
-	@Autowired
-	private LabsRepo  labsRepo;
-	@Autowired
-	private TargetService targetService;
-	
-	
-	public List<Labs> getAllLabs(){
-		
-		return labsRepo.findAll(); 
-	}
-	
-	public String addNewLabs(String name , String description,String scope,List<String> target,String duration, String img) {
+
+    @Autowired
+    private TargetService targetService; // Service for managing Target entities
+
+    /**
+     * Retrieves all Labs records from the database.
+     * 
+     * @return A list of all Labs entities.
+     */
+    public List<Labs> getAllLabs() {
+        return labsRepo.findAll();
+    }
+
+    /**
+     * Adds a new Lab to the database. If a Lab with the given name already exists, returns an error message.
+     * 
+     * @param name        Name of the Lab.
+     * @param description Description of the Lab.
+     * @param scope       Scope of the Lab.
+     * @param target      List of target descriptions.
+     * @param duration    Duration of the Lab.
+     * @return A success or error message.
+     */
+    public String addNewLabs(String name , String description,String scope,List<String> target,String duration, String img) {
 		Optional<Labs> existlab = labsRepo.findByName(name);
 		 if(existlab.isPresent()) {
 			 return "labs  found with name: "+name;
@@ -52,17 +67,30 @@ public class LabsService  {
 		labsRepo.save(newLabs);
 		return "added labs !";
 	}
-	public String RemoveExistLabs(String name)  {
-		
-		 Optional<Labs> existlab = labsRepo.findByName(name);
-		 if(existlab.isEmpty()) {
-			 throw new ResourceNotFoundException("not found labs with name : "+name);
-		 }
-		 return "labs deleted";
-	}
 
-	public Optional<Labs> getByName(String string) {
-		// TODO Auto-generated method stub
-		return labsRepo.findByName(string);
-	}
+    /**
+     * Removes an existing Lab by name. If the Lab is not found, throws a ResourceNotFoundException.
+     * 
+     * @param name Name of the Lab to be removed.
+     * @return A success message if the Lab is deleted.
+     */
+    public String RemoveExistLabs(String name) {
+        // Check if the Lab with the given name exists
+        Optional<Labs> existlab = labsRepo.findByName(name);
+        if (existlab.isEmpty()) {
+            throw new ResourceNotFoundException("Not found Labs with name: " + name);
+        }
+        labsRepo.delete(existlab.get()); // Delete the Lab
+        return "Labs deleted";
+    }
+
+    /**
+     * Retrieves a Lab by its name.
+     * 
+     * @param name The name of the Lab to retrieve.
+     * @return An Optional containing the Lab entity if found, or empty if not.
+     */
+    public Optional<Labs> getByName(String name) {
+        return labsRepo.findByName(name);
+    }
 }

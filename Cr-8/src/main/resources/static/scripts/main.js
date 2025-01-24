@@ -4,11 +4,6 @@
  * This code includes the logic to validate the book form and the info form input fields
  */
 
-// navbar menu toggle
-function menu() {
-  document.querySelector(".navbar").classList.toggle("show");
-}
-
 const form = document.getElementById("bookingForm");
 
 // form fields
@@ -141,7 +136,6 @@ form.addEventListener("submit", async (event) => {
   const formErrorSpan = document.getElementById("formError");
 
   if (!formIsValid) {
-    alert("attenzione");
     /* formErrorSpan.textContent =
       "Per favore, correggi gli errori evidenziati prima di inviare il modulo."; */
     // return;
@@ -150,6 +144,10 @@ form.addEventListener("submit", async (event) => {
   formErrorSpan.textContent = "";
 
   const formattedDate = new Date().toISOString().split("T")[0];
+
+  const visitorTypeValue = document.getElementById("visitatore").value;
+
+  if (visitorTypeValue == "") visitorTypeValue = "full day";
 
   const data = {
     name: document.getElementById("nome").value,
@@ -162,8 +160,8 @@ form.addEventListener("submit", async (event) => {
     dataTo: document.getElementById("disponibilitaA").value,
     participantNumber: document.getElementById("numeroPartecipanti").value,
     bookType: document.getElementById("periodoGiornata").value,
-    visitorType: document.getElementById("visitatore").value,
-    labs: ["pela patate"],
+    visitorType: visitorTypeValue,
+    labs: ["Storia della Cascina Carla e Bruno Caccia"],
     createdAt: formattedDate,
   };
 
@@ -172,7 +170,7 @@ form.addEventListener("submit", async (event) => {
 
     // Effettua la richiesta POST
     const response = await fetch(
-      "http://localhost:8080/api/pub/create-booking",
+      "/api/pub/create-booking",
       {
         method: "POST",
         headers: {

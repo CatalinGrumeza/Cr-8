@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="CR-8" />
+    <link rel="stylesheet" type="" href="../backoffice/styles/code.css" />
+    <!-- open graph -->
+    <meta property="og:title" content="A Caccia di Sapere" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.esempio.com" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="" />
+
+    <!-- favicon -->
+    <link rel="icon" href="./favicon.ico" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <title>A Caccia di Sapere</title>
+
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="A Caccia di Sapere" />
+    <meta name="twitter:description" content="" />
+    <meta name="twitter:image" content="" />
+
+    <!-- styles -->
+  </head>
+  
+  <body>
+    <div class="container">
+      <div class="logo">
+        <img src="../assets/img/logo-a-caccia-di-sapere.png" alt="Logo" />
+        <span>A Caccia di Sapere</span>
+      </div>
+      <h1>Verification Code</h1>
+      <p>
+        <strong><span id="email-display"></span></strong>
+      </p>
+        <div class="code-inputs">
+            <input type="text" id="verification-code" maxlength="6" >
+        </div>
+      <button id="btn">Verify</button>
+      <div class="resend">
+        <a href="#">Resend Code</a>
+      </div>
+    </div>
+    <script>
+  // Select the button and input field
+  const email = localStorage.getItem("userEmail");
+  const text = `Please enter the 4 digit code sent to ${email}`;
+  document.getElementById("email-display").textContent = text;
+  const sendButton = document.getElementById("btn");
+
+  // Add an event listener for the click on the button
+  sendButton.addEventListener("click", async () => {
+    const inputs = document.querySelectorAll(".code-inputs input");
+    const code = Array.from(inputs)
+      .map((input) => input.value)
+      .join("");
+    const Upper = code.toUpperCase();
+    console.log(Upper);
+
+    const url = `/api/pub/code?code=${Upper}`;
+    try {
+      const res = await fetch(url, {
+        method: "GET",
+        headers: {  // Fixed spelling from 'header' to 'headers'
+          "Content-Type": "application/json", // Make sure the header case is correct
+        },
+      });
+      
+      const message = await res.text(); // Get message from response
+
+      if (!res.ok) {
+        alert(message); // Display the error response
+      } else {
+        localStorage.setItem("code", Upper);
+        window.location.href = "/newpassword"; // Redirect on success
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert("An error occurred while trying to verify the code."); // Display a generic error message
+    }
+  });
+</script>
+  </body>
+</html>

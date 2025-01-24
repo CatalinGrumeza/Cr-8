@@ -37,7 +37,7 @@ public class BookingRequest {
 	@JsonIgnoreProperties("infos")
 	private Reference reference; //reference of the group
 	@OneToOne(mappedBy = "bookingRequest", cascade = CascadeType.ALL)
-	@JsonIgnore
+	
 	private BookedDate bookedDate;
 	@ManyToMany
 	@JoinTable(
@@ -50,7 +50,7 @@ public class BookingRequest {
 	public List<Labs> getLabsSet() {
 		return labsSet;
 	}
-	public void setLabsSet(Labs existlabs) {
+	public void addLab(Labs existlabs) {
 		this.labsSet.add(existlabs);
 	}
 	public Long getId() {

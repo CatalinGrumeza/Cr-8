@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestione Prenotazioni</title>
+    <link rel="stylesheet" href="../styles/normalize.css" />
+    <link rel="stylesheet" href="../styles/main.css" />
+    <link rel="stylesheet" href="../backoffice/styles/all-info.css" />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar-container">
+      <div class="navbar-content">
+        <a href="/">
+          <img
+            class="navbar-logo"
+            src="../assets/img/logo-a-caccia-di-sapere.png"
+            alt="Logo del sito"
+        /></a>
+        <ul class="navbar">
+          <li>
+            <a href="/dashboard" title="Dashboard" onclick="menu()"
+              >Dashboard</a
+            >
+          </li>
+          <li>
+            <a
+              href="/dashboard/all-info"
+              title="Rihieste Informazioni"
+              onclick="menu()"
+              >Richieste Informazioni</a
+            >
+          </li>
+          <li>
+            <a href="/dashboard/all-bookings" title="Prenotazioni" onclick="menu()"
+              >Prenotazioni</a
+            >
+          </li>
+          <li>
+            <a href="/super/all-admins" title="Gestione Admin" onclick="menu()"
+              >Gestione Admin</a
+            >
+          </li>
+          <li>
+            <a href="/logout" title="Logout" onclick="menu()">Logout</a>
+          </li>
+        </ul>
+      </div>
+      <button class="hamburger" onclick="menu()">☰</button>
+    </nav>
+
+    <div class="container my-4">
+      <h2>Gestione Prenotazioni</h2>
+
+      <!-- Filter and Search Controls -->
+      <div class="row mb-4">
+        <div class="col-md-4">
+          <label for="date-filter">Ordina per data:</label>
+          <select id="date-filter" class="form-select">
+            <option value="desc">Da meno recente</option>
+            <option value="asc">Da più recente</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="status-filter"
+            >Filtra per stato della prenotazione:</label
+          >
+          <select id="status-filter" class="form-select">
+            <option value="all">Tutte</option>
+            <option value="Pending">Da revisionare</option>
+            <option value="Completed">Completate</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="search-bar">Cerca:</label>
+          <input
+            type="text"
+            id="search-bar"
+            class="form-control"
+            placeholder="Cerca per nome, email o tipo di prenotazione"
+          />
+        </div>
+      </div>
+
+      <div class="separator"></div>
+
+      <!-- Booking Cards Container -->
+      <div id="booking-container" class="row g-4">
+        <!-- Cards will be dynamically added here -->
+      </div>
+    </div>
+
+    <script src="../scripts/navbar.js" defer></script>
+    <script src="../backoffice/scripts/all-bookings.js"></script>
+  </body>
+</html>

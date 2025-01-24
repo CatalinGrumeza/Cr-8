@@ -28,7 +28,7 @@ public class DayFraction {
 		return false;
 	}
 
-	public boolean isEvening() {
+	public boolean isFullDay() {
 		if(this.id==2||this.id==3)
 			return true;
 		return false;

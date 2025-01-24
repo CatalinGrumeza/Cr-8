@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+
 import com.Cr_8.dto.LabsDTO;
 import com.Cr_8.entities.Labs;
 import com.Cr_8.servicies.LabsService;
@@ -91,3 +92,4 @@ public class LabsController {
 		return new ResponseEntity<>(labsExist, HttpStatus.OK);
 	}
 }
+

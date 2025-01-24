@@ -1,11 +1,14 @@
 package com.Cr_8.config;
 
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,10 +19,22 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
+import com.Cr_8.entities.Admin;
+import com.Cr_8.servicies.AdminService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import jakarta.servlet.http.HttpServletResponse;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
+	
+	private final AdminService adminService;
+	
+	public SecurityConfig(@Lazy AdminService adminService) { // Lazy used to bypass circular reference between adminservice and securityconfig
+        this.adminService = adminService;
+    }
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(); // Encrypts passwords securely
@@ -35,10 +50,10 @@ public class SecurityConfig {
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> {
-//                    auth.requestMatchers("/login", "/login.html", "/index.html", "/register.html", "/", "/styles/**", "/scripts/**","/image/**","/api/pub/**").permitAll();
-//                	  auth.requestMatchers("/api/**").hasAnyRole("ADMIN","SUPER_ADMIN");
-//                	  auth.requestMatchers("/api/super/**").hasRole("SUPER_ADMIN");
-//                    auth.anyRequest().authenticated();
+//                   auth.requestMatchers("/login", "/login.html", "/index.html", "/register.html", "/","/styles/**", "/scripts/**","/image/**","/api/pub/**","/assets/**").permitAll();
+//                	  auth.requestMatchers("/api/**","/backoffice/**","/dashboard/**","/dashboard","/static/**").hasAnyRole("ADMIN","SUPER_ADMIN");
+//                	  auth.requestMatchers("/api/super/**","/backoffice/dashboard.html","/static/**","/dashboard/all-admins","/super/**").hasRole("SUPER_ADMIN");
+//                   auth.anyRequest().authenticated();
                 auth.anyRequest().permitAll();
                 })
                 .formLogin(form -> form
@@ -74,9 +89,17 @@ public class SecurityConfig {
         return (request, response, authentication) -> {
         	System.out.println("il nome è:"+authentication.getName());
         	
-            response.setStatus(200); // OK status
-            response.getWriter().write("Login successful");
-            response.sendRedirect("/"); // Redirect to the landing page
+        	Admin admin = adminService.getAdminByEmail(authentication.getName());
+            Map<String, String> responseBody = new HashMap<>();
+            responseBody.put("name", admin.getName());
+            responseBody.put("role", admin.getRole().getName());
+
+            response.setContentType("application/json");
+            response.setStatus(HttpServletResponse.SC_OK);
+            ObjectMapper objectMapper = new ObjectMapper();
+            response.getWriter().write(objectMapper.writeValueAsString(responseBody));
+            response.getWriter().flush();
+
         };
     }
     @Bean

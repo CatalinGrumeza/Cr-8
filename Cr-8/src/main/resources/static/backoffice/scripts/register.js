@@ -4,7 +4,7 @@ document.getElementById('registerForm').addEventListener('submit', async functio
     const formData = new FormData(this); // Get form data
 
     try {
-        const response = await fetch('http://localhost:8080/api/super/register', {
+        const response = await fetch('/api/super/register', {
             method: 'POST',
             body: formData
         });
