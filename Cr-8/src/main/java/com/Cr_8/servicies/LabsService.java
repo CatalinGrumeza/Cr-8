@@ -15,9 +15,9 @@ import com.Cr_8.exceptions.ResourceNotFoundException;
 import com.Cr_8.repositories.LabsRepo;
 @Service
 public class LabsService {
-
     @Autowired
     private LabsRepo labsRepo; // Repository for managing Labs entities
+
 
     @Autowired
     private TargetService targetService; // Service for managing Target entities
@@ -41,39 +41,32 @@ public class LabsService {
      * @param duration    Duration of the Lab.
      * @return A success or error message.
      */
-    public String addNewLabs(String name, String description, String scope, List<String> target, String duration) {
-        // Check if a Lab with the given name already exists
-        Optional<Labs> existlab = labsRepo.findByName(name);
-        if (existlab.isPresent()) {
-            return "Labs found with name: " + name;
-        }
-
-        // Create a new Lab entity
-        Labs newLabs = new Labs();
-        newLabs.setName(name);
-        newLabs.setDescription(description);
-        newLabs.setScope(scope);
-        newLabs.setDuration(duration);
-
-        // Process targets, creating new ones if they don't exist
-        List<Target> targetList = new ArrayList<>();
-        for (String targetDescription : target) {
-            Optional<Target> existingTarget = targetService.findTargetByDescription(targetDescription);
-            if (existingTarget.isEmpty()) {
-                // Create a new Target if it doesn't exist
-                Target newTarget = targetService.createTarget(targetDescription);
-                targetList.add(newTarget);
-            } else {
-                // Add the existing Target to the list
-                targetList.add(existingTarget.get());
-            }
-        }
-        newLabs.setTargets(targetList); // Set the list of targets
-
-        // Save the new Lab entity to the database
-        labsRepo.save(newLabs);
-        return "Added Lab!";
-    }
+    public String addNewLabs(String name , String description,String scope,List<String> target,String duration, String img) {
+		Optional<Labs> existlab = labsRepo.findByName(name);
+		 if(existlab.isPresent()) {
+			 return "labs  found with name: "+name;
+		 }
+		
+		Labs newLabs =  new Labs();
+		
+		newLabs.setName(name);
+		newLabs.setDescription(description);
+		newLabs.setScope(scope);
+		newLabs.setDuration(duration);
+		newLabs.setImg(img);
+		List<Target> targetList=new ArrayList<Target>();
+		for (String target2 : target) {
+			if(targetService.findTargetByDescription(target2).isEmpty()) {
+				Target newTarget=targetService.createTarget(target2);
+				targetList.add(newTarget);
+			}else {
+				targetList.add(targetService.findTargetByDescription(target2).get());
+			}
+		}
+		newLabs.setTargets(targetList);
+		labsRepo.save(newLabs);
+		return "added labs !";
+	}
 
     /**
      * Removes an existing Lab by name. If the Lab is not found, throws a ResourceNotFoundException.
