@@ -116,6 +116,10 @@ public class AuthController {
     }
     @GetMapping("/pub/code")
     public ResponseEntity<String> checkCode(@RequestParam String code){
+    	String res=adminService.exitsByCode(code);
+    	if(res.equals("Codice errato!")) {
+    		return new ResponseEntity<String>(adminService.exitsByCode(code), HttpStatus.BAD_REQUEST);
+    	}
     	return new ResponseEntity<String>(adminService.exitsByCode(code), HttpStatus.OK);
     }
 }

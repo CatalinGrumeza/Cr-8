@@ -7,6 +7,7 @@ package com.Cr_8.dto;
 
 import java.util.List;
 
+
 public class LabsDTO {
 
     /**
@@ -34,6 +35,8 @@ public class LabsDTO {
      * Each entry in the list provides additional detail about the targets.
      */
     private List<String> targetDescription;
+  
+    private MultipartFile img;
 
     // Getter and Setter for each field
 
@@ -76,4 +79,12 @@ public class LabsDTO {
     public void setDuration(String duration) {
         this.duration = duration;
     }
+  public MultipartFile getImg() {
+		return img;
+	}
+	
+	public void setImg(MultipartFile img) {
+		this.img = img;
+	}
 }
+

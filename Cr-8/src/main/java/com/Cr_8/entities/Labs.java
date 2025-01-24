@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -36,7 +37,10 @@ public class Labs {
     
     // Duration of the lab
     private String duration;
-    
+  
+    //Image of the lab
+    private String img;
+  
     // Many-to-many relationship with the corresponding BookingRequest entity, ignored in JSON serialization
     @ManyToMany(mappedBy = "labsSet")
     @JsonIgnore
@@ -90,5 +94,13 @@ public class Labs {
     public void setDuration(String duration) {
         this.duration = duration;
     }
+  	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
     
+
 }

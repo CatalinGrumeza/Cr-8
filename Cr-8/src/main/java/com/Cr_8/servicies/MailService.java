@@ -14,31 +14,46 @@ import com.Cr_8.entities.BookingRequest;
 import com.Cr_8.repositories.AdminRepo;
 
 
-
 @Service
 public class MailService {
     @Autowired
-    private JavaMailSender javaMailSender;
+    private JavaMailSender javaMailSender; // Handles sending emails
     @Autowired
-    private AdminRepo adminRepo;
+    private AdminRepo adminRepo; // Repository for retrieving admin email addresses
 
-    private final String fromEmailId = "educacciademo@gmail.com";
+    private final String fromEmailId = "educacciademo@gmail.com"; // Sender's email address
 
-    public void sendEmail(String recipient, String body, String subject,String name,String surname,String type) {
+    /**
+     * Sends a generic email to a recipient with a personalized message.
+     * 
+     * @param recipient Recipient's email address
+     * @param body      Email body content
+     * @param subject   Email subject
+     * @param name      Recipient's first name
+     * @param surname   Recipient's last name
+     * @param type      Type of request (e.g., booking, info)
+     */
+    public void sendEmail(String recipient, String body, String subject, String name, String surname, String type) {
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(fromEmailId);
         simpleMailMessage.setTo(recipient);
         simpleMailMessage.setText(
             String.format(
                 "Gentile %s %s, la sua richiesta di %s è stata inviata con successo:\n\n%s\n\nCordiali saluti,\nLo staff di Educaccia",
-                surname,name,type,body
+                surname, name, type, body
             )
         );
         simpleMailMessage.setSubject(subject);
         javaMailSender.send(simpleMailMessage);
     }
-    
-    public void sendEmailBooking(BookingFormRequest bookRequest,String type) {
+
+    /**
+     * Sends an email confirming the receipt of a booking request.
+     * 
+     * @param bookRequest Details of the booking request
+     * @param type        Type of booking
+     */
+    public void sendEmailBooking(BookingFormRequest bookRequest, String type) {
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(fromEmailId);
         simpleMailMessage.setTo(bookRequest.getEmail());
@@ -106,19 +121,21 @@ public class MailService {
             bookingRequest.getReference().getLastName(),
             fraction,
             bookingRequest.getBookedDate().getDate() != null ? bookingRequest.getBookedDate().getDate().toString() : "Non specificata",
-            		bookingRequest.getBookedDate().getToDate() != null ? bookingRequest.getBookedDate().getToDate().toString() : "Non specificata"
-        );
+            		bookingRequest.getBookedDate().getToDate() != null ? bookingRequest.getBookedDate().getToDate().toString() : "Non specificata");
 
         simpleMailMessage.setText(emailBody);
         simpleMailMessage.setSubject("Prenotazione Confermata");
         javaMailSender.send(simpleMailMessage);
     }
-
+    /**
+     * Sends an email notifying the cancellation of a booking.
+     * 
+     * @param bookingRequest Booking details
+     */
     public void sendEmailCancelledBooked(BookingRequest bookingRequest) {
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(fromEmailId);
         simpleMailMessage.setTo(bookingRequest.getReference().getEmail());
-
         String emailBody = String.format(
             "Gentile %s %s,\n\n" +
             "La informiamo che la sua richiesta di prenotazione è stata annullata. Di seguito i dettagli della prenotazione annullata:\n\n" +
@@ -138,32 +155,50 @@ public class MailService {
         );
 
         simpleMailMessage.setText(emailBody);
+
         simpleMailMessage.setSubject("Prenotazione Annullata");
         javaMailSender.send(simpleMailMessage);
     }
 
-
-    public void sendEmailToAdmin(String user, String bodyMessage, String subject, String name, String surname,String type,String phone) {
+    /**
+     * Sends an email to all administrators with details of a user request.
+     * 
+     * @param user         User's email
+     * @param bodyMessage  Content of the user's request
+     * @param subject      Subject of the email
+     * @param name         User's first name
+     * @param surname      User's last name
+     * @param type         Type of request
+     * @param phone        User's phone number
+     */
+    public void sendEmailToAdmin(String user, String bodyMessage, String subject, String name, String surname, String type, String phone) {
         String baseText = String.format(
             "Richiesta di %s da parte di:\n" +
             "Nome: %s %s\n" +
             "Email: %s\n\n" +
             "Phone: %s\n\n" +
-            "Messaggio ricevuto:\n" +
-            "%s\n\n",
-            type,name, surname, user,phone, bodyMessage
+            "Messaggio ricevuto:\n%s\n\n",
+            type, name, surname, user, phone, bodyMessage
         );
 
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(fromEmailId);
         simpleMailMessage.setText(baseText);
         simpleMailMessage.setSubject(subject);
-        List<Admin> admins=adminRepo.findAll();
+
+        // Send the email to all admins
+        List<Admin> admins = adminRepo.findAll();
         for (Admin admin : admins) {
-        	simpleMailMessage.setTo(admin.getEmail());
-        	javaMailSender.send(simpleMailMessage);
-		}
+            simpleMailMessage.setTo(admin.getEmail());
+            javaMailSender.send(simpleMailMessage);
+        }
     }
+    /**
+     * Sends a verification code to reset a user's password.
+     *
+     * @param email User's email address
+     * @param code  Verification code
+     */
     public void sendPasswordEmailRest(String email, String code) {
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(fromEmailId);
@@ -187,4 +222,5 @@ public class MailService {
         simpleMailMessage.setSubject("Codice di Verifica per Reimpostare la Password");
         javaMailSender.send(simpleMailMessage);
     }
+
 }
