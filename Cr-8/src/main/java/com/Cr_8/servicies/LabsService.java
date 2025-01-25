@@ -15,9 +15,9 @@ import com.Cr_8.exceptions.ResourceNotFoundException;
 import com.Cr_8.repositories.LabsRepo;
 @Service
 public class LabsService {
-
     @Autowired
     private LabsRepo labsRepo; // Repository for managing Labs entities
+
 
     @Autowired
     private TargetService targetService; // Service for managing Target entities
@@ -41,6 +41,7 @@ public class LabsService {
      * @param duration    Duration of the Lab.
      * @return A success or error message.
      */
+
     public String addNewLabs(LabsDTO labsDTO) {
 		Optional<Labs> existlab = labsRepo.findByName(labsDTO.getName());
 		 if(existlab.isPresent()) {
@@ -48,13 +49,14 @@ public class LabsService {
 		 }
 		
 		Labs newLabs =  new Labs();
-		
+
 		newLabs.setName(labsDTO.getName());
 		newLabs.setDescription(labsDTO.getDescription());
 		newLabs.setScope(labsDTO.getScope());
 		newLabs.setDuration(labsDTO.getDuration());
 		List<Target> targetList=new ArrayList<Target>();
 		for (String target2 : labsDTO.getTargetDescription()) {
+
 			if(targetService.findTargetByDescription(target2).isEmpty()) {
 				Target newTarget=targetService.createTarget(target2);
 				targetList.add(newTarget);

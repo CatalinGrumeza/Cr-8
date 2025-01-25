@@ -551,6 +551,76 @@ input[type="radio"]:checked ~ .accordion-content {
   padding: 1em;
 }
 
+/* footer */
+
+footer {
+  margin-top: 30px;
+  padding: 0 10px;
+  width: 100%;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 20px;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  margin: 15px;
+}
+
+.footer-left img {
+  width: 200px;
+  height: 260px;
+}
+
+.footer-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 15px;
+}
+
+.footer-center iframe {
+  width: 400px;
+  height: 300px;
+  border-radius: var(--rounded-corners);
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 15px;
+}
+
+.footer-right figure {
+  margin: 0;
+}
+
+.footer-right img {
+  width: 300px;
+  height: 80px;
+}
+
+.footer-right .icon-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-right .icon-links .icon {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
 /* Landscape phones and down */
 @media (max-width: 480px) {
 }
@@ -589,6 +659,37 @@ input[type="radio"]:checked ~ .accordion-content {
   .section-article {
     max-width: 400px;
   }
+
+  .footer-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .footer-left img {
+    width: 110px;
+    height: 100px;
+  }
+
+  .footer-center iframe {
+    width: 250px;
+    height: 150px;
+    border-radius: var(--rounded-corners);
+  }
+
+  .footer-right img {
+    width: 130px;
+    height: 50px;
+  }
+
+  .footer-right .icon-links .icon {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
 }
 
 /* Portrait tablet to landscape and desktop */
@@ -614,6 +715,37 @@ input[type="radio"]:checked ~ .accordion-content {
 
   .carousel-laboratori .carousel-track-laboratori {
     gap: 20px;
+  }
+
+  .footer-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .footer-left img {
+    width: 160px;
+    height: 150px;
+  }
+
+  .footer-center iframe {
+    width: 400px;
+    height: 300px;
+    border-radius: var(--rounded-corners);
+  }
+
+  .footer-right img {
+    width: 200px;
+    height: 100px;
+  }
+
+  .footer-right .icon-links .icon {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
   }
 }
 

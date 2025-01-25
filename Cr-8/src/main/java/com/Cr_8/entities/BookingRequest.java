@@ -3,50 +3,72 @@ package com.Cr_8.entities;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.*;
 
 /**
- * Entity class representing the booking request  in the database.
+ * Entity class representing the booking request in the database.
  */
 @Entity
 @Table(name = "booking")
 public class BookingRequest {
+	
+	// Primary key for the BookingRequest entity
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private LocalDate dataFrom;
-	private LocalDate dataTo;
-	private LocalDate CreatedAt;
-	private String additionalDetails; 
-	private int participantNumber;
-	private String bookType; //half-day,day,hour
-	private int numberOfDays;
-	private String vistorType;  // school-organization- ...etc
+	// Start date of the booking
+    private LocalDate dataFrom;
+    
+    // End date of the booking
+    private LocalDate dataTo;
+    
+    // Date when the booking was created
+    private LocalDate CreatedAt;
+    
+    // Additional details about the booking
+    private String additionalDetails; 
+    
+    // Number of participants in the booking
+    private int participantNumber;
+    
+    // Type of booking (half-day, day, hour)
+	private String bookType;
+
+	// Number of days for the booking
+    private int numberOfDays;
+    
+    // Type of visitor (e.g., school, organization)
+    private String vistorType;  
+    
+    // Many-to-one relationship with the status of the request 
 	@ManyToOne
 	@JoinColumn(name = "status_id")
-	private Status status; // status of the book
+	private Status status;
+	
+	// Many-to-one relationship with the reference who submitted the request, ignored in JSON serialization
 	@ManyToOne
 	@JoinColumn(name ="reference_id", nullable = false)
 	@JsonIgnoreProperties("infos")
-	private Reference reference; //reference of the group
-	@OneToOne(mappedBy = "bookingRequest", cascade = CascadeType.ALL)
+	private Reference reference;
 	
+	// One-to-one relationship with BookedDate entity, with cascading all operations
+	@OneToOne(mappedBy = "bookingRequest", cascade = CascadeType.ALL)
 	private BookedDate bookedDate;
+	
+	// Many-to-many relationship with Labs entity
 	@ManyToMany
 	@JoinTable(
 			name = "labsRequest",
 			joinColumns =@JoinColumn(name= "booking_id"),
 			inverseJoinColumns = @JoinColumn(name = "labs_id")
 			)
-	private List<Labs> labsSet =new ArrayList();
+	private List<Labs> labsSet = new ArrayList();
 	
+	// Getter and setter methods
 	public List<Labs> getLabsSet() {
 		return labsSet;
 	}
@@ -125,6 +147,7 @@ public class BookingRequest {
 	public void setNumberOfDays(int numberOfDays) {
 		this.numberOfDays = numberOfDays;
 	}
+
 	public void setLabsSet(Labs existlabs) {
 		// TODO Auto-generated method stub
 		
@@ -133,4 +156,4 @@ public class BookingRequest {
 	
 	
 	
-}
+
