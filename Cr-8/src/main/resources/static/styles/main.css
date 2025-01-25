@@ -607,6 +607,14 @@ footer {
   height: 260px;
 }
 
+.footer-left h3 {
+  text-align: center;
+}
+
+.footer-left #contattaci {
+  text-align: center;
+}
+
 .footer-center {
   display: flex;
   flex-direction: column;
@@ -629,8 +637,6 @@ footer {
 }
 
 .footer-right .footer-col-container {
-  justify-content: space-evenly;
-  align-items: center;
   text-align: center;
 }
 
@@ -660,10 +666,10 @@ footer {
   display: block;
 }
 
-.footer-right .icon-links .icon {
+.footer-right .icon,
+.footer-left .icon {
   width: 60px;
   height: 60px;
-  cursor: pointer;
 }
 
 .footer-col-container {
