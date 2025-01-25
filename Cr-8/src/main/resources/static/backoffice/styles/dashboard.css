@@ -3,6 +3,7 @@
   --orange: #fc931c;
   --purple: #ed008a;
   --yellow: #ffff22;
+  --black: #3c3c3b;
 
   --orange-transparent: #fc931c1a;
   --purple-transparent: #ed008a1a;
@@ -18,7 +19,8 @@ body {
   padding-top: 60px;
 }
 
-h1, h2 {
+h1,
+h2 {
   color: var(--orange);
   text-align: center;
   text-shadow: 5px 6px 7px #bbbbbb;
@@ -61,7 +63,7 @@ h1, h2 {
 }
 
 .text-orange {
-  color: var(--yellow) !important;
+  color: var(--black) !important;
 }
 
 /* Calendar Styling */
@@ -90,7 +92,8 @@ h1, h2 {
     padding: 0 15px;
   }
 
-  #dashboard-cards, #calendar-container {
+  #dashboard-cards,
+  #calendar-container {
     width: 100%;
     padding: 0;
   }
@@ -106,5 +109,4 @@ h1, h2 {
   #calendar {
     height: 300px; /* Adjust calendar height for smaller screens */
   }
-
 }
