@@ -36,60 +36,39 @@ import jakarta.transaction.Transactional;
 @RequestMapping("/api")
 public class LabsController {
 
-	@Autowired
-	private LabsService labsService;
-	
-	@Operation(
-			summary = "GET Method for display all labs"
-			)
-	@Tag(name = "Public Endpoint")
-	@GetMapping("/pub/labs")
-	public ResponseEntity<?> getAllLabs(){
-		List<Labs> allLabs = labsService.getAllLabs();
-		return new ResponseEntity<>(allLabs, HttpStatus.OK);
-	}
-	@Operation(
-			summary = "POST Method for adding new labs "
-			)
-	@Tag(name = "Dashboard Endpoint")
-	@PostMapping(value = "/add-new-labs", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public ResponseEntity<?> addNewLab(@ModelAttribute LabsDTO labsDTO) {
-		try {
-			String fileName = null;
-	        if (labsDTO.getImg() != null && !labsDTO.getImg().isEmpty()) {
-	            MultipartFile img = labsDTO.getImg();
-	            fileName = "./src/main/resources/static/assets/img/" + labsDTO.getName() + ".jpg";
-	            
-	            File file = new File(fileName);
-	            try (FileOutputStream fos = new FileOutputStream(file)) {
-	                fos.write(img.getBytes());
-	            }
-	        }
-            
-			String newlabs = labsService.addNewLabs(
-	            labsDTO.getName(),
-	            labsDTO.getDescription(),
-	            labsDTO.getScope(),
-	            labsDTO.getTargetDescription(),
-	            labsDTO.getDuration(),
-	            fileName
-			);
-			
-	        return new ResponseEntity<>(newlabs, HttpStatus.OK);
-	    } catch (Exception e) {
-	        return new ResponseEntity<>("Failed to upload the lab: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-	    }
-	}
-	@Operation(
-			summary = "DELETE Method for delete exist labs"
-			)
-	@Tag(name = "Dashboard Endpoint")
-	@DeleteMapping("/delete-labs")
-	public ResponseEntity<?>  deleteExistslabs (String name){
-		
-		String labsExist = labsService.RemoveExistLabs(name);
-		
-		return new ResponseEntity<>(labsExist, HttpStatus.OK);
-	}
-}
+
+    // Injecting service dependencies through Spring's dependency injection
+    @Autowired
+    private LabsService labsService;
+    /**
+     * Retrieves all labs.
+     * @return ResponseEntity containing a list of all Labs objects
+     */
+    @Operation(
+        summary = "GET Method for display all labs"
+    )
+    @Tag(name = "Public Endpoint")
+    @GetMapping("/pub/labs")
+    public ResponseEntity<?> getAllLabs() {
+        // Fetch all labs from the services layer
+        List<Labs> allLabs = labsService.getAllLabs();
+        return new ResponseEntity<>(allLabs, HttpStatus.OK); // Return the list of labs
+    }
+
+    /**
+     * Adds a new lab to the database.
+     * @param labsDTO the request body contain lab's information
+     * @return ResponseEntity containing a success message
+     */
+    @Operation(
+        summary = "POST Method for adding new labs "
+    )
+    @Tag(name = "Dashboard Endpoint")
+    @PostMapping("/add-new-labs")
+    public ResponseEntity<?> addNewLab(@RequestBody LabsDTO labsDTO) {
+        // Add the new lab to the services layer
+    	String newLabs = labsService.addNewLabs(labsDTO);
+        return new ResponseEntity<>(newLabs, HttpStatus.OK); // Return the success message
+    }
+
 

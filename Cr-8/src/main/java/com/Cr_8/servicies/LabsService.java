@@ -41,21 +41,22 @@ public class LabsService {
      * @param duration    Duration of the Lab.
      * @return A success or error message.
      */
-    public String addNewLabs(String name , String description,String scope,List<String> target,String duration, String img) {
-		Optional<Labs> existlab = labsRepo.findByName(name);
+
+    public String addNewLabs(LabsDTO labsDTO) {
+		Optional<Labs> existlab = labsRepo.findByName(labsDTO.getName());
 		 if(existlab.isPresent()) {
-			 return "labs  found with name: "+name;
+			 return "labs  found with name: "+labsDTO.getName();
 		 }
 		
 		Labs newLabs =  new Labs();
-		
-		newLabs.setName(name);
-		newLabs.setDescription(description);
-		newLabs.setScope(scope);
-		newLabs.setDuration(duration);
-		newLabs.setImg(img);
+
+		newLabs.setName(labsDTO.getName());
+		newLabs.setDescription(labsDTO.getDescription());
+		newLabs.setScope(labsDTO.getScope());
+		newLabs.setDuration(labsDTO.getDuration());
 		List<Target> targetList=new ArrayList<Target>();
-		for (String target2 : target) {
+		for (String target2 : labsDTO.getTargetDescription()) {
+
 			if(targetService.findTargetByDescription(target2).isEmpty()) {
 				Target newTarget=targetService.createTarget(target2);
 				targetList.add(newTarget);

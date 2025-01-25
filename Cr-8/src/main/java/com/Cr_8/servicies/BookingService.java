@@ -64,42 +64,31 @@ public class BookingService {
      * @param numberOfDays   Number of days for the booking.
      */
     @Transactional
-    public void createBooking(LocalDate dataFrom,
-                              LocalDate dataTo,
-                              String additional,
-                              int partiNumber,
-                              String bookType,
-                              String visitorType,
-                              String name,
-                              String surname,
-                              String phone,
-                              List<String> labsName,
-                              String email,
-                              int numberOfDays) {
+    public void createBooking(BookingFormRequest booking) {
 
         BookingRequest book = new BookingRequest();
         book.setCreatedAt(LocalDate.now());
-        book.setDataFrom(dataFrom);
-        book.setDataTo(dataTo);
-        book.setAdditionalDetails(additional);
-        book.setParticipantNumber(partiNumber);
-        book.setBookType(bookType);
-        book.setVistorType(visitorType);
+        book.setDataFrom(booking.getDataFrom());
+        book.setDataTo(booking.getDataTo());
+        book.setAdditionalDetails(booking.getAdditionalDetails());
+        book.setParticipantNumber(booking.getParticipantNumber());
+        book.setBookType(booking.getBookType());
+        book.setVistorType(booking.getVisitorType());
         book.setStatus(statusrepo.findById(1)); // Set initial status (default to ID 1)
-        book.setNumberOfDays(numberOfDays);
+        book.setNumberOfDays(booking.getNumberOfDays());
 
         // Handle reference creation or update based on email
-        Optional<Reference> ref = referenceRepo.findByEmail(email);
+        Optional<Reference> ref = referenceRepo.findByEmail(booking.getEmail().toLowerCase());
         Reference user;
         if (ref.isPresent()) {
             user = ref.get();
-            user.setPhoneNumber(phone); // Update phone number if reference already exists
+            user.setPhoneNumber(booking.getPhone()); // Update phone number if reference already exists
         } else {
             user = new Reference();
-            user.setEmail(email);
-            user.setFirstName(name);
-            user.setLastName(surname);
-            user.setPhoneNumber(phone);
+            user.setEmail(booking.getEmail().toLowerCase());
+            user.setFirstName(booking.getName());
+            user.setLastName(booking.getSurname());
+            user.setPhoneNumber(booking.getPhone());
             user = referenceRepo.save(user); // Save new reference
         }
         book.setReference(user);
@@ -110,9 +99,9 @@ public class BookingService {
         book.setBookedDate(bookedDate);
 
         // Associate labs with the booking request
-        for (String lab : labsName) {
-            Labs existlabs = labRepo.findByName(lab).get();
-            book.setLabsSet(existlabs);
+        for (String lab : booking.getLabs()) {
+            Labs Lab1 = labRepo.findByName(lab).get();
+            book.addLab(Lab1);
         }
 
         // Save the booking request
