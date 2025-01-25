@@ -55,20 +55,20 @@ public class LabsController {
         return new ResponseEntity<>(allLabs, HttpStatus.OK); // Return the list of labs
     }
 
-    /**
-     * Adds a new lab to the database.
-     * @param labsDTO the request body contain lab's information
-     * @return ResponseEntity containing a success message
-     */
-    @Operation(
-        summary = "POST Method for adding new labs "
-    )
-    @Tag(name = "Dashboard Endpoint")
-    @PostMapping("/add-new-labs")
-    public ResponseEntity<?> addNewLab(@RequestBody LabsDTO labsDTO) {
-        // Add the new lab to the services layer
-    	String newLabs = labsService.addNewLabs(labsDTO);
-        return new ResponseEntity<>(newLabs, HttpStatus.OK); // Return the success message
-    }
+//    /**
+//     * Adds a new lab to the database.
+//     * @param labsDTO the request body contain lab's information
+//     * @return ResponseEntity containing a success message
+//     */
+//    @Operation(
+//        summary = "POST Method for adding new labs "
+//    )
+//    @Tag(name = "Dashboard Endpoint")
+//    @PostMapping("/add-new-labs")
+//    public ResponseEntity<?> addNewLab(@RequestBody LabsDTO labsDTO) {
+//        // Add the new lab to the services layer
+//    	String newLabs = labsService.addNewLabs(labsDTO);
+//        return new ResponseEntity<>(newLabs, HttpStatus.OK); // Return the success message
+//    }
 
-
+}
