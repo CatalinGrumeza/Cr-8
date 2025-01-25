@@ -110,13 +110,11 @@ public class AdminService {
      */
     public String setnewPassword(String code, String pass) {
         // Find the admin by reset code or throw an exception if not found
-        Admin admin = adminRepo.findByCode(code).orElseThrow(() -> new IllegalArgumentException("Code is not valid"));
-
-        // Update the admin's password and clear the reset code
-        admin.setPassword(passwordEncoder.encode(pass));
-        admin.setCode();
-        adminRepo.save(admin);
-        return "Password saved";
+    	if(adminRepo.findByCode(code).isPresent()) {
+			Optional<Admin> admin = adminRepo.findByCode(code);
+			return admin.get().getCode();	
+		}else
+			return "Codice errato!";
     }
 
     /**

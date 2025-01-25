@@ -1,16 +1,14 @@
 package com.Cr_8.servicies;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.Cr_8.dto.LabsDTO;
+
 import com.Cr_8.entities.Labs;
-import com.Cr_8.entities.Target;
+//import com.Cr_8.entities.Target;
 import com.Cr_8.exceptions.ResourceNotFoundException;
 import com.Cr_8.repositories.LabsRepo;
 @Service
@@ -19,8 +17,8 @@ public class LabsService {
     private LabsRepo labsRepo; // Repository for managing Labs entities
 
 
-    @Autowired
-    private TargetService targetService; // Service for managing Target entities
+//    @Autowired
+//    private TargetService targetService; // Service for managing Target entities
 
     /**
      * Retrieves all Labs records from the database.
@@ -42,31 +40,31 @@ public class LabsService {
      * @return A success or error message.
      */
 
-    public String addNewLabs(LabsDTO labsDTO) {
-		Optional<Labs> existlab = labsRepo.findByName(labsDTO.getName());
+    public Labs addNewLabs(String name) {
+		Optional<Labs> existlab = labsRepo.findByName(name);
 		 if(existlab.isPresent()) {
-			 return "labs  found with name: "+labsDTO.getName();
+			 return existlab.get();
 		 }
 		
 		Labs newLabs =  new Labs();
 
-		newLabs.setName(labsDTO.getName());
-		newLabs.setDescription(labsDTO.getDescription());
-		newLabs.setScope(labsDTO.getScope());
-		newLabs.setDuration(labsDTO.getDuration());
-		List<Target> targetList=new ArrayList<Target>();
-		for (String target2 : labsDTO.getTargetDescription()) {
-
-			if(targetService.findTargetByDescription(target2).isEmpty()) {
-				Target newTarget=targetService.createTarget(target2);
-				targetList.add(newTarget);
-			}else {
-				targetList.add(targetService.findTargetByDescription(target2).get());
-			}
-		}
-		newLabs.setTargets(targetList);
+		newLabs.setName(name);
+//		newLabs.setDescription(labsDTO.getDescription());
+//		newLabs.setScope(labsDTO.getScope());
+//		newLabs.setDuration(labsDTO.getDuration());
+//		List<Target> targetList=new ArrayList<Target>();
+//		for (String target2 : labsDTO.getTargetDescription()) {
+//
+//			if(targetService.findTargetByDescription(target2).isEmpty()) {
+//				Target newTarget=targetService.createTarget(target2);
+//				targetList.add(newTarget);
+//			}else {
+//				targetList.add(targetService.findTargetByDescription(target2).get());
+//			}
+//		}
+//		newLabs.setTargets(targetList);
 		labsRepo.save(newLabs);
-		return "added labs !";
+		return newLabs;
 	}
 
     /**

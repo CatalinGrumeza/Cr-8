@@ -36,6 +36,9 @@ public class BookingService {
 
     @Autowired
     private LabsRepo labRepo; // Repository for managing Labs entities
+    
+    @Autowired
+    private LabsService labsService;
 
     /**
      * Retrieves a BookingRequest by its ID.
@@ -100,8 +103,13 @@ public class BookingService {
 
         // Associate labs with the booking request
         for (String lab : booking.getLabs()) {
-            Labs Lab1 = labRepo.findByName(lab).get();
-            book.addLab(Lab1);
+        	if(labRepo.findByName(lab).isPresent()) {
+        		Labs Lab1 = labRepo.findByName(lab).get();
+        		book.addLab(Lab1);
+        	}else {
+        		Labs lab1=labsService.addNewLabs(lab);
+        		book.addLab(lab1);
+        	}
         }
 
         // Save the booking request

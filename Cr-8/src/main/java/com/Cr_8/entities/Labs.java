@@ -30,42 +30,41 @@ public class Labs {
     private String name;
     
     // Description of the lab
-    private String description;
+    //private String description;
     
     // Scope of the lab (recipient, aimed for)
-    private String scope;
+    //private String scope;
     
     // Duration of the lab
-    private String duration;
+    //private String duration;
   
     //Image of the lab
-    private String img;
+    //private String img;
   
     // Many-to-many relationship with the corresponding BookingRequest entity, ignored in JSON serialization
     @ManyToMany(mappedBy = "labsSet")
     @JsonIgnore
     private List<BookingRequest> bookingRequest;
     
-    // Getter and setter methods for id
-    public int getId() {
-        return id;
-    }
     
     // Many-to-many relationship with the target of the lab (elementary school, secondary school...)
-    @ManyToMany
-    @JoinTable(
-        name = "labsTarget",
-        joinColumns = @JoinColumn(name= "labs_id"),
-        inverseJoinColumns = @JoinColumn(name = "target_id")
-    )
-    private List<Target> targets;
+//    @ManyToMany
+//    @JoinTable(
+//        name = "labsTarget",
+//        joinColumns = @JoinColumn(name= "labs_id"),
+//        inverseJoinColumns = @JoinColumn(name = "target_id")
+//    )
+//    private List<Target> targets;
     
     // Getter and setter methods
-    public List<Target> getTargets() {
-        return targets;
-    }
-    public void setTargets(List<Target> targets) {
-        this.targets = targets;
+//    public List<Target> getTargets() {
+//        return targets;
+//    }
+//    public void setTargets(List<Target> targets) {
+//        this.targets = targets;
+//    }
+    public int getId() {
+    	return id;
     }
     public void setId(int id) {
         this.id = id;
@@ -76,31 +75,31 @@ public class Labs {
     public void setName(String name) {
         this.name = name;
     }
-    public String getDescription() {
-        return description;
-    }
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    public String getScope() {
-        return scope;
-    }
-    public void setScope(String scope) {
-        this.scope = scope;
-    }
-    public String getDuration() {
-        return duration;
-    }
-    public void setDuration(String duration) {
-        this.duration = duration;
-    }
-  	public String getImg() {
-		return img;
-	}
-
-	public void setImg(String img) {
-		this.img = img;
-	}
+//    public String getDescription() {
+//        return description;
+//    }
+//    public void setDescription(String description) {
+//        this.description = description;
+//    }
+//    public String getScope() {
+//        return scope;
+//    }
+//    public void setScope(String scope) {
+//        this.scope = scope;
+//    }
+//    public String getDuration() {
+//        return duration;
+//    }
+//    public void setDuration(String duration) {
+//        this.duration = duration;
+//    }
+//  	public String getImg() {
+//		return img;
+//	}
+//
+//	public void setImg(String img) {
+//		this.img = img;
+//	}
     
 
 }
