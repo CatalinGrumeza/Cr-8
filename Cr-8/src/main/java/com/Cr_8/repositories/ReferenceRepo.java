@@ -7,18 +7,40 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.Cr_8.entities.Reference;
 
-public interface ReferenceRepo extends JpaRepository<Reference,Long> {
+/**
+ * Repository interface for managing Reference entities.
+ */
+public interface ReferenceRepo extends JpaRepository<Reference, Long> {
 
-	/**
-     * Finds a reference by its id.
+    /**
+     * Finds a Reference by its ID.
      *
-     * @param id the id of the reference to be found
-     * @return an Optional containing the Reference object if found, or an empty Optional if not found
+     * @param id the ID of the reference to find.
+     * @return an Optional containing the reference if found, or empty otherwise.
      */
-	Optional<Reference> findById(Long id);
-	
-	Optional<Reference> findByEmail(String email);
-	Optional<Reference> findByPhoneNumber(String phone);
-	List<Reference> findAll();
-	
+    Optional<Reference> findById(Long id);
+
+    /**
+     * Finds a Reference by its email.
+     *
+     * @param email the email of the reference to find.
+     * @return an Optional containing the reference if found, or empty otherwise.
+     */
+    Optional<Reference> findByEmail(String email);
+
+    /**
+     * Finds a Reference by its phone number.
+     *
+     * @param phone the phone number of the reference to find.
+     * @return an Optional containing the reference if found, or empty Optional otherwise.
+     */
+    Optional<Reference> findByPhoneNumber(String phone);
+
+    /**
+     * Retrieves all Reference entities.
+     *
+     * @return a list of all references.
+     */
+    List<Reference> findAll();
 }
+
