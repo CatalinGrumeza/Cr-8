@@ -14,7 +14,7 @@
     <meta property="og:image" content="" />
 
     <!-- favicon -->
-    <link rel="icon" href="./favicon.ico" />
+    <link rel="icon" href="./assets/img/logo-a-caccia-di-sapere.png" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
@@ -29,6 +29,97 @@
     <!-- styles -->
     <link rel="stylesheet" href="./styles/normalize.css" />
     <link rel="stylesheet" href="./styles/main.css" />
+
+    <!-- structured data JSON -->
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "name": "Cascina Caccia",
+        "url": "https://cascinacaccia.net/",
+        "logo": "https://cascinacaccia.net/wp-content/uploads/2018/05/cropped-logo-cascina-header-1-1280x209.png",
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "email": "cascina.caccia@acmos.net",
+            "contactType": "Customer Service"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Via Serra Alta, 6",
+          "addressLocality": "San Sebastiano da Po",
+          "addressRegion": "TO",
+          "postalCode": "10020",
+          "addressCountry": "IT"
+        }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "url": "https://cascinacaccia.net/",
+        "name": "A caccia di sapere",
+        "description": "Cascina Caccia, un luogo dove memoria, educazione e cultura si incontrano per creare un futuro migliore."
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Quali modalità di visita offre Cascina Caccia?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Cascina Caccia offre quattro modalità di visita: - L'uscita didattica al mattino (dalle 9:00 alle 13:00) - L'uscita didattica con attività anche al pomeriggio (dalle 9:00 alle 16:00) - Qualche giorno in Cascina Caccia - La proposta “Territorio e Legalità” (prevede lo svolgimento di attività dalle 9:00 alle 16:00; la mattina presso l'Azienda Agricola Peracca, situata a Casalborgone e il pomeriggio presso Cascina Caccia). Contattateci per dettagli specifici sul costo di ogni attività."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quanti studenti può ospitare Cascina Caccia?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Cascina Caccia può ospitare un numero di studenti diverso in base al tipo di visita o attività scelta. Per l'uscita didattica al mattino (dalle 9:00 alle 13:00) e per l'uscita didattica con attività anche al pomeriggio (dalle 9:00 alle 16:00), così come per l'attività 'Territorio e Legalità', Cascina Caccia può accogliere un massimo di 2 classi per volta, per un totale di circa 50 persone massimo per uscita. Per chi sceglie di soggiornare per più giorni, la Cascina può ospitare un massimo di 24 persone, distribuite in più camerate."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quali sono i costi per organizzare una visita o un soggiorno in Cascina?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "I costi variano in base alla durata della visita, alle attività scelte e al numero di partecipanti. Vi invitiamo a contattarci per ricevere un preventivo personalizzato."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "La Cascina è accessibile a studenti con disabilità?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì, la struttura è dotata di spazi accessibili per studenti con disabilità motorie. Per esigenze particolari, vi invitiamo a comunicarci in anticipo le necessità del gruppo."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Come possiamo prenotare una visita o un soggiorno a Cascina Caccia?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Per prenotare una visita o un soggiorno, usate il form apposito contenuto nella pagina."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quali sono le modalità di pagamento?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il pagamento può essere effettuato tramite bonifico bancario entro 30 giorni dallo svolgimento delle attività o direttamente in loco. Saranno fornite istruzioni dettagliate al momento della conferma della prenotazione."
+            }
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="topPage-anchor"></div>
@@ -74,7 +165,7 @@
           <figure id="heroImg">
             <img
               class="main-images"
-              src="./assets/img/a-caccia-di-sapere.jpg"
+              src="./assets/img/a-caccia-di-sapere.webp"
               alt="immagine dalla cascina scattata dall'esterno"
             />
           </figure>
@@ -84,7 +175,7 @@
             <a href="https://cascinacaccia.net/" target="_blank">
               <img
                 class="logo"
-                src="./assets/img/logo-cascina-caccia.png"
+                src="./assets/img/logo-cascina-caccia.webp"
                 alt="logo di Cascina Caccia"
               />
             </a>
@@ -92,11 +183,11 @@
         </div>
       </div>
       <p>
-        Benvenuti a Cascina Caccia, un luogo dove memoria,
+        Benvenuti a <strong>Cascina Caccia</strong>, un luogo dove memoria,
         <strong>educazione</strong> e cultura si incontrano per creare un futuro
         migliore. Scopri i nostri percorsi <strong>educativi</strong> e gli
-        eventi culturali immersi nella bellezza di un bene confiscato alla
-        criminalità organizzata.
+        eventi culturali immersi nella bellezza di un
+        <strong>bene confiscato</strong> alla criminalità organizzata.
       </p>
 
       <!-- CALL TO ACTION -->
@@ -112,7 +203,7 @@
     <div class="main-container">
       <!-- I NOSTRI VALORI -->
       <section class="main-section" id="valori">
-        <h2>I valori di Cascina Caccia</h2>
+        <h2>I valori di <strong>Cascina Caccia</strong></h2>
 
         <div class="valori-section">
           <!-- 1. EDUCAZIONE -->
@@ -122,7 +213,7 @@
               <figure>
                 <img
                   class="valori-images"
-                  src="./assets/img/educazione.webp"
+                  src="./assets/img/valori/educazione.webp"
                   alt="lettere appese al muro con nomi di bambini sopra"
                 />
               </figure>
@@ -142,14 +233,15 @@
               <figure>
                 <img
                   class="valori-images"
-                  src="./assets/img/responsabilita.webp"
+                  src="./assets/img/valori/responsabilita.webp"
                   alt="ragazzi in un supermercato sventolano delle locandine relative a curiosità sugli alimenti"
                 />
               </figure>
               <p>
-                Ci impegniamo a trasformare un bene confiscato in un simbolo di
-                giustizia e riscatto, coinvolgendo attivamente il territorio
-                nella lotta contro le mafie.
+                Ci impegniamo a trasformare un
+                <strong>bene confiscato</strong> in un simbolo di
+                <strong>giustizia</strong> e riscatto, coinvolgendo attivamente
+                il territorio nella <strong>lotta contro le mafie</strong>.
               </p>
             </div>
           </article>
@@ -161,14 +253,14 @@
               <figure>
                 <img
                   class="valori-images"
-                  src="./assets/img/condivisione.webp"
+                  src="./assets/img/valori/condivisione.webp"
                   alt="ragazzi condividono del cibo"
                 />
               </figure>
               <p>
                 Crediamo nella forza della comunità: ogni progetto nasce e
-                cresce grazie alla collaborazione tra istituzioni, scuole e
-                cittadini.
+                cresce grazie alla <strong>collaborazione</strong> tra
+                istituzioni, scuole e cittadini.
               </p>
             </div>
           </article>
@@ -183,9 +275,11 @@
         <h2>Laboratori</h2>
 
         <p>
-          I laboratori di Cascina Caccia sono preparati dagli animatori
-          socioculturali di Acmos, specializzati nell'educazione alla
-          cittadinanza attiva e alla legalità.
+          I laboratori di <strong>Cascina Caccia</strong> sono preparati dagli
+          animatori socioculturali di Acmos, specializzati nell'<strong
+            >educazione</strong
+          >
+          alla cittadinanza attiva e alla <strong>legalità</strong>.
         </p>
         <p>
           I laboratori sono destinati, adeguando lo svolgimento delle attività a
@@ -202,35 +296,42 @@
             <div class="carousel-track-laboratori">
               <!-- Laboratorio 1 - Storia di Cascina Carla e Bruno Caccia -->
               <div class="carousel-card">
-                <h4>Laboratorio 1 - Storia di Cascina Carla e Bruno Caccia</h4>
+                <h4>
+                  Laboratorio 1 - Storia di Cascina
+                  <strong>Carla e Bruno Caccia</strong>
+                </h4>
                 <img
-                  src="./assets/img/laboratori/bruno-carla.jpg"
+                  src="./assets/img/laboratori/bruno-carla.webp"
                   alt="Foto di Bruno e Carla Caccia mentre ballano"
                 />
                 <p>
                   Attività che affronta la storia della Cascina, dall'acquisto
                   da parte della famiglia Belfiore alla confisca definitiva e al
-                  riutilizzo sociale.
+                  <strong>riutilizzo sociale</strong>.
                 </p>
               </div>
               <!-- Laboratorio 2 - Bruno Caccia -->
               <div class="carousel-card">
-                <h4>Laboratorio 2 - Bruno Caccia</h4>
+                <h4>Laboratorio 2 - <strong>Bruno Caccia</strong></h4>
                 <img
-                  src="./assets/img/laboratori/Bruno_caccia.gif"
+                  src="./assets/img/laboratori/Bruno_caccia.webp"
                   alt="Foto di Bruno Caccia"
                 />
                 <p>
-                  Laboratorio sulla figura di Bruno Caccia sotto il profilo
-                  istituzionale e umano, attraverso l'approfondimento delle
-                  vicende che portarono al suo omicidio.
+                  Laboratorio sulla figura di
+                  <strong>Bruno Caccia</strong> sotto il profilo istituzionale e
+                  umano, attraverso l'approfondimento delle vicende che
+                  portarono al suo omicidio.
                 </p>
               </div>
               <!-- Laboratorio 3 - Introduzione al tema mafia -->
               <div class="carousel-card">
-                <h4>Laboratorio 3 - Introduzione al tema mafia</h4>
+                <h4>
+                  Laboratorio 3 - Introduzione al tema della
+                  <strong>mafia</strong>
+                </h4>
                 <img
-                  src="./assets/img/laboratori/libera-associazioni.jpg"
+                  src="./assets/img/laboratori/libera-associazioni.webp"
                   alt="Foto di una bandiera di Libera Associazioni, nomi e numeri contro le mafie"
                 />
                 <p>
@@ -240,21 +341,22 @@
               </div>
               <!-- Laboratorio 4 - I beni confiscati -->
               <div class="carousel-card">
-                <h4>Laboratorio 4 - I beni confiscati</h4>
+                <h4>Laboratorio 4 - I <strong>beni confiscati</strong></h4>
                 <img
-                  src="./assets/img/laboratori/cascina.jpg"
+                  src="./assets/img/laboratori/cascina.webp"
                   alt="Foto di Cascina Caccia con dietro un arcobaleno"
                 />
                 <p>
-                  Attività di approfondimento sui beni confiscati, delle leggi
-                  sulla confisca dei beni e delle novità legislative.
+                  Attività di approfondimento sui
+                  <strong>beni confiscati</strong>, delle leggi sulla confisca
+                  dei beni e delle novità legislative.
                 </p>
               </div>
               <!-- Laboratorio 5 - Le mafie in Piemonte -->
               <div class="carousel-card">
-                <h4>Laboratorio 5 - Le mafie in Piemonte</h4>
+                <h4>Laboratorio 5 - Le <strong>mafie</strong> in Piemonte</h4>
                 <img
-                  src="./assets/img/laboratori/belfiore.jpg"
+                  src="./assets/img/laboratori/belfiore.webp"
                   alt="Foto di una porta in legno con sopra la scritta 'Famiglia Belfiore non si entra'"
                 />
                 <p>
@@ -264,22 +366,27 @@
               </div>
               <!-- Laboratorio 6 - Sostenibilità ambientale -->
               <div class="carousel-card">
-                <h4>Laboratorio 6 - Sostenibilità ambientale</h4>
+                <h4>
+                  Laboratorio 6 - <strong>Sostenibilità</strong> ambientale
+                </h4>
                 <img
-                  src="./assets/img/laboratori/piante.jpg"
+                  src="./assets/img/laboratori/piante.webp"
                   alt="Foto di piante"
                 />
                 <p>
                   A partire da una sensibilità sempre più diffusa, si
                   approfondirà il tema ambientale con i giovani tenendolo
-                  strettamente legato al tema delle disuguaglianze.
+                  strettamente legato al tema delle
+                  <strong>disuguaglianze</strong>.
                 </p>
               </div>
               <!-- Laboratorio 7 - La mafia attraverso il cinema -->
               <div class="carousel-card">
-                <h4>Laboratorio 7 - La mafia attraverso il cinema</h4>
+                <h4>
+                  Laboratorio 7 - La <strong>mafia</strong> attraverso il cinema
+                </h4>
                 <img
-                  src="./assets/img/laboratori/relax-in-cascina.jpg"
+                  src="./assets/img/laboratori/relax-in-cascina.webp"
                   alt="Foto di ragazzi riuniti a parlare seduti su un prato"
                 />
                 <p>
@@ -293,7 +400,7 @@
               <div class="carousel-card">
                 <h4>Laboratorio 8 - Il gioco non è un azzardo</h4>
                 <img
-                  src="./assets/img/laboratori/incontro-in-cascina.jpg"
+                  src="./assets/img/laboratori/incontro-in-cascina.webp"
                   alt="Foto di ragazzi seduti che parlano"
                 />
                 <p>
@@ -308,7 +415,7 @@
               <div class="carousel-card">
                 <h4>Laboratorio 9 - Chi non gioca vince</h4>
                 <img
-                  src="./assets/img/laboratori/riunione-in-cascina.jpg"
+                  src="./assets/img/laboratori/riunione-in-cascina.webp"
                   alt="Foto di ragazzi che scrivono e discutono insieme"
                 />
                 <p>
@@ -346,14 +453,14 @@
               <!-- Slide 1 -->
               <div class="carousel-card-image">
                 <img
-                  src="./assets/img/carousel/scritta-maglietta.jpg"
+                  src="./assets/img/carousel/scritta-maglietta.webp"
                   alt="Collaborazioni"
                 />
               </div>
               <!-- Slide 2 -->
               <div class="carousel-card-image">
                 <img
-                  src="./assets/img/carousel/attivita-in-cascina.jpg"
+                  src="./assets/img/carousel/attivita-in-cascina.webp"
                   alt="Storia"
                 />
               </div>
@@ -383,7 +490,7 @@
         <div id="reviews">
           <div class="review card1">
             <p class="review-caption">
-              "Un luogo che insegna più di mille lezioni"
+              "Un luogo che <strong>insegna</strong> più di mille lezioni"
             </p>
             <p class="review-author">
               Prof.ssa Elena P. Istituto Comprensivo Giovanni Pascoli, Asti
@@ -391,7 +498,7 @@
           </div>
           <div class="review card2">
             <p class="review-caption">
-              "Un'esperienza concreta di educazione civica"
+              "Un'esperienza concreta di <strong>educazione</strong> civica"
             </p>
             <p class="review-author">
               Giulia M. Liceo Classico Vittorio Alfieri, Cuneo
@@ -399,7 +506,8 @@
           </div>
           <div class="review card3">
             <p class="review-caption">
-              "Cascina Caccia è un laboratorio di speranza"
+              "<strong>Cascina Caccia</strong> è un laboratorio di
+              <strong>speranza</strong>"
             </p>
             <p class="review-author">
               Prof.ssa Francesca V. Scuola Media Statale Giuseppe Verdi,
@@ -564,7 +672,8 @@
               </label>
               <div class="accordion-content">
                 Cascina Caccia può ospitare un numero di studenti diverso in
-                base al tipo di visita o attività scelta. <br />
+                base al tipo di visita o attività scelta.
+                <br />
                 Per l'uscita didattica al mattino (dalle 9:00 alle 13:00) e per
                 l'uscita didattica con attività anche al pomeriggio (dalle 9:00
                 alle 16:00), così come per l'attività "Territorio e Legalità"
@@ -579,7 +688,8 @@
             <div class="accordion">
               <input type="radio" id="faq3" name="radio-group" />
               <label class="accordion-label" for="faq3">
-                Quali sono i costi per organizzare una visita o un soggiorno?
+                Quali sono i costi per organizzare una visita o un soggiorno in
+                Cascina?
               </label>
               <div class="accordion-content">
                 I costi variano in base alla durata della visita, alle attività
@@ -603,7 +713,8 @@
             <div class="accordion">
               <input type="radio" id="faq5" name="radio-group" />
               <label class="accordion-label" for="faq5">
-                Come possiamo prenotare una visita o un soggiorno?
+                Come possiamo prenotare una visita o un soggiorno a Cascina
+                Caccia?
               </label>
               <div class="accordion-content">
                 Per prenotare una visita o un soggiorno, usate il form apposito
@@ -687,7 +798,59 @@
 
     <!-- FOOTER -->
     <footer>
-      <!-- footer content -->
+      <div class="footer-container">
+        <div class="footer-left">
+          <figure>
+            <img
+              class="navbar-logo"
+              src="./assets/img/logo-a-caccia-di-sapere.png"
+              alt="Logo del sito"
+            />
+          </figure>
+        </div>
+
+        <div class="footer-center">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2813.3846159266354!2d7.9307773!3d45.1590609!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4787d83975557773%3A0xce98a033bd811358!2sCascina%20Caccia!5e0!3m2!1sit!2sit!4v1737766460301!5m2!1sit!2sit"
+            width="400"
+            height="300"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+
+        <div class="footer-right">
+          <div class="icon-links">
+            <a href="https://www.facebook.com/cascinacaccia" target="_blank">
+              <img
+                class="icon"
+                src="./assets/img/facebook.svg"
+                alt="Icona facebook"
+              />
+            </a>
+            <a
+              href="https://www.instagram.com/cascina_caccia_events/"
+              target="_blank"
+            >
+              <img
+                class="icon"
+                src="./assets/img/instagram.svg"
+                alt="Icona instagram"
+              />
+            </a>
+          </div>
+          <figure>
+            <a href="https://cascinacaccia.net/" target="_blank">
+              <img
+                src="./assets/img/logo-cascina-caccia.webp"
+                alt="logo di Cascina Caccia"
+              />
+            </a>
+          </figure>
+        </div>
+      </div>
     </footer>
 
     <script src="./scripts/navbar.js" defer></script>
