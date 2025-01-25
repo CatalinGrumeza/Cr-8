@@ -157,50 +157,48 @@
       <button class="hamburger" onclick="menu()">☰</button>
     </nav>
 
-    <header>
-      <!-- HERO SECTION -->
-      <div class="hero">
-        <div class="main-title">
-          <h1>A Caccia di Sapere</h1>
-          <figure id="heroImg">
-            <img
-              class="main-images"
-              src="./assets/img/a-caccia-di-sapere.webp"
-              alt="immagine dalla cascina scattata dall'esterno"
-            />
-          </figure>
-        </div>
-        <div>
-          <figure>
-            <a href="https://cascinacaccia.net/" target="_blank">
-              <img
-                class="logo"
-                src="./assets/img/logo-cascina-caccia.webp"
-                alt="logo di Cascina Caccia"
-              />
-            </a>
-          </figure>
-        </div>
-      </div>
-      <p>
-        Benvenuti a <strong>Cascina Caccia</strong>, un luogo dove memoria,
-        <strong>educazione</strong> e cultura si incontrano per creare un futuro
-        migliore. Scopri i nostri percorsi <strong>educativi</strong> e gli
-        eventi culturali immersi nella bellezza di un
-        <strong>bene confiscato</strong> alla criminalità organizzata.
-      </p>
-
-      <!-- CALL TO ACTION -->
-      <section class="cta-container">
-        <a href="#prenotazione-anchor" class="cta-buttons">Vieni a trovarci!</a>
-        <a href="#laboratori-anchor" class="cta-buttons">Scopri i Laboratori</a>
-      </section>
-    </header>
-
-    <hr />
-
-    <!-- MAIN CONTENT -->
     <div class="main-container">
+      <header>
+        <!-- HERO SECTION -->
+        <div class="hero">
+          <div class="big-image">
+            <div class="overlay">
+              <h1>A Caccia di Sapere</h1>
+            </div>
+          </div>
+          <div>
+            <figure>
+              <a href="https://cascinacaccia.net/" target="_blank">
+                <img
+                  class="logo"
+                  src="./assets/img/logo-cascina-caccia.webp"
+                  alt="logo di Cascina Caccia"
+                />
+              </a>
+            </figure>
+          </div>
+        </div>
+        <p>
+          Benvenuti a <strong>Cascina Caccia</strong>, un luogo dove memoria,
+          <strong>educazione</strong> e cultura si incontrano per creare un
+          futuro migliore. Scopri i nostri percorsi <strong>educativi</strong> e
+          gli eventi culturali immersi nella bellezza di un
+          <strong>bene confiscato</strong> alla criminalità organizzata.
+        </p>
+
+        <!-- CALL TO ACTION -->
+        <section class="cta-container">
+          <a href="#prenotazione-anchor" class="cta-buttons"
+            >Vieni a trovarci!</a
+          >
+          <a href="#laboratori-anchor" class="cta-buttons"
+            >Scopri i Laboratori</a
+          >
+        </section>
+      </header>
+
+      <hr />
+
       <!-- I NOSTRI VALORI -->
       <section class="main-section" id="valori">
         <h2>I valori di <strong>Cascina Caccia</strong></h2>
@@ -800,13 +798,26 @@
     <footer>
       <div class="footer-container">
         <div class="footer-left">
-          <figure>
+          <div id="contattaci">
             <img
-              class="navbar-logo"
-              src="./assets/img/logo-a-caccia-di-sapere.png"
-              alt="Logo del sito"
-            />
-          </figure>
+                  class="icon"
+                  src="./assets/img/email.svg"
+                  alt="Icona facebook"
+                />
+            <h3>Contattaci</h3>
+            <a href="mailto:cascina.caccia@acmos.net"
+              >cascina.caccia@acmos.net</a
+            >
+          </div>
+          <div class="footer-col-container">
+            <figure>
+              <img
+                class="navbar-logo"
+                src="./assets/img/logo-a-caccia-di-sapere.png"
+                alt="Logo del sito"
+              />
+            </figure>
+          </div>
         </div>
 
         <div class="footer-center">
@@ -822,33 +833,36 @@
         </div>
 
         <div class="footer-right">
-          <div class="icon-links">
-            <a href="https://www.facebook.com/cascinacaccia" target="_blank">
-              <img
-                class="icon"
-                src="./assets/img/facebook.svg"
-                alt="Icona facebook"
-              />
-            </a>
-            <a
-              href="https://www.instagram.com/cascina_caccia_events/"
-              target="_blank"
-            >
-              <img
-                class="icon"
-                src="./assets/img/instagram.svg"
-                alt="Icona instagram"
-              />
-            </a>
+          <div class="footer-col-container">
+            <h3>Scopri di più su Cascina Caccia</h3>
+            <div class="icon-links">
+              <a href="https://www.facebook.com/cascinacaccia" target="_blank">
+                <img
+                  class="icon"
+                  src="./assets/img/facebook-icon.svg"
+                  alt="Icona facebook"
+                />
+              </a>
+              <a
+                href="https://www.instagram.com/cascina_caccia/"
+                target="_blank"
+              >
+                <img
+                  class="icon"
+                  src="./assets/img/instagram-icon.svg"
+                  alt="Icona instagram"
+                />
+              </a>
+            </div>
+            <figure>
+              <a href="https://cascinacaccia.net/" target="_blank">
+                <img
+                  src="./assets/img/logo-cascina-caccia.webp"
+                  alt="logo di Cascina Caccia"
+                />
+              </a>
+            </figure>
           </div>
-          <figure>
-            <a href="https://cascinacaccia.net/" target="_blank">
-              <img
-                src="./assets/img/logo-cascina-caccia.webp"
-                alt="logo di Cascina Caccia"
-              />
-            </a>
-          </figure>
         </div>
       </div>
     </footer>

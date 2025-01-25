@@ -161,7 +161,7 @@ form.addEventListener("submit", async (event) => {
     participantNumber: document.getElementById("numeroPartecipanti").value,
     bookType: document.getElementById("periodoGiornata").value,
     visitorType: visitorTypeValue,
-    labs: ["Storia della Cascina Carla e Bruno Caccia"],
+    labs: ["Laboratorio 1 - Storia di Cascina Carla e Bruno Caccia"],
     createdAt: formattedDate,
   };
 
