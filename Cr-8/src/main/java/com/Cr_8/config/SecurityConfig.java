@@ -81,8 +81,11 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(auth -> {
-                    // Here we can set up rules for which requests can be accessed without authentication
-                    auth.anyRequest().permitAll(); // Allow all requests (for example purposes)
+//                  auth.requestMatchers("/login", "/login.html", "/index.html", "/register.html", "/","/styles/**", "/scripts/**","/image/**","/api/pub/**","/assets/**").permitAll();
+//               	  auth.requestMatchers("/api/**","/backoffice/**","/dashboard/**","/dashboard","/static/**").hasAnyRole("ADMIN","SUPER_ADMIN");
+//               	  auth.requestMatchers("/api/super/**","/backoffice/dashboard.html","/static/**","/dashboard/all-admins","/super/**").hasRole("SUPER_ADMIN");
+//                  auth.anyRequest().authenticated();
+               auth.anyRequest().permitAll();
                 })
                 .formLogin(form -> form
                     .loginPage("/login") // Custom login page URL
