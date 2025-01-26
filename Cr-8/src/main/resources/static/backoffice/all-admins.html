@@ -12,12 +12,11 @@
     <!-- NAVBAR -->
     <nav class="navbar-container">
       <div class="navbar-content">
-        <a href="/logout">
           <img
             class="navbar-logo"
             src="../assets/img/logo-a-caccia-di-sapere.webp"
             alt="Logo del sito"
-        /></a>
+        />
         <ul class="navbar">
           <li>
             <a href="/dashboard" title="Dashboard" onclick="menu()"
@@ -43,7 +42,7 @@
             >
           </li>
           <li>
-            <a href="/logout" title="Logout" onclick="menu()">Logout</a>
+            <a href="/logout" title="Logout" onclick="menu()" id="logout">Logout</a>
           </li>
         </ul>
       </div>
@@ -76,5 +75,6 @@
 
     <script src="../scripts/navbar.js" defer></script>
     <script src="../backoffice/scripts/all-admins.js"></script>
+    <script src="../backoffice/scripts/logout.js"></script>
   </body>
 </html>

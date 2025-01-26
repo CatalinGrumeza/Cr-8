@@ -1,3 +1,9 @@
+fetch('/csrf-token')
+  .then(response => response.json())
+  .then(data => {
+    csrfToken = data.token;
+  });
+
 document.getElementById('registerForm').addEventListener('submit', async function (event) {
     event.preventDefault(); // Prevent the default form submission
 
@@ -6,6 +12,9 @@ document.getElementById('registerForm').addEventListener('submit', async functio
     try {
         const response = await fetch('/api/super/register', {
             method: 'POST',
+            headers: {
+              'X-CSRF-TOKEN': csrfToken, // Add the token to the header
+            },
             body: formData
         });
 
