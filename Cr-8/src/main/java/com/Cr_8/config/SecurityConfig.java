@@ -92,7 +92,8 @@ public class SecurityConfig {
                     return corsConfig;
                 }))
                 .authorizeHttpRequests(auth -> {
-                  auth.requestMatchers("/login", "/login.html", "/index.html", "/register.html", "/","/styles/**", "/scripts/**","/image/**","/api/pub/**","/assets/**","/csrf-token","/logout").permitAll();
+                  auth.requestMatchers("/login", "/login.html", "/index.html", "/register.html", "/","/styles/**", "/scripts/**","/image/**","/api/pub/**","/assets/**","/csrf-token","/logout","/forgot-password","/forgot-password.html","/CodeVerification","/backoffice/code2.html","/newpassword","/backoffice/newpassowrd.html").permitAll();
+
                	  auth.requestMatchers("/api/**","/backoffice/**","/dashboard/**","/dashboard","/static/**","/logout").hasAnyRole("ADMIN","SUPER_ADMIN");
                	  auth.requestMatchers("/api/super/**","/backoffice/dashboard.html","/static/**","/dashboard/all-admins","/super/**","/logout").hasRole("SUPER_ADMIN");
                   auth.anyRequest().authenticated();

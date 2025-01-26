@@ -15,6 +15,7 @@ fetch('/csrf-token')
     csrfToken = data.token;
   });
 
+
 /**
  * Generic form validation function that handles field validation and form submission
  * @param {string} formId - The ID of the form element to validate
@@ -22,6 +23,7 @@ fetch('/csrf-token')
  * @param {string} apiEndpoint - API endpoint URL for form submission
  * @param {string} successMessage - Message to display on successful form submission
  */
+
 
 const formValidation = (formId, fieldsConfig, apiEndpoint, successMessage) => {
   const form = document.getElementById(formId);
