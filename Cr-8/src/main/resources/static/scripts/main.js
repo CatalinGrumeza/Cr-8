@@ -54,13 +54,49 @@ const formValidation = (formId, fieldsConfig, apiEndpoint, successMessage) => {
     );
   });
 
-  // Funzione per raccogliere i dati dal form
+  // Funzione per raccogliere i dati dal form e trasformarli
   const gatherFormData = () => {
     const data = {};
-    Object.keys(fieldsConfig).forEach((fieldId) => {
-      const field = document.getElementById(fieldId);
-      data[fieldId] = field.value;
-    });
+    const currentDate = new Date().toISOString().split("T")[0];
+
+    if (formId === "bookingForm") {
+      // Trasformazione dati per il booking form
+      data.name = document.getElementById("nome").value;
+      data.surname = document.getElementById("cognome").value;
+      data.phone = document.getElementById("cellulare").value;
+      data.email = document.getElementById("email").value;
+      data.numberOfDays = parseInt(
+        document.getElementById("numeroGiorni").value,
+        10
+      );
+      data.additionalDetails =
+        document.getElementById("richiesteParticolari").value || "";
+      data.dataFrom = document.getElementById("disponibilitaDa").value;
+      data.dataTo = document.getElementById("disponibilitaA").value;
+      data.participantNumber = parseInt(
+        document.getElementById("numeroPartecipanti").value,
+        10
+      );
+      data.bookType = document.getElementById("periodoGiornata").value || "";
+      data.visitorType = document.getElementById("visitatore").value;
+
+      // Raccolta dei laboratori selezionati
+      data.labs = Array.from(
+        document.querySelectorAll(
+          '#selectLaboratori input[type="checkbox"]:checked'
+        )
+      ).map((checkbox) => checkbox.value);
+
+      data.createdAt = currentDate;
+    } else if (formId === "infoForm") {
+      // Trasformazione dati per il info form
+      data.name = document.getElementById("nomeInfo").value;
+      data.surname = document.getElementById("cognomeInfo").value;
+      data.phone = document.getElementById("cellulareInfo").value;
+      data.email = document.getElementById("emailInfo").value;
+      data.text = document.getElementById("messaggio").value;
+    }
+
     return data;
   };
 
@@ -152,6 +188,17 @@ const bookingFields = {
       const maxGiorni =
         Math.ceil((disponibilitaA - disponibilitaDa) / (1000 * 60 * 60 * 24)) +
         1;
+      const periodoGiornata = document.getElementById("periodoGiornata");
+
+      if (giorni === 1) {
+        periodoGiornata.disabled = false;
+        periodoGiornata.required = true;
+      } else {
+        periodoGiornata.disabled = true;
+        periodoGiornata.required = false;
+        periodoGiornata.value = ""; // Reset value when disabled
+      }
+
       return giorni <= maxGiorni;
     },
     error:
@@ -172,12 +219,12 @@ const bookingFields = {
         10
       );
       return (
-        numeroGiorni === 1 &&
-        document.getElementById("periodoGiornata").value !== ""
+        numeroGiorni !== 1 ||
+        (numeroGiorni === 1 &&
+          document.getElementById("periodoGiornata").value !== "")
       );
     },
-    error:
-      "Seleziona un periodo della giornata se il numero di giorni è uguale a 1.",
+    error: "Seleziona un periodo della giornata per un singolo giorno.",
   },
   selectLaboratori: {
     customValidation: () => {
@@ -189,8 +236,11 @@ const bookingFields = {
     error: "Seleziona almeno un laboratorio.",
   },
   privacyPolicy: {
-    customValidation: (value) => value === "on",
-    error: "Accetta la privacy policy per procedere.",
+    customValidation: () => {
+      const privacyCheckbox = document.getElementById("privacyPolicy");
+      return privacyCheckbox.checked;
+    },
+    error: "Devi accettare i termini della Privacy Policy.",
   },
 };
 
@@ -200,6 +250,25 @@ formValidation(
   "/api/pub/create-booking",
   "Prenotazione inviata con successo!"
 );
+
+// Aggiungi un event listener per gestire la disabilitazione/abilitazione dinamica
+document.addEventListener("DOMContentLoaded", () => {
+  const numeroGiorni = document.getElementById("numeroGiorni");
+  const periodoGiornata = document.getElementById("periodoGiornata");
+
+  numeroGiorni.addEventListener("input", () => {
+    const giorni = parseInt(numeroGiorni.value, 10);
+
+    if (giorni === 1) {
+      periodoGiornata.disabled = false;
+      periodoGiornata.required = true;
+    } else {
+      periodoGiornata.disabled = true;
+      periodoGiornata.required = false;
+      periodoGiornata.value = "";
+    }
+  });
+});
 
 /* ------------------------------ INFO FORM ------------------------------ */
 const infoFields = {
@@ -227,8 +296,11 @@ const infoFields = {
     error: "Il messaggio deve contenere almeno 20 caratteri.",
   },
   privacyPolicyInfo: {
-    customValidation: (value) => value === "on",
-    error: "Accetta la privacy policy per procedere.",
+    customValidation: () => {
+      const privacyCheckbox = document.getElementById("privacyPolicyInfo");
+      return privacyCheckbox.checked;
+    },
+    error: "Devi accettare i termini della Privacy Policy.",
   },
 };
 
