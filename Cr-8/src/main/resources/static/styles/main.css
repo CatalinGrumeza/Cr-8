@@ -1,7 +1,7 @@
 /**
-* main.css (Aurora)
+* main.css
 *
-* Main Style Sheet used to style the landing page
+* Style Sheet used to style every page of the website
 */
 
 /* Montserrat (Google Font) */
@@ -222,9 +222,11 @@ form {
 
 form fieldset {
   border: 0px;
-  text-align: center;
   padding: 0;
   margin: 0;
+}
+form span {
+  text-align: center;
 }
 
 form label {
@@ -240,7 +242,23 @@ textarea {
   border-color: #b8b8b8;
   border-radius: 7px;
   padding: 1em;
-  /* margin-bottom: 2em; */
+}
+
+fieldset#selectLaboratori {
+  display: flex;
+  flex-direction: column;
+}
+
+fieldset#selectLaboratori input,
+input.privacy-check {
+  width: auto;
+}
+
+fieldset#selectLaboratori label,
+label.privacy-check {
+  margin: 0.8em 1em;
+  display: flex;
+  gap: 0.5rem;
 }
 
 .error {
@@ -271,7 +289,8 @@ textarea {
   resize: none;
 }
 
-button#submitBookForm {
+button.submit-btn {
+  cursor: pointer;
   margin: 0 auto;
   text-align: center;
   padding: 10px 20px;
@@ -286,7 +305,7 @@ button#submitBookForm {
   margin-top: 1em;
 }
 
-#mandatoryFields {
+.mandatory-fields {
   color: #b8b8b8;
 }
 
@@ -429,7 +448,6 @@ div.hero {
   font-size: 1.5rem;
   padding: 10px;
   cursor: pointer;
-  z-index: 10;
 }
 
 .carousel-laboratori .carousel-track-container {
@@ -488,7 +506,6 @@ div.hero {
   font-size: 1.5rem;
   padding: 10px;
   cursor: pointer;
-  z-index: 10;
 }
 
 .carousel-image .carousel-track-container {

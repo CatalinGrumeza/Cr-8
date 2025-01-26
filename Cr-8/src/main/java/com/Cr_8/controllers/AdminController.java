@@ -3,6 +3,7 @@ package com.Cr_8.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,7 +59,7 @@ public class AdminController {
             adminService.deleteAdmin(adminService.getAdminById(id));
         } catch (Exception e) {
             // Return error message if deletion fails
-            return ResponseEntity.ok(e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
         // Return success message if deletion is successful
         return ResponseEntity.ok("Admin eliminato con successo");

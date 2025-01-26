@@ -1,64 +1,102 @@
-# Progetto Spring Boot: A Caccia di Sapere
+# Spring Boot Project: "A Caccia di Sapere"
 
-## 1. Preparazione dell'ambiente di sviluppo
+Follow this comprehensive guide to set up your environment, configure necessary tools, and launch the application with ease.
 
-Per iniziare, assicurati di avere installato un IDE compatibile con Java, come **Eclipse**. Puoi scaricarlo direttamente da [questo link](https://www.eclipse.org/downloads/download.php?file=/oomph/epp/2024-09/R/eclipse-inst-jre-win64.exe). Durante l'installazione, seleziona l'opzione **Java Developer**.
+---
 
-## 2. Configurazione di Spring Boot in Eclipse
+## 1. Setting Up the Development Environment
 
-Una volta completata l'installazione di Eclipse, segui questi passaggi per configurare il framework Spring Boot tramite l'Eclipse Marketplace.
+Before diving into the project, ensure you have a **Java-compatible IDE**. We recommend **Eclipse**, which can be downloaded directly from [this link](https://www.eclipse.org/downloads/download.php?file=/oomph/epp/2024-09/R/eclipse-inst-jre-win64.exe).
 
-### Procedura:
+### Installation Steps:
 
-1. Apri il menu **Help** e seleziona **Eclipse Marketplace**.
-    ![Eclipse Marketplace](./immagini/img1.png)
+1. Download the installer and run it.
+2. During installation, select the **Java Developer** option.
 
-2. Cerca **Spring Boot** utilizzando la barra di ricerca.
+---
 
-3. Installa la **versione 4 di Spring Boot**.
-    ![Versione 4 di Spring Boot](./immagini/img2.png)
+## 2. Configuring Spring Boot in Eclipse
 
-4. Procedi con l'installazione selezionando **Trust Selected** quando richiesto.
-    ![Installa Spring Boot](./immagini/img3.png)
-    ![Trust Selected 1](./immagini/img4.png)
-    ![Trust Selected 2](./immagini/img5.png)
+Configure Spring Boot in Eclipse by following these steps:
 
-## 3. Installazione di un Gestore di Server
+### Step-by-Step Guide:
 
-Scarica e installa un gestore di server come **XAMPP** dal [sito ufficiale](https://www.apachefriends.org/it/index.html).
+1. Navigate to the **Help** menu and click **Eclipse Marketplace**.<br>
+   ![Eclipse Marketplace](./images/img1.png)
+   <br>
+2. Use the search bar to find **Spring Boot**.
+   <br>
+3. Install **Spring Boot version 4** for compatibility.<br>
+   ![Spring Boot Version 4](./images/img2.png)
+   <br>
+4. During installation, select **Trust Selected** when prompted.<br>
+   ![Install Spring Boot](./images/img3.png)<br>
+   ![Trust Selected 1](./images/img4.png)<br>
+   ![Trust Selected 2](./images/img5.png)<br>
 
-## 4. Configurazione del Database con XAMPP
+---
 
-### Procedura:
+## 3. Installing a Server Manager
 
-1. Dopo aver installato XAMPP, avvia i servizi **MySQL** e **Apache** premendo il pulsante **Start**.
-    ![Avvio di MySQL](./immagini/img11.png)
+To manage your database and server, download **XAMPP** from the [official website](https://www.apachefriends.org/index.html). This tool provides an easy-to-use interface for handling services like MySQL and Apache.
 
-2. Clicca su **Admin** accanto a **MySQL** per accedere a [phpMyAdmin](http://localhost/phpmyadmin/index.php). Qui, crea un nuovo database chiamato **democr8**.
-    ![Creazione nuovo database](./immagini/img12.png)
-    ![Nome db](./immagini/img13.png)
+---
 
-## 5. Importazione del Progetto in Eclipse
+##  4. Setting Up the Database with XAMPP
 
-### Procedura:
+A properly configured database is essential for the application to function correctly. Here's how to set it up:
 
-1. Nel menu **File** in alto, seleziona **Import**.
-    ![Importa Progetto](./immagini/img6.png)
+### Steps to Follow:
 
-2. Scegli l'opzione **Existing Maven Projects**.
-    ![Maven Esistente](./immagini/img7.png)
+1. Launch **XAMPP** and start the **MySQL** and **Apache** services by clicking **Start**.<br>
+   ![Start MySQL](./images/img11.png)
+   <br>
 
-3. Seleziona la directory che contiene il progetto e clicca su **Finish**.
-    ![Seleziona Cartella](./immagini/img8.png)
+2. Access [phpMyAdmin](http://localhost/phpmyadmin/index.php) by clicking **Admin** next to **MySQL**.
+<br>
 
-## 6. Avvio dell'Applicazione
+3. Create a new database named **democr8**.<br>
+   ![Create New Database](./images/img12.png)  
+   ![Database Name](./images/img13.png)
 
-### Istruzioni per l'avvio:
+   Your database is now ready.
 
-1. **Esecuzione del progetto**: Dopo la compilazione, seleziona in alto **Boot Dashboard** e successivamente vai nella sezione in basso, espandi la lista **local**, clicca con il tasto destro su **Cr-8** e seleziona **(Re)start**. L'applicazione verrà avviata sul server locale (porta predefinita: 8080).
-![Boot Dashboard](./immagini/img9.png)
-![Avvia progetto](./immagini/img10.png)
+---
 
-2. **Verifica dell'avvio**: Apri un browser e vai all'indirizzo [http://localhost:8080](http://localhost:8080) per visualizzare l'applicazione in funzione.
+## 5. Importing the Project into Eclipse
+
+Once your environment is set up, it's time to import the project into Eclipse.
+
+### Follow These Steps:
+
+1. Open Eclipse and go to the **File** menu, then select **Import**.<br>
+   ![Import Project](./images/img6.png)
+   <br>
+
+2. Choose **Existing Maven Projects**.<br>
+   ![Existing Maven](./images/img7.png)
+   <br>
+
+3. Browse to the folder containing the project files, then click **Finish**.<br>
+   ![Select Folder](./images/img8.png)<br>
+   The project is now loaded and ready to be worked on.
+
+---
+
+## 6. Running the Application
+
+With everything in place, you’re ready to run the application.
+
+### How to Run:
+
+1. **Start the Project**:  
+   - Navigate to the **Boot Dashboard** at the top.  
+   - In the **local** section, find **Cr-8**, right-click, and select **(Re)start**.  
+     ![Boot Dashboard](./images/img9.png)  
+     ![Start Project](./images/img10.png)
+
+2. **Check the Application**:  
+   - Open your browser and go to [http://localhost:8080](http://localhost:8080).  
+   - If everything is configured correctly, you’ll see the application up and running.  
 
 ---

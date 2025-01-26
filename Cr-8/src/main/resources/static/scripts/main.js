@@ -1,13 +1,115 @@
 /**
  * @file: main.js
  * @author: CR-8
- * This code includes the logic to validate the book form and the info form input fields
+ * This code includes the logic for the index.html page to manage booking form validation, info form validation,
+ * labs carousel and anchor link animations
  */
 
-const form = document.getElementById("bookingForm");
+/* ------------------------------ GENERIC FORM VALIDATION ------------------------------ */
+const formValidation = (formId, fieldsConfig, apiEndpoint, successMessage) => {
+  const form = document.getElementById(formId);
 
-// form fields
-const fields = {
+  // Validazione dei campi del form
+  const validateField = (field, fieldConfig, errorSpan) => {
+    let isValid = true;
+    if (fieldConfig.regex) {
+      isValid = fieldConfig.regex.test(field.value);
+    }
+    if (fieldConfig.customValidation) {
+      isValid = isValid && fieldConfig.customValidation(field.value);
+    }
+    if (!isValid) {
+      field.style.borderColor = "red";
+      errorSpan.textContent = fieldConfig.error;
+      errorSpan.style.color = "red";
+    } else {
+      field.style.borderColor = "green";
+      errorSpan.textContent = "";
+    }
+    return isValid;
+  };
+
+  // Funzione per validare tutti i campi
+  const validateFormFields = () => {
+    let formIsValid = true;
+    Object.keys(fieldsConfig).forEach((fieldId) => {
+      const field = document.getElementById(fieldId);
+      const errorSpan = document.getElementById(`${fieldId}Error`);
+      if (!validateField(field, fieldsConfig[fieldId], errorSpan)) {
+        formIsValid = false;
+      }
+    });
+    return formIsValid;
+  };
+
+  // Aggiungi event listeners per la validazione dei campi
+  Object.keys(fieldsConfig).forEach((fieldId) => {
+    const field = document.getElementById(fieldId);
+    const errorSpan = document.getElementById(`${fieldId}Error`);
+    field.addEventListener("input", () =>
+      validateField(field, fieldsConfig[fieldId], errorSpan)
+    );
+    field.addEventListener("blur", () =>
+      validateField(field, fieldsConfig[fieldId], errorSpan)
+    );
+  });
+
+  // Funzione per raccogliere i dati dal form
+  const gatherFormData = () => {
+    const data = {};
+    Object.keys(fieldsConfig).forEach((fieldId) => {
+      const field = document.getElementById(fieldId);
+      data[fieldId] = field.value;
+    });
+    return data;
+  };
+
+  // Gestione dell'invio del form
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const formIsValid = validateFormFields();
+
+    const formErrorSpan = document.getElementById(`${formId}Error`);
+    if (!formIsValid) {
+      formErrorSpan.textContent =
+        "Per favore, correggi gli errori evidenziati prima di inviare il modulo.";
+      formErrorSpan.style.color = "red";
+      return;
+    }
+
+    formErrorSpan.textContent = "";
+    const data = gatherFormData();
+
+    try {
+      const response = await fetch(apiEndpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        alert(successMessage);
+        form.reset();
+      } else {
+        const errorData = await response.json();
+        formErrorSpan.textContent = `Errore durante l'invio: ${
+          errorData.message || "riprovare più tardi."
+        }`;
+        formErrorSpan.style.color = "red";
+      }
+    } catch (error) {
+      formErrorSpan.textContent =
+        "Si è verificato un errore. Per favore, riprova più tardi.";
+      formErrorSpan.style.color = "red";
+      console.error("Errore:", error);
+    }
+  });
+};
+
+/* ------------------------------ BOOKING FORM ------------------------------ */
+const bookingFields = {
   nome: {
     regex: /^[a-zA-ZÀ-ÖØ-öø-ÿ\'\-]{2,}$/,
     error:
@@ -28,32 +130,39 @@ const fields = {
     error: "Inserisci un'email valida.",
   },
   disponibilitaDa: {
-    customValidation: (value) => {
-      const today = new Date();
-      const inputDate = new Date(value);
-      return inputDate >= today;
-    },
+    customValidation: (value) => new Date(value) >= new Date(),
     error: "La data deve essere successiva a oggi.",
   },
   disponibilitaA: {
-    customValidation: (value) => {
-      const disponibilitaDa = document.getElementById("disponibilitaDa").value;
-      const fromDate = new Date(disponibilitaDa);
-      const toDate = new Date(value);
-      return toDate > fromDate;
-    },
+    customValidation: (value) =>
+      new Date(value) >
+      new Date(document.getElementById("disponibilitaDa").value),
     error: "La data deve essere successiva alla data di inizio disponibilità.",
   },
   numeroGiorni: {
     regex: /^[1-9]\d*$/,
-    error: "La visita deve essere di almeno 1 giorno.",
+    customValidation: (value) => {
+      const giorni = parseInt(value, 10);
+      const disponibilitaDa = new Date(
+        document.getElementById("disponibilitaDa").value
+      );
+      const disponibilitaA = new Date(
+        document.getElementById("disponibilitaA").value
+      );
+      const maxGiorni =
+        Math.ceil((disponibilitaA - disponibilitaDa) / (1000 * 60 * 60 * 24)) +
+        1;
+      return giorni <= maxGiorni;
+    },
+    error:
+      "Il numero di giorni non può superare il periodo di disponibilità selezionato.",
   },
   numeroPartecipanti: {
     regex: /^(\d{2,}|[1-9]\d{1,})$/,
     error: "Inserisci un numero di partecipanti minimo di 10.",
   },
   visitatore: {
-    customValidation: (value) => value !== "", // Assicura che non sia la stringa vuota
+    customValidation: (value) => value !== "",
     error: "Seleziona un visitatore.",
   },
   periodoGiornata: {
@@ -62,143 +171,75 @@ const fields = {
         document.getElementById("numeroGiorni").value,
         10
       );
-      const periodoGiornataValue =
-        document.getElementById("periodoGiornata").value;
-      // Validazione solo se numeroGiorni è 1
-      return numeroGiorni === 1 ? periodoGiornataValue !== "" : true;
+      return (
+        numeroGiorni === 1 &&
+        document.getElementById("periodoGiornata").value !== ""
+      );
     },
     error:
       "Seleziona un periodo della giornata se il numero di giorni è uguale a 1.",
   },
+  selectLaboratori: {
+    customValidation: () => {
+      const checkboxes = document.querySelectorAll(
+        '#selectLaboratori input[type="checkbox"]'
+      );
+      return Array.from(checkboxes).some((checkbox) => checkbox.checked);
+    },
+    error: "Seleziona almeno un laboratorio.",
+  },
+  privacyPolicy: {
+    customValidation: (value) => value === "on",
+    error: "Accetta la privacy policy per procedere.",
+  },
 };
 
-// fields validation
-Object.keys(fields).forEach((fieldId) => {
-  const field = document.getElementById(fieldId);
-  const errorSpan = document.getElementById(`${fieldId}Error`);
+formValidation(
+  "bookingForm",
+  bookingFields,
+  "/api/pub/create-booking",
+  "Prenotazione inviata con successo!"
+);
 
-  field.addEventListener("input", () =>
-    validateField(field, fields[fieldId], errorSpan)
-  );
-  field.addEventListener("blur", () =>
-    validateField(field, fields[fieldId], errorSpan)
-  );
-});
+/* ------------------------------ INFO FORM ------------------------------ */
+const infoFields = {
+  nomeInfo: {
+    regex: /^[a-zA-ZÀ-ÖØ-öø-ÿ\'\-]{2,}$/,
+    error:
+      "Il nome deve contenere almeno due lettere. Sono ammessi lettere, accenti e apostrofi.",
+  },
+  cognomeInfo: {
+    regex: /^[a-zA-ZÀ-ÖØ-öø-ÿ\'\-]{2,}$/,
+    error:
+      "Il cognome deve contenere almeno due lettere. Sono ammessi lettere, accenti e apostrofi.",
+  },
+  emailInfo: {
+    regex: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
+    error: "Inserisci un'email valida.",
+  },
+  cellulareInfo: {
+    regex: /^(\+39\s?)?\d{3}[-\s]?\d{3}[-\s]?\d{4}$/,
+    error:
+      "Il numero di telefono deve contenere 10 cifre separate da spazi o trattini. Il prefisso +39 è opzionale.",
+  },
+  messaggio: {
+    customValidation: (value) => value.trim().length >= 20,
+    error: "Il messaggio deve contenere almeno 20 caratteri.",
+  },
+  privacyPolicyInfo: {
+    customValidation: (value) => value === "on",
+    error: "Accetta la privacy policy per procedere.",
+  },
+};
 
-function validateField(field, fieldConfig, errorSpan) {
-  let isValid = true;
+formValidation(
+  "infoForm",
+  infoFields,
+  "/api/pub/create-info",
+  "Informazioni inviate con successo!"
+);
 
-  if (fieldConfig.regex) {
-    isValid = fieldConfig.regex.test(field.value);
-  }
-
-  if (fieldConfig.customValidation) {
-    isValid = isValid && fieldConfig.customValidation(field.value);
-  }
-
-  if (!isValid) {
-    field.style.borderColor = "red";
-    errorSpan.textContent = fieldConfig.error;
-    errorSpan.style.color = "red";
-  } else {
-    field.style.borderColor = "green";
-    errorSpan.textContent = "";
-  }
-}
-
-// if numeroGiorni > 1, periodoGiornata select is disabled
-const numeroGiorniField = document.getElementById("numeroGiorni");
-const periodoGiornataField = document.getElementById("periodoGiornata");
-
-numeroGiorniField.addEventListener("input", () => {
-  const numeroGiorni = parseInt(numeroGiorniField.value, 10);
-  if (numeroGiorni > 1) {
-    periodoGiornataField.disabled = true;
-    periodoGiornataField.value = "";
-  } else {
-    periodoGiornataField.disabled = false;
-  }
-});
-
-// validation after form submit
-form.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  let formIsValid = true;
-
-  Object.keys(fields).forEach((fieldId) => {
-    const field = document.getElementById(fieldId);
-    const errorSpan = document.getElementById(`${fieldId}Error`);
-    if (!validateField(field, fields[fieldId], errorSpan)) {
-      formIsValid = false;
-    }
-  });
-
-  const formErrorSpan = document.getElementById("formError");
-
-  if (!formIsValid) {
-    /* formErrorSpan.textContent =
-      "Per favore, correggi gli errori evidenziati prima di inviare il modulo."; */
-    // return;
-  }
-
-  formErrorSpan.textContent = "";
-
-  const formattedDate = new Date().toISOString().split("T")[0];
-
-  const visitorTypeValue = document.getElementById("visitatore").value;
-
-  if (visitorTypeValue == "") visitorTypeValue = "full day";
-
-  const data = {
-    name: document.getElementById("nome").value,
-    surname: document.getElementById("cognome").value,
-    phone: document.getElementById("cellulare").value,
-    email: document.getElementById("email").value,
-    numberOfDays: document.getElementById("numeroGiorni").value,
-    additionalDetails: document.getElementById("richiesteParticolari").value,
-    dataFrom: document.getElementById("disponibilitaDa").value,
-    dataTo: document.getElementById("disponibilitaA").value,
-    participantNumber: document.getElementById("numeroPartecipanti").value,
-    bookType: document.getElementById("periodoGiornata").value,
-    visitorType: visitorTypeValue,
-    labs: ["Laboratorio 1 - Storia di Cascina Carla e Bruno Caccia"],
-    createdAt: formattedDate,
-  };
-
-  try {
-    console.log(data);
-
-    // Effettua la richiesta POST
-    const response = await fetch(
-      "/api/pub/create-booking",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-        //body: data,
-      }
-    );
-
-    if (response.ok) {
-      // success alert
-      alert("Prenotazione inviata con successo!");
-      // form fields reset
-      form.reset();
-    } else {
-      // handle response errors
-      const errorData = await response.json();
-      formErrorSpan.textContent =
-        "Errore durante l'invio della prenotazione: " +
-        (errorData.message || "riprovare più tardi.");
-    }
-  } catch (error) {
-    formErrorSpan.textContent =
-      "Si è verificato un errore. Per favore, riprova più tardi.";
-    console.error("Errore:", error);
-  }
-});
+/* ------------------------------ ANCHORS LINKS ANIMATIONS ------------------------------ */
 
 // Animates anchor link
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -213,4 +254,75 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       });
     }
   });
+});
+
+/* ------------------------------ CAROUSEL ------------------------------ */
+
+// carousel logic
+const trackLaboratori = document.querySelector(".carousel-track-laboratori");
+const prevButtonLaboratori = document.querySelector(
+  ".carousel-prev-laboratori"
+);
+const nextButtonLaboratori = document.querySelector(
+  ".carousel-next-laboratori"
+);
+const cardsLaboratori = Array.from(trackLaboratori.children);
+const cardWidthLaboratori = cardsLaboratori[0].getBoundingClientRect().width;
+
+let currentLaboratoriIndex = 0;
+
+function updateLaboratoriTrackPosition() {
+  const amountToMove = -(cardWidthLaboratori + 20) * currentLaboratoriIndex;
+  trackLaboratori.style.transition = "transform 0.5s ease-in-out";
+  trackLaboratori.style.transform = `translateX(${amountToMove}px)`;
+}
+
+nextButtonLaboratori.addEventListener("click", () => {
+  if (currentLaboratoriIndex < cardsLaboratori.length - 1) {
+    currentLaboratoriIndex++;
+  } else {
+    currentLaboratoriIndex = 0;
+  }
+  updateLaboratoriTrackPosition();
+});
+
+prevButtonLaboratori.addEventListener("click", () => {
+  if (currentLaboratoriIndex > 0) {
+    currentLaboratoriIndex--;
+  } else {
+    currentLaboratoriIndex = cardsLaboratori.length - 1;
+  }
+  updateLaboratoriTrackPosition();
+});
+
+const trackImage = document.querySelector(".carousel-track-image");
+const prevButtonImage = document.querySelector(".carousel-prev-image");
+const nextButtonImage = document.querySelector(".carousel-next-image");
+const cardsImage = Array.from(trackImage.children);
+const cardWidthImage = cardsImage[0].getBoundingClientRect().width;
+
+let currentImageIndex = 0;
+
+function updateImageTrackPosition() {
+  const amountToMove = -(cardWidthImage + 20) * currentImageIndex;
+  trackImage.style.transition = "transform 0.5s ease-in-out";
+  trackImage.style.transform = `translateX(${amountToMove}px)`;
+}
+
+nextButtonImage.addEventListener("click", () => {
+  if (currentImageIndex < cardsImage.length - 1) {
+    currentImageIndex++;
+  } else {
+    currentImageIndex = 0;
+  }
+  updateImageTrackPosition();
+});
+
+prevButtonImage.addEventListener("click", () => {
+  if (currentImageIndex > 0) {
+    currentImageIndex--;
+  } else {
+    currentImageIndex = cardsImage.length - 1;
+  }
+  updateImageTrackPosition();
 });

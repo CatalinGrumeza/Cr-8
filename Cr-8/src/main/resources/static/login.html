@@ -42,47 +42,53 @@
       <button class="hamburger" onclick="menu()">☰</button>
     </nav>
 
-    <div class="warning">
-      <p>Attenzione: quest'area è riservata ai gestori del sito</p>
-      <p>
-        <a class="back-to-home" href="./index.html">Torna alla Home</a>
-      </p>
-    </div>
-
-    <div id="formLogin">
-      <h2>Login</h2>
-      <h3>accedi all'area riservata</h3>
-      <!-- Form Normal -->
-      <form id="loginForm" action="/login" method="POST">
-        <div class="form-group">
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Email"
-            required
-            class="form-control"
-          />
+    <div class="main-container">
+      <div class="warning">
+        <p>Attenzione: quest'area è riservata ai gestori del sito</p>
+        <p>
+          <a class="back-to-home" href="./index.html">Torna alla Home</a>
+        </p>
+      </div>
+      <div id="formLogin">
+        <h2>Login</h2>
+        <h3>accedi all'area riservata</h3>
+        <!-- Form Normal -->
+        <div class="form-container">
+          <form id="loginForm" action="/login" method="POST">
+            <div class="form-group">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email"
+                required
+                class="form-control"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Password"
+                required
+                class="form-control"
+              />
+            </div>
+            <div class="btn-container">
+              <div class="container">
+                <button type="submit" id="submitLoginForm" class="submit-btn">
+                  Conferma
+                </button>
+              </div>
+              <!-- DELETE THIS -->
+              <br /><br /><a href="./backoffice/dashboard.html"
+                >(DA RIMUOVERE) vai alla dashboard</a
+              >
+            </div>
+          </form>
         </div>
-        <div class="form-group">
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Password"
-            required
-            class="form-control"
-          />
-        </div>
-        <div class="btn-container">
-          <button type="submit" class="submitBtn">Conferma</button>
-
-          <!-- DELETE THIS -->
-          <br /><br /><a href="./backoffice/dashboard.html"
-            >(DA RIMUOVERE) vai alla dashboard</a
-          >
-        </div>
-      </form>
+      </div>
     </div>
 
     <!-- end of the body -->
