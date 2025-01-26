@@ -29,7 +29,7 @@ public class InfoFormRequest {
      *This field cannot be empty 
      * and must match the specified pattern for valid numbers.
      */
-    @Pattern(regexp = "^(\\+39)?\\s?3[1-9]\\d{7,9}$", message = "NOT VALID NUMBER")
+    // @Pattern(regexp = "^(\\+39)?\\s?3[1-9]\\d{7,9}$", message = "NOT VALID NUMBER")
     @NotBlank(message = "PHONE NUMBER CAN'T BE EMPTY")
     private String phone;
 

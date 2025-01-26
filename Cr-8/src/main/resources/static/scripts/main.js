@@ -6,10 +6,24 @@
  */
 
 /* ------------------------------ GENERIC FORM VALIDATION ------------------------------ */
+
+/**
+ * Generic form validation function that handles field validation and form submission
+ * @param {string} formId - The ID of the form element to validate
+ * @param {Object} fieldsConfig - Configuration object containing validation rules for each field
+ * @param {string} apiEndpoint - API endpoint URL for form submission
+ * @param {string} successMessage - Message to display on successful form submission
+ */
 const formValidation = (formId, fieldsConfig, apiEndpoint, successMessage) => {
   const form = document.getElementById(formId);
 
-  // Validazione dei campi del form
+  /**
+   * Validates a single form field against its configuration rules
+   * @param {HTMLElement} field - The form field element to validate
+   * @param {Object} fieldConfig - Validation configuration for the field
+   * @param {HTMLElement} errorSpan - Element to display validation errors
+   * @returns {boolean} Whether the field is valid
+   */
   const validateField = (field, fieldConfig, errorSpan) => {
     let isValid = true;
     if (fieldConfig.regex) {
@@ -29,7 +43,10 @@ const formValidation = (formId, fieldsConfig, apiEndpoint, successMessage) => {
     return isValid;
   };
 
-  // Funzione per validare tutti i campi
+  /**
+   * Validates all fields in the form
+   * @returns {boolean} Whether all fields are valid
+   */
   const validateFormFields = () => {
     let formIsValid = true;
     Object.keys(fieldsConfig).forEach((fieldId) => {
@@ -42,7 +59,6 @@ const formValidation = (formId, fieldsConfig, apiEndpoint, successMessage) => {
     return formIsValid;
   };
 
-  // Aggiungi event listeners per la validazione dei campi
   Object.keys(fieldsConfig).forEach((fieldId) => {
     const field = document.getElementById(fieldId);
     const errorSpan = document.getElementById(`${fieldId}Error`);
@@ -54,13 +70,15 @@ const formValidation = (formId, fieldsConfig, apiEndpoint, successMessage) => {
     );
   });
 
-  // Funzione per raccogliere i dati dal form e trasformarli
+  /**
+   * Gathers all form data into an object for submission
+   * @returns {Object} Form data object
+   */
   const gatherFormData = () => {
     const data = {};
     const currentDate = new Date().toISOString().split("T")[0];
 
     if (formId === "bookingForm") {
-      // Trasformazione dati per il booking form
       data.name = document.getElementById("nome").value;
       data.surname = document.getElementById("cognome").value;
       data.phone = document.getElementById("cellulare").value;
@@ -80,7 +98,6 @@ const formValidation = (formId, fieldsConfig, apiEndpoint, successMessage) => {
       data.bookType = document.getElementById("periodoGiornata").value || "";
       data.visitorType = document.getElementById("visitatore").value;
 
-      // Raccolta dei laboratori selezionati
       data.labs = Array.from(
         document.querySelectorAll(
           '#selectLaboratori input[type="checkbox"]:checked'
@@ -89,7 +106,6 @@ const formValidation = (formId, fieldsConfig, apiEndpoint, successMessage) => {
 
       data.createdAt = currentDate;
     } else if (formId === "infoForm") {
-      // Trasformazione dati per il info form
       data.name = document.getElementById("nomeInfo").value;
       data.surname = document.getElementById("cognomeInfo").value;
       data.phone = document.getElementById("cellulareInfo").value;
@@ -100,7 +116,6 @@ const formValidation = (formId, fieldsConfig, apiEndpoint, successMessage) => {
     return data;
   };
 
-  // Gestione dell'invio del form
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     const formIsValid = validateFormFields();
@@ -196,7 +211,7 @@ const bookingFields = {
       } else {
         periodoGiornata.disabled = true;
         periodoGiornata.required = false;
-        periodoGiornata.value = ""; // Reset value when disabled
+        periodoGiornata.value = "";
       }
 
       return giorni <= maxGiorni;
@@ -251,7 +266,6 @@ formValidation(
   "Prenotazione inviata con successo!"
 );
 
-// Aggiungi un event listener per gestire la disabilitazione/abilitazione dinamica
 document.addEventListener("DOMContentLoaded", () => {
   const numeroGiorni = document.getElementById("numeroGiorni");
   const periodoGiornata = document.getElementById("periodoGiornata");
@@ -313,7 +327,7 @@ formValidation(
 
 /* ------------------------------ ANCHORS LINKS ANIMATIONS ------------------------------ */
 
-// Animates anchor link
+// animates anchor link
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
     e.preventDefault();
@@ -343,6 +357,9 @@ const cardWidthLaboratori = cardsLaboratori[0].getBoundingClientRect().width;
 
 let currentLaboratoriIndex = 0;
 
+/**
+ * Updates carousel track position for the laboratories section
+ */
 function updateLaboratoriTrackPosition() {
   const amountToMove = -(cardWidthLaboratori + 20) * currentLaboratoriIndex;
   trackLaboratori.style.transition = "transform 0.5s ease-in-out";
@@ -375,6 +392,9 @@ const cardWidthImage = cardsImage[0].getBoundingClientRect().width;
 
 let currentImageIndex = 0;
 
+/**
+ * Updates carousel track position for the images section
+ */
 function updateImageTrackPosition() {
   const amountToMove = -(cardWidthImage + 20) * currentImageIndex;
   trackImage.style.transition = "transform 0.5s ease-in-out";
