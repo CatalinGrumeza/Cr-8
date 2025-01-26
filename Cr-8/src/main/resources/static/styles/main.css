@@ -18,7 +18,7 @@ html {
   box-sizing: inherit;
 }
 
-/* custom properties */
+/* ------------------------------ CUSTOM PROPERTIES ------------------------------ */
 :root {
   --main-font-family: "Montserrat", serif;
 
@@ -59,7 +59,7 @@ body {
   margin: var(--mobile-page-margin);
 }
 
-/* navbar */
+/* ------------------------------ NAVBAR ------------------------------ */
 .navbar-container {
   margin: 0;
   padding: 0 10px;
@@ -130,6 +130,49 @@ a {
   display: none;
 }
 
+/* hidden anchors for right navbar movements placement */
+div[id$="-anchor"] {
+  height: 0;
+  visibility: hidden;
+  position: relative;
+  top: -70px;
+}
+
+/* ------------------------------ HERO SECTION ------------------------------ */
+.big-image {
+  height: 85vh;
+  width: 100vw;
+  position: relative;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-image: url("../assets/img/a-caccia-di-sapere.webp");
+}
+
+.overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.412);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.overlay h1 {
+  font-size: 55px;
+}
+
+h1 {
+  font-size: var(--main-title-font-size);
+  text-align: center;
+  color: var(--orange);
+  text-shadow: 5px 6px 7px #212121;
+}
+
+/* ------------------------------ LANDING PAGE MAIN SECTIONS ------------------------------ */
 figure#heroImg {
   width: 100%;
 }
@@ -168,7 +211,6 @@ header p {
   margin-bottom: 15px;
 }
 
-/* cta buttons */
 .cta-container {
   display: flex;
   flex-direction: column;
@@ -197,15 +239,13 @@ header p {
   box-shadow: 10px 8px 15px #aaaaaa;
 }
 
-/* main section images */
 .main-images {
   margin: 0 auto;
   border-radius: var(--rounded-corners);
   width: calc(100vw - 50px);
 }
 
-/* form */
-
+/* ------------------------------ FORMS ------------------------------ */
 .form-container {
   display: flex;
   justify-content: center;
@@ -319,39 +359,6 @@ hr {
   margin: 2em 0;
 }
 
-.big-image {
-  height: 85vh;
-  width: 100vw;
-  position: relative;
-  background-size: cover;
-  background-position: 50% 50%;
-  background-image: url("../assets/img/a-caccia-di-sapere.webp");
-}
-
-.overlay {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.412);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.overlay h1 {
-  font-size: 55px;
-}
-
-h1 {
-  font-size: var(--main-title-font-size);
-  text-align: center;
-  color: var(--orange);
-  text-shadow: 5px 6px 7px #212121;
-}
-
 figure {
   text-align: center;
   margin: 3em 0 0;
@@ -430,7 +437,7 @@ div.hero {
   margin-bottom: 1em;
 }
 
-/* carousel laboratori */
+/* ------------------------------ LABS CAROUSEL ------------------------------ */
 .carousel-laboratori {
   display: flex;
   align-items: center;
@@ -488,7 +495,6 @@ div.hero {
   margin: 10px;
 }
 
-/* carousel immagini */
 .carousel-image {
   display: flex;
   align-items: center;
@@ -531,8 +537,7 @@ div.hero {
   border-radius: var(--rounded-corners);
 }
 
-/* FAQ */
-
+/* ------------------------------ FAQ ------------------------------ */
 .faq-container {
   display: flex;
   justify-content: center;
@@ -588,7 +593,7 @@ input[type="radio"]:checked ~ .accordion-content {
   padding: 1em;
 }
 
-/* footer */
+/* ------------------------------ FOOTER ------------------------------ */
 
 footer {
   margin-top: 30px;
@@ -703,14 +708,12 @@ footer {
   margin-top: 0;
 }
 
-/* Landscape phones and down */
-@media (max-width: 480px) {
-}
+/* ------------------------------ MEDIA QUERIES ------------------------------ */
 
 /* Landscape phone to portrait tablet */
 @media (max-width: 768px) {
   .hamburger {
-    display: block; /* Mostrare l'hamburger solo su mobile */
+    display: block;
   }
 
   .navbar {
@@ -862,11 +865,4 @@ footer {
     align-items: stretch;
     justify-content: center;
   }
-}
-
-div[id$="-anchor"] {
-  height: 0;
-  visibility: hidden;
-  position: relative;
-  top: -70px;
 }
