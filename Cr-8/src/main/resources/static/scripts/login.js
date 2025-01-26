@@ -1,32 +1,41 @@
+// Fetch CSRF token on page load
 document.addEventListener("DOMContentLoaded", () => {
-  const loginForm = document.getElementById("loginForm");
+    fetch('/csrf-token')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('csrfToken').value = data.token;
+        })
+        .catch(error => {
+            console.error("Error fetching CSRF token:", error);
+        });
 
-  loginForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
+    const loginForm = document.getElementById("loginForm");
 
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+    loginForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
 
-    try {
-      const response = await fetch("/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams({ email, password }),
-      });
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const csrfToken = document.getElementById('csrfToken').value;
 
-      const message = await response.text();
+        try {
+            const response = await fetch("/login", {
+                method: "POST",
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken, // Add the token to the header
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: new URLSearchParams({ email, password }),
+            });
 
-      if (response.ok) {
-        // convertire oggetto JSON in oggetto javascript con proprietà e salvare i valori in localStorage da mostrare nel logout page
-        window.location.href = "/dashboard";
-      } else {
-        alert("Credenziali errate. Riprova.");
-      }
-    } catch (error) {
-      console.error("Errore durante il login:", error);
-      alert("Si è verificato un errore. Riprova più tardi.");
-    }
-  });
+            if (response.ok) {
+                window.location.href = "/dashboard";
+            } else {
+                alert("Credenziali errate. Riprova.");
+            }
+        } catch (error) {
+            console.error("Errore durante il login:", error);
+            alert("Si è verificato un errore. Riprova più tardi.");
+        }
+    });
 });

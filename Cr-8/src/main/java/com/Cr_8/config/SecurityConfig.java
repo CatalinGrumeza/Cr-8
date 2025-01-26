@@ -1,6 +1,7 @@
 package com.Cr_8.config;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -80,12 +81,22 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
+        		
+//        		.csrf(csrf -> csrf.disable())
+        		.cors(cors -> cors.configurationSource(request -> {
+                    var corsConfig = new org.springframework.web.cors.CorsConfiguration();
+                    corsConfig.setAllowedOrigins(List.of("localhost:8080")); // Replace with allowed origins
+                    corsConfig.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+                    corsConfig.setAllowedHeaders(List.of("*"));
+                    corsConfig.setAllowCredentials(true);
+                    return corsConfig;
+                }))
                 .authorizeHttpRequests(auth -> {
-//                  auth.requestMatchers("/login", "/login.html", "/index.html", "/register.html", "/","/styles/**", "/scripts/**","/image/**","/api/pub/**","/assets/**").permitAll();
-//               	  auth.requestMatchers("/api/**","/backoffice/**","/dashboard/**","/dashboard","/static/**").hasAnyRole("ADMIN","SUPER_ADMIN");
-//               	  auth.requestMatchers("/api/super/**","/backoffice/dashboard.html","/static/**","/dashboard/all-admins","/super/**").hasRole("SUPER_ADMIN");
-//                  auth.anyRequest().authenticated();
-               auth.anyRequest().permitAll();
+                  auth.requestMatchers("/login", "/login.html", "/index.html", "/register.html", "/","/styles/**", "/scripts/**","/image/**","/api/pub/**","/assets/**","/csrf-token","/logout").permitAll();
+               	  auth.requestMatchers("/api/**","/backoffice/**","/dashboard/**","/dashboard","/static/**","/logout").hasAnyRole("ADMIN","SUPER_ADMIN");
+               	  auth.requestMatchers("/api/super/**","/backoffice/dashboard.html","/static/**","/dashboard/all-admins","/super/**","/logout").hasRole("SUPER_ADMIN");
+                  auth.anyRequest().authenticated();
+                //auth.anyRequest().permitAll();
                 })
                 .formLogin(form -> form
                     .loginPage("/login") // Custom login page URL
@@ -102,6 +113,7 @@ public class SecurityConfig {
                     .permitAll() // Allow all users to access the login page
                 )
                 .logout(logout -> logout
+                	.logoutUrl("/logout") // The endpoint for logout
                     .logoutSuccessUrl("/?logout") // Redirect after successful logout
                     .invalidateHttpSession(true) // Invalidate session on logout
                     .deleteCookies("JSESSIONID") // Delete session cookies
