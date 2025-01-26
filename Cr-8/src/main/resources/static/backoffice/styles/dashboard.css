@@ -1,36 +1,3 @@
-/* Dashboard Styles (Aurora Theme) */
-:root {
-  --orange: #fc931c;
-  --purple: #ed008a;
-  --yellow: #ffff22;
-  --black: #3c3c3b;
-
-  --orange-transparent: #fc931c1a;
-  --purple-transparent: #ed008a1a;
-  --yellow-transparent: #fef20033;
-
-  --rounded-corners: 24px;
-}
-
-body {
-  font-family: "Montserrat", sans-serif;
-  background-color: #ffffff;
-  color: black;
-  padding-top: 60px;
-}
-
-h1,
-h2 {
-  color: var(--orange);
-  text-align: center;
-  text-shadow: 5px 6px 7px #bbbbbb;
-}
-
-.navbar-container {
-  background-color: #ffffff;
-  box-shadow: 0px 1px 20px #aaaaaa;
-}
-
 .card {
   border: 5px solid transparent;
   background: linear-gradient(#ffffff, #ffffff) padding-box,
@@ -38,7 +5,7 @@ h2 {
       border-box;
   border-radius: var(--rounded-corners);
   box-shadow: 10px 8px 15px #aaaaaa;
-  margin-bottom: 20px; /* Add some space between cards */
+  margin-bottom: 20px;
 }
 
 .chart-container {
@@ -53,7 +20,6 @@ h2 {
   color: black;
 }
 
-/* Status colors with gradual transparency */
 .text-green {
   color: var(--orange) !important;
 }
@@ -66,7 +32,6 @@ h2 {
   color: var(--black) !important;
 }
 
-/* Calendar Styling */
 #calendar .fc-button {
   background: linear-gradient(#ffffff, #ffffff) padding-box,
     linear-gradient(to left, var(--purple), var(--orange), var(--yellow))
@@ -86,7 +51,6 @@ h2 {
   border-radius: var(--rounded-corners);
 }
 
-/* Responsive Styles */
 @media (max-width: 768px) {
   .container {
     padding: 0 15px;
@@ -103,10 +67,10 @@ h2 {
   }
 
   .chart-container {
-    height: 200px; /* Adjust height for smaller screens */
+    height: 200px;
   }
 
   #calendar {
-    height: 300px; /* Adjust calendar height for smaller screens */
+    height: 300px;
   }
 }
