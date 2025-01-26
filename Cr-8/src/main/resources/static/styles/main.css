@@ -249,11 +249,13 @@ fieldset#selectLaboratori {
   flex-direction: column;
 }
 
-fieldset#selectLaboratori input {
+fieldset#selectLaboratori input,
+input.privacy-check {
   width: auto;
 }
 
-fieldset#selectLaboratori label {
+fieldset#selectLaboratori label,
+label.privacy-check {
   margin: 0.8em 1em;
   display: flex;
   gap: 0.5rem;
