@@ -6,9 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let allBookings = [];
 
-
-
-
   // Fetch data from the API
   fetch("/api/all-bookings")
     .then((response) => response.json())
