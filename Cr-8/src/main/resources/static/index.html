@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="" />
+    <meta
+      name="description"
+      content="A Caccia di Sapere, il portale per l'educazione di Cascina Caccia: la cascina che racconta agli studenti la lotta contro le mafie"
+    />
     <meta name="author" content="CR-8" />
 
     <!-- open graph -->
@@ -299,6 +302,7 @@
                   <strong>Carla e Bruno Caccia</strong>
                 </h4>
                 <img
+                  loading="lazy"
                   src="./assets/img/laboratori/bruno-carla.webp"
                   alt="Foto di Bruno e Carla Caccia mentre ballano"
                 />
@@ -312,6 +316,7 @@
               <div class="carousel-card">
                 <h4>Laboratorio 2 - <strong>Bruno Caccia</strong></h4>
                 <img
+                  loading="lazy"
                   src="./assets/img/laboratori/Bruno_caccia.webp"
                   alt="Foto di Bruno Caccia"
                 />
@@ -329,6 +334,7 @@
                   <strong>mafia</strong>
                 </h4>
                 <img
+                  loading="lazy"
                   src="./assets/img/laboratori/libera-associazioni.webp"
                   alt="Foto di una bandiera di Libera Associazioni, nomi e numeri contro le mafie"
                 />
@@ -341,6 +347,7 @@
               <div class="carousel-card">
                 <h4>Laboratorio 4 - I <strong>beni confiscati</strong></h4>
                 <img
+                  loading="lazy"
                   src="./assets/img/laboratori/cascina.webp"
                   alt="Foto di Cascina Caccia con dietro un arcobaleno"
                 />
@@ -354,6 +361,7 @@
               <div class="carousel-card">
                 <h4>Laboratorio 5 - Le <strong>mafie</strong> in Piemonte</h4>
                 <img
+                  loading="lazy"
                   src="./assets/img/laboratori/belfiore.webp"
                   alt="Foto di una porta in legno con sopra la scritta 'Famiglia Belfiore non si entra'"
                 />
@@ -368,6 +376,7 @@
                   Laboratorio 6 - <strong>Sostenibilità</strong> ambientale
                 </h4>
                 <img
+                  loading="lazy"
                   src="./assets/img/laboratori/piante.webp"
                   alt="Foto di piante"
                 />
@@ -384,6 +393,7 @@
                   Laboratorio 7 - La <strong>mafia</strong> attraverso il cinema
                 </h4>
                 <img
+                  loading="lazy"
                   src="./assets/img/laboratori/relax-in-cascina.webp"
                   alt="Foto di ragazzi riuniti a parlare seduti su un prato"
                 />
@@ -398,6 +408,7 @@
               <div class="carousel-card">
                 <h4>Laboratorio 8 - Il gioco non è un azzardo</h4>
                 <img
+                  loading="lazy"
                   src="./assets/img/laboratori/incontro-in-cascina.webp"
                   alt="Foto di ragazzi seduti che parlano"
                 />
@@ -413,6 +424,7 @@
               <div class="carousel-card">
                 <h4>Laboratorio 9 - Chi non gioca vince</h4>
                 <img
+                  loading="lazy"
                   src="./assets/img/laboratori/riunione-in-cascina.webp"
                   alt="Foto di ragazzi che scrivono e discutono insieme"
                 />
@@ -451,6 +463,7 @@
               <!-- Slide 1 -->
               <div class="carousel-card-image">
                 <img
+                  loading="lazy"
                   src="./assets/img/carousel/scritta-maglietta.webp"
                   alt="Collaborazioni"
                 />
@@ -458,6 +471,7 @@
               <!-- Slide 2 -->
               <div class="carousel-card-image">
                 <img
+                  loading="lazy"
                   src="./assets/img/carousel/attivita-in-cascina.webp"
                   alt="Storia"
                 />
@@ -465,6 +479,7 @@
               <!-- Slide 3 -->
               <div class="carousel-card-image">
                 <img
+                  loading="lazy"
                   src="./assets/img/carousel/collaborazioni.webp"
                   alt="Party Bene"
                 />
@@ -632,7 +647,8 @@
               <span id="visitatoreError" class="error"></span>
 
               <label for="periodoGiornata"
-                >Periodo della giornata <span class="mandatory-fields"
+                >Periodo della giornata
+                <span class="mandatory-fields"
                   >(se si sceglie 1 giorno solo)</span
                 ></label
               >
@@ -751,7 +767,19 @@
               ></textarea>
             </fieldset>
 
-            <span id="formError" class="error"></span>
+            <label class="privacy-check">
+              <input
+                class="privacy-check"
+                type="checkbox"
+                id="privacyPolicy"
+                name="privacyPolicy"
+                value="Ho letto e accetto i termini della Privacy Policy"
+              />
+              Ho letto e accetto i termini della Privacy Policy
+            </label>
+            <span id="privacyPolicyError" class="error"></span>
+
+            <span id="bookingFormError" class="error"></span>
 
             <div class="container">
               <button type="submit" id="submitBookForm" class="submit-btn">
@@ -903,15 +931,27 @@
               placeholder="012 345 6789"
             />
             <span id="cellulareInfoError" class="error"></span>
-            
+
             <label for="messaggio">Come possiamo aiutarti?</label>
             <textarea
-            id="messaggio"
-            name="messaggio"
-            rows="10"
-            placeholder="Chiedici qualcosa..."
+              id="messaggio"
+              name="messaggio"
+              rows="10"
+              placeholder="Chiedici qualcosa..."
             ></textarea>
             <span id="messaggioError" class="error"></span>
+
+            <label class="privacy-check">
+              <input
+                class="privacy-check"
+                type="checkbox"
+                id="privacyPolicyInfo"
+                name="privacyPolicy"
+                value="Ho letto e accetto i termini della Privacy Policy"
+              />
+              Ho letto e accetto i termini della Privacy Policy
+            </label>
+            <span id="privacyPolicyInfoError" class="error"></span>
 
             <span id="infoFormError" class="error"></span>
 
@@ -929,6 +969,7 @@
         <div class="footer-left">
           <div id="contattaci">
             <img
+              loading="lazy"
               class="icon"
               src="./assets/img/footer/email.svg"
               alt="Icona email"
@@ -941,6 +982,7 @@
           <div class="footer-col-container">
             <figure>
               <img
+                loading="lazy"
                 class="navbar-logo"
                 src="./assets/img/logo-a-caccia-di-sapere.png"
                 alt="Logo del sito"
@@ -967,6 +1009,7 @@
             <div class="icon-links">
               <a href="https://www.facebook.com/cascinacaccia" target="_blank">
                 <img
+                  loading="lazy"
                   class="icon"
                   src="./assets/img/footer/facebook-icon.svg"
                   alt="Icona facebook"
@@ -977,6 +1020,7 @@
                 target="_blank"
               >
                 <img
+                  loading="lazy"
                   class="icon"
                   src="./assets/img/footer/instagram-icon.svg"
                   alt="Icona instagram"
@@ -986,6 +1030,7 @@
             <figure>
               <a href="https://cascinacaccia.net/" target="_blank">
                 <img
+                  loading="lazy"
                   src="./assets/img/logo-cascina-caccia.webp"
                   alt="logo di Cascina Caccia"
                 />

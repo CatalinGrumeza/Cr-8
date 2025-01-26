@@ -179,6 +179,19 @@ const bookingFields = {
     error:
       "Seleziona un periodo della giornata se il numero di giorni è uguale a 1.",
   },
+  selectLaboratori: {
+    customValidation: () => {
+      const checkboxes = document.querySelectorAll(
+        '#selectLaboratori input[type="checkbox"]'
+      );
+      return Array.from(checkboxes).some((checkbox) => checkbox.checked);
+    },
+    error: "Seleziona almeno un laboratorio.",
+  },
+  privacyPolicy: {
+    customValidation: (value) => value === "on",
+    error: "Accetta la privacy policy per procedere.",
+  },
 };
 
 formValidation(
@@ -212,6 +225,10 @@ const infoFields = {
   messaggio: {
     customValidation: (value) => value.trim().length >= 20,
     error: "Il messaggio deve contenere almeno 20 caratteri.",
+  },
+  privacyPolicyInfo: {
+    customValidation: (value) => value === "on",
+    error: "Accetta la privacy policy per procedere.",
   },
 };
 
