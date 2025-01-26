@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let allBookings = [];
 
+
+
+
   // Fetch data from the API
   fetch("/api/all-bookings")
     .then((response) => response.json())
@@ -98,6 +101,10 @@ document.addEventListener("DOMContentLoaded", function () {
           // Send request to update the status to "Cancelled"
           fetch(`/api/update-booking-status?bookingId=${bookingId}&status=Cancelled`, {
             method: "POST",
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRF-TOKEN': csrfToken, // Add the token to the header
+            },
           })
           .then((response) => {
             if (response.ok) {
@@ -127,6 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
+              'X-CSRF-TOKEN': csrfToken, // Add the token to the header
             },
             body: JSON.stringify({
               date: startDate,

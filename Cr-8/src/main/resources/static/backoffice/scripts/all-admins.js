@@ -1,3 +1,9 @@
+fetch('/csrf-token')
+  .then(response => response.json())
+  .then(data => {
+    csrfToken = data.token;
+  });
+
 document.addEventListener("DOMContentLoaded", function () {
   const container = document.getElementById("admin-container");
   const searchBar = document.getElementById("search-bar");
@@ -60,6 +66,10 @@ document.addEventListener("DOMContentLoaded", function () {
             // Send request to delete the admin
             fetch(`/api/super/delete-admin?id=${adminId}`, {
               method: "DELETE",
+              headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': csrfToken, // Add the token to the header
+              },
             })
               .then((response) => {
                 if (response.ok) {

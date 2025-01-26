@@ -1,3 +1,9 @@
+fetch('/csrf-token')
+  .then(response => response.json())
+  .then(data => {
+    csrfToken = data.token;
+  });
+
 document.addEventListener('DOMContentLoaded', function () {
     const container = document.getElementById('info-container');
     const dateFilter = document.getElementById('date-filter');
@@ -78,7 +84,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Send request to update the status
                 fetch(`/api/update-info-status?infoId=${infoId}&status=${newStatus}`, {
-                    method: 'POST'
+                    method: 'POST',
+                    headers: {
+              	'X-CSRF-TOKEN': csrfToken, // Add the token to the header
+            	},
                 })
                     .then(response => {
                         if (response.ok) {

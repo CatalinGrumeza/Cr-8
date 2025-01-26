@@ -7,6 +7,14 @@
 
 /* ------------------------------ GENERIC FORM VALIDATION ------------------------------ */
 
+
+// Fetch CSRF token on page load
+fetch('/csrf-token')
+  .then(response => response.json())
+  .then(data => {
+    csrfToken = data.token;
+  });
+
 /**
  * Generic form validation function that handles field validation and form submission
  * @param {string} formId - The ID of the form element to validate
@@ -14,6 +22,7 @@
  * @param {string} apiEndpoint - API endpoint URL for form submission
  * @param {string} successMessage - Message to display on successful form submission
  */
+
 const formValidation = (formId, fieldsConfig, apiEndpoint, successMessage) => {
   const form = document.getElementById(formId);
 
@@ -136,6 +145,7 @@ const formValidation = (formId, fieldsConfig, apiEndpoint, successMessage) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          'X-CSRF-TOKEN': csrfToken, // Add the token to the header
         },
         body: JSON.stringify(data),
       });
