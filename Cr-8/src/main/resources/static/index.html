@@ -14,8 +14,8 @@
     <meta property="og:image" content="" />
 
     <!-- favicon -->
-    <link rel="icon" href="./assets/img/logo-a-caccia-di-sapere.png" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="./assets/img/logo-a-caccia-di-sapere.ico" />
+    <!-- <link rel="icon" href="/favicon.svg" type="image/svg+xml" /> -->
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <title>A Caccia di Sapere</title>
@@ -150,7 +150,7 @@
             <a href="#faq-anchor" title="Scopri di più" onclick="menu()">FAQ</a>
           </li>
           <li>
-            <a href="/login">Log In</a>
+            <a href="/login">Area Riservata</a>
           </li>
         </ul>
       </div>
@@ -187,14 +187,14 @@
         </p>
 
         <!-- CALL TO ACTION -->
-        <section class="cta-container">
+        <div class="cta-container">
           <a href="#prenotazione-anchor" class="cta-buttons"
             >Vieni a trovarci!</a
           >
           <a href="#laboratori-anchor" class="cta-buttons"
             >Scopri i Laboratori</a
           >
-        </section>
+        </div>
       </header>
 
       <hr />
@@ -526,7 +526,10 @@
             <fieldset id="personalInfo">
               <legend>I tuoi dati</legend>
 
-              <label for="nome">Nome*</label>
+              <label for="nome"
+                >Nome
+                <span class="mandatory-fields">(obbligatorio)</span></label
+              >
               <input
                 type="text"
                 id="nome"
@@ -536,7 +539,10 @@
               />
               <span id="nomeError" class="error"></span>
 
-              <label for="cognome">Cognome*</label>
+              <label for="cognome"
+                >Cognome
+                <span class="mandatory-fields">(obbligatorio)</span></label
+              >
               <input
                 type="text"
                 id="cognome"
@@ -545,7 +551,10 @@
               />
               <span id="cognomeError" class="error"></span>
 
-              <label for="cellulare">Cellulare*</label>
+              <label for="cellulare"
+                >Cellulare
+                <span class="mandatory-fields">(obbligatorio)</span></label
+              >
               <input
                 type="tel"
                 id="cellulare"
@@ -554,7 +563,10 @@
               />
               <span id="cellulareError" class="error"></span>
 
-              <label for="email">Email*</label>
+              <label for="email"
+                >Email
+                <span class="mandatory-fields">(obbligatorio)</span></label
+              >
               <input
                 type="email"
                 id="email"
@@ -569,15 +581,23 @@
             <fieldset id="bookData">
               <legend>Dati prenotazione</legend>
 
-              <label for="disponibilitaDa">Disponibilità: da*</label>
+              <label for="disponibilitaDa"
+                >Disponibilità: da
+                <span class="mandatory-fields">(obbligatorio)</span></label
+              >
               <input type="date" id="disponibilitaDa" name="disponibilitaDa" />
               <span id="disponibilitaDaError" class="error"></span>
 
-              <label for="disponibilitaA">a*</label>
+              <label for="disponibilitaA"
+                >a <span class="mandatory-fields">(obbligatorio)</span></label
+              >
               <input type="date" id="disponibilitaA" name="disponibilitaA" />
               <span id="disponibilitaAError" class="error"></span>
 
-              <label for="numeroGiorni">Numero di giorni*</label>
+              <label for="numeroGiorni"
+                >Numero di giorni
+                <span class="mandatory-fields">(obbligatorio)</span></label
+              >
               <input
                 type="number"
                 id="numeroGiorni"
@@ -586,7 +606,10 @@
                 placeholder="2"
               />
               <span id="numeroGiorniError" class="error"></span>
-              <label for="numeroPartecipanti">Numero di partecipanti*</label>
+              <label for="numeroPartecipanti"
+                >Numero di partecipanti
+                <span class="mandatory-fields">(obbligatorio)</span></label
+              >
               <input
                 type="number"
                 id="numeroPartecipanti"
@@ -596,7 +619,10 @@
               />
               <span id="numeroPartecipantiError" class="error"></span>
 
-              <label for="visitatore">Visitatore*</label>
+              <label for="visitatore"
+                >Visitatore
+                <span class="mandatory-fields">(obbligatorio)</span></label
+              >
               <select id="visitatore" name="visitatore">
                 <option value="">Seleziona</option>
                 <option value="scuola elementare">Scuola elementare</option>
@@ -605,7 +631,11 @@
               </select>
               <span id="visitatoreError" class="error"></span>
 
-              <label for="periodoGiornata">Periodo della giornata</label>
+              <label for="periodoGiornata"
+                >Periodo della giornata <span class="mandatory-fields"
+                  >(se si sceglie 1 giorno solo)</span
+                ></label
+              >
               <select id="periodoGiornata" name="periodoGiornata" disabled>
                 <option value="">Seleziona</option>
                 <option value="mattino">Mattino</option>
@@ -613,22 +643,120 @@
               </select>
               <span id="periodoGiornataError" class="error"></span>
 
+              <fieldset id="selectLaboratori">
+                <legend>Laboratori</legend>
+
+                <p>
+                  Scegli quali laboratori desidereresti esplorare durante la tua
+                  visita <span class="mandatory-fields">(obbligatorio)</span>
+                </p>
+                <label>
+                  <input
+                    type="checkbox"
+                    id="lab1"
+                    name="lab1"
+                    value="Laboratorio 1 - Storia di Cascina Carla e Bruno Caccia"
+                  />
+                  1 - Storia di Cascina Carla e Bruno Caccia</label
+                >
+                <label>
+                  <input
+                    type="checkbox"
+                    id="lab2"
+                    name="lab2"
+                    value="Laboratorio 2 - Bruno Caccia"
+                  />
+                  2 - Bruno Caccia
+                </label>
+
+                <label>
+                  <input
+                    type="checkbox"
+                    id="lab3"
+                    name="lab3"
+                    value="Laboratorio 3 - Introduzione al tema della mafia"
+                  />
+                  3 - Introduzione al tema della mafia
+                </label>
+
+                <label>
+                  <input
+                    type="checkbox"
+                    id="lab4"
+                    name="lab4"
+                    value="Laboratorio 4 - I beni confiscati"
+                  />
+                  4 - I beni confiscati
+                </label>
+
+                <label>
+                  <input
+                    type="checkbox"
+                    id="lab5"
+                    name="lab5"
+                    value="Laboratorio 5 - Le mafie in Piemonte"
+                  />
+                  5 - Le mafie in Piemonte
+                </label>
+
+                <label>
+                  <input
+                    type="checkbox"
+                    id="lab6"
+                    name="lab6"
+                    value="Laboratorio 6 - Sostenibilità ambientale"
+                  />
+                  6 - Sostenibilità ambientale
+                </label>
+
+                <label>
+                  <input
+                    type="checkbox"
+                    id="lab7"
+                    name="lab7"
+                    value="Laboratorio 7 - La mafia attraverso il cinema"
+                  />
+                  7 - La mafia attraverso il cinema
+                </label>
+
+                <label>
+                  <input
+                    type="checkbox"
+                    id="lab8"
+                    name="lab8"
+                    value="Laboratorio 8 - Il gioco non è un azzardo"
+                  />
+                  8 - Il gioco non è un azzardo
+                </label>
+
+                <label>
+                  <input
+                    type="checkbox"
+                    id="lab9"
+                    name="lab9"
+                    value="Laboratorio 9 - Chi non gioca vince"
+                  />
+                  9 - Chi non gioca vince
+                </label>
+
+                <span id="selectLaboratoriError" class="error"></span>
+              </fieldset>
+
               <label for="richiesteParticolari">Richieste particolari</label>
               <textarea
                 id="richiesteParticolari"
                 name="richiesteParticolari"
                 rows="4"
+                placeholder="Vorremmo dei dettagli su..."
               ></textarea>
             </fieldset>
-
-            <div class="container" id="mandatoryFields">
-              * campi obbligatori
-            </div>
 
             <span id="formError" class="error"></span>
 
             <div class="container">
-              <button type="submit" id="submitBookForm">Invia</button>
+              <button type="submit" id="submitBookForm" class="submit-btn">
+                Invia
+              </button>
             </div>
           </form>
         </div>
@@ -739,55 +867,56 @@
           <form id="infoForm">
             <h2>Richiedi informazioni</h2>
 
-            <label for="nome">Nome</label>
+            <label for="nomeInfo">Nome</label>
             <input
               type="text"
-              id="nome"
+              id="nomeInfo"
               name="nome"
               placeholder="Mario"
               minlength="2"
             />
-            <span id="nomeError" class="error"></span>
+            <span id="nomeInfoError" class="error"></span>
 
-            <label for="cognome">Cognome</label>
+            <label for="cognomeInfo">Cognome</label>
             <input
               type="text"
-              id="cognome"
+              id="cognomeInfo"
               name="cognome"
               placeholder="Rossi"
             />
-            <span id="cognomeError" class="error"></span>
+            <span id="cognomeInfoError" class="error"></span>
 
-            <label for="email">Email</label>
+            <label for="emailInfo">Email</label>
             <input
               type="email"
-              id="email"
+              id="emailInfo"
               name="email"
               placeholder="example@mail.com"
             />
-            <span id="emailError" class="error"></span>
+            <span id="emailInfoError" class="error"></span>
 
-            <label for="cellulare">Cellulare</label>
+            <label for="cellulareInfo">Cellulare</label>
             <input
               type="tel"
-              id="cellulare"
+              id="cellulareInfo"
               name="cellulare"
               placeholder="012 345 6789"
             />
-            <span id="cellulareError" class="error"></span>
-
+            <span id="cellulareInfoError" class="error"></span>
+            
             <label for="messaggio">Come possiamo aiutarti?</label>
             <textarea
-              id="messaggio"
-              name="messaggio"
-              rows="10"
-              placeholder="Chiedici qualcosa..."
+            id="messaggio"
+            name="messaggio"
+            rows="10"
+            placeholder="Chiedici qualcosa..."
             ></textarea>
+            <span id="messaggioError" class="error"></span>
 
-            <span id="formError" class="error"></span>
+            <span id="infoFormError" class="error"></span>
 
             <div class="container">
-              <button id="submitBookForm">Invia</button>
+              <button id="submitInfoForm" class="submit-btn">Invia</button>
             </div>
           </form>
         </div>
@@ -800,10 +929,10 @@
         <div class="footer-left">
           <div id="contattaci">
             <img
-                  class="icon"
-                  src="./assets/img/email.svg"
-                  alt="Icona facebook"
-                />
+              class="icon"
+              src="./assets/img/footer/email.svg"
+              alt="Icona email"
+            />
             <h3>Contattaci</h3>
             <a href="mailto:cascina.caccia@acmos.net"
               >cascina.caccia@acmos.net</a
@@ -839,7 +968,7 @@
               <a href="https://www.facebook.com/cascinacaccia" target="_blank">
                 <img
                   class="icon"
-                  src="./assets/img/facebook-icon.svg"
+                  src="./assets/img/footer/facebook-icon.svg"
                   alt="Icona facebook"
                 />
               </a>
@@ -849,7 +978,7 @@
               >
                 <img
                   class="icon"
-                  src="./assets/img/instagram-icon.svg"
+                  src="./assets/img/footer/instagram-icon.svg"
                   alt="Icona instagram"
                 />
               </a>
@@ -867,8 +996,8 @@
       </div>
     </footer>
 
+    <!-- scripts -->
     <script src="./scripts/navbar.js" defer></script>
-    <script src="./scripts/carousel.js" defer></script>
     <script src="./scripts/main.js" defer></script>
   </body>
 </html>
