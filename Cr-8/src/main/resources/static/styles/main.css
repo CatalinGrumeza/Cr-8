@@ -829,6 +829,7 @@ footer {
 @media (min-width: 1200px) {
   .main-container {
     margin: var(--desktop-page-margin);
+    margin-bottom: 50px;
     margin-top: 0;
   }
 
