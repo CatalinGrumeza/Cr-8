@@ -79,7 +79,7 @@ public class AuthController {
          * Return a successful response message indicating that the 
          * registration was successful.
          */
-        return ResponseEntity.ok("Registered successfully");
+        return ResponseEntity.ok("Admin creato con successo");
     }
     /**
      * Swagger/OpenAPI operation annotation for API documentation. This 

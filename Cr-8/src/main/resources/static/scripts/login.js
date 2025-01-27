@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             if (response.ok) {
+                alert(response.text())
                 window.location.href = "/dashboard";
             } else {
                 alert("Credenziali errate. Riprova.");
