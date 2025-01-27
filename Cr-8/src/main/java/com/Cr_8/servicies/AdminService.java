@@ -91,12 +91,12 @@ public class AdminService {
         
         // Generate a random reset code
         String code = UUID.randomUUID().toString().substring(0, 6).toUpperCase();
+        // Save the reset code to the admin entity
+        admin.setCode(code);
 
         // Send the reset code via email
         mailService.sendPasswordEmailRest(email, code);
 
-        // Save the reset code to the admin entity
-        admin.setCode(code);
         adminRepo.save(admin);
         return "Code has been sent";
     }
@@ -110,11 +110,13 @@ public class AdminService {
      */
     public String setnewPassword(String code, String pass) {
         // Find the admin by reset code or throw an exception if not found
-    	if(adminRepo.findByCode(code).isPresent()) {
-			Optional<Admin> admin = adminRepo.findByCode(code);
-			return admin.get().getCode();	
-		}else
-			return "Codice errato!";
+    	Admin admin = adminRepo.findByCode(code).orElseThrow(() -> new IllegalArgumentException("Code is not valid"));
+
+        // Update the admin's password and clear the reset code
+        admin.setPassword(passwordEncoder.encode(pass));
+        admin.setCode(null);
+        adminRepo.save(admin);
+        return "Password saved";
     }
 
     /**
