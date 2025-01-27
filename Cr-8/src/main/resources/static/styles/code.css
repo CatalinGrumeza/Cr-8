@@ -1,14 +1,8 @@
-
-ody {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #f9f9f9;
-}
+/**
+* code.css
+*
+* Style Sheet used to style the verification-code.html page
+*/
 
 .container {
   text-align: center;
@@ -37,7 +31,7 @@ ody {
   font-size: 1.2rem;
   font-weight: bold;
   background: linear-gradient(to right, #ffc107, #f50057);
-  -webkit-background-clip: text;
+  background-clip: text;
   color: transparent;
 }
 
@@ -88,23 +82,4 @@ p {
   font-size: 0.9rem;
   color: red;
   margin-top: 10px;
-}
-
-@media (max-width: 480px) {
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  p {
-    font-size: 0.9rem;
-  }
-
-  .code-inputs input {
-    padding: 10px;
-  }
-
-  #btn {
-    font-size: 0.9rem;
-    padding: 10px;
-  }
 }

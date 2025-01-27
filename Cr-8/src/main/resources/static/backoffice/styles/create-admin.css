@@ -1,4 +1,9 @@
-/* Backoffice Styles */
+/**
+* create-admin.css
+*
+* Style Sheet used to style the create-admin.html page
+*/
+
 body {
   display: flex;
   flex-direction: column;

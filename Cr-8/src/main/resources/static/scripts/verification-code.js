@@ -1,7 +1,7 @@
 // Select the button and input field
 const email = localStorage.getItem("userEmail");
 const messageAlert = document.getElementById("message-code");
-const text = `Inserisci il codice di 6 caratteri che hai ricevuto all'email ${email}`;
+const text = `Inserisci il codice di 6 caratteri che hai ricevuto all'indirizzo ${email}`;
 document.getElementById("email-display").textContent = text;
 const sendButton = document.getElementById("btn");
 const resendLink = document.getElementById("resendLink");
@@ -13,7 +13,7 @@ sendButton.addEventListener("click", async () => {
     .join("");
   const Upper = code.toUpperCase();
 
-  const url = `/api/pub/code?code=${Upper}`;
+  const url = `/pub/verification-code?code=${Upper}`;
   try {
     // Fetch CSRF token
     const csrfResponse = await fetch("/csrf-token");
@@ -47,42 +47,32 @@ sendButton.addEventListener("click", async () => {
   }
 });
 resendLink.addEventListener("click", async (event) => {
-     event.preventDefault(); // Evita il comportamento predefinito del link
-     if (!email) {
-       console.error("Impossibile mandare il codice: email non valida.");
-       return;
-     }
+  event.preventDefault(); // Evita il comportamento predefinito del link
+  if (!email) {
+    console.error("Impossibile mandare il codice: email non valida.");
+    return;
+  }
 
-     const url2 = `/api/pub/forget-password?email=${email}`;
-     try {
-		// Fetch CSRF token
-		    const csrfResponse = await fetch("/csrf-token");
-		    const csrfData = await csrfResponse.json();
-		    const csrfToken = csrfData.token; // Define csrfToken here
-       	const res2 = await fetch(url2, {
-         method: "POST",
-         headers: {
-           "Content-Type": "application/json",
-		   "X-CSRF-TOKEN": csrfToken, // Use the token in the header
-         },
-       });
-
-       if (res2.ok) {
-         alert("Code resent successfully!");
-       } else {
-         console.error("Impossibile reinviare il codice:", res2.status);
-       }
-     } catch (error) {
-       console.error("Errore durante il reinvio del codice:", error);
-     }
-   });
+  const url2 = `/api/pub/forget-password?email=${email}`;
+  try {
+    // Fetch CSRF token
+    const csrfResponse = await fetch("/csrf-token");
+    const csrfData = await csrfResponse.json();
+    const csrfToken = csrfData.token; // Define csrfToken here
+    const res2 = await fetch(url2, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-TOKEN": csrfToken, // Use the token in the header
+      },
+    });
 
     if (res2.ok) {
       alert("Code resent successfully!");
     } else {
-      console.error("Failed to resend code:", res2.status);
+      console.error("Impossibile reinviare il codice:", res2.status);
     }
   } catch (error) {
-    console.error("Error while resending code:", error);
+    console.error("Errore durante il reinvio del codice:", error);
   }
 });
