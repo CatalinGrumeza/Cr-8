@@ -12,7 +12,6 @@ sendButton.addEventListener("click", async () => {
     .map((input) => input.value)
     .join("");
   const Upper = code.toUpperCase();
-  console.log(Upper);
 
   const url = `/api/pub/code?code=${Upper}`;
   try {
@@ -37,7 +36,7 @@ sendButton.addEventListener("click", async () => {
 
       messageAlert.textContent = "Codice non valido!";
 
-	  clearTimeout(500);
+      clearTimeout(500);
     } else {
       localStorage.setItem("code", Upper);
       window.location.href = "/newpassword"; // Redirect on success
@@ -78,3 +77,12 @@ resendLink.addEventListener("click", async (event) => {
      }
    });
 
+    if (res2.ok) {
+      alert("Code resent successfully!");
+    } else {
+      console.error("Failed to resend code:", res2.status);
+    }
+  } catch (error) {
+    console.error("Error while resending code:", error);
+  }
+});
