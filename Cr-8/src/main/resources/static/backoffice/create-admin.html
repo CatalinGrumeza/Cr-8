@@ -2,32 +2,25 @@
 <html lang="en">
   <head>
     <!-- metadata -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Dashboard</title>
-    <meta name="description" content="Backoffice dashboard" />
+    <title>Register</title>
+    <meta name="description" content="Backoffice register" />
     <meta name="author" content="CR-8" />
 
     <!-- favicon -->
     <link rel="icon" href="./favicon.ico" />
 
     <!-- styles -->
-    <!-- <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    /> -->
-    <!-- <link
-      href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.6/main.min.css"
-      rel="stylesheet"
-    /> -->
     <link rel="stylesheet" href="../styles/normalize.css" />
     <link rel="stylesheet" href="../styles/main.css" />
-    <!-- <link rel="stylesheet" href="../backoffice/styles/dashboard.css" /> -->
-    <link rel="stylesheet" href="../backoffice/styles/backoffice.css" />
+    <link rel="stylesheet" href="../styles/backoffice.css" />
+    <link rel="stylesheet" href="../backoffice/styles/create-admin.css" />
   </head>
-
   <body>
+    <!-- page content -->
+
     <!-- NAVBAR -->
     <nav class="navbar-container">
       <div class="navbar-content">
@@ -58,7 +51,7 @@
               >Prenotazioni</a
             >
           </li>
-          <li id="gestioneAdmin">
+          <li>
             <a href="/super/all-admins" title="Gestione Admin" onclick="menu()"
               >Gestione Admin</a
             >
@@ -73,26 +66,52 @@
       <button class="hamburger" onclick="menu()">☰</button>
     </nav>
 
-    <div class="main-container">
-      <h2>Dashboard</h2>
-
-      <div id="dashboard-cards" class="card-container">
-        <div id="calendar-container" class="col-md-4">
-          <div class="card">
-            <div class="card-body">
-              <h2>Calendario Prenotazioni</h2>
-              <div id="calendar"></div>
-            </div>
+    <div class="container">
+      <div class="card">
+        <h2 class="card-title">Crea un nuovo Admin</h2>
+        <form id="registerForm">
+          <div class="form-group">
+            <label for="name">Nome</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Nome dell'Admin"
+              required
+            />
           </div>
-        </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Email dell'Admin"
+              required
+            />
+          </div>
+          <input type="hidden" name="role" value="ADMIN" />
+          <div class="form-group">
+            <button type="submit">Crea</button>
+          </div>
+          <p class="form-note">
+            Tutti gli account creati avranno password iniziale
+            <strong>"Cascinacaccia2025!"</strong>
+          </p>
+        </form>
       </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../backoffice/scripts/dashboard.js" defer></script>
+    <!-- Custom Popup -->
+    <div id="popup" class="popup">
+      <div class="popup-content">
+        <span id="popupMessage"></span>
+      </div>
+    </div>
+
+    <!-- Link to the external JavaScript file -->
     <script src="../scripts/navbar.js" defer></script>
+    <script src="../backoffice/scripts/register.js" defer></script>
     <script src="../backoffice/scripts/logout.js" defer></script>
   </body>
 </html>

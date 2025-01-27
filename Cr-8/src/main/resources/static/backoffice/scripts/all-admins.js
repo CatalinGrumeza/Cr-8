@@ -1,6 +1,6 @@
-fetch('/csrf-token')
-  .then(response => response.json())
-  .then(data => {
+fetch("/csrf-token")
+  .then((response) => response.json())
+  .then((data) => {
     csrfToken = data.token;
   });
 
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Create card content
       card.innerHTML = `
               <div>
-                  <h2 class="card-title">${name}</h2>
+                  <h2>${name}</h2>
                   <p><span class="bold">Email</span>: ${email}</p>
                   <p><span class="bold">Codice</span>: ${code}</p>
                   <p><span class="bold">Ruolo</span>: ${role.name}</p>
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Add delete button only if the role is not SUPER_ADMIN
       if (role.name !== "SUPER_ADMIN") {
         const deleteButton = document.createElement("button");
-        deleteButton.classList.add("btn-complete", "btn-red");
+        deleteButton.classList.add("btn", "btn-complete", "btn-red");
         deleteButton.textContent = "Elimina";
         deleteButton.setAttribute("data-id", id);
 
@@ -67,8 +67,8 @@ document.addEventListener("DOMContentLoaded", function () {
             fetch(`/api/super/delete-admin?id=${adminId}`, {
               method: "DELETE",
               headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': csrfToken, // Add the token to the header
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": csrfToken, // Add the token to the header
               },
             })
               .then((response) => {
