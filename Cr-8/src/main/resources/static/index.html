@@ -10,11 +10,18 @@
     <meta name="author" content="CR-8" />
 
     <!-- open graph -->
-    <meta property="og:title" content="A Caccia di Sapere" />
+    <meta property="og:title" content="A Caccia di Sapere - Cascina Caccia" />
+    <meta
+      property="og:description"
+      content="Un luogo dedicato alla memoria, alla cultura e all'educazione per promuovere la legalità e il valore dei beni confiscati alla mafia."
+    />
+    <meta
+      property="og:image"
+      content="https://cascinacaccia.net/images/cascina.jpg"
+    />
+    <meta property="og:url" content="https://cascinacaccia.net" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.esempio.com" />
-    <meta property="og:description" content="" />
-    <meta property="og:image" content="" />
+    <meta property="og:site_name" content="A Caccia di Sapere" />
 
     <!-- favicon -->
     <link rel="icon" href="./assets/img/logo-a-caccia-di-sapere.ico" />
@@ -26,7 +33,10 @@
     <!-- twitter card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="A Caccia di Sapere" />
-    <meta name="twitter:description" content="" />
+    <meta
+      name="twitter:description"
+      content="Un luogo dedicato alla memoria, alla cultura e all'educazione per promuovere la legalità e il valore dei beni confiscati alla mafia."
+    />
     <meta name="twitter:image" content="" />
 
     <!-- styles -->
@@ -127,17 +137,21 @@
   <body>
     <div id="topPage-anchor"></div>
 
-    <nav class="navbar-container">
+    <nav class="navbar-container" aria-label="Navigazione principale">
       <div class="navbar-content">
-        <a href="#topPage-anchor">
+        <a href="#topPage-anchor" aria-label="Torna all'inizio della pagina">
           <img
             class="navbar-logo"
             src="./assets/img/logo-a-caccia-di-sapere.webp"
             alt="Logo del sito"
         /></a>
-        <ul class="navbar">
-          <li>
-            <a href="#laboratori-anchor" title="I Laboratori" onclick="menu()"
+        <ul class="navbar" role="menu">
+          <li role="menuitem">
+            <a
+              href="#laboratori-anchor"
+              title="I Laboratori"
+              onclick="menu()"
+              aria-label="Vai alla sezione Laboratori"
               >Laboratori</a
             >
           </li>
@@ -146,32 +160,52 @@
               href="#prenotazione-anchor"
               title="Vieni a Trovarci!"
               onclick="menu()"
+              aria-label="Vai alla sezione Prenotazioni"
               >Vieni a trovarci!</a
             >
           </li>
           <li>
-            <a href="#faq-anchor" title="Scopri di più" onclick="menu()">FAQ</a>
+            <a
+              href="#faq-anchor"
+              title="Scopri di più"
+              onclick="menu()"
+              aria-label="Vai alla sezione FAQ"
+              >FAQ</a
+            >
           </li>
-          <li>
-            <a href="/login">Area Riservata</a>
+          <li role="menuitem">
+            <a href="/login" aria-label="Vai all'Area Riservata"
+              >Area Riservata</a
+            >
           </li>
         </ul>
       </div>
-      <button class="hamburger" onclick="menu()">☰</button>
+      <!-- pulsante menù -->
+      <button
+        class="hamburger"
+        onclick="menu()"
+        aria-label="Apri il menu di navigazione"
+      >
+        ☰
+      </button>
     </nav>
 
     <div class="main-container">
       <header>
         <!-- HERO SECTION -->
-        <div class="hero">
+        <div class="hero" aria-labelledby="hero-title">
           <div class="big-image">
             <div class="overlay">
               <h1>A Caccia di Sapere</h1>
             </div>
           </div>
           <div>
-            <figure>
-              <a href="https://cascinacaccia.net/" target="_blank">
+            <figure aria-labelledby="cascina-caccia-logo">
+              <a
+                href="https://cascinacaccia.net/"
+                target="_blank"
+                aria-label="Visita il sito ufficiale di Cascina Caccia"
+              >
                 <img
                   class="logo"
                   src="./assets/img/logo-cascina-caccia.webp"
@@ -181,7 +215,7 @@
             </figure>
           </div>
         </div>
-        <p>
+        <p aria-label="Descrizione introduttiva">
           Benvenuti a <strong>Cascina Caccia</strong>, un luogo dove memoria,
           <strong>educazione</strong> e cultura si incontrano per creare un
           futuro migliore. Scopri i nostri percorsi <strong>educativi</strong> e
@@ -190,52 +224,66 @@
         </p>
 
         <!-- CALL TO ACTION -->
-        <div class="cta-container">
-          <a href="#prenotazione-anchor" class="cta-buttons"
+        <div class="cta-container" aria-label="Chiamata all'azione">
+          <a
+            href="#prenotazione-anchor"
+            class="cta-buttons"
+            aria-label="Vai alla sezione per prenotare una visita"
             >Vieni a trovarci!</a
           >
-          <a href="#laboratori-anchor" class="cta-buttons"
+          <a
+            href="#laboratori-anchor"
+            class="cta-buttons"
+            aria-label="Vai alla sezione dei laboratori"
             >Scopri i Laboratori</a
           >
         </div>
       </header>
 
-      <hr />
+      <hr aria-hidden="true" />
 
       <!-- I NOSTRI VALORI -->
-      <section class="main-section" id="valori">
-        <h2>I valori di <strong>Cascina Caccia</strong></h2>
+      <section class="main-section" id="valori" aria-labelledby="valori-title">
+        <h2 id="valori-title">I valori di <strong>Cascina Caccia</strong></h2>
 
         <div class="valori-section">
           <!-- 1. EDUCAZIONE -->
-          <article class="section-article card1">
+          <article
+            class="section-article card1"
+            aria-labelledby="educazione-title"
+          >
             <div class="section-text">
-              <h3>Educazione</h3>
-              <figure>
+              <h3 id="educazione-title">Educazione</h3>
+              <figure aria-labelledby="educazione-image">
                 <img
                   class="valori-images"
                   src="./assets/img/valori/educazione.webp"
                   alt="lettere appese al muro con nomi di bambini sopra"
+                  id="educazione-image"
                 />
               </figure>
               <p>
                 Promuoviamo percorsi <strong>educativi</strong> innovativi,
                 progettati per sensibilizzare giovani e adulti sui temi della
                 legalità, della memoria storica e della
-                <strong>responsabilità</strong> civica
+                <strong>responsabilità</strong> civica.
               </p>
             </div>
           </article>
 
           <!-- 2. RESPONSABILITÀ -->
-          <article class="section-article card2">
+          <article
+            class="section-article card2"
+            aria-labelledby="responsabilita-title"
+          >
             <div class="section-text">
-              <h3>Responsabilità</h3>
-              <figure>
+              <h3 id="responsabilita-title">Responsabilità</h3>
+              <figure aria-labelledby="responsabilita-image">
                 <img
                   class="valori-images"
                   src="./assets/img/valori/responsabilita.webp"
                   alt="ragazzi in un supermercato sventolano delle locandine relative a curiosità sugli alimenti"
+                  id="responsabilita-image"
                 />
               </figure>
               <p>
@@ -248,14 +296,18 @@
           </article>
 
           <!-- 3. CONDIVISIONE -->
-          <article class="section-article card3">
+          <article
+            class="section-article card3"
+            aria-labelledby="condivisione-title"
+          >
             <div class="section-text">
-              <h3>Condivisione</h3>
-              <figure>
+              <h3 id="condivisione-title">Condivisione</h3>
+              <figure aria-labelledby="condivisione-image">
                 <img
                   class="valori-images"
                   src="./assets/img/valori/condivisione.webp"
                   alt="ragazzi condividono del cibo"
+                  id="condivisione-image"
                 />
               </figure>
               <p>
@@ -268,36 +320,51 @@
         </div>
       </section>
 
-      <hr />
+      <hr aria-hidden="true" />
 
       <div id="laboratori-anchor"></div>
       <!-- LABORATORI -->
-      <section class="main-section" id="laboratori">
-        <h2>Laboratori</h2>
+      <section
+        class="main-section"
+        id="laboratori"
+        aria-labelledby="laboratori-title"
+      >
+        <h2 id="laboratori-title">Laboratori</h2>
 
-        <p>
+        <p aria-label="Introduzione ai laboratori">
           I laboratori di <strong>Cascina Caccia</strong> sono preparati dagli
           animatori socioculturali di Acmos, specializzati nell'<strong
             >educazione</strong
           >
           alla cittadinanza attiva e alla <strong>legalità</strong>.
         </p>
-        <p>
+        <p aria-label="Destinatari dei laboratori">
           I laboratori sono destinati, adeguando lo svolgimento delle attività a
           seconda delle età, a studenti della scuola primaria, secondaria di
           primo e secondo grado, eccetto il laboratorio numero 8 che è destinato
           esclusivamente alla scuole primaria e secondaria di primo grado.
         </p>
 
-        <div class="carousel-laboratori">
-          <button class="carousel-prev-laboratori" aria-label="Precedente">
+        <div
+          class="carousel-laboratori"
+          role="region"
+          aria-label="Laboratori disponibili"
+        >
+          <button
+            class="carousel-prev-laboratori"
+            aria-label="Scorri verso il laboratorio precedente"
+          >
             ◀
           </button>
-          <div class="carousel-track-container">
+          <div class="carousel-track-container" role="list">
             <div class="carousel-track-laboratori">
-              <!-- Laboratorio 1 - Storia di Cascina Carla e Bruno Caccia -->
-              <div class="carousel-card">
-                <h4>
+              <!-- Laboratorio 1 -->
+              <div
+                class="carousel-card"
+                role="listitem"
+                aria-labelledby="lab1-title"
+              >
+                <h4 id="lab1-title">
                   Laboratorio 1 - Storia di Cascina
                   <strong>Carla e Bruno Caccia</strong>
                 </h4>
@@ -312,9 +379,15 @@
                   <strong>riutilizzo sociale</strong>.
                 </p>
               </div>
-              <!-- Laboratorio 2 - Bruno Caccia -->
-              <div class="carousel-card">
-                <h4>Laboratorio 2 - <strong>Bruno Caccia</strong></h4>
+              <!-- Laboratorio 2 -->
+              <div
+                class="carousel-card"
+                role="listitem"
+                aria-labelledby="lab2-title"
+              >
+                <h4 id="lab2-title">
+                  Laboratorio 2 - <strong>Bruno Caccia</strong>
+                </h4>
                 <img
                   loading="lazy"
                   src="./assets/img/laboratori/Bruno_caccia.webp"
@@ -327,9 +400,13 @@
                   portarono al suo omicidio.
                 </p>
               </div>
-              <!-- Laboratorio 3 - Introduzione al tema mafia -->
-              <div class="carousel-card">
-                <h4>
+              <!-- Laboratorio 3 -->
+              <div
+                class="carousel-card"
+                role="listitem"
+                aria-labelledby="lab3-title"
+              >
+                <h4 id="lab3-title">
                   Laboratorio 3 - Introduzione al tema della
                   <strong>mafia</strong>
                 </h4>
@@ -343,9 +420,15 @@
                   conoscere il fenomeno mafioso.
                 </p>
               </div>
-              <!-- Laboratorio 4 - I beni confiscati -->
-              <div class="carousel-card">
-                <h4>Laboratorio 4 - I <strong>beni confiscati</strong></h4>
+              <!-- Laboratorio 4 -->
+              <div
+                class="carousel-card"
+                role="listitem"
+                aria-labelledby="lab4-title"
+              >
+                <h4 id="lab4-title">
+                  Laboratorio 4 - I <strong>beni confiscati</strong>
+                </h4>
                 <img
                   loading="lazy"
                   src="./assets/img/laboratori/cascina.webp"
@@ -357,9 +440,15 @@
                   dei beni e delle novità legislative.
                 </p>
               </div>
-              <!-- Laboratorio 5 - Le mafie in Piemonte -->
-              <div class="carousel-card">
-                <h4>Laboratorio 5 - Le <strong>mafie</strong> in Piemonte</h4>
+              <!-- Laboratorio 5 -->
+              <div
+                class="carousel-card"
+                role="listitem"
+                aria-labelledby="lab5-title"
+              >
+                <h4 id="lab5-title">
+                  Laboratorio 5 - Le <strong>mafie</strong> in Piemonte
+                </h4>
                 <img
                   loading="lazy"
                   src="./assets/img/laboratori/belfiore.webp"
@@ -370,9 +459,13 @@
                   territorio Piemontese.
                 </p>
               </div>
-              <!-- Laboratorio 6 - Sostenibilità ambientale -->
-              <div class="carousel-card">
-                <h4>
+              <!-- Laboratorio 6 -->
+              <div
+                class="carousel-card"
+                role="listitem"
+                aria-labelledby="lab6-title"
+              >
+                <h4 id="lab6-title">
                   Laboratorio 6 - <strong>Sostenibilità</strong> ambientale
                 </h4>
                 <img
@@ -387,9 +480,13 @@
                   <strong>disuguaglianze</strong>.
                 </p>
               </div>
-              <!-- Laboratorio 7 - La mafia attraverso il cinema -->
-              <div class="carousel-card">
-                <h4>
+              <!-- Laboratorio 7 -->
+              <div
+                class="carousel-card"
+                role="listitem"
+                aria-labelledby="lab7-title"
+              >
+                <h4 id="lab7-title">
                   Laboratorio 7 - La <strong>mafia</strong> attraverso il cinema
                 </h4>
                 <img
@@ -404,9 +501,15 @@
                   comune.
                 </p>
               </div>
-              <!-- Laboratorio 8 - Il gioco non è un azzardo -->
-              <div class="carousel-card">
-                <h4>Laboratorio 8 - Il gioco non è un azzardo</h4>
+              <!-- Laboratorio 8 -->
+              <div
+                class="carousel-card"
+                role="listitem"
+                aria-labelledby="lab8-title"
+              >
+                <h4 id="lab8-title">
+                  Laboratorio 8 - Il gioco non è un azzardo
+                </h4>
                 <img
                   loading="lazy"
                   src="./assets/img/laboratori/incontro-in-cascina.webp"
@@ -420,9 +523,13 @@
                   gioco.
                 </p>
               </div>
-              <!-- Laboratorio 9 - Chi non gioca vince -->
-              <div class="carousel-card">
-                <h4>Laboratorio 9 - Chi non gioca vince</h4>
+              <!-- Laboratorio 9 -->
+              <div
+                class="carousel-card"
+                role="listitem"
+                aria-labelledby="lab9-title"
+              >
+                <h4 id="lab9-title">Laboratorio 9 - Chi non gioca vince</h4>
                 <img
                   loading="lazy"
                   src="./assets/img/laboratori/riunione-in-cascina.webp"
@@ -436,18 +543,25 @@
               </div>
             </div>
           </div>
-          <button class="carousel-next-laboratori" aria-label="Successivo">
+          <button
+            class="carousel-next-laboratori"
+            aria-label="Scorri verso il laboratorio successivo"
+          >
             ▶
           </button>
         </div>
       </section>
 
-      <hr />
+      <hr aria-hidden="true" />
 
       <!-- L'ESPERIENZA IN CASCINA CACCIA -->
-      <section class="main-section" id="esperienza">
-        <h2>L'esperienza in Cascina Caccia</h2>
-        <p>
+      <section
+        class="main-section"
+        id="esperienza"
+        aria-labelledby="esperienza-title"
+      >
+        <h2 id="esperienza-title">L'esperienza in Cascina Caccia</h2>
+        <p aria-label="Descrizione dell'esperienza in Cascina">
           Ricca di storia e di significato la nostra <strong>Cascina</strong> è
           una finestra sul passato e una porta verso un futuro più consapevole,
           con attività per tutte le età. Dalle visite guidate ai
@@ -455,74 +569,116 @@
           per imparare e crescere insieme.
         </p>
 
-        <!-- CAROUSEL IMMAGINI-->
-        <div class="carousel-image">
-          <button class="carousel-prev-image" aria-label="Precedente">◀</button>
-          <div class="carousel-track-container">
+        <!-- CAROUSEL IMMAGINI -->
+        <div
+          class="carousel-image"
+          role="region"
+          aria-label="Galleria di immagini dell'esperienza in Cascina"
+        >
+          <button class="carousel-prev-image" aria-label="Immagine precedente">
+            ◀
+          </button>
+          <div class="carousel-track-container" role="list">
             <div class="carousel-track-image">
               <!-- Slide 1 -->
-              <div class="carousel-card-image">
+              <div
+                class="carousel-card-image"
+                role="listitem"
+                aria-labelledby="slide1-title"
+              >
                 <img
                   loading="lazy"
                   src="./assets/img/carousel/scritta-maglietta.webp"
                   alt="Collaborazioni"
+                  id="slide1-title"
                 />
               </div>
               <!-- Slide 2 -->
-              <div class="carousel-card-image">
+              <div
+                class="carousel-card-image"
+                role="listitem"
+                aria-labelledby="slide2-title"
+              >
                 <img
                   loading="lazy"
                   src="./assets/img/carousel/attivita-in-cascina.webp"
                   alt="Storia"
+                  id="slide2-title"
                 />
               </div>
               <!-- Slide 3 -->
-              <div class="carousel-card-image">
+              <div
+                class="carousel-card-image"
+                role="listitem"
+                aria-labelledby="slide3-title"
+              >
                 <img
                   loading="lazy"
                   src="./assets/img/carousel/collaborazioni.webp"
                   alt="Party Bene"
+                  id="slide3-title"
                 />
               </div>
             </div>
           </div>
-          <button class="carousel-next-image" aria-label="Successivo">▶</button>
+          <button class="carousel-next-image" aria-label="Immagine successiva">
+            ▶
+          </button>
         </div>
       </section>
 
-      <hr />
+      <hr aria-hidden="true" />
 
       <!-- TESTIMONIANZE -->
-      <section class="main-section" id="testimonianze">
-        <h2>Testimonianze</h2>
-        <p>
+      <section
+        class="main-section"
+        id="testimonianze"
+        aria-labelledby="testimonianze-title"
+      >
+        <h2 id="testimonianze-title">Testimonianze</h2>
+        <p aria-label="Descrizione testimonianze">
           Scopri cosa pensano di noi i gruppi che hanno vissuto l’esperienza di
           <strong>Cascina Caccia</strong>.
         </p>
 
-        <div id="reviews">
-          <div class="review card1">
-            <p class="review-caption">
+        <div id="reviews" role="region" aria-label="Sezione testimonianze">
+          <!-- Testimonianza 1 -->
+          <div
+            class="review card1"
+            role="article"
+            aria-labelledby="review1-caption review1-author"
+          >
+            <p class="review-caption" id="review1-caption">
               "Un luogo che <strong>insegna</strong> più di mille lezioni"
             </p>
-            <p class="review-author">
+            <p class="review-author" id="review1-author">
               Prof.ssa Elena P. Istituto Comprensivo Giovanni Pascoli, Asti
             </p>
           </div>
-          <div class="review card2">
-            <p class="review-caption">
+          <!-- Testimonianza 2 -->
+          <div
+            class="review card2"
+            role="article"
+            aria-labelledby="review2-caption review2-author"
+          >
+            <p class="review-caption" id="review2-caption">
               "Un'esperienza concreta di <strong>educazione</strong> civica"
             </p>
-            <p class="review-author">
+            <p class="review-author" id="review2-author">
               Giulia M. Liceo Classico Vittorio Alfieri, Cuneo
             </p>
           </div>
-          <div class="review card3">
-            <p class="review-caption">
+          <!-- Testimonianza 3 -->
+          <div
+            class="review card3"
+            role="article"
+            aria-labelledby="review3-caption review3-author"
+          >
+            <p class="review-caption" id="review3-caption">
               "<strong>Cascina Caccia</strong> è un laboratorio di
               <strong>speranza</strong>"
             </p>
-            <p class="review-author">
+            <p class="review-author" id="review3-author">
               Prof.ssa Francesca V. Scuola Media Statale Giuseppe Verdi,
               Vercelli
             </p>
@@ -530,16 +686,25 @@
         </div>
       </section>
 
-      <hr />
+      <hr aria-hidden="true" />
+
       <div id="prenotazione-anchor"></div>
       <!-- PRENOTA UNA VISITA -->
-      <section class="main-section" id="prenotazione">
+      <section
+        class="main-section"
+        id="prenotazione"
+        aria-labelledby="prenotazioneTitle"
+      >
         <div class="form-container">
-          <form id="bookingForm">
-            <h2>Prenota una visita</h2>
+          <form
+            id="bookingForm"
+            aria-labelledby="formTitle"
+            aria-describedby="formInstructions"
+          >
+            <h2 id="formTitle">Prenota una visita</h2>
 
-            <fieldset id="personalInfo">
-              <legend>I tuoi dati</legend>
+            <fieldset id="personalInfo" aria-labelledby="personalInfoLegend">
+              <legend id="personalInfoLegend">I tuoi dati</legend>
 
               <label for="nome"
                 >Nome
@@ -551,8 +716,10 @@
                 name="nome"
                 placeholder="Mario"
                 minlength="2"
+                aria-required="true"
+                aria-describedby="nomeError"
               />
-              <span id="nomeError" class="error"></span>
+              <span id="nomeError" class="error" aria-live="polite"></span>
 
               <label for="cognome"
                 >Cognome
@@ -563,8 +730,10 @@
                 id="cognome"
                 name="cognome"
                 placeholder="Rossi"
+                aria-required="true"
+                aria-describedby="cognomeError"
               />
-              <span id="cognomeError" class="error"></span>
+              <span id="cognomeError" class="error" aria-live="polite"></span>
 
               <label for="cellulare"
                 >Cellulare
@@ -575,8 +744,10 @@
                 id="cellulare"
                 name="cellulare"
                 placeholder="012 345 6789"
+                aria-required="true"
+                aria-describedby="cellulareError"
               />
-              <span id="cellulareError" class="error"></span>
+              <span id="cellulareError" class="error" aria-live="polite"></span>
 
               <label for="email"
                 >Email
@@ -587,27 +758,49 @@
                 id="email"
                 name="email"
                 placeholder="example@mail.com"
+                aria-required="true"
+                aria-describedby="emailError"
               />
-              <span id="emailError" class="error"></span>
+              <span id="emailError" class="error" aria-live="polite"></span>
             </fieldset>
 
             <div class="separator"></div>
 
-            <fieldset id="bookData">
-              <legend>Dati prenotazione</legend>
+            <fieldset id="bookData" aria-labelledby="bookDataLegend">
+              <legend id="bookDataLegend">Dati prenotazione</legend>
 
               <label for="disponibilitaDa"
                 >Disponibilità: da
                 <span class="mandatory-fields">(obbligatorio)</span></label
               >
-              <input type="date" id="disponibilitaDa" name="disponibilitaDa" />
-              <span id="disponibilitaDaError" class="error"></span>
+              <input
+                type="date"
+                id="disponibilitaDa"
+                name="disponibilitaDa"
+                aria-required="true"
+                aria-describedby="disponibilitaDaError"
+              />
+              <span
+                id="disponibilitaDaError"
+                class="error"
+                aria-live="polite"
+              ></span>
 
               <label for="disponibilitaA"
                 >a <span class="mandatory-fields">(obbligatorio)</span></label
               >
-              <input type="date" id="disponibilitaA" name="disponibilitaA" />
-              <span id="disponibilitaAError" class="error"></span>
+              <input
+                type="date"
+                id="disponibilitaA"
+                name="disponibilitaA"
+                aria-required="true"
+                aria-describedby="disponibilitaAError"
+              />
+              <span
+                id="disponibilitaAError"
+                class="error"
+                aria-live="polite"
+              ></span>
 
               <label for="numeroGiorni"
                 >Numero di giorni
@@ -619,8 +812,15 @@
                 name="numeroGiorni"
                 min="1"
                 placeholder="2"
+                aria-required="true"
+                aria-describedby="numeroGiorniError"
               />
-              <span id="numeroGiorniError" class="error"></span>
+              <span
+                id="numeroGiorniError"
+                class="error"
+                aria-live="polite"
+              ></span>
+
               <label for="numeroPartecipanti"
                 >Numero di partecipanti
                 <span class="mandatory-fields">(obbligatorio)</span></label
@@ -631,36 +831,63 @@
                 name="numeroPartecipanti"
                 placeholder="30"
                 min="1"
+                aria-required="true"
+                aria-describedby="numeroPartecipantiError"
               />
-              <span id="numeroPartecipantiError" class="error"></span>
+              <span
+                id="numeroPartecipantiError"
+                class="error"
+                aria-live="polite"
+              ></span>
 
               <label for="visitatore"
                 >Visitatore
                 <span class="mandatory-fields">(obbligatorio)</span></label
               >
-              <select id="visitatore" name="visitatore">
+              <select
+                id="visitatore"
+                name="visitatore"
+                aria-required="true"
+                aria-describedby="visitatoreError"
+              >
                 <option value="">Seleziona</option>
                 <option value="scuola elementare">Scuola elementare</option>
                 <option value="scuola media">Scuola media</option>
                 <option value="scuola superiore">Scuola superiore</option>
               </select>
-              <span id="visitatoreError" class="error"></span>
+              <span
+                id="visitatoreError"
+                class="error"
+                aria-live="polite"
+              ></span>
 
               <label for="periodoGiornata"
                 >Periodo della giornata
                 <span class="mandatory-fields"
                   >(se si sceglie 1 giorno solo)</span
-                ></label
+                >
+              </label>
+              <select
+                id="periodoGiornata"
+                name="periodoGiornata"
+                disabled
+                aria-describedby="periodoGiornataError"
               >
-              <select id="periodoGiornata" name="periodoGiornata" disabled>
                 <option value="">Seleziona</option>
                 <option value="mattino">Mattino</option>
                 <option value="tutto il giorno">Tutto il giorno</option>
               </select>
-              <span id="periodoGiornataError" class="error"></span>
+              <span
+                id="periodoGiornataError"
+                class="error"
+                aria-live="polite"
+              ></span>
 
-              <fieldset id="selectLaboratori">
-                <legend>Laboratori</legend>
+              <fieldset
+                id="selectLaboratori"
+                aria-labelledby="laboratoriLegend"
+              >
+                <legend id="laboratoriLegend">Laboratori</legend>
 
                 <p>
                   Scegli quali laboratori desidereresti esplorare durante la tua
@@ -672,6 +899,7 @@
                     id="lab1"
                     name="lab1"
                     value="Laboratorio 1 - Storia di Cascina Carla e Bruno Caccia"
+                    aria-describedby="selectLaboratoriError"
                   />
                   1 - Storia di Cascina Carla e Bruno Caccia</label
                 >
@@ -755,7 +983,11 @@
                   9 - Chi non gioca vince
                 </label>
 
-                <span id="selectLaboratoriError" class="error"></span>
+                <span
+                  id="selectLaboratoriError"
+                  class="error"
+                  aria-live="polite"
+                ></span>
               </fieldset>
 
               <label for="richiesteParticolari">Richieste particolari</label>
@@ -764,6 +996,7 @@
                 name="richiesteParticolari"
                 rows="4"
                 placeholder="Vorremmo dei dettagli su..."
+                aria-describedby="richiesteParticolariError"
               ></textarea>
             </fieldset>
 
@@ -774,15 +1007,24 @@
                 id="privacyPolicy"
                 name="privacyPolicy"
                 value="Ho letto e accetto i termini della Privacy Policy"
+                aria-required="true"
+                aria-describedby="privacyPolicyError"
               />
               Ho letto e accetto i termini della Privacy Policy
             </label>
-            <span id="privacyPolicyError" class="error"></span>
-
-            <span id="bookingFormError" class="error"></span>
+            <span
+              id="privacyPolicyError"
+              class="error"
+              aria-live="polite"
+            ></span>
 
             <div class="container">
-              <button type="submit" id="submitBookForm" class="submit-btn">
+              <button
+                type="submit"
+                id="submitBookForm"
+                class="submit-btn"
+                aria-label="Invia il modulo per prenotare una visita"
+              >
                 Invia
               </button>
             </div>
@@ -794,17 +1036,35 @@
 
       <div id="faq-anchor"></div>
       <!-- FAQ -->
-      <section class="main-section" id="faq">
+      <section class="main-section" id="faq" aria-labelledby="faq-title">
         <div class="faq-container">
           <div class="faq-section">
-            <h2>FAQ</h2>
+            <h2 id="faq-title">FAQ</h2>
 
             <div class="accordion">
-              <input type="radio" id="faq1" name="radio-group" />
-              <label class="accordion-label" for="faq1">
+              <input
+                type="radio"
+                id="faq1"
+                name="radio-group"
+                aria-controls="content1"
+                aria-expanded="false"
+              />
+              <label
+                class="accordion-label"
+                for="faq1"
+                id="label1"
+                role="button"
+                aria-controls="content1"
+                aria-expanded="false"
+              >
                 Quali modalità di visita offre Cascina Caccia?
               </label>
-              <div class="accordion-content">
+              <div
+                class="accordion-content"
+                id="content1"
+                role="region"
+                aria-labelledby="label1"
+              >
                 Cascina Caccia offre quattro modalità di visita:<br />
                 - L'uscita didattica al mattino(dalle 9,00 alle 13,00)<br />
                 - L'uscita didattica con attività anche al pomeriggio(dalle 9,00
@@ -820,11 +1080,29 @@
             </div>
 
             <div class="accordion">
-              <input type="radio" id="faq2" name="radio-group" />
-              <label class="accordion-label" for="faq2">
+              <input
+                type="radio"
+                id="faq2"
+                name="radio-group"
+                aria-controls="content2"
+                aria-expanded="false"
+              />
+              <label
+                class="accordion-label"
+                for="faq2"
+                id="label2"
+                role="button"
+                aria-controls="content2"
+                aria-expanded="false"
+              >
                 Quanti studenti può ospitare Cascina Caccia?
               </label>
-              <div class="accordion-content">
+              <div
+                class="accordion-content"
+                id="content2"
+                role="region"
+                aria-labelledby="label2"
+              >
                 Cascina Caccia può ospitare un numero di studenti diverso in
                 base al tipo di visita o attività scelta.
                 <br />
@@ -840,12 +1118,30 @@
             </div>
 
             <div class="accordion">
-              <input type="radio" id="faq3" name="radio-group" />
-              <label class="accordion-label" for="faq3">
+              <input
+                type="radio"
+                id="faq3"
+                name="radio-group"
+                aria-controls="content3"
+                aria-expanded="false"
+              />
+              <label
+                class="accordion-label"
+                for="faq3"
+                id="label3"
+                role="button"
+                aria-controls="content3"
+                aria-expanded="false"
+              >
                 Quali sono i costi per organizzare una visita o un soggiorno in
                 Cascina?
               </label>
-              <div class="accordion-content">
+              <div
+                class="accordion-content"
+                id="content3"
+                role="region"
+                aria-labelledby="label3"
+              >
                 I costi variano in base alla durata della visita, alle attività
                 scelte e al numero di partecipanti. Vi invitiamo a contattarci
                 per ricevere un preventivo personalizzato.
@@ -853,11 +1149,29 @@
             </div>
 
             <div class="accordion">
-              <input type="radio" id="faq4" name="radio-group" />
-              <label class="accordion-label" for="faq4">
+              <input
+                type="radio"
+                id="faq4"
+                name="radio-group"
+                aria-controls="content4"
+                aria-expanded="false"
+              />
+              <label
+                class="accordion-label"
+                for="faq4"
+                id="label4"
+                role="button"
+                aria-controls="content4"
+                aria-expanded="false"
+              >
                 La Cascina è accessibile a studenti con disabilità?
               </label>
-              <div class="accordion-content">
+              <div
+                class="accordion-content"
+                id="content4"
+                role="region"
+                aria-labelledby="label4"
+              >
                 Sì, la struttura è dotata di spazi accessibili per studenti con
                 disabilità motorie. Per esigenze particolari, vi invitiamo a
                 comunicarci in anticipo le necessità del gruppo.
@@ -865,23 +1179,59 @@
             </div>
 
             <div class="accordion">
-              <input type="radio" id="faq5" name="radio-group" />
-              <label class="accordion-label" for="faq5">
+              <input
+                type="radio"
+                id="faq5"
+                name="radio-group"
+                aria-controls="content5"
+                aria-expanded="false"
+              />
+              <label
+                class="accordion-label"
+                for="faq5"
+                id="label5"
+                role="button"
+                aria-controls="content5"
+                aria-expanded="false"
+              >
                 Come possiamo prenotare una visita o un soggiorno a Cascina
                 Caccia?
               </label>
-              <div class="accordion-content">
+              <div
+                class="accordion-content"
+                id="content5"
+                role="region"
+                aria-labelledby="label5"
+              >
                 Per prenotare una visita o un soggiorno, usate il form apposito
                 contenuto nella pagina.
               </div>
             </div>
 
             <div class="accordion">
-              <input type="radio" id="faq6" name="radio-group" />
-              <label class="accordion-label" for="faq6">
+              <input
+                type="radio"
+                id="faq6"
+                name="radio-group"
+                aria-controls="content6"
+                aria-expanded="false"
+              />
+              <label
+                class="accordion-label"
+                for="faq6"
+                id="label6"
+                role="button"
+                aria-controls="content6"
+                aria-expanded="false"
+              >
                 Quali sono le modalità di pagamento?
               </label>
-              <div class="accordion-content">
+              <div
+                class="accordion-content"
+                id="content6"
+                role="region"
+                aria-labelledby="label6"
+              >
                 Il pagamento può essere effettuato tramite bonifico bancari
                 entro 30 giorni dallo svolgimento delle attività o pagamento in
                 loco. Saranno fornite istruzioni dettagliate al momento della
@@ -892,8 +1242,8 @@
         </div>
 
         <div class="form-container">
-          <form id="infoForm">
-            <h2>Richiedi informazioni</h2>
+          <form id="infoForm" aria-labelledby="infoFormTitle">
+            <h2 id="infoFormTitle">Richiedi informazioni</h2>
 
             <label for="nomeInfo">Nome</label>
             <input
@@ -902,8 +1252,10 @@
               name="nome"
               placeholder="Mario"
               minlength="2"
+              aria-required="true"
+              aria-describedby="nomeInfoError"
             />
-            <span id="nomeInfoError" class="error"></span>
+            <span id="nomeInfoError" class="error" aria-live="polite"></span>
 
             <label for="cognomeInfo">Cognome</label>
             <input
@@ -911,8 +1263,9 @@
               id="cognomeInfo"
               name="cognome"
               placeholder="Rossi"
+              aria-describedby="cognomeInfoError"
             />
-            <span id="cognomeInfoError" class="error"></span>
+            <span id="cognomeInfoError" class="error" aria-live="polite"></span>
 
             <label for="emailInfo">Email</label>
             <input
@@ -920,8 +1273,10 @@
               id="emailInfo"
               name="email"
               placeholder="example@mail.com"
+              aria-required="true"
+              aria-describedby="emailInfoError"
             />
-            <span id="emailInfoError" class="error"></span>
+            <span id="emailInfoError" class="error" aria-live="polite"></span>
 
             <label for="cellulareInfo">Cellulare</label>
             <input
@@ -929,8 +1284,13 @@
               id="cellulareInfo"
               name="cellulare"
               placeholder="012 345 6789"
+              aria-describedby="cellulareInfoError"
             />
-            <span id="cellulareInfoError" class="error"></span>
+            <span
+              id="cellulareInfoError"
+              class="error"
+              aria-live="polite"
+            ></span>
 
             <label for="messaggio">Come possiamo aiutarti?</label>
             <textarea
@@ -938,35 +1298,47 @@
               name="messaggio"
               rows="10"
               placeholder="Chiedici qualcosa..."
+              aria-describedby="messaggioError"
             ></textarea>
-            <span id="messaggioError" class="error"></span>
+            <span id="messaggioError" class="error" aria-live="polite"></span>
 
-            <label class="privacy-check">
+            <label class="privacy-check" for="privacyPolicyInfo">
               <input
                 class="privacy-check"
                 type="checkbox"
                 id="privacyPolicyInfo"
                 name="privacyPolicy"
                 value="Ho letto e accetto i termini della Privacy Policy"
+                aria-required="true"
+                aria-describedby="privacyPolicyInfoError"
               />
               Ho letto e accetto i termini della Privacy Policy
             </label>
-            <span id="privacyPolicyInfoError" class="error"></span>
+            <span
+              id="privacyPolicyInfoError"
+              class="error"
+              aria-live="polite"
+            ></span>
 
-            <span id="infoFormError" class="error"></span>
+            <span id="infoFormError" class="error" aria-live="assertive"></span>
 
             <div class="container">
-              <button id="submitInfoForm" class="submit-btn">Invia</button>
+              <button
+                id="submitInfoForm"
+                class="submit-btn"
+                aria-label="Invia il modulo di richiesta informazioni"
+              >
+                Invia
+              </button>
             </div>
           </form>
         </div>
       </section>
     </div>
-
     <!-- FOOTER -->
-    <footer>
+    <footer aria-label="Footer">
       <div class="footer-container">
-        <div class="footer-left">
+        <div class="footer-left" aria-labelledby="contattaci">
           <div id="contattaci">
             <img
               loading="lazy"
@@ -974,24 +1346,27 @@
               src="./assets/img/footer/email.svg"
               alt="Icona email"
             />
-            <h3>Contattaci</h3>
-            <a href="mailto:cascina.caccia@acmos.net"
-              >cascina.caccia@acmos.net</a
+            <h3 id="contattaciTitle">Contattaci</h3>
+            <a
+              href="mailto:cascina.caccia@acmos.net"
+              aria-label="Invia un'email a cascina.caccia@acmos.net"
             >
+              cascina.caccia@acmos.net
+            </a>
           </div>
           <div class="footer-col-container">
-            <figure>
+            <figure aria-labelledby="footerLogoDesc">
               <img
                 loading="lazy"
                 class="navbar-logo"
                 src="./assets/img/logo-a-caccia-di-sapere.webp"
-                alt="Logo del sito"
+                alt="Logo del sito Cascina Caccia"
               />
             </figure>
           </div>
         </div>
 
-        <div class="footer-center">
+        <div class="footer-center" aria-labelledby="footerMap">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2813.3846159266354!2d7.9307773!3d45.1590609!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4787d83975557773%3A0xce98a033bd811358!2sCascina%20Caccia!5e0!3m2!1sit!2sit!4v1737766460301!5m2!1sit!2sit"
             width="400"
@@ -1000,39 +1375,49 @@
             allowfullscreen=""
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
+            aria-label="Mappa interattiva di Cascina Caccia"
           ></iframe>
         </div>
 
         <div class="footer-right">
           <div class="footer-col-container">
-            <h3>Scopri di più su Cascina Caccia</h3>
-            <div class="icon-links">
-              <a href="https://www.facebook.com/cascinacaccia" target="_blank">
+            <h3 id="discoverMore">Scopri di più su Cascina Caccia</h3>
+            <div class="icon-links" aria-labelledby="socialLinks">
+              <a
+                href="https://www.facebook.com/cascinacaccia"
+                target="_blank"
+                aria-label="Visita la pagina Facebook di Cascina Caccia"
+              >
                 <img
                   loading="lazy"
                   class="icon"
                   src="./assets/img/footer/facebook-icon.svg"
-                  alt="Icona facebook"
+                  alt="Icona Facebook"
                 />
               </a>
               <a
                 href="https://www.instagram.com/cascina_caccia/"
                 target="_blank"
+                aria-label="Visita la pagina Instagram di Cascina Caccia"
               >
                 <img
                   loading="lazy"
                   class="icon"
                   src="./assets/img/footer/instagram-icon.svg"
-                  alt="Icona instagram"
+                  alt="Icona Instagram"
                 />
               </a>
             </div>
-            <figure>
-              <a href="https://cascinacaccia.net/" target="_blank">
+            <figure aria-labelledby="cascinaLogoDesc">
+              <a
+                href="https://cascinacaccia.net/"
+                target="_blank"
+                aria-label="Visita il sito ufficiale di Cascina Caccia"
+              >
                 <img
                   loading="lazy"
                   src="./assets/img/logo-cascina-caccia.webp"
-                  alt="logo di Cascina Caccia"
+                  alt="Logo di Cascina Caccia"
                 />
               </a>
             </figure>
