@@ -1,3 +1,9 @@
+/**
+ * @file: all-admins.js
+ * @author: CR-8
+ * This code includes the logic for the all-admins.html page
+ */
+
 fetch("/csrf-token")
   .then((response) => response.json())
   .then((data) => {
@@ -26,7 +32,22 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch((error) => console.error("Error fetching data:", error));
 
-  // Function to render admin cards
+  /**
+   * Renders admin cards in the specified container.
+   * For each admin object in the data array:
+   * - Creates a card element displaying the admin's name, email, code, and role.
+   * - If the role is not "SUPER_ADMIN", adds a delete button to the card.
+   * - The delete button sends a DELETE request to remove the admin and updates the card list upon success.
+   *
+   * @param {Array<Object>} data - Array of admin objects to render. Each object must include:
+   *   - {number} id - The unique identifier of the admin.
+   *   - {string} name - The name of the admin.
+   *   - {string} email - The email address of the admin.
+   *   - {string} code - A code associated with the admin.
+   *   - {Object} role - An object containing the admin's role information.
+   *     - {string} role.name - The name of the role (e.g., "ADMIN", "SUPER_ADMIN").
+   * @returns {void}
+   */
   function renderCards(data) {
     container.innerHTML = ""; // Clear the container
     data.forEach((admin) => {
@@ -87,7 +108,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Function to filter admins by search term
+  /**
+   * Filters the list of admins based on the search term entered in the search bar.
+   * The filter is applied by checking if the admin's name or email contains the search term (case-insensitive).
+   * The filtered list is then rendered using the `renderCards` function.
+   *
+   * @returns {void}
+   */
   function filterAdmins() {
     const searchTerm = searchBar.value.toLowerCase();
     const filteredAdmins = allAdmins.filter((admin) => {

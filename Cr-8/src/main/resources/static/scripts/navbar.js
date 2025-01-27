@@ -5,7 +5,9 @@
  */
 
 /**
- * Toggles the navbar menu from hidden to visible when clicking the burger menu
+ * Toggles the visibility of the navigation menu.
+ * Adds or removes the "show" class from the element with the "navbar" class.
+ * @returns {void}
  */
 function menu() {
   document.querySelector(".navbar").classList.toggle("show");

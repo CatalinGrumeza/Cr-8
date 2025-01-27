@@ -1,3 +1,9 @@
+/**
+ * @file: forgot-password.js
+ * @author: CR-8
+ * This code includes the logic for the forgot-password.html page
+ */
+
 // Seleziona il bottone e il campo di input
 const sendButton = document.getElementById("send-button");
 const emailInput = document.getElementById("email-input");
@@ -31,20 +37,19 @@ sendButton.addEventListener("click", async () => {
 
     if (!res.ok) {
       emailnotvalid.style.color = "red";
-	   emailnotvalid.textContent = "Email non registrata!";
-    }else{
-    // Handle the response as plain text
-    const responseText = await res.text();
-    console.log("Success:", responseText);
+      emailnotvalid.textContent = "Email non registrata!";
+    } else {
+      // Handle the response as plain text
+      const responseText = await res.text();
+      console.log("Success:", responseText);
 
-    localStorage.setItem("userEmail", email);
+      localStorage.setItem("userEmail", email);
 
-    setTimeout(() => {
-      window.location.href = "/code-verification";
-    }, 100);
-	}
+      setTimeout(() => {
+        window.location.href = "/code-verification";
+      }, 100);
+    }
   } catch (error) {
     console.error("Error:", error);
   }
 });
-

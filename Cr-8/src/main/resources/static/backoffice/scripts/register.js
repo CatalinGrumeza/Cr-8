@@ -1,3 +1,9 @@
+/**
+ * @file: register.js
+ * @author: CR-8
+ * This code includes the logic for the create-admin.html page
+ */
+
 fetch("/csrf-token")
   .then((response) => response.json())
   .then((data) => {

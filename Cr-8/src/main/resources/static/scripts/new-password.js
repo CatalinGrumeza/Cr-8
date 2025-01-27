@@ -1,3 +1,20 @@
+/**
+ * @file: new-password.js
+ * @author: CR-8
+ * This code includes the logic for the new-password.html page
+ */
+
+/**
+ * Validates a password against a regex pattern.
+ * The password must meet the following criteria:
+ * - At least one lowercase letter.
+ * - At least one uppercase letter.
+ * - At least one digit.
+ * - At least one special character (@, $, !, %, *, ?, &).
+ * - Minimum length of 8 characters.
+ * @param {string} password - The password to validate.
+ * @returns {boolean} True if the password matches the criteria, false otherwise.
+ */
 function validatePasswordRegex(password) {
   // La regex per la password
   const regex =
@@ -21,6 +38,20 @@ document
       passwordError.style.display = "none";
     }
   });
+
+/**
+ * Validates and updates a user's password by confirming the input fields and making an API request.
+ *
+ * The function performs the following steps:
+ * - Ensures both password fields are filled.
+ * - Confirms the two passwords match.
+ * - Retrieves a CSRF token via an API call.
+ * - Sends a POST request to update the password using the provided code and new password.
+ * - Displays success or error messages in the UI.
+ * - Redirects to the login page if the update is successful.
+ *
+ * @returns {Promise<void>} A promise that resolves when the function completes.
+ */
 async function validatePassword() {
   const password = document.getElementById("password").value;
   const confirmPassword = document.getElementById("confirm-password").value;
