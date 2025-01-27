@@ -15,10 +15,17 @@ sendButton.addEventListener("click", async () => {
 
   const url = `/api/pub/code?code=${Upper}`;
   try {
+    // Fetch CSRF token
+    const csrfResponse = await fetch('/csrf-token');
+    const csrfData = await csrfResponse.json();
+    const csrfToken = csrfData.token; // Define csrfToken here
+
+    // Make the GET request with the CSRF token
     const res = await fetch(url, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        'X-CSRF-TOKEN': csrfToken, // Use the token in the header
       },
     });
 
