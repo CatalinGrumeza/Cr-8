@@ -13,17 +13,18 @@
     <link rel="icon" href="./favicon.ico" />
 
     <!-- styles -->
-    <link
+    <!-- <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
-    />
-    <link
+    /> -->
+    <!-- <link
       href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.6/main.min.css"
       rel="stylesheet"
-    />
+    /> -->
     <link rel="stylesheet" href="../styles/normalize.css" />
     <link rel="stylesheet" href="../styles/main.css" />
-    <link rel="stylesheet" href="../backoffice/styles/dashboard.css" />
+    <!-- <link rel="stylesheet" href="../backoffice/styles/dashboard.css" /> -->
+    <link rel="stylesheet" href="../backoffice/styles/backoffice.css" />
   </head>
 
   <body>
@@ -72,20 +73,14 @@
       <button class="hamburger" onclick="menu()">☰</button>
     </nav>
 
-    <h2>Dashboard</h2>
     <div class="main-container">
-      <div class="row">
-        <!-- Left Column: Cards -->
-        <div id="dashboard-cards" class="col-md-8">
-          <div class="row">
-            <!-- Cards will be dynamically inserted here -->
-          </div>
-        </div>
-        <!-- Right Column: Calendar -->
+      <h2>Dashboard</h2>
+
+      <div id="dashboard-cards" class="card-container">
         <div id="calendar-container" class="col-md-4">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title text-center">Calendario Prenotazioni</h5>
+              <h2>Calendario Prenotazioni</h2>
               <div id="calendar"></div>
             </div>
           </div>

@@ -1,8 +1,25 @@
+/**
+* backoffice.css
+*
+* Style Sheet used to style every page of the website backoffice
+*/
+
 .card-container {
   margin-top: 5em;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+}
+
+#dashboard-cards {
+  align-items: center;
+}
+
+#dashboard-cards .card {
+  border: 5px solid transparent;
+  background: linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(to left, var(--purple), var(--orange), var(--yellow))
+      border-box;
 }
 
 .btn-container {
@@ -84,14 +101,6 @@ input[type="text"] {
 .card-form {
   flex: 1;
   padding-left: 20px;
-}
-
-.card-title {
-  color: var(--orange);
-  font-size: 1.5em;
-  margin-bottom: 15px;
-  border-bottom: 2px solid var(--primary-color);
-  padding-bottom: 10px;
 }
 
 .card p {
@@ -197,4 +206,24 @@ h3 {
 
 .hidden {
   display: none;
+}
+
+/* dashboard calendar */
+#calendar .fc-button {
+  background: linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(to left, var(--purple), var(--orange), var(--yellow))
+      border-box;
+  color: black !important;
+  border-radius: var(--rounded-corners);
+  border: 2px solid transparent;
+}
+
+#calendar .fc-button-active {
+  background: linear-gradient(#eeeeee, #eeeeee) padding-box,
+    linear-gradient(to left, var(--purple), var(--orange), var(--yellow))
+      border-box !important;
+}
+
+#calendar .fc-event {
+  border-radius: var(--rounded-corners);
 }

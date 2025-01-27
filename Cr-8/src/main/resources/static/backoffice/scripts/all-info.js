@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Create card content
       card.innerHTML = `
                 <div class="info-content">
-                    <h2 class="card-title">${lastName} ${firstName}</h5>
+                    <h2>${lastName} ${firstName}</h5>
                     <p><span class="bold">Email</span>: ${email}</p>
                     <p><span class="bold">Cellulare</span>: ${phoneNumber}</p>
                     <p><span class="bold">Richiesta</span>: ${text}</p>

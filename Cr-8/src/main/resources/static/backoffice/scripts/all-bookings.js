@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Create card content
       card.innerHTML = `
         <div class="book-content">
-          <h2 class="card-title">${reference.lastName} ${
+          <h2>${reference.lastName} ${
         reference.firstName
       }</h2>
           <p><span class="bold">Email</span>: ${reference.email}</p>
