@@ -4,6 +4,8 @@ import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -113,6 +115,9 @@ public class AdminService {
     	Admin admin = adminRepo.findByCode(code).orElseThrow(() -> new IllegalArgumentException("Code is not valid"));
 
         // Update the admin's password and clear the reset code
+    	if(!validatePassword(pass)) {
+    		return "Password not valid !";
+    	}
         admin.setPassword(passwordEncoder.encode(pass));
         admin.setCode(null);
         adminRepo.save(admin);
@@ -157,5 +162,18 @@ public class AdminService {
 		}else
 			return "Codice errato!";
 	}
+    public static boolean validatePassword(String password) {
+        // La regex per la password
+        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
+        
+        // Crea un Pattern con la regex
+        Pattern pattern = Pattern.compile(regex);
+        
+        // Crea un Matcher per verificare se la password corrisponde alla regex
+        Matcher matcher = pattern.matcher(password);
+        
+        // Restituisce true se la password è valida, altrimenti false
+        return matcher.matches();
+    }
 }
 
