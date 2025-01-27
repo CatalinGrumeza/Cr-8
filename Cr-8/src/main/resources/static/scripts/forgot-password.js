@@ -1,7 +1,7 @@
 // Seleziona il bottone e il campo di input
 const sendButton = document.getElementById("send-button");
 const emailInput = document.getElementById("email-input");
-
+const emailnotvalid = document.getElementById("message")
 // Aggiungi un gestore di eventi al click sul bottone
 sendButton.addEventListener("click", async () => {
   const email = emailInput.value; // Ottieni il valore dell'email
@@ -31,9 +31,9 @@ sendButton.addEventListener("click", async () => {
     });
 
     if (!res.ok) {
-      throw new Error(`HTTP error! status: ${res.status}`);
-    }
-
+      emailnotvalid.style.color = "red";
+	   emailnotvalid.textContent = "Email not registered ! !";
+    }else{
     // Handle the response as plain text
     const responseText = await res.text();
     console.log("Success:", responseText);
@@ -43,7 +43,7 @@ sendButton.addEventListener("click", async () => {
     setTimeout(() => {
       window.location.href = "/code-verification";
     }, 500);
-
+	}
   } catch (error) {
     console.error("Error:", error);
   }
