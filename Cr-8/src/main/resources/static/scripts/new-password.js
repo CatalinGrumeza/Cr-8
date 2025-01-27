@@ -1,7 +1,7 @@
 /**
- * @file: newpassoword.js
+ * @file: new-password.js
  * @author: CR-8
- * This code includes the logic for the newpassoword.html page
+ * This code includes the logic for the new-password.html page
  */
 
 /**
