@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <div class="col-md-6">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title text-center">${title}</h5>
+          <h2>${title}</h2>
           <p class="text-center">
             <span class="text-green">Completed: ${completedCount}</span> | 
             <span class="text-red">Pending: ${pendingCount}</span>

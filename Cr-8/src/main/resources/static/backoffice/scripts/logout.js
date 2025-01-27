@@ -17,19 +17,19 @@ if (sessionStorage.getItem("adminRole") === "ADMIN") {
 }
 
 logoutBtn.addEventListener("click", function (event) {
-  event.preventDefault(); // Prevent the default anchor behavior
+  event.preventDefault();
 
   fetch("/logout", {
     method: "POST",
-    credentials: "include", // Include cookies
+    credentials: "include",
     headers: {
-      "X-CSRF-TOKEN": csrfToken, // Include CSRF token if required
+      "X-CSRF-TOKEN": csrfToken,
     },
   })
     .then((response) => {
       if (response.ok) {
         sessionStorage.clear();
-        window.location.href = "/?logout"; // Redirect after logout
+        window.location.href = "/?logout";
       }
     })
     .catch((error) => {
