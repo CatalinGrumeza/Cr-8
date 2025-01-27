@@ -6,10 +6,35 @@
  */
 
 /* ------------------------------ GENERIC FORM VALIDATION ------------------------------ */
+
+
+// Fetch CSRF token on page load
+fetch('/csrf-token')
+  .then(response => response.json())
+  .then(data => {
+    csrfToken = data.token;
+  });
+
+
+/**
+ * Generic form validation function that handles field validation and form submission
+ * @param {string} formId - The ID of the form element to validate
+ * @param {Object} fieldsConfig - Configuration object containing validation rules for each field
+ * @param {string} apiEndpoint - API endpoint URL for form submission
+ * @param {string} successMessage - Message to display on successful form submission
+ */
+
+
 const formValidation = (formId, fieldsConfig, apiEndpoint, successMessage) => {
   const form = document.getElementById(formId);
 
-  // Validazione dei campi del form
+  /**
+   * Validates a single form field against its configuration rules
+   * @param {HTMLElement} field - The form field element to validate
+   * @param {Object} fieldConfig - Validation configuration for the field
+   * @param {HTMLElement} errorSpan - Element to display validation errors
+   * @returns {boolean} Whether the field is valid
+   */
   const validateField = (field, fieldConfig, errorSpan) => {
     let isValid = true;
     if (fieldConfig.regex) {
@@ -29,7 +54,10 @@ const formValidation = (formId, fieldsConfig, apiEndpoint, successMessage) => {
     return isValid;
   };
 
-  // Funzione per validare tutti i campi
+  /**
+   * Validates all fields in the form
+   * @returns {boolean} Whether all fields are valid
+   */
   const validateFormFields = () => {
     let formIsValid = true;
     Object.keys(fieldsConfig).forEach((fieldId) => {
@@ -42,7 +70,6 @@ const formValidation = (formId, fieldsConfig, apiEndpoint, successMessage) => {
     return formIsValid;
   };
 
-  // Aggiungi event listeners per la validazione dei campi
   Object.keys(fieldsConfig).forEach((fieldId) => {
     const field = document.getElementById(fieldId);
     const errorSpan = document.getElementById(`${fieldId}Error`);
@@ -54,17 +81,52 @@ const formValidation = (formId, fieldsConfig, apiEndpoint, successMessage) => {
     );
   });
 
-  // Funzione per raccogliere i dati dal form
+  /**
+   * Gathers all form data into an object for submission
+   * @returns {Object} Form data object
+   */
   const gatherFormData = () => {
     const data = {};
-    Object.keys(fieldsConfig).forEach((fieldId) => {
-      const field = document.getElementById(fieldId);
-      data[fieldId] = field.value;
-    });
+    const currentDate = new Date().toISOString().split("T")[0];
+
+    if (formId === "bookingForm") {
+      data.name = document.getElementById("nome").value;
+      data.surname = document.getElementById("cognome").value;
+      data.phone = document.getElementById("cellulare").value;
+      data.email = document.getElementById("email").value;
+      data.numberOfDays = parseInt(
+        document.getElementById("numeroGiorni").value,
+        10
+      );
+      data.additionalDetails =
+        document.getElementById("richiesteParticolari").value || "";
+      data.dataFrom = document.getElementById("disponibilitaDa").value;
+      data.dataTo = document.getElementById("disponibilitaA").value;
+      data.participantNumber = parseInt(
+        document.getElementById("numeroPartecipanti").value,
+        10
+      );
+      data.bookType = document.getElementById("periodoGiornata").value || "";
+      data.visitorType = document.getElementById("visitatore").value;
+
+      data.labs = Array.from(
+        document.querySelectorAll(
+          '#selectLaboratori input[type="checkbox"]:checked'
+        )
+      ).map((checkbox) => checkbox.value);
+
+      data.createdAt = currentDate;
+    } else if (formId === "infoForm") {
+      data.name = document.getElementById("nomeInfo").value;
+      data.surname = document.getElementById("cognomeInfo").value;
+      data.phone = document.getElementById("cellulareInfo").value;
+      data.email = document.getElementById("emailInfo").value;
+      data.text = document.getElementById("messaggio").value;
+    }
+
     return data;
   };
 
-  // Gestione dell'invio del form
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     const formIsValid = validateFormFields();
@@ -85,6 +147,7 @@ const formValidation = (formId, fieldsConfig, apiEndpoint, successMessage) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          'X-CSRF-TOKEN': csrfToken, // Add the token to the header
         },
         body: JSON.stringify(data),
       });
@@ -152,6 +215,17 @@ const bookingFields = {
       const maxGiorni =
         Math.ceil((disponibilitaA - disponibilitaDa) / (1000 * 60 * 60 * 24)) +
         1;
+      const periodoGiornata = document.getElementById("periodoGiornata");
+
+      if (giorni === 1) {
+        periodoGiornata.disabled = false;
+        periodoGiornata.required = true;
+      } else {
+        periodoGiornata.disabled = true;
+        periodoGiornata.required = false;
+        periodoGiornata.value = "";
+      }
+
       return giorni <= maxGiorni;
     },
     error:
@@ -172,12 +246,12 @@ const bookingFields = {
         10
       );
       return (
-        numeroGiorni === 1 &&
-        document.getElementById("periodoGiornata").value !== ""
+        numeroGiorni !== 1 ||
+        (numeroGiorni === 1 &&
+          document.getElementById("periodoGiornata").value !== "")
       );
     },
-    error:
-      "Seleziona un periodo della giornata se il numero di giorni è uguale a 1.",
+    error: "Seleziona un periodo della giornata per un singolo giorno.",
   },
   selectLaboratori: {
     customValidation: () => {
@@ -189,8 +263,11 @@ const bookingFields = {
     error: "Seleziona almeno un laboratorio.",
   },
   privacyPolicy: {
-    customValidation: (value) => value === "on",
-    error: "Accetta la privacy policy per procedere.",
+    customValidation: () => {
+      const privacyCheckbox = document.getElementById("privacyPolicy");
+      return privacyCheckbox.checked;
+    },
+    error: "Devi accettare i termini della Privacy Policy.",
   },
 };
 
@@ -200,6 +277,24 @@ formValidation(
   "/api/pub/create-booking",
   "Prenotazione inviata con successo!"
 );
+
+document.addEventListener("DOMContentLoaded", () => {
+  const numeroGiorni = document.getElementById("numeroGiorni");
+  const periodoGiornata = document.getElementById("periodoGiornata");
+
+  numeroGiorni.addEventListener("input", () => {
+    const giorni = parseInt(numeroGiorni.value, 10);
+
+    if (giorni === 1) {
+      periodoGiornata.disabled = false;
+      periodoGiornata.required = true;
+    } else {
+      periodoGiornata.disabled = true;
+      periodoGiornata.required = false;
+      periodoGiornata.value = "";
+    }
+  });
+});
 
 /* ------------------------------ INFO FORM ------------------------------ */
 const infoFields = {
@@ -227,8 +322,11 @@ const infoFields = {
     error: "Il messaggio deve contenere almeno 20 caratteri.",
   },
   privacyPolicyInfo: {
-    customValidation: (value) => value === "on",
-    error: "Accetta la privacy policy per procedere.",
+    customValidation: () => {
+      const privacyCheckbox = document.getElementById("privacyPolicyInfo");
+      return privacyCheckbox.checked;
+    },
+    error: "Devi accettare i termini della Privacy Policy.",
   },
 };
 
@@ -241,7 +339,7 @@ formValidation(
 
 /* ------------------------------ ANCHORS LINKS ANIMATIONS ------------------------------ */
 
-// Animates anchor link
+// animates anchor link
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
     e.preventDefault();
@@ -271,6 +369,9 @@ const cardWidthLaboratori = cardsLaboratori[0].getBoundingClientRect().width;
 
 let currentLaboratoriIndex = 0;
 
+/**
+ * Updates carousel track position for the laboratories section
+ */
 function updateLaboratoriTrackPosition() {
   const amountToMove = -(cardWidthLaboratori + 20) * currentLaboratoriIndex;
   trackLaboratori.style.transition = "transform 0.5s ease-in-out";
@@ -303,6 +404,9 @@ const cardWidthImage = cardsImage[0].getBoundingClientRect().width;
 
 let currentImageIndex = 0;
 
+/**
+ * Updates carousel track position for the images section
+ */
 function updateImageTrackPosition() {
   const amountToMove = -(cardWidthImage + 20) * currentImageIndex;
   trackImage.style.transition = "transform 0.5s ease-in-out";

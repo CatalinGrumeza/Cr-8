@@ -1,3 +1,9 @@
+fetch("/csrf-token")
+  .then((response) => response.json())
+  .then((data) => {
+    csrfToken = data.token;
+  });
+
 document.addEventListener("DOMContentLoaded", function () {
   const container = document.getElementById("admin-container");
   const searchBar = document.getElementById("search-bar");
@@ -46,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Add delete button only if the role is not SUPER_ADMIN
       if (role.name !== "SUPER_ADMIN") {
         const deleteButton = document.createElement("button");
-        deleteButton.classList.add("btn-complete", "btn-red");
+        deleteButton.classList.add("btn", "btn-complete", "btn-red");
         deleteButton.textContent = "Elimina";
         deleteButton.setAttribute("data-id", id);
 
@@ -60,6 +66,10 @@ document.addEventListener("DOMContentLoaded", function () {
             // Send request to delete the admin
             fetch(`/api/super/delete-admin?id=${adminId}`, {
               method: "DELETE",
+              headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": csrfToken, // Add the token to the header
+              },
             })
               .then((response) => {
                 if (response.ok) {

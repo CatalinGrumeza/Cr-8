@@ -4,6 +4,8 @@ import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -91,12 +93,12 @@ public class AdminService {
         
         // Generate a random reset code
         String code = UUID.randomUUID().toString().substring(0, 6).toUpperCase();
+        // Save the reset code to the admin entity
+        admin.setCode(code);
 
         // Send the reset code via email
         mailService.sendPasswordEmailRest(email, code);
 
-        // Save the reset code to the admin entity
-        admin.setCode(code);
         adminRepo.save(admin);
         return "Code has been sent";
     }
@@ -110,11 +112,16 @@ public class AdminService {
      */
     public String setnewPassword(String code, String pass) {
         // Find the admin by reset code or throw an exception if not found
-    	if(adminRepo.findByCode(code).isPresent()) {
-			Optional<Admin> admin = adminRepo.findByCode(code);
-			return admin.get().getCode();	
-		}else
-			return "Codice errato!";
+    	Admin admin = adminRepo.findByCode(code).orElseThrow(() -> new IllegalArgumentException("Code is not valid"));
+
+        // Update the admin's password and clear the reset code
+    	if(!validatePassword(pass)) {
+    		return "Password not valid !";
+    	}
+        admin.setPassword(passwordEncoder.encode(pass));
+        admin.setCode(null);
+        adminRepo.save(admin);
+        return "Password saved";
     }
 
     /**
@@ -155,5 +162,18 @@ public class AdminService {
 		}else
 			return "Codice errato!";
 	}
+    public static boolean validatePassword(String password) {
+        // La regex per la password
+        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
+        
+        // Crea un Pattern con la regex
+        Pattern pattern = Pattern.compile(regex);
+        
+        // Crea un Matcher per verificare se la password corrisponde alla regex
+        Matcher matcher = pattern.matcher(password);
+        
+        // Restituisce true se la password è valida, altrimenti false
+        return matcher.matches();
+    }
 }
 

@@ -1245,7 +1245,9 @@
           <form id="infoForm" aria-labelledby="infoFormTitle">
             <h2 id="infoFormTitle">Richiedi informazioni</h2>
 
-            <label for="nomeInfo">Nome</label>
+            <label for="nomeInfo"
+              >Nome <span class="mandatory-fields">(obbligatorio)</span></label
+            >
             <input
               type="text"
               id="nomeInfo"
@@ -1257,7 +1259,10 @@
             />
             <span id="nomeInfoError" class="error" aria-live="polite"></span>
 
-            <label for="cognomeInfo">Cognome</label>
+            <label for="cognomeInfo"
+              >Cognome
+              <span class="mandatory-fields">(obbligatorio)</span></label
+            >
             <input
               type="text"
               id="cognomeInfo"
@@ -1267,7 +1272,9 @@
             />
             <span id="cognomeInfoError" class="error" aria-live="polite"></span>
 
-            <label for="emailInfo">Email</label>
+            <label for="emailInfo"
+              >Email <span class="mandatory-fields">(obbligatorio)</span></label
+            >
             <input
               type="email"
               id="emailInfo"
@@ -1278,7 +1285,10 @@
             />
             <span id="emailInfoError" class="error" aria-live="polite"></span>
 
-            <label for="cellulareInfo">Cellulare</label>
+            <label for="cellulareInfo"
+              >Cellulare
+              <span class="mandatory-fields">(obbligatorio)</span></label
+            >
             <input
               type="tel"
               id="cellulareInfo"
@@ -1292,7 +1302,10 @@
               aria-live="polite"
             ></span>
 
-            <label for="messaggio">Come possiamo aiutarti?</label>
+            <label for="messaggio"
+              >Come possiamo aiutarti?
+              <span class="mandatory-fields">(obbligatorio)</span></label
+            >
             <textarea
               id="messaggio"
               name="messaggio"

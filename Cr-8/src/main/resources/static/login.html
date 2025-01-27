@@ -28,7 +28,7 @@
         <a href="/">
           <img
             class="navbar-logo"
-            src="./assets/img/logo-a-caccia-di-sapere.png"
+            src="./assets/img/logo-a-caccia-di-sapere.webp"
             alt="Logo del sito"
         /></a>
         <ul class="navbar">
@@ -56,6 +56,7 @@
         <div class="form-container">
           <form id="loginForm" action="/login" method="POST">
             <div class="form-group">
+              <input type="hidden" id="csrfToken" name="_csrf" value="" />
               <input
                 type="email"
                 id="email"
@@ -82,9 +83,8 @@
                 </button>
               </div>
               <!-- DELETE THIS -->
-              <br /><br /><a href="./backoffice/dashboard.html"
-                >(DA RIMUOVERE) vai alla dashboard</a
-              >
+
+              <p class="forget-password"><a href="/forgot-password">Ho dimenticato la password</a></p>
             </div>
           </form>
         </div>

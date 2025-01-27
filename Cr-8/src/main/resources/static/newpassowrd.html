@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>New Password</title>
-    <link rel="stylesheet" href="../backoffice/styles/newpassowrd.css" />
+    <link rel="stylesheet" href="./styles/newpassowrd.css" />
   </head>
   <body>
     <div class="container">
       <div class="logo">
-        <img src="../assets/img/logo-a-caccia-di-sapere.svg" alt="Logo" />
+        <img src="./assets/img/logo-a-caccia-di-sapere.webp" alt="Logo" />
         <span>A Caccia di Sapere</span>
       </div>
       <h1>New Password</h1>
@@ -17,6 +17,9 @@
       <div class="input-group">
         <input type="password" id="password" placeholder="Password" required />
       </div>
+       <small id="passwordError" class="error-message" style="color: red; display: none;">
+    La password non è valida! Deve contenere almeno 8 caratteri, una lettera maiuscola, una minuscola, un numero e un carattere speciale.
+  	</small>
       <div class="input-group">
         <input
           type="password"
@@ -28,6 +31,6 @@
       <button class="btn" onclick="validatePassword()">Save</button>
       <p id="message"></p>
     </div>
-    <script src="../backoffice/scripts/newpassowrd.js" defer></script>
+    <script src="./scripts/newpassowrd.js" defer></script>
   </body>
 </html>

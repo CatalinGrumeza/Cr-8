@@ -5,106 +5,147 @@
 
 ## Overview
 
-The `SecurityConfig` class is a Spring configuration class that defines security settings for the application. It configures authentication, authorization, password encoding, session management, and custom success handling for logins.
+The `SecurityConfig` class is a Spring configuration class that defines security settings for the application. It configures authentication, authorization, password encoding, session management, CORS (Cross-Origin Resource Sharing), and custom success handling for logins.
 
-```
 ## Package Declaration
 ```java
 package com.Cr_8.config;
 ```
 
 ## Class Annotations
-
 - `@Configuration`: Indicates that this class is a source of bean definitions.
 - `@EnableWebSecurity`: Enables Spring Security’s web security support and provides the Spring MVC integration.
 
 ## Dependencies
-
 This class depends on the following components:
 
-- `AdminService`: Service for managing admin-related operations.
+- **AdminService**: Service for managing admin-related operations.
 
 ## Constructor
-
 ```java
-public SecurityConfig(@Lazy AdminService adminService)//lazy use to prevent circular dependency
+public SecurityConfig(@Lazy AdminService adminService) // Lazy used to prevent circular dependency
 ```
-
-- **Parameters**:
-  - `AdminService adminService`: The service used to access admin entities.
+### Parameters:
+- **AdminService adminService**: The service used to access admin entities.
   
-- The use of `@Lazy` is to prevent circular dependency issues, allowing the `AdminService` to be injected.
+The use of `@Lazy` is to prevent circular dependency issues, allowing the AdminService to be injected.
 
 ## Beans
-
-### 1. PasswordEncoder
-
-```java
-@Bean
-public PasswordEncoder passwordEncoder()
-```
-
-- **Description**: Provides a `PasswordEncoder` bean to encrypt passwords using the BCrypt hashing function, enhancing security by preventing plain-text password storage.
-- **Return Type**: `PasswordEncoder` instance.
-
-### 2. AuthenticationManager
-
-```java
-@Bean
-public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception
-```
-
-- **Parameters**:
-  - `AuthenticationConfiguration authenticationConfiguration`: Configuration for authentication.
+1. **PasswordEncoder**
+    ```java
+    @Bean
+    public PasswordEncoder passwordEncoder()
+    ```
+    ### Description:
+    Provides a PasswordEncoder bean to encrypt passwords using the BCrypt hashing function, enhancing security by preventing plain-text password storage.
   
-- **Description**: Provides an `AuthenticationManager` bean for handling authentication processes.
-- **Return Type**: `AuthenticationManager` instance.
+    ### Return Type: 
+    PasswordEncoder instance.
 
-### 3. SecurityFilterChain
+2. **AuthenticationManager**
+    ```java
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception
+    ```
+    ### Parameters:
+    - **AuthenticationConfiguration authenticationConfiguration**: Configuration for authentication.
 
-```java
-@Bean
-public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
-```
+    ### Description:
+    Provides an AuthenticationManager bean for handling authentication processes.
 
-- **Parameters**:
-  - `HttpSecurity http`: The `HttpSecurity` object used to configure web-based security.
-  
-- **Description**: Configures the `SecurityFilterChain` that dictates how requests are handled with respect to security, including CSRF protection, authorization rules, login form configuration, and session management settings.
-- **Return Type**: `SecurityFilterChain` instance.
+    ### Return Type: 
+    AuthenticationManager instance.
 
-#### Authorization Configuration:
+3. **SecurityFilterChain**
+    ```java
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
+    ```
+    ### Parameters:
+    - **HttpSecurity http**: The HttpSecurity object used to configure web-based security.
 
-- `auth.anyRequest().permitAll()`: Allows all requests.
-- Login configuration:
-  - Custom login page: `/login`
-  - Default redirect on successful logins: `/`
-  - Methods for handling login and logout.
-  
-### 4. Custom Authentication Success Handler
+    ### Description:
+    Configures the SecurityFilterChain that dictates how requests are handled with respect to security, including CSRF protection, CORS configuration, authorization rules, login form configuration, and session management settings.
 
-```java
-@Bean
-public AuthenticationSuccessHandler customAuthenticationSuccessHandler()
-```
+    ### Return Type: 
+    SecurityFilterChain instance.
 
-- **Description**: Creates a custom `AuthenticationSuccessHandler` to handle login success events. It retrieves the authenticated user's details and sends a JSON response containing the user's name and role.
-- **Return Type**: `AuthenticationSuccessHandler`
+    #### CORS Configuration:
+    - **Allowed Origins**: localhost:8080 //change this to allow cross origin for new domain
+    - **Allowed Methods**: GET, POST, PUT, DELETE, OPTIONS
+    - **Allowed Headers**: All headers (*)
+    - **Allow Credentials**: true
 
-### 5. ScheduledExecutorService
+    #### Authorization Configuration:
+    - **Permitted Endpoints**:
+      ```
+      /login, /login.html, /index.html, /register.html, /, /styles/**, /scripts/**, /image/**, /api/pub/**, /assets/**, /csrf-token, /logout, /forgot-password, /forgot-password.html, /code-verification, /verification-code.html, /newpassword, /newpassowrd.html
+      ```
 
-```java
-@Bean
-public ScheduledExecutorService scheduledExecutorService()
-```
+    - **Admin Endpoints**:
+      ```
+      /api/**, /backoffice/**, /dashboard/**, /dashboard, /static/**, /logout (requires ADMIN or SUPER_ADMIN role)
+      ```
 
-- **Description**: Provides a `ScheduledExecutorService` bean with a fixed thread pool of size 5. This can be used for executing asynchronous tasks on scheduled intervals.
-- **Return Type**: `ScheduledExecutorService` instance.
+    - **Super Admin Endpoints**:
+      ```
+      /api/super/**, /backoffice/dashboard.html, /static/**, /dashboard/all-admins, /super/**, /logout (requires SUPER_ADMIN role)
+      ```
+
+    - **Default Rule**: All other requests must be authenticated.
+
+    #### Login Configuration:
+    - **Custom Login Page**: /login
+    - **Default Redirect on Success**: /
+    - **Login Processing URL**: /login
+    - **Username Parameter**: email
+    - **Password Parameter**: password
+    - **Custom Success Handler**: customAuthenticationSuccessHandler
+    - **Failure Handling**: Sets HTTP status to 401 and returns a JSON response.
+
+    #### Logout Configuration:
+    - **Logout URL**: /logout
+    - **Logout Success URL**: /?logout
+    - **Invalidate Session**: true
+    - **Delete Cookies**: JSESSIONID
+
+    #### Session Management:
+    - **Session Creation Policy**: IF_REQUIRED
+    - **Maximum Sessions**: 1
+    - **Expired URL**: /login?expired
+
+4. **Custom Authentication Success Handler**
+    ```java
+    @Bean
+    public AuthenticationSuccessHandler customAuthenticationSuccessHandler()
+    ```
+    ### Description:
+    Creates a custom AuthenticationSuccessHandler to handle login success events. It retrieves the authenticated user's details and sends a JSON response containing the user's name and role.
+
+    ### Return Type: 
+    AuthenticationSuccessHandler
+
+    #### Example Response:
+    ```json
+    {
+        "name": "Admin Name",
+        "role": "ADMIN"
+    }
+    ```
+
+5. **ScheduledExecutorService**
+    ```java
+    @Bean
+    public ScheduledExecutorService scheduledExecutorService()
+    ```
+    ### Description:
+    Provides a ScheduledExecutorService bean with a fixed thread pool of size 5. This can be used for executing asynchronous tasks on scheduled intervals.
+
+    ### Return Type: 
+    ScheduledExecutorService instance.
 
 ## Example Response Handling
-
 The custom AuthenticationSuccessHandler writes a JSON response containing the user's name and role after a successful login:
-
 ```json
 {
     "name": "Admin Name",
@@ -112,10 +153,14 @@ The custom AuthenticationSuccessHandler writes a JSON response containing the us
 }
 ```
 
-### Example Failure Handling
-
+## Example Failure Handling
 In case of a failed login, the handler sets the HTTP status to 401 and produces a JSON response indicating the failure.
-
+```json
+{
+    "error": "Authentication failed"
+}
+```
+```
 
 
 ```markdown

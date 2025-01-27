@@ -25,12 +25,11 @@
     <!-- NAVBAR -->
     <nav class="navbar-container">
         <div class="navbar-content">
-          <a href="/logout">
             <img
               class="navbar-logo"
-              src="../assets/img/logo-a-caccia-di-sapere.png"
+              src="../assets/img/logo-a-caccia-di-sapere.webp"
               alt="Logo del sito"
-          /></a>
+          />
           <ul class="navbar">
             <li>
               <a href="/dashboard" title="Dashboard" onclick="menu()"
@@ -56,7 +55,7 @@
               >
             </li>
             <li>
-              <a href="/logout" title="Logout" onclick="menu()">Logout</a>
+              <a href="/logout" title="Logout" onclick="menu()" id="logout">Logout</a>
             </li>
           </ul>
         </div>
@@ -79,6 +78,9 @@
                 <div class="form-group">
                     <button type="submit">Register</button>
                 </div>
+                 <p class="form-note">
+        			Tutti gli account creati avranno password iniziale <strong>"Cascinacaccia2025!"</strong>
+    			</p>
             </form>
         </div>
     </div>
@@ -94,5 +96,6 @@
     <!-- Link to the external JavaScript file -->
     <script src="../scripts/navbar.js" defer></script>
     <script src="../backoffice/scripts/register.js"></script>
+    <script src="../backoffice/scripts/logout.js"></script>
 </body>
 </html>
