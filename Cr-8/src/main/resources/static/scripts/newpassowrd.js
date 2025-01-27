@@ -1,3 +1,24 @@
+
+function validatePasswordRegex(password) {
+    // La regex per la password
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    
+    // Testa la password con la regex
+    return regex.test(password);
+}
+
+// Esempio di utilizzo
+document.getElementById('confirm-password').addEventListener('focus', function(event) {
+    event.preventDefault(); // Evita il comportamento predefinito del form
+	const passwordError = document.getElementById('passwordError');
+    const password = document.getElementById('password').value;
+    
+    if (!validatePasswordRegex(password)) {
+      passwordError.style.display="block";
+    }else{
+		passwordError.style.display="none";
+	}
+});
 async function validatePassword() {
   const password = document.getElementById("password").value;
   const confirmPassword = document.getElementById("confirm-password").value;
