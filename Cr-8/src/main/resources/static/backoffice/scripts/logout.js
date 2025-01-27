@@ -10,6 +10,12 @@ fetch("/csrf-token")
 
 const logoutBtn = document.getElementById("logout");
 
+const gestioneAdminLi = document.getElementById("gestioneAdmin");
+
+if (sessionStorage.getItem("adminRole") === "ADMIN") {
+  gestioneAdminLi.className = "hidden";
+}
+
 logoutBtn.addEventListener("click", function (event) {
   event.preventDefault(); // Prevent the default anchor behavior
 
@@ -22,6 +28,7 @@ logoutBtn.addEventListener("click", function (event) {
   })
     .then((response) => {
       if (response.ok) {
+        sessionStorage.clear();
         window.location.href = "/?logout"; // Redirect after logout
       }
     })

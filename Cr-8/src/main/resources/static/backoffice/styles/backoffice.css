@@ -195,13 +195,6 @@ h3 {
   margin-right: 10px;
 }
 
-/* Portrait tablet to landscape and desktop */
-@media (min-width: 768px) and (max-width: 979px) {
-}
-
-@media (min-width: 979px) and (max-width: 1200px) {
-}
-
-/* Large desktop */
-@media (min-width: 1200px) {
+.hidden {
+  display: none;
 }

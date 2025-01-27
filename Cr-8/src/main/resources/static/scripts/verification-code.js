@@ -1,7 +1,7 @@
 // Select the button and input field
 const email = localStorage.getItem("userEmail");
 const messageAlert = document.getElementById("message-code");
-const text = `Please enter the 4 digit code sent to ${email}`;
+const text = `Inserisci il codice di 6 caratteri che hai ricevuto all'email ${email}`;
 document.getElementById("email-display").textContent = text;
 const sendButton = document.getElementById("btn");
 const resendLink = document.getElementById("resendLink");
@@ -35,7 +35,7 @@ sendButton.addEventListener("click", async () => {
     if (!res.ok) {
       messageAlert.style.color = "red";
 
-      messageAlert.textContent = "Code not valid !";
+      messageAlert.textContent = "Codice non valido!";
 
 	  clearTimeout(500);
     } else {
@@ -44,13 +44,13 @@ sendButton.addEventListener("click", async () => {
     }
   } catch (error) {
     console.error("Error:", error);
-    alert("An error occurred while trying to verify the code."); // Display a generic error message
+    alert("Errore durante la verifica del codice."); // Display a generic error message
   }
 });
 resendLink.addEventListener("click", async (event) => {
      event.preventDefault(); // Evita il comportamento predefinito del link
      if (!email) {
-       console.error("Cannot resend code: email is null");
+       console.error("Impossibile mandare il codice: email non valida.");
        return;
      }
 
@@ -71,10 +71,10 @@ resendLink.addEventListener("click", async (event) => {
        if (res2.ok) {
          alert("Code resent successfully!");
        } else {
-         console.error("Failed to resend code:", res2.status);
+         console.error("Impossibile reinviare il codice:", res2.status);
        }
      } catch (error) {
-       console.error("Error while resending code:", error);
+       console.error("Errore durante il reinvio del codice:", error);
      }
    });
 

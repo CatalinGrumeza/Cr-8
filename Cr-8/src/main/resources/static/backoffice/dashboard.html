@@ -30,10 +30,10 @@
     <!-- NAVBAR -->
     <nav class="navbar-container">
       <div class="navbar-content">
-          <img
-            class="navbar-logo"
-            src="../assets/img/logo-a-caccia-di-sapere.webp"
-            alt="Logo del sito"
+        <img
+          class="navbar-logo"
+          src="../assets/img/logo-a-caccia-di-sapere.webp"
+          alt="Logo del sito"
         />
         <ul class="navbar">
           <li>
@@ -57,13 +57,15 @@
               >Prenotazioni</a
             >
           </li>
-          <li>
+          <li id="gestioneAdmin">
             <a href="/super/all-admins" title="Gestione Admin" onclick="menu()"
               >Gestione Admin</a
             >
           </li>
           <li>
-            <a href="/logout" title="Logout" onclick="menu()" id="logout">Logout</a>
+            <a href="/logout" title="Logout" onclick="menu()" id="logout"
+              >Logout</a
+            >
           </li>
         </ul>
       </div>
@@ -96,6 +98,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../backoffice/scripts/dashboard.js" defer></script>
     <script src="../scripts/navbar.js" defer></script>
-    <script src="../backoffice/scripts/logout.js"></script>
+    <script src="../backoffice/scripts/logout.js" defer></script>
   </body>
 </html>

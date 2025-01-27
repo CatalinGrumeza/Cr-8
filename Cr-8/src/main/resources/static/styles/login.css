@@ -4,6 +4,7 @@ h3 {
 
 form {
   border: none;
+  margin-top: 1em;
 }
 
 input {
@@ -12,7 +13,7 @@ input {
 
 .warning {
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 20px;
   width: 500px;
   max-width: 100%;
   border-radius: var(--rounded-corners);
@@ -34,4 +35,8 @@ a.back-to-home {
   font-style: italic;
   font-weight: bold;
   text-decoration: underline;
+}
+
+.form-group {
+  text-align: center;
 }

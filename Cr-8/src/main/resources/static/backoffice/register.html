@@ -64,19 +64,19 @@
   
     <div class="container">
         <div class="card">
-            <h2 class="card-title">Register</h2>
+            <h2 class="card-title">Crea un nuovo Admin</h2>
             <form id="registerForm">
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" name="name" placeholder="Nome dell'Admin" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    <input type="email" id="email" name="email" placeholder="Email dell'Admin" required>
                 </div>
                 <input type="hidden" name="role" value="ADMIN">
                 <div class="form-group">
-                    <button type="submit">Register</button>
+                    <button type="submit">Crea</button>
                 </div>
                  <p class="form-note">
         			Tutti gli account creati avranno password iniziale <strong>"Cascinacaccia2025!"</strong>
@@ -95,7 +95,7 @@
 
     <!-- Link to the external JavaScript file -->
     <script src="../scripts/navbar.js" defer></script>
-    <script src="../backoffice/scripts/register.js"></script>
-    <script src="../backoffice/scripts/logout.js"></script>
+    <script src="../backoffice/scripts/register.js" defer></script>
+    <script src="../backoffice/scripts/logout.js" defer></script>
 </body>
 </html>

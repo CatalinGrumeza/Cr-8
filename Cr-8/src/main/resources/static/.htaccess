@@ -1,2 +1,4 @@
-ErrorDocument 404 /not-found.html
-ErrorDocument 500 /server-error.html
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^.*$ /not-found.html [L]
