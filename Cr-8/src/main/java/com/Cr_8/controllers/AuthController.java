@@ -114,7 +114,12 @@ public class AuthController {
         return new ResponseEntity<String>(adminService.setnewPassword(Code, password), HttpStatus.OK);
         
     }
-    @GetMapping("/pub/code")
+    @Operation(
+            summary = "Get Api for  Code verification",
+            description = "This endpoint provides a string with  code verification "
+        )
+    @Tag(name = "Public Endpoint")
+    @GetMapping("/pub/verification-code")
     public ResponseEntity<String> checkCode(@RequestParam String code){
     	String res=adminService.exitsByCode(code);
     	if(res.equals("Codice errato!")) {

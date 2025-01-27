@@ -12,7 +12,6 @@ sendButton.addEventListener("click", async () => {
     .map((input) => input.value)
     .join("");
   const Upper = code.toUpperCase();
-  console.log(Upper);
 
   const url = `/api/pub/code?code=${Upper}`;
   try {
@@ -37,7 +36,7 @@ sendButton.addEventListener("click", async () => {
 
       messageAlert.textContent = "Code not valid !";
 
-	  clearTimeout(500);
+      clearTimeout(500);
     } else {
       localStorage.setItem("code", Upper);
       window.location.href = "/newpassword"; // Redirect on success
@@ -48,33 +47,32 @@ sendButton.addEventListener("click", async () => {
   }
 });
 resendLink.addEventListener("click", async (event) => {
-     event.preventDefault(); // Evita il comportamento predefinito del link
-     if (!email) {
-       console.error("Cannot resend code: email is null");
-       return;
-     }
+  event.preventDefault(); // Evita il comportamento predefinito del link
+  if (!email) {
+    console.error("Cannot resend code: email is null");
+    return;
+  }
 
-     const url2 = `/api/pub/forget-password?email=${email}`;
-     try {
-		// Fetch CSRF token
-		    const csrfResponse = await fetch("/csrf-token");
-		    const csrfData = await csrfResponse.json();
-		    const csrfToken = csrfData.token; // Define csrfToken here
-       	const res2 = await fetch(url2, {
-         method: "POST",
-         headers: {
-           "Content-Type": "application/json",
-		   "X-CSRF-TOKEN": csrfToken, // Use the token in the header
-         },
-       });
+  const url2 = `/api/pub/forget-password?email=${email}`;
+  try {
+    // Fetch CSRF token
+    const csrfResponse = await fetch("/csrf-token");
+    const csrfData = await csrfResponse.json();
+    const csrfToken = csrfData.token; // Define csrfToken here
+    const res2 = await fetch(url2, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-TOKEN": csrfToken, // Use the token in the header
+      },
+    });
 
-       if (res2.ok) {
-         alert("Code resent successfully!");
-       } else {
-         console.error("Failed to resend code:", res2.status);
-       }
-     } catch (error) {
-       console.error("Error while resending code:", error);
-     }
-   });
-
+    if (res2.ok) {
+      alert("Code resent successfully!");
+    } else {
+      console.error("Failed to resend code:", res2.status);
+    }
+  } catch (error) {
+    console.error("Error while resending code:", error);
+  }
+});

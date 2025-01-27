@@ -19,17 +19,17 @@ async function validatePassword() {
 
   try {
     // Fetch CSRF token
-    const csrfResponse = await fetch('/csrf-token');
+    const csrfResponse = await fetch("/csrf-token");
     const csrfData = await csrfResponse.json();
     const csrfToken = csrfData.token;
 
     // Make the POST request to update the password
     const url = `/api/pub/newpassword?code=${code}&password=${encodeURIComponent(password)}`;
     const res = await fetch(url, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-TOKEN': csrfToken, // Add the token to the header
+        "Content-Type": "application/json",
+        "X-CSRF-TOKEN": csrfToken, // Add the token to the header
       },
     });
 
@@ -40,16 +40,18 @@ async function validatePassword() {
 
     // Success: Password updated
     message.style.color = "green";
-    message.textContent = "Password saved successfully! Redirecting to login...";
+    message.textContent =
+      "Password saved successfully! Redirecting to login...";
 
     // Redirect to login after a short delay
     setTimeout(() => {
       window.location.href = "/login";
     }, 2000);
-
   } catch (error) {
     console.error("Error:", error);
     message.style.color = "red";
-    message.textContent = error.message || "An error occurred while updating the password.";
+    message.textContent =
+      error.message || "An error occurred while updating the password.";
   }
 }
+
