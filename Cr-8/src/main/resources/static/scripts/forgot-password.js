@@ -42,7 +42,7 @@ sendButton.addEventListener("click", async () => {
 
     setTimeout(() => {
       window.location.href = "/code-verification";
-    }, 500);
+    }, 100);
 	}
   } catch (error) {
     console.error("Error:", error);
