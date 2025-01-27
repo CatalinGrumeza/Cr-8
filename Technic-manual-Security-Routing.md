@@ -71,7 +71,7 @@ The use of `@Lazy` is to prevent circular dependency issues, allowing the AdminS
     SecurityFilterChain instance.
 
     #### CORS Configuration:
-    - **Allowed Origins**: localhost:8080
+    - **Allowed Origins**: localhost:8080 //change this to allow cross origin for new domain
     - **Allowed Methods**: GET, POST, PUT, DELETE, OPTIONS
     - **Allowed Headers**: All headers (*)
     - **Allow Credentials**: true
