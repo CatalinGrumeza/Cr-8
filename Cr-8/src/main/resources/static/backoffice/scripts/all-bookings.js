@@ -17,8 +17,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Function to format date
   function formatDate(dateString) {
+    const monthNames = [
+      "Gen",
+      "Feb",
+      "Mar",
+      "Apr",
+      "Mag",
+      "Giu",
+      "Lug",
+      "Ago",
+      "Set",
+      "Ott",
+      "Nov",
+      "Dic",
+    ];
+
     const date = new Date(dateString);
-    return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+    return `${String(date.getDate()).padStart(
+      2,
+      "0"
+    )} ${String(monthNames[date.getMonth()])} ${date.getFullYear()}`;
   }
 
   // Function to render booking cards
@@ -46,43 +64,70 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Create card content
       card.innerHTML = `
-        <div>
-          <h2 class="card-title">${reference.lastName} ${reference.firstName}</h2>
+        <div class="book-content">
+          <h2 class="card-title">${reference.lastName} ${
+        reference.firstName
+      }</h2>
           <p><span class="bold">Email</span>: ${reference.email}</p>
           <p><span class="bold">Telefono</span>: ${reference.phoneNumber}</p>
           <p><span class="bold">Tipo di Visitatore</span>: ${vistorType}</p>
           <p><span class="bold">Numero di Partecipanti</span>: ${participantNumber}</p>
-          <p><span class="bold">Tipo di Prenotazione</span>: ${bookType}</p>
-          <p><span class="bold">Periodo</span>: dal ${formatDate(dataFrom)} al ${formatDate(dataTo)}</p>
-          <p><span class="bold">Dettagli Aggiuntivi</span>: ${additionalDetails}</p>
+          <p><span class="bold">Periodo</span>: dal ${formatDate(
+            dataFrom
+          )} al ${formatDate(dataTo)}</p>
           <p><span class="bold">Numero di Giorni</span>: ${numberOfDays}</p>
-          <p><span class="bold">Stato</span>: ${status.name}</p>
+          <p><span class="bold">Periodo della giornata</span>: ${bookType}</p>
+          <p><span class="bold">Dettagli Aggiuntivi</span>: ${additionalDetails}</p>
           <p><span class="bold">Creata il</span> ${formatDate(createdAt)}</p>
+          <p><span class="bold">Stato</span>: ${status.name}</p>
            <div class="labs-set">
-              <h3>Laboratori</h3>
-              ${labsSet.map(lab => `
+              <h3>Laboratori scelti</h3>
+              ${labsSet
+                .map(
+                  (lab) => `
                 <div class="lab">
-                  <h4>${lab.name}</h4>
+                  <p>${lab.name}</p>
                 </div>
-              `).join('')}
+              `
+                )
+                .join("")}
             </div>
           
-          ${status.name === "Completed" ? `
-            <button class="btn-cancel" data-id="${id}" data-status="${status.name}">Annulla Prenotazione</button>
-            <p><span class="bold">Data di prenotazione</span>: ${formatDate(bookedDate.date)} al ${formatDate(bookedDate.toDate)}</p>
-          ` : ''}
+          ${
+            status.name === "Completed"
+              ? `
+              <p><span class="bold">Data di prenotazione</span>: dal ${formatDate(
+                bookedDate.date
+              )} al ${formatDate(bookedDate.toDate)}</p>
+            <button class="btn cancel btn-cancel" data-id="${id}" data-status="${
+                  status.name
+                }">Annulla Prenotazione</button>
+          `
+              : ""
+          }
 
-          ${status.name === "Pending" || status.name === "Cancelled" ? `
+          ${
+            status.name === "Pending" || status.name === "Cancelled"
+              ? `
             <form class="book-date-form" data-id="${id}">
+              <h3>Conferma la visita</h3>
               <label for="start-date">Data di inizio</label>
               <input type="date" id="start-date" name="start-date" required>
+              <span id="start-date-error" class="error"></span>
               <label for="end-date">Data di fine</label>
               <input type="date" id="end-date" name="end-date" required>
-              <label><input type="checkbox" name="morning" id="morning" />Mattina</label>
-        	  <label><input type="checkbox" name="fullDay" id="fullDay" />Giorno completo</label>
-              <button type="submit">Aggiorna Prenotazione</button>
-            </form>
-          ` : ''}
+              <span id="end-date-error" class="error"></span>
+              <div id=dayFraction>
+                <label class="day-fraction"><input type="checkbox" id="morning" name="morning" value="Mattina" />Mattino</label>
+                <label class="day-fraction"><input type="checkbox" id="fullDay" name="fullDay" value="fullDay" />Giorno completo</label>
+              </div>
+              <div class="btn-container">
+              <button class="btn update btn-update">Conferma Prenotazione</button>
+              </div>
+              </form>
+          `
+              : ""
+          }
         </div>
       `;
 
@@ -96,22 +141,26 @@ document.addEventListener("DOMContentLoaded", function () {
           const bookingId = this.getAttribute("data-id");
 
           // Send request to update the status to "Cancelled"
-          fetch(`/api/update-booking-status?bookingId=${bookingId}&status=Cancelled`, {
-            method: "POST",
-            headers: {
-              'Content-Type': 'application/json',
-              'X-CSRF-TOKEN': csrfToken, // Add the token to the header
-            },
-          })
-          .then((response) => {
-            if (response.ok) {
-              // Refresh the page to reflect changes
-              window.location.reload();
-            } else {
-              alert("Errore durante l'annullamento della prenotazione.");
+          fetch(
+            `/api/update-booking-status?bookingId=${bookingId}&status=Cancelled`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": csrfToken, // Add the token to the header
+              },
             }
-          })
-          .catch((error) => console.error("Error:", error));
+          )
+            .then((response) => {
+              if (response.ok) {
+                // Refresh the page to reflect changes
+                alert("Prenotazione annullata correttamente");
+                window.location.reload();
+              } else {
+                alert("Errore durante l'annullamento della prenotazione.");
+              }
+            })
+            .catch((error) => console.error("Error:", error));
         });
       }
 
@@ -121,35 +170,66 @@ document.addEventListener("DOMContentLoaded", function () {
         form.addEventListener("submit", function (event) {
           event.preventDefault();
 
-          const startDate = form.querySelector("#start-date").value;
-          const endDate = form.querySelector("#end-date").value;
+          const startDateInput = form.querySelector("#start-date");
+          const endDateInput = form.querySelector("#end-date");
+
+          const startDate = startDateInput.value;
+          const endDate = endDateInput.value;
+
+          let valid = true;
+
+          // Validazione "start-date"
+          if (new Date(startDate) < new Date()) {
+            valid = false;
+            const errorSpan = form.querySelector("#start-date-error");
+            errorSpan.textContent =
+              "La data deve essere successiva o uguale a oggi.";
+          } else {
+            form.querySelector("#start-date-error").textContent = "";
+          }
+
+          // Validazione "end-date"
+          if (new Date(endDate) <= new Date(startDate)) {
+            valid = false;
+            const errorSpan = form.querySelector("#end-date-error");
+            errorSpan.textContent =
+              "La data deve essere successiva alla data di inizio.";
+          } else {
+            form.querySelector("#end-date-error").textContent = "";
+          }
+
+          // Se la validazione fallisce, non procedere con la richiesta
+          if (!valid) {
+            return;
+          }
 
           const bookingId = form.getAttribute("data-id");
-		  
+
           // Send request to update the booking date
           fetch("/api/book-date", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              'X-CSRF-TOKEN': csrfToken, // Add the token to the header
+              "X-CSRF-TOKEN": csrfToken, // Add the token to the header
             },
             body: JSON.stringify({
               date: startDate,
               toDate: endDate,
-			  morning:Boolean(morning),
-  			  fullDay:Boolean(fullDay),
+              morning: Boolean(morning),
+              fullDay: Boolean(fullDay),
               idBookingRequest: bookingId,
             }),
           })
-          .then((response) => {
-            if (response.ok) {
-              // Refresh the page to reflect changes
-              window.location.reload();
-            } else {
-              alert("Errore durante l'aggiornamento della prenotazione.");
-            }
-          })
-          .catch((error) => console.error("Error:", error));
+            .then((response) => {
+              if (response.ok) {
+                // Refresh the page to reflect changes
+                alert("Prenotazione aggiornata correttamente!");
+                window.location.reload();
+              } else {
+                alert("Errore durante l'aggiornamento della prenotazione.");
+              }
+            })
+            .catch((error) => console.error("Error:", error));
         });
       }
     });

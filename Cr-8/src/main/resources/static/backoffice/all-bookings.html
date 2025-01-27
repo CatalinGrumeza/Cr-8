@@ -6,16 +6,16 @@
     <title>Gestione Prenotazioni</title>
     <link rel="stylesheet" href="../styles/normalize.css" />
     <link rel="stylesheet" href="../styles/main.css" />
-    <link rel="stylesheet" href="../backoffice/styles/all-info.css" />
+    <link rel="stylesheet" href="../backoffice/styles/backoffice.css" />
   </head>
   <body>
     <!-- NAVBAR -->
     <nav class="navbar-container">
       <div class="navbar-content">
-          <img
-            class="navbar-logo"
-            src="../assets/img/logo-a-caccia-di-sapere.webp"
-            alt="Logo del sito"
+        <img
+          class="navbar-logo"
+          src="../assets/img/logo-a-caccia-di-sapere.webp"
+          alt="Logo del sito"
         />
         <ul class="navbar">
           <li>
@@ -32,7 +32,10 @@
             >
           </li>
           <li>
-            <a href="/dashboard/all-bookings" title="Prenotazioni" onclick="menu()"
+            <a
+              href="/dashboard/all-bookings"
+              title="Prenotazioni"
+              onclick="menu()"
               >Prenotazioni</a
             >
           </li>
@@ -42,26 +45,28 @@
             >
           </li>
           <li>
-            <a href="/logout" title="Logout" onclick="menu()" id="logout">Logout</a>
+            <a href="/logout" title="Logout" onclick="menu()" id="logout"
+              >Logout</a
+            >
           </li>
         </ul>
       </div>
       <button class="hamburger" onclick="menu()">☰</button>
     </nav>
 
-    <div class="container my-4">
+    <div class="main-container">
       <h2>Gestione Prenotazioni</h2>
 
       <!-- Filter and Search Controls -->
-      <div class="row mb-4">
-        <div class="col-md-4">
+      <div class="filter-container">
+        <div class="filter">
           <label for="date-filter">Ordina per data:</label>
           <select id="date-filter" class="form-select">
             <option value="desc">Da meno recente</option>
             <option value="asc">Da più recente</option>
           </select>
         </div>
-        <div class="col-md-4">
+        <div class="filter">
           <label for="status-filter"
             >Filtra per stato della prenotazione:</label
           >
@@ -71,7 +76,7 @@
             <option value="Completed">Completate</option>
           </select>
         </div>
-        <div class="col-md-4">
+        <div class="filter">
           <label for="search-bar">Cerca:</label>
           <input
             type="text"
@@ -82,10 +87,8 @@
         </div>
       </div>
 
-      <div class="separator"></div>
-
       <!-- Booking Cards Container -->
-      <div id="booking-container" class="row g-4">
+      <div id="booking-container" class="card-container">
         <!-- Cards will be dynamically added here -->
       </div>
     </div>
