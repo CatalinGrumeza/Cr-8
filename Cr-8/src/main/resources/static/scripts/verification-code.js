@@ -13,7 +13,7 @@ sendButton.addEventListener("click", async () => {
     .join("");
   const Upper = code.toUpperCase();
 
-  const url = `/api/pub/code?code=${Upper}`;
+  const url = `/pub/verification-code?code=${Upper}`;
   try {
     // Fetch CSRF token
     const csrfResponse = await fetch("/csrf-token");
@@ -77,12 +77,4 @@ resendLink.addEventListener("click", async (event) => {
      }
    });
 
-    if (res2.ok) {
-      alert("Code resent successfully!");
-    } else {
-      console.error("Failed to resend code:", res2.status);
-    }
-  } catch (error) {
-    console.error("Error while resending code:", error);
-  }
-});
+
