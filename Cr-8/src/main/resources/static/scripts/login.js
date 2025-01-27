@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         body: new URLSearchParams({ email, password }),
       });
-
+      
       if (response.ok) {
         let adminData = await response.json();
 
