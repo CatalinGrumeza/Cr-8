@@ -1,7 +1,7 @@
 // Seleziona il bottone e il campo di input
 const sendButton = document.getElementById("send-button");
 const emailInput = document.getElementById("email-input");
-const emailnotvalid = document.getElementById("message")
+const emailnotvalid = document.getElementById("message");
 // Aggiungi un gestore di eventi al click sul bottone
 sendButton.addEventListener("click", async () => {
   const email = emailInput.value; // Ottieni il valore dell'email
@@ -13,11 +13,10 @@ sendButton.addEventListener("click", async () => {
   console.log("Email inserita:", email);
 
   const url = `/api/pub/forget-password?email=${encodeURIComponent(email)}`;
-  console.log(url);
 
   try {
     // Fetch CSRF token
-    const csrfResponse = await fetch('/csrf-token');
+    const csrfResponse = await fetch("/csrf-token");
     const csrfData = await csrfResponse.json();
     const csrfToken = csrfData.token;
 
@@ -26,7 +25,7 @@ sendButton.addEventListener("click", async () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        'X-CSRF-TOKEN': csrfToken, // Add the token to the header
+        "X-CSRF-TOKEN": csrfToken, // Add the token to the header
       },
     });
 
@@ -48,3 +47,4 @@ sendButton.addEventListener("click", async () => {
     console.error("Error:", error);
   }
 });
+

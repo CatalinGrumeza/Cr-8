@@ -12,7 +12,6 @@ sendButton.addEventListener("click", async () => {
     .map((input) => input.value)
     .join("");
   const Upper = code.toUpperCase();
-  console.log(Upper);
 
   const url = `/api/pub/code?code=${Upper}`;
   try {
@@ -75,5 +74,6 @@ resendLink.addEventListener("click", async (event) => {
     }
   } catch (error) {
     console.error("Errore durante il reinvio del codice:", error);
+
   }
 });
