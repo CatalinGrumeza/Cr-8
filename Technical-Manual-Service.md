@@ -1,4 +1,4 @@
-# **Technical Manual: Service**
+# **Technical Manual: Services**
 
 ## Services package :
 
