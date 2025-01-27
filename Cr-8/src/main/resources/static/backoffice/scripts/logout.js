@@ -1,30 +1,31 @@
 let csrfToken = null;
 
 // Fetch CSRF token on page load
-fetch('/csrf-token')
-  .then(response => response.json())
-  .then(data => {
-    console.log('CSRF Token fetched:', data.token); // Log the token
+fetch("/csrf-token")
+  .then((response) => response.json())
+  .then((data) => {
     csrfToken = data.token;
   })
-  .catch(error => console.error('Error fetching CSRF token:', error));
-  
-  const logoutBtn = document.getElementById("logout");
+  .catch((error) => console.error("Error fetching CSRF token:", error));
 
-logoutBtn.addEventListener("click", function(event) {
-    event.preventDefault(); // Prevent the default anchor behavior
+const logoutBtn = document.getElementById("logout");
 
-    fetch('/logout', {
-        method: 'POST',
-        credentials: 'include', // Include cookies
-        headers: {
-            'X-CSRF-TOKEN': csrfToken // Include CSRF token if required
-        }
-    }).then(response => {
-        if (response.ok) {
-            window.location.href = '/?logout'; // Redirect after logout
-        }
-    }).catch(error => {
-        console.error('Logout failed:', error);
+logoutBtn.addEventListener("click", function (event) {
+  event.preventDefault(); // Prevent the default anchor behavior
+
+  fetch("/logout", {
+    method: "POST",
+    credentials: "include", // Include cookies
+    headers: {
+      "X-CSRF-TOKEN": csrfToken, // Include CSRF token if required
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        window.location.href = "/?logout"; // Redirect after logout
+      }
+    })
+    .catch((error) => {
+      console.error("Logout failed:", error);
     });
 });

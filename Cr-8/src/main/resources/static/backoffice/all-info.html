@@ -12,10 +12,10 @@
     <!-- NAVBAR -->
     <nav class="navbar-container">
       <div class="navbar-content">
-          <img
-            class="navbar-logo"
-            src="../assets/img/logo-a-caccia-di-sapere.webp"
-            alt="Logo del sito"
+        <img
+          class="navbar-logo"
+          src="../assets/img/logo-a-caccia-di-sapere.webp"
+          alt="Logo del sito"
         />
         <ul class="navbar">
           <li>
@@ -32,7 +32,10 @@
             >
           </li>
           <li>
-            <a href="/dashboard/all-bookings" title="Prenotazioni" onclick="menu()"
+            <a
+              href="/dashboard/all-bookings"
+              title="Prenotazioni"
+              onclick="menu()"
               >Prenotazioni</a
             >
           </li>
@@ -42,24 +45,28 @@
             >
           </li>
           <li>
-            <a href="/logout" title="Logout" onclick="menu()" id="logout">Logout</a>
+            <a href="/logout" title="Logout" onclick="menu()" id="logout"
+              >Logout</a
+            >
           </li>
         </ul>
       </div>
       <button class="hamburger" onclick="menu()">☰</button>
     </nav>
 
-    <div class="container my-4">
+    <div class="main-container">
       <h2>Richieste Informazioni</h2>
 
       <!-- Filter and Search Controls -->
+      <div class="filter-container">
+        <div class="filter">
           <label for="date-filter">Ordina per Data:</label>
           <select id="date-filter" class="form-select">
             <option value="asc">Da meno recente</option>
             <option value="desc">Da più recente</option>
           </select>
         </div>
-        <div class="col-md-4">
+        <div class="filter">
           <label for="status-filter">Filtra per stato della richiesta:</label>
           <select id="status-filter" class="form-select">
             <option value="all">Tutte</option>
@@ -67,7 +74,7 @@
             <option value="Completed">Completate</option>
           </select>
         </div>
-        <div class="col-md-4">
+        <div class="filter">
           <label for="search-bar">Cerca:</label>
           <input
             type="text"
@@ -76,9 +83,10 @@
             placeholder="Cerca per nome, email o cognome"
           />
         </div>
+      </div>
 
       <!-- Info Cards Container -->
-      <div id="info-container" class="row g-4">
+      <div id="info-container" class="card-container">
         <!-- Cards will be dynamically added here -->
       </div>
     </div>
