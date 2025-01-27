@@ -105,7 +105,7 @@ Represents a laboratory with various properties like name, description, and lab 
 ### Fields:
 - `id` (int) - Primary key.
 - `name` (String) - Name of the lab.
-- `bookingRequest` (List<BookingRequest>) - Many-to-many relationship with the `BookingRequest` entity.
+- `bookingRequest` (List\<BookingRequest>) - Many-to-many relationship with the `BookingRequest` entity.
 
 ### Annotations:
 - `@Entity` - Marks the class as a JPA entity.
@@ -123,7 +123,7 @@ Represents the reference who submitted a request, including their personal infor
 - `lastName` (String) - Last name of the reference.
 - `phoneNumber` (String) - Phone number of the reference.
 - `email` (String) - Email of the reference.
-- `infos` (List<Info>) - One-to-many relationship with the `Info` entity.
+- `infos` (List\<Info>) - One-to-many relationship with the `Info` entity.
 
 ### Annotations:
 - `@Entity` - Marks the class as a JPA entity.
