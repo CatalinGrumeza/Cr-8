@@ -54,7 +54,7 @@ resendLink.addEventListener("click", async (event) => {
   }
 
   const url2 = `/api/pub/forget-password?email=${email}`;
-  try { 
+  try {
     // Fetch CSRF token
     const csrfResponse = await fetch("/csrf-token");
     const csrfData = await csrfResponse.json();
@@ -67,3 +67,12 @@ resendLink.addEventListener("click", async (event) => {
       },
     });
 
+    if (res2.ok) {
+      alert("Code resent successfully!");
+    } else {
+      console.error("Impossibile reinviare il codice:", res2.status);
+    }
+  } catch (error) {
+    console.error("Errore durante il reinvio del codice:", error);
+  }
+});
