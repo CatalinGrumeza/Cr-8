@@ -64,6 +64,9 @@ public class BookedDatesService {
         if (bookedDayDTO.isFullDay()) {
             booked.setDayFractions(dayFractionRepo.findById((long) 2).get()); // Full-day slot
         }
+        if(bookingService.getBookingRequestByid(bookedDayDTO.getIdBookingRequest()).get().getNumberOfDays()>1) {
+        	booked.setDayFractions(dayFractionRepo.findById((long) 2).get()); // Full-day slot
+        }
 
         // Save the updated booked date into the repository
         bookedDatesRepo.save(booked);
