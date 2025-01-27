@@ -1,7 +1,7 @@
 // Select the button and input field
 const email = localStorage.getItem("userEmail");
 const messageAlert = document.getElementById("message-code");
-const text = `Inserisci il codice di 6 caratteri che hai ricevuto all'email ${email}`;
+const text = `Inserisci il codice di 6 caratteri che hai ricevuto all'indirizzo ${email}`;
 document.getElementById("email-display").textContent = text;
 const sendButton = document.getElementById("btn");
 const resendLink = document.getElementById("resendLink");
@@ -55,7 +55,7 @@ resendLink.addEventListener("click", async (event) => {
   }
 
   const url2 = `/api/pub/forget-password?email=${email}`;
-  try {
+  try { 
     // Fetch CSRF token
     const csrfResponse = await fetch("/csrf-token");
     const csrfData = await csrfResponse.json();
