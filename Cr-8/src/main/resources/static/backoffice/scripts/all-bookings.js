@@ -6,6 +6,77 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let allBookings = [];
 
+  // Function to check if two date ranges overlap
+  function datesOverlap(
+    start1,
+    end1,
+    start2,
+    end2,
+    morning1,
+    fullDay1,
+    morning2,
+    fullDay2
+  ) {
+    const startDate1 = new Date(start1);
+    const endDate1 = new Date(end1);
+    const startDate2 = new Date(start2);
+    const endDate2 = new Date(end2);
+
+    // If dates don't overlap at all, return false
+    if (endDate1 < startDate2 || startDate1 > endDate2) {
+      return false;
+    }
+
+    // If dates are the same, check time slots
+    if (
+      startDate1.getTime() === startDate2.getTime() ||
+      endDate1.getTime() === endDate2.getTime()
+    ) {
+      // If either booking is for full day, there's an overlap
+      if (fullDay1 || fullDay2) {
+        return true;
+      }
+      // If both are morning slots, there's an overlap
+      if (morning1 && morning2) {
+        return true;
+      }
+      // If neither is morning slot, there's an overlap (afternoon implied)
+      if (!morning1 && !morning2) {
+        return true;
+      }
+    }
+
+    // If date ranges overlap, consider it an overlap regardless of time slots
+    return true;
+  }
+
+  function checkBookingOverlap(startDate, endDate, morning, fullDay) {
+    return fetch("/api/all-booked-dates")
+      .then((response) => response.json())
+      .then((bookedDates) => {
+        for (const booking of bookedDates) {
+          if (
+            datesOverlap(
+              startDate,
+              endDate,
+              booking.date,
+              booking.toDate,
+              morning,
+              fullDay,
+              booking.morning,
+              booking.allDay
+            )
+          ) {
+            return {
+              hasOverlap: true,
+              conflictingBooking: booking,
+            };
+          }
+        }
+        return { hasOverlap: false };
+      });
+  }
+
   // Fetch data from the API
   fetch("/api/all-bookings")
     .then((response) => response.json())
@@ -167,69 +238,102 @@ document.addEventListener("DOMContentLoaded", function () {
       // Add event listener to the booking date form
       const form = card.querySelector(".book-date-form");
       if (form) {
-        form.addEventListener("submit", function (event) {
+        form.addEventListener("submit", async function (event) {
           event.preventDefault();
 
           const startDateInput = form.querySelector("#start-date");
           const endDateInput = form.querySelector("#end-date");
+          const morningCheckbox = form.querySelector("#morning");
+          const fullDayCheckbox = form.querySelector("#fullDay");
 
           const startDate = startDateInput.value;
           const endDate = endDateInput.value;
+          const morning = morningCheckbox.checked;
+          const fullDay = fullDayCheckbox.checked;
+
+          // Clear previous error messages
+          form.querySelector("#start-date-error").textContent = "";
+          form.querySelector("#end-date-error").textContent = "";
 
           let valid = true;
 
-          // Validazione "start-date"
+          // Basic date validation
           if (new Date(startDate) < new Date()) {
             valid = false;
-            const errorSpan = form.querySelector("#start-date-error");
-            errorSpan.textContent =
+            form.querySelector("#start-date-error").textContent =
               "La data deve essere successiva o uguale a oggi.";
-          } else {
-            form.querySelector("#start-date-error").textContent = "";
           }
 
-          // Validazione "end-date"
           if (new Date(endDate) <= new Date(startDate)) {
             valid = false;
-            const errorSpan = form.querySelector("#end-date-error");
-            errorSpan.textContent =
+            form.querySelector("#end-date-error").textContent =
               "La data deve essere successiva alla data di inizio.";
-          } else {
-            form.querySelector("#end-date-error").textContent = "";
           }
 
-          // Se la validazione fallisce, non procedere con la richiesta
-          if (!valid) {
+          // Time slot validation
+          if (!morning && !fullDay) {
+            valid = false;
+            alert("Seleziona almeno un'opzione tra Mattino e Giorno completo.");
             return;
           }
 
-          const bookingId = form.getAttribute("data-id");
+          if (morning && fullDay) {
+            valid = false;
+            alert("Seleziona solo un'opzione tra Mattino e Giorno completo.");
+            return;
+          }
 
-          // Send request to update the booking date
-          fetch("/api/book-date", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "X-CSRF-TOKEN": csrfToken, // Add the token to the header
-            },
-            body: JSON.stringify({
-              date: startDate,
-              toDate: endDate,
-              morning: Boolean(morning),
-              fullDay: Boolean(fullDay),
-              idBookingRequest: bookingId,
-            }),
-          })
-            .then((response) => {
-              if (response.ok) {
-                // Refresh the page to reflect changes
-                alert("Prenotazione aggiornata correttamente!");
-                window.location.reload();
-              } else {
-                alert("Errore durante l'aggiornamento della prenotazione.");
-              }
-            })
-            .catch((error) => console.error("Error:", error));
+          if (!valid) return;
+
+          try {
+            // Check for booking overlaps
+            const overlapCheck = await checkBookingOverlap(
+              startDate,
+              endDate,
+              morning,
+              fullDay
+            );
+
+            if (overlapCheck.hasOverlap) {
+              alert(
+                `Periodo non disponibile: esiste già una prenotazione per ${
+                  overlapCheck.conflictingBooking.referenceName
+                } dal ${formatDate(
+                  overlapCheck.conflictingBooking.date
+                )} al ${formatDate(overlapCheck.conflictingBooking.toDate)}`
+              );
+              return;
+            }
+
+            // If no overlaps, proceed with booking
+            const bookingId = form.getAttribute("data-id");
+            const response = await fetch("/api/book-date", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": csrfToken,
+              },
+              body: JSON.stringify({
+                date: startDate,
+                toDate: endDate,
+                morning: morning,
+                fullDay: fullDay,
+                idBookingRequest: bookingId,
+              }),
+            });
+
+            if (response.ok) {
+              alert("Prenotazione aggiornata correttamente!");
+              window.location.reload();
+            } else {
+              alert("Errore durante l'aggiornamento della prenotazione.");
+            }
+          } catch (error) {
+            console.error("Error:", error);
+            alert(
+              "Si è verificato un errore durante la verifica della disponibilità."
+            );
+          }
         });
       }
     });

@@ -6,15 +6,15 @@
  */
 
 /* ------------------------------ GENERIC FORM VALIDATION ------------------------------ */
-
+console.log(sessionStorage.getItem("adminRole"));
+console.log(sessionStorage.getItem("adminName"));
 
 // Fetch CSRF token on page load
-fetch('/csrf-token')
-  .then(response => response.json())
-  .then(data => {
+fetch("/csrf-token")
+  .then((response) => response.json())
+  .then((data) => {
     csrfToken = data.token;
   });
-
 
 /**
  * Generic form validation function that handles field validation and form submission
@@ -23,7 +23,6 @@ fetch('/csrf-token')
  * @param {string} apiEndpoint - API endpoint URL for form submission
  * @param {string} successMessage - Message to display on successful form submission
  */
-
 
 const formValidation = (formId, fieldsConfig, apiEndpoint, successMessage) => {
   const form = document.getElementById(formId);
@@ -147,7 +146,7 @@ const formValidation = (formId, fieldsConfig, apiEndpoint, successMessage) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          'X-CSRF-TOKEN': csrfToken, // Add the token to the header
+          "X-CSRF-TOKEN": csrfToken, // Add the token to the header
         },
         body: JSON.stringify(data),
       });

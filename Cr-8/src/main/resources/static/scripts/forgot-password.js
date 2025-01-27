@@ -32,7 +32,7 @@ sendButton.addEventListener("click", async () => {
 
     if (!res.ok) {
       emailnotvalid.style.color = "red";
-	   emailnotvalid.textContent = "Email not registered ! !";
+	   emailnotvalid.textContent = "Email non registrata!";
     }else{
     // Handle the response as plain text
     const responseText = await res.text();

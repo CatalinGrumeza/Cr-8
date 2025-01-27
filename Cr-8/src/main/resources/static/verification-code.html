@@ -1,54 +1,69 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="it">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
     <meta name="author" content="CR-8" />
-    <link rel="stylesheet" type="" href="./styles/code.css" />
-    <!-- open graph -->
-    <meta property="og:title" content="A Caccia di Sapere" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.esempio.com" />
-    <meta property="og:description" content="" />
-    <meta property="og:image" content="" />
-
+    
     <!-- favicon -->
     <link rel="icon" href="./favicon.ico" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-
+    
     <title>A Caccia di Sapere</title>
-
+    
     <!-- twitter card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="A Caccia di Sapere" />
     <meta name="twitter:description" content="" />
     <meta name="twitter:image" content="" />
-
+    
     <!-- styles -->
+    <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="stylesheet" href="./styles/newpassowrd.css" />
+    <link rel="stylesheet" type="" href="./styles/code.css" />
   </head>
-
+  
   <body>
+    <nav class="navbar-container">
+      <div class="navbar-content">
+        <a href="/">
+          <img
+            class="navbar-logo"
+            src="./assets/img/logo-a-caccia-di-sapere.webp"
+            alt="Logo del sito"
+        /></a>
+        <ul class="navbar">
+          <li>
+            <a href="/login" title="Torna al Login" onclick="menu()"
+              >Torna al Login</a
+            >
+          </li>
+        </ul>
+      </div>
+      <button class="hamburger" onclick="menu()">☰</button>
+    </nav>
     <div class="container">
       <div class="logo">
         <img src="./assets/img/logo-a-caccia-di-sapere.webp" alt="Logo" />
         <span>A Caccia di Sapere</span>
       </div>
-      <h1>Verification Code</h1>
+      <h1>Codice di Verifica</h1>
       <p>
         <strong><span id="email-display"></span></strong>
       </p>
       <div class="code-inputs">
         <input type="text" id="verification-code" maxlength="6" />
       </div>
-      <button id="btn">Verify</button>
+      <button id="btn">Verifica</button>
       <p id="message-code"></p>
       <div class="resend">
-        <a href="#" id="resendLink">Resend Code</a>
+        <a href="#" id="resendLink">Invia di nuovo</a>
       </div>
     </div>
 
+    <script src="./scripts/navbar.js" defer></script>
     <script src="./scripts/verification-code.js" defer></script>
   </body>
 </html>

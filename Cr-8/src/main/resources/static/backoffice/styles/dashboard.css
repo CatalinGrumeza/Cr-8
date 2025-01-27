@@ -1,3 +1,7 @@
+.hidden {
+  display: none;
+}
+
 .card {
   border: 5px solid transparent;
   background: linear-gradient(#ffffff, #ffffff) padding-box,
