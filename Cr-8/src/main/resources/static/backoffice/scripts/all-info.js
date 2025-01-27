@@ -1,3 +1,9 @@
+/**
+ * @file: all-info.js
+ * @author: CR-8
+ * This code includes the logic for the all-info.html page
+ */
+
 fetch("/csrf-token")
   .then((response) => response.json())
   .then((data) => {
@@ -28,7 +34,12 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch((error) => console.error("Error fetching data:", error));
 
-  // Function to format date and time
+  /**
+   * Formats a date string into a human-readable date and time format.
+   *
+   * @param {string} dateString - The date string to be formatted.
+   * @returns {string} A formatted date and time string.
+   */
   function formatDateTime(dateString) {
     const monthNames = [
       "Gen",
@@ -54,7 +65,24 @@ document.addEventListener("DOMContentLoaded", function () {
     return `${day} ${month} ${year} alle ${hours}:${minutes}`;
   }
 
-  // Function to render cards
+  /**
+   * Renders a list of information cards and displays them in the container.
+   *
+   * This function dynamically creates HTML cards based on the data provided,
+   * displays key information such as name, email, phone number, request text,
+   * and status, and provides a button to toggle the status between "Completed"
+   * and "Pending". It also updates the status in the backend and reflects
+   * changes in the UI in real-time.
+   *
+   * @param {Array} data - An array of objects representing the data to be displayed on the cards.
+   * Each object contains the following properties:
+   *   - id: The unique identifier of the information entry.
+   *   - status: The current status of the information (either "Completed" or "Pending").
+   *   - reference: An object containing the reference details, including firstName, lastName, email, and phoneNumber.
+   *   - text: The request text associated with the information.
+   *   - createdAt: The date when the information was created.
+   *
+   */
   function renderCards(data) {
     container.innerHTML = ""; // Clear the container
     data.forEach((info) => {
@@ -147,7 +175,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Function to filter and sort data
+  /**
+   * Filters and sorts the data based on the selected criteria (status, date, and search term).
+   *
+   * @param {Array} allData - An array of objects containing the data to be filtered and sorted.
+   * Each object contains the following properties:
+   *   - id: The unique identifier of the information entry.
+   *   - status: An object representing the status of the information (with a `name` property).
+   *   - reference: An object containing the reference details, including firstName, lastName, and email.
+   *   - createdAt: The date when the information was created.
+   *
+   * After filtering and sorting the data, the function calls `renderCards` to display the results.
+   */
   function filterAndSortData() {
     let filteredData = [...allData];
 

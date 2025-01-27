@@ -1,3 +1,9 @@
+/**
+ * @file: all-bookings.js
+ * @author: CR-8
+ * This code includes the logic for the all-bookings.html page
+ */
+
 document.addEventListener("DOMContentLoaded", function () {
   const container = document.getElementById("booking-container");
   const statusFilter = document.getElementById("status-filter");
@@ -6,7 +12,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let allBookings = [];
 
-  // Function to check if two date ranges overlap
+  /**
+   * Checks if two date ranges overlap, including consideration of time slots (morning or full-day bookings).
+   *
+   * @param {string} start1 - Start date of the first range in YYYY-MM-DD format.
+   * @param {string} end1 - End date of the first range in YYYY-MM-DD format.
+   * @param {string} start2 - Start date of the second range in YYYY-MM-DD format.
+   * @param {string} end2 - End date of the second range in YYYY-MM-DD format.
+   * @param {boolean} morning1 - Indicates if the first range is a morning booking.
+   * @param {boolean} fullDay1 - Indicates if the first range is a full-day booking.
+   * @param {boolean} morning2 - Indicates if the second range is a morning booking.
+   * @param {boolean} fullDay2 - Indicates if the second range is a full-day booking.
+   * @returns {boolean} `true` if the date ranges overlap, `false` otherwise.
+   */
   function datesOverlap(
     start1,
     end1,
@@ -50,6 +68,17 @@ document.addEventListener("DOMContentLoaded", function () {
     return true;
   }
 
+  /**
+   * Checks if a booking overlaps with any existing bookings by fetching booked dates from the server.
+   *
+   * @param {string} startDate - The start date of the booking in YYYY-MM-DD format.
+   * @param {string} endDate - The end date of the booking in YYYY-MM-DD format.
+   * @param {boolean} morning - Indicates if the booking is for the morning slot.
+   * @param {boolean} fullDay - Indicates if the booking is for a full day.
+   * @returns {Promise<Object>} A promise resolving to an object with:
+   *   - `{boolean} hasOverlap` - `true` if there is an overlap, `false` otherwise.
+   *   - `{Object|null} conflictingBooking` - The conflicting booking, if any.
+   */
   function checkBookingOverlap(startDate, endDate, morning, fullDay) {
     return fetch("/api/all-booked-dates")
       .then((response) => response.json())
@@ -86,7 +115,12 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch((error) => console.error("Error fetching data:", error));
 
-  // Function to format date
+  /**
+   * Formats a date string into a human-readable format.
+   *
+   * @param {string} dateString - A date string in a format recognized by the `Date` constructor.
+   * @returns {string} The formatted date string in the format `DD Mon YYYY`.
+   */
   function formatDate(dateString) {
     const monthNames = [
       "Gen",
@@ -110,7 +144,34 @@ document.addEventListener("DOMContentLoaded", function () {
     )} ${String(monthNames[date.getMonth()])} ${date.getFullYear()}`;
   }
 
-  // Function to render booking cards
+  /**
+   * Renders booking cards with detailed information and interaction options.
+   *
+   * This function dynamically creates and populates booking cards based on the provided data. Each card includes:
+   * - Reference details (name, email, phone number).
+   * - Booking details (visitor type, number of participants, date range, additional details, etc.).
+   * - Laboratory selection and booking status.
+   *
+   * Depending on the booking status, it provides options to:
+   * - Cancel a booking if it's "Completed."
+   * - Confirm a pending or canceled booking by filling in the date range and time slot.
+   *
+   * @param {Array} data - Array of booking objects, where each object includes:
+   * - `id`: Unique identifier for the booking.
+   * - `dataFrom` and `dataTo`: Start and end dates of the requested booking.
+   * - `additionalDetails`: Additional notes provided by the user.
+   * - `participantNumber`: Number of participants in the booking.
+   * - `bookType`: Time slot for the booking (e.g., morning or full day).
+   * - `vistorType`: Type of visitor (e.g., student, professional).
+   * - `status`: Object representing the current status of the booking (e.g., pending, completed, canceled).
+   * - `reference`: Object containing user details (name, email, phone).
+   * - `bookedDate`: Object representing confirmed booking dates, if applicable.
+   * - `numberOfDays`: Total number of days requested for the booking.
+   * - `labsSet`: Array of selected laboratories.
+   * - `createdAt`: Date when the booking request was created.
+   *
+   * @returns {void}
+   */
   function renderCards(data) {
     container.innerHTML = ""; // Clear the container
     data.forEach((booking) => {
@@ -136,9 +197,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Create card content
       card.innerHTML = `
         <div class="book-content">
-          <h2>${reference.lastName} ${
-        reference.firstName
-      }</h2>
+          <h2>${reference.lastName} ${reference.firstName}</h2>
           <p><span class="bold">Email</span>: ${reference.email}</p>
           <p><span class="bold">Telefono</span>: ${reference.phoneNumber}</p>
           <p><span class="bold">Tipo di Visitatore</span>: ${vistorType}</p>
@@ -339,7 +398,16 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Function to filter and sort bookings
+  /**
+   * This function applies multiple filters and sorting to the `allBookings` array:
+   * - Filters bookings by status (e.g., "Completed", "Pending").
+   * - Sorts bookings by the `createdAt` date in ascending or descending order.
+   * - Filters bookings based on a search term that matches the first name, last name, email, or booking type.
+   *
+   * Once the filters and sorting are applied, the function passes the filtered and sorted list of bookings to the `renderCards` function to update the displayed cards.
+   *
+   * @returns {void}
+   */
   function filterAndSortBookings() {
     let filteredBookings = [...allBookings];
 

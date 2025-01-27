@@ -1,3 +1,9 @@
+/**
+ * @file: logout.js
+ * @author: CR-8
+ * This code includes the logic for the create-admin.html page
+ */
+
 let csrfToken = null;
 
 // Fetch CSRF token on page load

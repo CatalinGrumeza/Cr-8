@@ -1,3 +1,9 @@
+/**
+ * @file: login.js
+ * @author: CR-8
+ * This code includes the logic for the login.html page
+ */
+
 // Fetch CSRF token on page load
 document.addEventListener("DOMContentLoaded", () => {
   fetch("/csrf-token")
@@ -27,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         body: new URLSearchParams({ email, password }),
       });
-      
+
       if (response.ok) {
         let adminData = await response.json();
 

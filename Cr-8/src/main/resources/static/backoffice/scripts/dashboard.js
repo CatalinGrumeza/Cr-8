@@ -1,3 +1,9 @@
+/**
+ * @file: dashboard.js
+ * @author: CR-8
+ * This code includes the logic for the dashboard.html page
+ */
+
 document.addEventListener("DOMContentLoaded", () => {
   const API_INFO_URL = "/api/all-info";
   const API_BOOKINGS_URL = "/api/all-bookings";
@@ -23,7 +29,15 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch((error) => console.error("Errore nel fetch del calendario:", error));
 
-  // Process data from /api/all-info
+  /**
+   * Processes the data fetched from /api/all-info to generate statistics on the "Completed" and "Pending" items.
+   *
+   * This function takes the fetched data and calculates the count of items with the status "Completed" and "Pending".
+   * It then calls the `createCard` function to generate a card that displays these statistics with the respective counts.
+   *
+   * @param {Array} data - An array of objects representing the information entries. Each object contains:
+   *   - status: An object that includes a `name` property (e.g., "Completed" or "Pending").
+   */
   function processAllInfoData(data) {
     const completedCount = data.filter(
       (item) => item.status && item.status.name === "Completed"
@@ -42,7 +56,16 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
-  // Process data from /api/all-bookings
+  /**
+   * Processes the data fetched from /api/all-bookings to generate statistics on the "Completed", "Pending", and "Cancelled" bookings.
+   *
+   * This function processes the booking data by filtering and calculating the count of items with the status "Completed", "Pending", and "Cancelled".
+   * It then calls the `createCard` function to generate a card displaying these statistics with the respective counts.
+   *
+   * @param {Array} data - An array of objects representing the booking entries. Each object contains:
+   *   - status: An object that includes a `name` property (e.g., "Completed", "Pending", or "Cancelled").
+   *
+   */
   function processAllBookingsData(data) {
     const completedCount = data.filter(
       (item) => item.status && item.status.name === "Completed"
@@ -64,7 +87,19 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
-  // Function to create a card with a pie chart
+  /**
+   * Creates and inserts a card containing a pie chart with statistics for completed, pending, and cancelled items.
+   *
+   * This function generates a statistics card, displaying counts for "Completed", "Pending", and "Cancelled" items along with a pie chart visualizing these counts.
+   * It creates an HTML structure for the card, inserts it into the dashboard, and then renders a pie chart using the Chart.js library.
+   *
+   * @param {string} title - The title to display at the top of the card (e.g., "Statistiche Prenotazioni").
+   * @param {number} completedCount - The count of items with the status "Completed".
+   * @param {number} pendingCount - The count of items with the status "Pending".
+   * @param {number} cancelledCount - The count of items with the status "Cancelled".
+   * @param {Array} labels - The labels for the chart (e.g., ["Completed", "Pending", "Cancelled"]).
+   * @param {Array} colors - The colors associated with each status (e.g., ["#fc931c", "#ed008a", "#3c3c3b"]).
+   */
   function createCard(
     title,
     completedCount,
@@ -127,7 +162,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Initialize the FullCalendar with customized styling
+  /**
+   * Initializes the FullCalendar with customized styling and event data.
+   *
+   * This function sets up the FullCalendar library with a customized layout, adding events from the provided `bookedDates` array.
+   * Each event is represented as a booking, with the title, start and end dates, and customized colors based on the `allDay` property.
+   * The calendar is then rendered with an initial view of the month, and additional toolbar options are provided for navigation and view switching.
+   *
+   * @param {Array} bookedDates - An array of booked date objects, each containing booking details such as reference name, start date, end date, and allDay flag.
+   *
+   */
   function initializeCalendar(bookedDates) {
     if (typeof FullCalendar === "undefined") {
       console.error(
