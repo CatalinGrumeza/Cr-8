@@ -1,5 +1,5 @@
 /**
- * @file: forgot-password.js
+ * @file: new-password.js
  * @author: CR-8
  * This code includes the logic for the new-password.html page
  */
@@ -35,7 +35,7 @@ async function validatePassword() {
 
   // Validate inputs
   if (!password || !confirmPassword) {
-    message.textContent = "Entrambe i campi richiesti!";
+    message.textContent = "Entrambi i campi richiesti!";
     message.style.color = "red";
     return;
   }

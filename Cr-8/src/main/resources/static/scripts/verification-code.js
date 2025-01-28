@@ -1,5 +1,5 @@
 /**
- * @file: forgot-password.js
+ * @file: verification-code.js
  * @author: CR-8
  * This code includes the logic for the verification-code.html page
  */
@@ -20,7 +20,7 @@ sendButton.addEventListener("click", async () => {
   const Upper = code.toUpperCase();
   console.log(Upper);
 
-  const url = `/api/verification-code?code=${Upper}`;
+  const url = `/api/pub/verification-code?code=${Upper}`;
   try {
     // Fetch CSRF token
     const csrfResponse = await fetch("/csrf-token");
@@ -32,7 +32,7 @@ sendButton.addEventListener("click", async () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "X-CSRF-TOKEN": csrfToken, // Use the token in the header
+        "X-CSRF-TOKEN": csrfToken,
       },
     });
 
@@ -40,7 +40,6 @@ sendButton.addEventListener("click", async () => {
 
     if (!res.ok) {
       messageAlert.style.color = "red";
-
       messageAlert.textContent = "Codice errato!";
 
       clearTimeout(500);
